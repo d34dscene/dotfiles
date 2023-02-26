@@ -8,12 +8,21 @@ else
 fi
 
 # Add nerd fonts
+required_fonts=(FiraCode FiraMono SourceCodePro JetBrainsMono SpaceMono Noto)
 mkdir -p $HOME/.local/share/fonts
-if [[ ! -e "$HOME/.local/share/fonts/FiraMono" ]]; then
+
+missing_fonts=()
+for font in ${required_fonts[@]}; do
+	if [[ ! -e "$HOME/.local/share/fonts/$font" ]]; then
+		missing_fonts+=($font)
+	fi
+done
+
+if [[ ${#missing_fonts[@]} -gt 0 ]]; then
 	git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts $HOME/nerd-fonts
-	git -C $HOME/nerd-fonts sparse-checkout add patched-fonts/FiraMono
-	git -C $HOME/nerd-fonts sparse-checkout add patched-fonts/SourceCodePro
-	mv $HOME/nerd-fonts/patched-fonts/FiraMono ~/.local/share/fonts/
-	mv $HOME/nerd-fonts/patched-fonts/SourceCodePro ~/.local/share/fonts/
+	for font in ${missing_fonts[@]}; do
+		git -C $HOME/nerd-fonts sparse-checkout add patched-fonts/$font
+		mv $HOME/nerd-fonts/patched-fonts/$font ~/.local/share/fonts/
+	done
 	rm -rf $HOME/nerd-fonts
 fi
