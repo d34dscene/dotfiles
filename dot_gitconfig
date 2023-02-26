@@ -1,0 +1,13 @@
+[user]
+	name = Roxas
+	email = upget_inboards@aleeas.com
+[pull]
+	rebase = true
+[alias]
+    changes = "log -M -L"
+[credential]
+	helper = store
+[help]
+    autocorrect = 20
+[push]
+	autoSetupRemote = true

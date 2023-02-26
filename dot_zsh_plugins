@@ -1,0 +1,18 @@
+# Plugins
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting
+ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/tmux
+ohmyzsh/ohmyzsh path:plugins/copypath
+ohmyzsh/ohmyzsh path:plugins/git-auto-fetch
+ohmyzsh/ohmyzsh path:plugins/history-substring-search
+ahmetb/kubectx path:completion kind:fpath
+robbyrussell/oh-my-zsh path:plugins/docker
+laggardkernel/git-ignore
+jgogstad/passwordless-history
+sunlei/zsh-ssh
+
+# Theme
+romkatv/powerlevel10k
+
