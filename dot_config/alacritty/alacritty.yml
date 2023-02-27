@@ -49,6 +49,11 @@ cursor:
 selection:
   save_to_clipboard: true
 
+draw_bold_text_with_bright_colors: true
+
+mouse:
+  hide_when_typing: true
+
 ## Bindings
 key_bindings:
   - { key: Y, mods: Alt, action: Hide }
