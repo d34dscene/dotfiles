@@ -69,6 +69,19 @@ map("n", "<leader>p", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
 -- LSP Installer
 map("n", "<leader>lm", "<cmd>Mason<cr>U", { desc = "Mason Update" })
 
+-- Todo
+map("n", "]t", function()
+	require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+map("n", "[t", function()
+	require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
+-- -- Refactor
+map("n", "rr", function()
+	return ":IncRename " .. vim.fn.expand "<cword>"
+end, { expr = true, desc = "Refactor" })
+
 -- Text case
 map("n", "tu", function()
 	require("textcase").current_word "to_upper_case"
@@ -169,7 +182,7 @@ end, { desc = "Search references" })
 map("n", "<leader>fd", function()
 	require("telescope.builtin").diagnostics()
 end, { desc = "Search diagnostics" })
-map("n", "<leader>ft", "<cmd>TextCaseOpenTelescope<cr>", { desc = "Text case Info" })
+map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search Todos" })
 
 -- Ufo fix for german layout
 map("n", "ym", "zR", { desc = "Open all folds" })

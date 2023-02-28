@@ -44,7 +44,7 @@ cmp.setup {
 	},
 	window = {
 		completion = {
-			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 			col_offset = -3,
 			side_padding = 0,
 		},
@@ -94,7 +94,7 @@ cmp.setup {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "buffer", keyword_length = 3 },
+		{ name = "buffer", keyword_length = 2 },
 	},
 }
 
