@@ -148,6 +148,7 @@ return {
 	"folke/which-key.nvim", -- Key popup
 	"haya14busa/is.vim", -- Auto clear highlight
 	"gelguy/wilder.nvim", -- Search suggestions
+	"machakann/vim-sandwich", -- Surroundings
 	{ -- Code outline
 		"stevearc/aerial.nvim",
 		config = function()
@@ -189,12 +190,6 @@ return {
 					extra = false,
 				},
 			}
-		end,
-	},
-	{ -- Surroundings
-		"kylechui/nvim-surround",
-		config = function()
-			require("nvim-surround").setup {}
 		end,
 	},
 	{ -- Diagnostics
