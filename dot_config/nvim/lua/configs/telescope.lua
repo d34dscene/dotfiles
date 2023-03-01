@@ -24,6 +24,7 @@ telescope.setup {
 		selection_strategy = "reset",
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
+		initial_mode = "insert",
 		layout_config = {
 			horizontal = {
 				prompt_position = "top",
@@ -39,8 +40,11 @@ telescope.setup {
 		},
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 796ec12 (Update .config/nvim/lua/configs/telescope.lua)
+=======
+>>>>>>> a63ab2b (Update .config/nvim/lua/configs/telescope.lua)
 		vimgrep_arguments = {
 			"rg",
 			"-L",
@@ -65,10 +69,14 @@ telescope.setup {
 		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> b6838cb (Update .config/nvim/lua/configs/telescope.lua)
 =======
 >>>>>>> 796ec12 (Update .config/nvim/lua/configs/telescope.lua)
+=======
+
+>>>>>>> a63ab2b (Update .config/nvim/lua/configs/telescope.lua)
 		mappings = {
 			i = {
 				["<C-n>"] = actions.cycle_history_next,

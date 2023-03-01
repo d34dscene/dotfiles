@@ -37,6 +37,7 @@ o.timeoutlen = 300 -- Length of time to wait for a mapped sequence
 o.undofile = true -- Enable persistent undo
 o.updatetime = 200 -- Length of time to wait before triggering the plugin
 o.wrap = true -- Wrap lines longer than the width of window
+o.whichwrap:append "<>[]hl" -- Go to previous/next line on end/beginning
 o.autoread = true
 o.hlsearch = false
 o.incsearch = true
@@ -55,6 +56,7 @@ g.better_escape_shortcut = "qq"
 g.better_escape_interval = 500
 g.highlighturl_enabled = true -- highlight URLs by default
 
+-- disable some builtin vim plugins
 local default_plugins = {
 	"2html_plugin",
 	"getscript",
