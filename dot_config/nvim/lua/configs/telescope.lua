@@ -36,7 +36,6 @@ telescope.setup {
 			height = 0.80,
 			preview_cutoff = 120,
 		},
-
 		mappings = {
 			i = {
 				["<C-n>"] = actions.cycle_history_next,
