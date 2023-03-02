@@ -82,6 +82,23 @@ map("n", "rr", function()
 	return ":IncRename " .. vim.fn.expand "<cword>"
 end, { expr = true, desc = "Refactor" })
 
+-- Codium
+map("i", "cc", function()
+	return vim.fn["codeium#Accept"]()
+end, { expr = true })
+map("i", "<S->>", function()
+	return vim.fn["codeium#CycleCompletions"](1)
+end, { expr = true })
+map("i", "<S-<>", function()
+	return vim.fn["codeium#CycleCompletions"](-1)
+end, { expr = true })
+map("i", "xx", function()
+	return vim.fn["codeium#Clear"]()
+end, { expr = true })
+map("i", "<C-c>", function()
+	return vim.fn["codeium#Complete"]()
+end, { expr = true })
+
 -- Text case
 map("n", "tu", function()
 	require("textcase").current_word "to_upper_case"
