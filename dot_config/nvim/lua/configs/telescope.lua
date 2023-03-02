@@ -24,7 +24,7 @@ telescope.setup {
 		selection_strategy = "reset",
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
-		initial_mode = "insert",
+		initial_mode = "normal",
 		layout_config = {
 			horizontal = {
 				prompt_position = "top",
