@@ -220,7 +220,6 @@ return {
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-	"Exafunction/codeium.vim", -- run :Codeium Auth
 	-- { -- ChatGPT
 	-- 	"jackMort/ChatGPT.nvim",
 	-- 	config = function()
