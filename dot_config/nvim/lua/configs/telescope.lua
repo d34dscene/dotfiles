@@ -38,6 +38,13 @@ telescope.setup {
 			height = 0.80,
 			preview_cutoff = 120,
 		},
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 796ec12 (Update .config/nvim/lua/configs/telescope.lua)
+=======
+>>>>>>> a63ab2b (Update .config/nvim/lua/configs/telescope.lua)
 		vimgrep_arguments = {
 			"rg",
 			"-L",
@@ -61,7 +68,15 @@ telescope.setup {
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b6838cb (Update .config/nvim/lua/configs/telescope.lua)
+=======
+>>>>>>> 796ec12 (Update .config/nvim/lua/configs/telescope.lua)
+=======
 
+>>>>>>> a63ab2b (Update .config/nvim/lua/configs/telescope.lua)
 		mappings = {
 			i = {
 				["<C-n>"] = actions.cycle_history_next,
@@ -92,7 +107,6 @@ telescope.setup {
 				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 				["<C-l>"] = actions.complete_tag,
 			},
-
 			n = {
 				["q"] = actions.close,
 				["<CR>"] = actions.select_default,

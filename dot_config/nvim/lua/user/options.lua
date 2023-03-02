@@ -51,6 +51,7 @@ o.foldlevelstart = 99
 
 -- Global
 g.mapleader = " "
+g.codeium_disable_bindings = 1
 g.better_escape_shortcut = "qq"
 g.better_escape_interval = 500
 g.highlighturl_enabled = true -- highlight URLs by default
