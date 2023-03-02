@@ -37,7 +37,6 @@ o.timeoutlen = 300 -- Length of time to wait for a mapped sequence
 o.undofile = true -- Enable persistent undo
 o.updatetime = 200 -- Length of time to wait before triggering the plugin
 o.wrap = true -- Wrap lines longer than the width of window
-o.whichwrap:append "<>[]hl" -- Go to previous/next line on end/beginning
 o.autoread = true
 o.hlsearch = false
 o.incsearch = true
@@ -55,37 +54,25 @@ g.codeium_disable_bindings = 1
 g.better_escape_shortcut = "qq"
 g.better_escape_interval = 500
 g.highlighturl_enabled = true -- highlight URLs by default
-
--- disable some builtin vim plugins
-local default_plugins = {
-	"2html_plugin",
-	"getscript",
-	"getscriptPlugin",
-	"gzip",
-	"logipat",
-	"netrw",
-	"netrwPlugin",
-	"netrwSettings",
-	"netrwFileHandlers",
-	"matchit",
-	"tar",
-	"tarPlugin",
-	"rrhelper",
-	"spellfile_plugin",
-	"vimball",
-	"vimballPlugin",
-	"zip",
-	"zipPlugin",
-	"tutor",
-	"rplugin",
-	"syntax",
-	"synmenu",
-	"optwin",
-	"compiler",
-	"bugreport",
-	"ftplugin",
-}
-
-for _, plugin in pairs(default_plugins) do
-	g["loaded_" .. plugin] = 1
-end
+g.zipPlugin = false -- disable zip
+g.load_black = false -- disable black
+g.loaded_2html_plugin = true -- disable 2html
+g.loaded_getscript = true -- disable getscript
+g.loaded_getscriptPlugin = true -- disable getscript
+g.loaded_gzip = true -- disable gzip
+g.loaded_logipat = true -- disable logipat
+g.loaded_matchit = true -- disable matchit
+g.loaded_netrwFileHandlers = true -- disable netrw
+g.loaded_netrwPlugin = true -- disable netrw
+g.loaded_netrwSettngs = true -- disable netrw
+g.loaded_remote_plugins = true -- disable remote plugins
+g.loaded_tar = true -- disable tar
+g.loaded_tarPlugin = true -- disable tar
+g.loaded_zip = true -- disable zip
+g.loaded_zipPlugin = true -- disable zip
+g.loaded_vimball = true -- disable vimball
+g.loaded_vimballPlugin = true -- disable vimball
+g.loaded_vimballPlugin = true -- disable vimball
+g.loaded_vimballPlugin = true -- disable vimball
+g.loaded_vimballPlugin = true -- disable vimball
+g.loaded_vimballPlugin = true -- disable vimball
