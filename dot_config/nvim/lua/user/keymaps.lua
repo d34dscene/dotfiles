@@ -13,7 +13,7 @@ local opts = { noremap = true, silent = true }
 map("", "<Space>", "<Nop>")
 
 -- Autocomplete when searching
---map("c", "<tab>", "<C-r><C-w>")
+-- map("c", "<tab>", "<C-r><C-w>") -- replaced by wilder
 
 -- Standard Operations
 map("n", "<leader>z", "<cmd>lua ReloadConfig()<CR>", { desc = "Reload config" })
@@ -22,8 +22,13 @@ map("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "zz", "<cmd>q!<cr>", { desc = "Force quit" })
 
 -- Search and replace
-map("n", "<leader>rr", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
-map("n", "<leader>rw", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Replace current word" })
+map("n", "re", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
+map("n", "rw", ":%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>", { desc = "Replace current word" })
+
+-- Refactor
+map("n", "rr", function()
+	return ":IncRename " .. vim.fn.expand "<cword>"
+end, { expr = true, desc = "Refactor" })
 
 -- Splits
 map("n", "<leader>v", "<C-w>v", { desc = "Create vertical split" })
@@ -64,10 +69,10 @@ map("n", "<leader>a", "<cmd>AerialToggle!<cr>", { desc = "Toggle Aerial" })
 map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Lazy
-map("n", "<leader>p", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
+map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
 
 -- LSP Installer
-map("n", "<leader>lm", "<cmd>Mason<cr>U", { desc = "Mason Update" })
+map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- Todo
 map("n", "]t", function()
@@ -77,44 +82,19 @@ map("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
--- -- Refactor
-map("n", "rr", function()
-	return ":IncRename " .. vim.fn.expand "<cword>"
-end, { expr = true, desc = "Refactor" })
-
 -- Codium
-map("i", "cc", function()
+map("i", "<A-]>", function()
 	return vim.fn["codeium#Accept"]()
 end, { expr = true })
-map("i", "<Right>", function()
+map("i", "<PageUp>", function()
 	return vim.fn["codeium#CycleCompletions"](1)
 end, { expr = true })
-map("i", "<Left>", function()
+map("i", "<PageDown>", function()
 	return vim.fn["codeium#CycleCompletions"](-1)
 end, { expr = true })
-map("i", "xx", function()
+map("i", "<A-[>", function()
 	return vim.fn["codeium#Clear"]()
 end, { expr = true })
-
--- Text case
-map("n", "tu", function()
-	require("textcase").current_word "to_upper_case"
-end, { desc = "Upper case" })
-map("n", "tl", function()
-	require("textcase").current_word "to_lower_case"
-end, { desc = "Lower case" })
-map("n", "ts", function()
-	require("textcase").current_word "to_snake_case"
-end, { desc = "Snake case" })
-map("n", "tp", function()
-	require("textcase").current_word "to_pascal_case"
-end, { desc = "Pascal case" })
-map("n", "tc", function()
-	require("textcase").current_word "to_camel_case"
-end, { desc = "Camel case" })
-map("n", "tC", function()
-	require("textcase").current_word "to_constant_case"
-end, { desc = "Constant case" })
 
 -- Comment
 map("n", "x", function()
@@ -198,7 +178,7 @@ map("n", "<leader>fd", function()
 end, { desc = "Search diagnostics" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search Todos" })
 
--- Ufo fix for german layout
+-- Ufo
 map("n", "ym", "zR", { desc = "Open all folds" })
 map("n", "yr", "zM", { desc = "Close all folds" })
 map("n", "ya", "za", { desc = "Toggle fold under cursor" })

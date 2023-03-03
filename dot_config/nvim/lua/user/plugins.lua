@@ -158,7 +158,9 @@ return {
 	{ -- Tabout from different contexts
 		"abecodes/tabout.nvim",
 		config = function()
-			require("tabout").setup {}
+			require("tabout").setup {
+				ignore_beginning = false,
+			}
 		end,
 	},
 	{ -- Highlight todo comments
@@ -171,7 +173,9 @@ return {
 	{ -- Change text casing
 		"johmsalas/text-case.nvim",
 		config = function()
-			require("textcase").setup {}
+			require("textcase").setup {
+				prefix = "t",
+			}
 		end,
 	},
 	{ -- Folding
@@ -185,6 +189,7 @@ return {
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup {
+				padding = true,
 				mappings = {
 					basic = false,
 					extra = false,
@@ -220,7 +225,13 @@ return {
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-	"Exafunction/codeium.vim", -- run :Codeium Auth
+	"Exafunction/codeium.vim", -- Codium
+	{ -- Codium cmp integration
+		"jcdickinson/codeium.nvim",
+		config = function()
+			require("codeium").setup {}
+		end,
+	},
 	-- { -- ChatGPT
 	-- 	"jackMort/ChatGPT.nvim",
 	-- 	config = function()

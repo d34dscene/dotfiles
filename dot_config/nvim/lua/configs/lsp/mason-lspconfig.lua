@@ -48,7 +48,6 @@ local on_attach = function(client, bufnr)
 
 	-- Mappings.
 	--map("<leader>rn", vim.lsp.buf.rename, "Refactor") -- Replaced by inc-rename
-	map("<leader>lw", vim.lsp.buf.rename, "Rename what's under the cursor.")
 	map("<leader>lc", vim.lsp.buf.code_action, "Code Action")
 
 	map("gt", tsbuiltin.lsp_definitions, "Goto Definition")
