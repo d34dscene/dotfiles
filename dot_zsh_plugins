@@ -5,6 +5,7 @@ zdharma-continuum/fast-syntax-highlighting
 ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/tmux
 ohmyzsh/ohmyzsh path:plugins/copypath
+ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/git-auto-fetch
 ohmyzsh/ohmyzsh path:plugins/history-substring-search
 ahmetb/kubectx path:completion kind:fpath
@@ -15,4 +16,3 @@ sunlei/zsh-ssh
 
 # Theme
 romkatv/powerlevel10k
-
