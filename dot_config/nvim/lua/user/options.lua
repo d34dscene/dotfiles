@@ -32,10 +32,13 @@ o.splitbelow = true -- Splitting a new window below the current one
 o.splitright = true -- Splitting a new window at the right of the current one
 o.swapfile = false -- Disable use of swapfile for the buffer
 o.termguicolors = true -- Enable 24-bit RGB color in the TUI
+o.updatetime = 100 -- Length of time to wait before triggering the plugin
+o.redrawtime = 1500
 o.timeout = true
+o.ttimeout = true
 o.timeoutlen = 300 -- Length of time to wait for a mapped sequence
+o.ttimeoutlen = 10
 o.undofile = true -- Enable persistent undo
-o.updatetime = 200 -- Length of time to wait before triggering the plugin
 o.wrap = true -- Wrap lines longer than the width of window
 o.whichwrap:append "<>[]hl" -- Go to previous/next line on end/beginning
 o.autoread = true

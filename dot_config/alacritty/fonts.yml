@@ -1,19 +1,19 @@
 # Fonts
 font:
   normal:
-    family: JetBrainsMono NFM
+    family: FiraCode NFM
     style: Regular
 
   bold:
-    family: JetBrainsMono NFM
+    family: FiraCode NFM
     style: Bold
 
   italic:
-    family: JetBrainsMono NFM
+    family: FiraCode NFM
     style: Italic
 
   bold_italic:
-    family: JetBrainsMono NFM
+    family: FiraCode NFM
     style: Bold Italic
 
   size: 11

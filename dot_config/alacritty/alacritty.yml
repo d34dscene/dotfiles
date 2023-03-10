@@ -57,6 +57,7 @@ mouse:
 ## Bindings
 key_bindings:
   - { key: Y, mods: Alt, action: Hide }
+  - { key: F11, mods: Alt, action: Quit }
   - { key: Return, mods: Alt, action: ToggleFullscreen }
 
 mouse_bindings:
