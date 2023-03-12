@@ -16,4 +16,4 @@ jgogstad/passwordless-history
 sunlei/zsh-ssh
 
 # Theme
-romkatv/powerlevel10k
+romkatv/powerlevel10k kind:fpath
