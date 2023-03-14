@@ -98,6 +98,13 @@ return {
 			}
 		end,
 	},
+	{
+		"Wansmer/treesj",
+		config = function()
+			require("treesj").setup { use_default_keymaps = false }
+		end,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
 
 	-- LSP
 	-- ------------------------------------------------------------------------

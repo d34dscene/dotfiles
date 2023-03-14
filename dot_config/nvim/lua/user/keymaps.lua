@@ -22,13 +22,16 @@ map("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "zz", "<cmd>q!<cr>", { desc = "Force quit" })
 
 -- Search and replace
-map("n", "re", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
+map("n", "rt", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
 map("n", "rw", ":%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>", { desc = "Replace current word" })
 
 -- Refactor
 map("n", "rr", function()
+	return ":IncRename "
+end, { expr = true, desc = "Refactor new name" })
+map("n", "re", function()
 	return ":IncRename " .. vim.fn.expand "<cword>"
-end, { expr = true, desc = "Refactor" })
+end, { expr = true, desc = "Refactor expand" })
 
 -- Splits
 map("n", "<leader>v", "<C-w>v", { desc = "Create vertical split" })
@@ -73,6 +76,11 @@ map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
 
 -- LSP Installer
 map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
+
+-- Treesj
+map("n", "tt", function()
+	require("treesj").toggle()
+end, { desc = "Toggle node under cursor" })
 
 -- Todo
 map("n", "]t", function()
