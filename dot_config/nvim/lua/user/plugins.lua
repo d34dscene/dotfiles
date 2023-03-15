@@ -146,16 +146,25 @@ return {
 	"hrsh7th/cmp-buffer", -- Buffer completion
 	"hrsh7th/cmp-path", -- Path completion
 	"hrsh7th/cmp-cmdline", -- Cmd completion
+	"hrsh7th/cmp-nvim-lua", -- Lua completion
 	"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
 	"rafamadriz/friendly-snippets", -- Vscode friendly snippets
 
 	-- Extras
 	-- ------------------------------------------------------------------------
-	"max397574/better-escape.nvim", -- Smooth escaping
 	"folke/which-key.nvim", -- Key popup
 	"haya14busa/is.vim", -- Auto clear highlight
 	"gelguy/wilder.nvim", -- Search suggestions
 	"machakann/vim-sandwich", -- Surroundings
+	{ -- Smooth escaping
+		"max397574/better-escape.nvim",
+		config = function()
+			require("better_escape").setup {
+				mapping = { "qq" },
+				keys = "<Esc>",
+			}
+		end,
+	},
 	{ -- Code outline
 		"stevearc/aerial.nvim",
 		config = function()

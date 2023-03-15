@@ -97,6 +97,7 @@ cmp.setup {
 	},
 	sources = cmp.config.sources {
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "codeium" },
@@ -105,6 +106,10 @@ cmp.setup {
 }
 
 cmp.setup.filetype("TelescopePrompt", {
+	enabled = false,
+})
+
+cmp.setup.filetype("neo-tree", {
 	enabled = false,
 })
 
