@@ -7,7 +7,8 @@ return {
 	"MunifTanjim/nui.nvim", -- UI Library
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
-	{ -- File explorer
+	{
+		-- File explorer
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 	},
@@ -18,29 +19,34 @@ return {
 	"nvim-lualine/lualine.nvim", -- Statusline
 	"onsails/lspkind.nvim", -- Vscode-like pictograms
 	"SmiteshP/nvim-navic", -- Navic
-	{ -- Colorize rgb codes
+	{
+		-- Colorize rgb codes
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup({ "*" }, { mode = "background" })
 		end,
 	},
-	{ -- Theme
+	{
+		-- Theme
 		"catppuccin/nvim",
 		name = "catppuccin",
 	},
-	{ -- Add transparency
+	{
+		-- Add transparency
 		"xiyaowong/nvim-transparent",
 		config = function()
 			require("transparent").setup { enable = true }
 		end,
 	},
-	{ -- Icons
+	{
+		-- Icons
 		"nvim-tree/nvim-web-devicons",
 		config = function()
 			require("nvim-web-devicons").setup { default = true }
 		end,
 	},
-	{ -- Pretty notifications
+	{
+		-- Pretty notifications
 		"rcarriga/nvim-notify",
 		config = function()
 			require("notify").setup {
@@ -51,7 +57,8 @@ return {
 			vim.notify = require "notify"
 		end,
 	},
-	{ -- Winbar
+	{
+		-- Winbar
 		"utilyre/barbecue.nvim",
 		config = function()
 			require("barbecue").setup {
@@ -63,7 +70,8 @@ return {
 			}
 		end,
 	},
-	{ -- Git decorations
+	{
+		-- Git decorations
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup {
@@ -73,7 +81,8 @@ return {
 			}
 		end,
 	},
-	{ -- Follow cursor
+	{
+		-- Follow cursor
 		"gen740/SmoothCursor.nvim",
 		config = function()
 			require("smoothcursor").setup {}
@@ -88,7 +97,8 @@ return {
 	},
 	"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
 	"windwp/nvim-ts-autotag", -- Autoclose tags
-	{ -- Parenthesis highlighting
+	{
+		-- Parenthesis highlighting
 		"mrjones2014/nvim-ts-rainbow",
 		config = function()
 			require("nvim-treesitter.configs").setup {
@@ -100,7 +110,8 @@ return {
 			}
 		end,
 	},
-	{ -- Node splits/joins
+	{
+		-- Node splits/joins
 		"Wansmer/treesj",
 		config = function()
 			require("treesj").setup { use_default_keymaps = false }
@@ -121,7 +132,8 @@ return {
 	"pearofducks/ansible-vim", -- Ansible support
 	"towolf/vim-helm", -- Helm support
 	"b0o/schemastore.nvim", -- JSON schemas
-	{ -- Show signature
+	{
+		-- Show signature
 		"ray-x/lsp_signature.nvim",
 		config = function()
 			require("lsp_signature").setup {
@@ -132,7 +144,8 @@ return {
 			}
 		end,
 	},
-	{ -- Highlight refactors
+	{
+		-- Highlight refactors
 		"smjonas/inc-rename.nvim",
 		config = function()
 			require("inc_rename").setup {}
@@ -157,7 +170,9 @@ return {
 	"haya14busa/is.vim", -- Auto clear highlight
 	"gelguy/wilder.nvim", -- Search suggestions
 	"machakann/vim-sandwich", -- Surroundings
-	{ -- Smooth escaping
+	"Exafunction/codeium.vim", -- AI completions
+	{
+		-- Smooth escaping
 		"max397574/better-escape.nvim",
 		config = function()
 			require("better_escape").setup {
@@ -166,13 +181,15 @@ return {
 			}
 		end,
 	},
-	{ -- Code outline
+	{
+		-- Code outline
 		"stevearc/aerial.nvim",
 		config = function()
 			require("aerial").setup {}
 		end,
 	},
-	{ -- Tabout from different contexts
+	{
+		-- Tabout from different contexts
 		"abecodes/tabout.nvim",
 		config = function()
 			require("tabout").setup {
@@ -180,13 +197,15 @@ return {
 			}
 		end,
 	},
-	{ -- Highlight todo comments
+	{
+		-- Highlight todo comments
 		"folke/todo-comments.nvim",
 		config = function()
 			require("todo-comments").setup {}
 		end,
 	},
-	{ -- Change text casing
+	{
+		-- Change text casing
 		"johmsalas/text-case.nvim",
 		config = function()
 			require("textcase").setup {
@@ -194,14 +213,16 @@ return {
 			}
 		end,
 	},
-	{ -- Folding
+	{
+		-- Folding
 		"kevinhwang91/nvim-ufo",
 		config = function()
 			require("ufo").setup {}
 		end,
 		dependencies = { "kevinhwang91/promise-async" },
 	},
-	{ -- Smart commenting
+	{
+		-- Smart commenting
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup {
@@ -213,7 +234,8 @@ return {
 			}
 		end,
 	},
-	{ -- Diagnostics
+	{
+		-- Diagnostics
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup {
@@ -222,7 +244,8 @@ return {
 			}
 		end,
 	},
-	{ -- Generate docs
+	{
+		-- Generate docs
 		"danymat/neogen",
 		config = function()
 			require("neogen").setup {
@@ -230,20 +253,15 @@ return {
 			}
 		end,
 	},
-	{ -- Live Markdown preview
+	{
+		-- Live Markdown preview
 		"iamcco/markdown-preview.nvim",
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-	{ -- Autosave
-		"Pocco81/auto-save.nvim",
-		config = function()
-			require("auto-save").setup {}
-		end,
-	},
-	"Exafunction/codeium.vim", -- Codium
-	{ -- Codium cmp integration
+	{
+		-- Codium cmp integration
 		"jcdickinson/codeium.nvim",
 		config = function()
 			require("codeium").setup {}

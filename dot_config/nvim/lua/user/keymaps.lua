@@ -200,8 +200,8 @@ map("v", "<A-Down>", ":move'>+<cr>gv=gv", { desc = "Move block down" })
 -- Jump between windows + close terminal
 map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
 map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
-map("t", "<Tab>", "<cmd>ToggleTerm<cr><C-w>w", { desc = "Jump to next window" })
-map("t", "<S-Tab>", "<cmd>ToggleTerm<cr><C-w>W", { desc = "Jump to previous window" })
+-- map("t", "<Tab>", "<cmd>ToggleTerm<cr><C-w>w", { desc = "Jump to next window" })
+-- map("t", "<S-Tab>", "<cmd>ToggleTerm<cr><C-w>W", { desc = "Jump to previous window" })
 
 -- Extras
 map("i", "<C-d>", "<Del>", opts) -- forward delete

@@ -38,7 +38,6 @@ local sources = {
 local sync_formatting = function(bufnr)
 	vim.lsp.buf.format {
 		bufnr = bufnr,
-		command = "undojoin | LspFormatting",
 		filter = function(client)
 			return client.name == "null-ls"
 		end,
