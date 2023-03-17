@@ -4,8 +4,8 @@ if not (cmp_status_ok and snip_status_ok) then
 	return
 end
 
-require("luasnip.loaders.from_vscode").lazy_load()
 local select_opts = { behavior = cmp.SelectBehavior.Select }
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup {
 	snippet = {

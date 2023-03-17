@@ -16,9 +16,14 @@ return {
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
 	"nvim-lualine/lualine.nvim", -- Statusline
-	"norcalli/nvim-colorizer.lua", -- Colorize rgb codes
 	"onsails/lspkind.nvim", -- Vscode-like pictograms
 	"SmiteshP/nvim-navic", -- Navic
+	{ -- Colorize rgb codes
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({ "*" }, { mode = "background" })
+		end,
+	},
 	{ -- Theme
 		"catppuccin/nvim",
 		name = "catppuccin",

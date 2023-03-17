@@ -1,9 +1,10 @@
-local status_ok, npairs = pcall(require, "nvim-autopairs")
-if not status_ok then
+local status_ok, pairs = pcall(require, "nvim-autopairs")
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not (status_ok and cmp_status_ok) then
 	return
 end
 
-npairs.setup {
+pairs.setup {
 	check_ts = true,
 	disable_filetype = { "TelescopePrompt", "spectre_panel" },
 	ts_config = {
@@ -24,5 +25,4 @@ npairs.setup {
 }
 
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-local cmp = require "cmp"
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { tex = false })
