@@ -8,8 +8,7 @@ return {
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
 	{
-		-- File explorer
-		"nvim-neo-tree/neo-tree.nvim",
+		"nvim-neo-tree/neo-tree.nvim", -- File explorer
 		branch = "v2.x",
 	},
 
@@ -20,34 +19,29 @@ return {
 	"onsails/lspkind.nvim", -- Vscode-like pictograms
 	"SmiteshP/nvim-navic", -- Navic
 	{
-		-- Colorize rgb codes
-		"norcalli/nvim-colorizer.lua",
+		"norcalli/nvim-colorizer.lua", -- Colorize rgb codes
 		config = function()
 			require("colorizer").setup({ "*" }, { mode = "background" })
 		end,
 	},
 	{
-		-- Theme
-		"catppuccin/nvim",
+		"catppuccin/nvim", -- Theme
 		name = "catppuccin",
 	},
 	{
-		-- Add transparency
-		"xiyaowong/nvim-transparent",
+		"xiyaowong/nvim-transparent", -- Add transparency
 		config = function()
 			require("transparent").setup { enable = true }
 		end,
 	},
 	{
-		-- Icons
-		"nvim-tree/nvim-web-devicons",
+		"nvim-tree/nvim-web-devicons", -- Icons
 		config = function()
 			require("nvim-web-devicons").setup { default = true }
 		end,
 	},
 	{
-		-- Pretty notifications
-		"rcarriga/nvim-notify",
+		"rcarriga/nvim-notify", -- Pretty notifications
 		config = function()
 			require("notify").setup {
 				background_colour = "#000000",
@@ -58,8 +52,7 @@ return {
 		end,
 	},
 	{
-		-- Winbar
-		"utilyre/barbecue.nvim",
+		"utilyre/barbecue.nvim", -- Winbar
 		config = function()
 			require("barbecue").setup {
 				attach_navic = false,
@@ -71,8 +64,7 @@ return {
 		end,
 	},
 	{
-		-- Git decorations
-		"lewis6991/gitsigns.nvim",
+		"lewis6991/gitsigns.nvim", -- Git decorations
 		config = function()
 			require("gitsigns").setup {
 				current_line_blame = true,
@@ -82,8 +74,7 @@ return {
 		end,
 	},
 	{
-		-- Follow cursor
-		"gen740/SmoothCursor.nvim",
+		"gen740/SmoothCursor.nvim", -- Follow cursor
 		config = function()
 			require("smoothcursor").setup {}
 		end,
@@ -98,8 +89,7 @@ return {
 	"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
 	"windwp/nvim-ts-autotag", -- Autoclose tags
 	{
-		-- Parenthesis highlighting
-		"mrjones2014/nvim-ts-rainbow",
+		"mrjones2014/nvim-ts-rainbow", -- Parenthesis highlighting
 		config = function()
 			require("nvim-treesitter.configs").setup {
 				rainbow = {
@@ -111,8 +101,7 @@ return {
 		end,
 	},
 	{
-		-- Node splits/joins
-		"Wansmer/treesj",
+		"Wansmer/treesj", -- Node splits/joins
 		config = function()
 			require("treesj").setup { use_default_keymaps = false }
 		end,
@@ -133,8 +122,7 @@ return {
 	"towolf/vim-helm", -- Helm support
 	"b0o/schemastore.nvim", -- JSON schemas
 	{
-		-- Show signature
-		"ray-x/lsp_signature.nvim",
+		"ray-x/lsp_signature.nvim", -- Show signature
 		config = function()
 			require("lsp_signature").setup {
 				floating_window = false,
@@ -145,8 +133,7 @@ return {
 		end,
 	},
 	{
-		-- Highlight refactors
-		"smjonas/inc-rename.nvim",
+		"smjonas/inc-rename.nvim", -- Highlight refactors
 		config = function()
 			require("inc_rename").setup {}
 		end,
@@ -172,8 +159,7 @@ return {
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions
 	{
-		-- Smooth escaping
-		"max397574/better-escape.nvim",
+		"max397574/better-escape.nvim", -- Smooth escaping
 		config = function()
 			require("better_escape").setup {
 				mapping = { "qq" },
@@ -182,15 +168,13 @@ return {
 		end,
 	},
 	{
-		-- Code outline
-		"stevearc/aerial.nvim",
+		"stevearc/aerial.nvim", -- Code outline
 		config = function()
 			require("aerial").setup {}
 		end,
 	},
 	{
-		-- Tabout from different contexts
-		"abecodes/tabout.nvim",
+		"abecodes/tabout.nvim", -- Tabout from different contexts
 		config = function()
 			require("tabout").setup {
 				ignore_beginning = false,
@@ -198,15 +182,13 @@ return {
 		end,
 	},
 	{
-		-- Highlight todo comments
-		"folke/todo-comments.nvim",
+		"folke/todo-comments.nvim", -- Highlight todo comments
 		config = function()
 			require("todo-comments").setup {}
 		end,
 	},
 	{
-		-- Change text casing
-		"johmsalas/text-case.nvim",
+		"johmsalas/text-case.nvim", -- Change text casing
 		config = function()
 			require("textcase").setup {
 				prefix = "t",
@@ -214,16 +196,14 @@ return {
 		end,
 	},
 	{
-		-- Folding
-		"kevinhwang91/nvim-ufo",
+		"kevinhwang91/nvim-ufo", -- Folding
 		config = function()
 			require("ufo").setup {}
 		end,
 		dependencies = { "kevinhwang91/promise-async" },
 	},
 	{
-		-- Smart commenting
-		"numToStr/Comment.nvim",
+		"numToStr/Comment.nvim", -- Smart commenting
 		config = function()
 			require("Comment").setup {
 				padding = true,
@@ -235,8 +215,7 @@ return {
 		end,
 	},
 	{
-		-- Diagnostics
-		"folke/trouble.nvim",
+		"folke/trouble.nvim", -- Diagnostics
 		config = function()
 			require("trouble").setup {
 				auto_open = false,
@@ -245,8 +224,7 @@ return {
 		end,
 	},
 	{
-		-- Generate docs
-		"danymat/neogen",
+		"danymat/neogen", -- Generate docs
 		config = function()
 			require("neogen").setup {
 				snippet_engine = "luasnip",
@@ -254,15 +232,13 @@ return {
 		end,
 	},
 	{
-		-- Live Markdown preview
-		"iamcco/markdown-preview.nvim",
+		"iamcco/markdown-preview.nvim", -- Live Markdown preview
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
 	{
-		-- Codium cmp integration
-		"jcdickinson/codeium.nvim",
+		"jcdickinson/codeium.nvim", -- Codium cmp integration
 		config = function()
 			require("codeium").setup {}
 		end,

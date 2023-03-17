@@ -206,10 +206,11 @@ map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 -- Extras
 map("i", "<C-d>", "<Del>", opts) -- forward delete
 map("i", "<C-H>", "<C-w>", opts) -- delete word
-map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
+--map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
 map("n", "<C-o>", "o<Esc>k", opts) -- newline
 map("n", "<C-d>", "yyp", opts) -- duplicate line
 map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
+map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
 -- Visual --
 map("v", "p", "\"_dP", opts)
