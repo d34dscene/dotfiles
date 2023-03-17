@@ -50,6 +50,7 @@ function _G.ReloadConfig()
 	end
 
 	dofile(vim.env.MYVIMRC)
+	vim.cmd "so<cr>"
 	vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
 end
 

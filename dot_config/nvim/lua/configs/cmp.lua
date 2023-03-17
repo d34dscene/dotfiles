@@ -17,6 +17,9 @@ cmp.setup {
 		-- disable completion in comments
 		local context = require "cmp.config.context"
 		-- keep command mode completion enabled when cursor is in a comment
+		if vim.bo.buftype == "prompt" or vim.bo.buftype == "nofile" then
+			return false
+		end
 		if vim.api.nvim_get_mode().mode == "c" then
 			return true
 		else
@@ -104,14 +107,6 @@ cmp.setup {
 		{ name = "buffer", keyword_length = 2 },
 	},
 }
-
-cmp.setup.filetype("TelescopePrompt", {
-	enabled = false,
-})
-
-cmp.setup.filetype("neo-tree", {
-	enabled = false,
-})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {

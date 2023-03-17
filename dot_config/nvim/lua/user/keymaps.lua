@@ -16,7 +16,7 @@ map("", "<Space>", "<Nop>")
 -- map("c", "<tab>", "<C-r><C-w>") -- replaced by wilder
 
 -- Standard Operations
-map("n", "<leader>z", "<cmd>lua ReloadConfig()<CR>", { desc = "Reload config" })
+map("n", "<leader>z", "<cmd>lua ReloadConfig()<cr>", { desc = "Reload config" })
 map("n", "ss", "<cmd>w<cr>", { desc = "Save" })
 map("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "zz", "<cmd>q!<cr>", { desc = "Force quit" })
@@ -45,21 +45,21 @@ map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Resize split left" })
 map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Resize split right" })
 
 -- Navigate buffers
-map("n", "<A-.>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
-map("n", "<A-,>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
-map("n", "m.", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
-map("n", "m,", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
+map("n", "<A-Right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
+map("n", "<A-Left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
+map("n", "<A-.>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
+map("n", "<A-,>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
 map("n", "mm", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer tab" })
 
 -- Buffer delete/wipeout & quit
 map("n", "qw", "<cmd>w<cr><cmd>bp<cr>:bd #<cr>", { desc = "Save and close buffer" })
-map("n", "qe", "<cmd>wa<cr><cmd>%bd|e#|bd#<cr>", { desc = "Save and close buffer" })
+map("n", "qe", "<cmd>wa<cr><cmd>%bd|e#|bd#<cr>", { desc = "Save and close all buffer" })
 map("n", "qx", "<cmd>bd<cr>", { desc = "Quit" })
 
 -- Neotree
 map("n", "<leader>e", "<cmd>NeoTreeRevealToggle<cr>", { desc = "Open Neotree" })
 
--- Neogen
+-- false
 map("n", "<leader>n", ":lua require('neogen').generate()<cr>", { desc = "Neogen generate" })
 
 -- Trouble

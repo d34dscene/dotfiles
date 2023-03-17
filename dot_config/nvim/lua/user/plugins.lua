@@ -18,6 +18,7 @@ return {
 	"nvim-lualine/lualine.nvim", -- Statusline
 	"norcalli/nvim-colorizer.lua", -- Colorize rgb codes
 	"onsails/lspkind.nvim", -- Vscode-like pictograms
+	"SmiteshP/nvim-navic", -- Navic
 	{ -- Theme
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -56,10 +57,6 @@ return {
 				theme = "catppuccin",
 			}
 		end,
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons",
-		},
 	},
 	{ -- Git decorations
 		"lewis6991/gitsigns.nvim",
@@ -98,12 +95,11 @@ return {
 			}
 		end,
 	},
-	{
+	{ -- Node splits/joins
 		"Wansmer/treesj",
 		config = function()
 			require("treesj").setup { use_default_keymaps = false }
 		end,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 
 	-- LSP
@@ -184,7 +180,6 @@ return {
 		config = function()
 			require("todo-comments").setup {}
 		end,
-		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{ -- Change text casing
 		"johmsalas/text-case.nvim",
@@ -229,16 +224,17 @@ return {
 				snippet_engine = "luasnip",
 			}
 		end,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-	},
-	{ -- Better quick escape
-		"jdhao/better-escape.vim",
-		event = "InsertEnter",
 	},
 	{ -- Live Markdown preview
 		"iamcco/markdown-preview.nvim",
 		build = function()
 			vim.fn["mkdp#util#install"]()
+		end,
+	},
+	{ -- Autosave
+		"Pocco81/auto-save.nvim",
+		config = function()
+			require("auto-save").setup {}
 		end,
 	},
 	"Exafunction/codeium.vim", -- Codium
