@@ -8,24 +8,32 @@ else
 fi
 
 # Add flathub
-if command -v flatpak >/dev/null; then
+if type flatpak >/dev/null; then
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 fi
 
 # Add pyenv
-if ! command -v pyenv >/dev/null; then
+if ! type pyenv >/dev/null; then
 	curl https://pyenv.run | bash
 fi
 
 # Add poetry
-if ! command -v poetry >/dev/null; then
+if ! type poetry >/dev/null; then
 	export POETRY_HOME="$HOME/.poetry"
 	curl -sSL https://install.python-poetry.org | python
 fi
 
 # Add nvm
-if ! command -v nvm >/dev/null; then
+if ! type nvm >/dev/null; then
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+fi
+
+# Add go extensions
+if type go >/dev/null; then
+	type staticcheck &>/dev/null || go install honnef.co/go/tools/cmd/staticcheck@latest
+	type shfmt &>/dev/null || go install mvdan.cc/sh/v3/cmd/shfmt@latest
+	type goimports &>/dev/null || go install golang.org/x/tools/cmd/goimports@latest
+	type gomodifytags &>/dev/null || go install github.com/fatih/gomodifytags@latest
 fi
 
 # Add nerd fonts
