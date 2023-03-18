@@ -7,6 +7,27 @@ else
 	git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
 
+# Add flathub
+if command -v flatpak >/dev/null; then
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+fi
+
+# Add pyenv
+if ! command -v pyenv >/dev/null; then
+	curl https://pyenv.run | bash
+fi
+
+# Add poetry
+if ! command -v poetry >/dev/null; then
+	export POETRY_HOME="$HOME/.poetry"
+	curl -sSL https://install.python-poetry.org | python
+fi
+
+# Add nvm
+if ! command -v nvm >/dev/null; then
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+fi
+
 # Add nerd fonts
 required_fonts=(FiraCode FiraMono SourceCodePro JetBrainsMono SpaceMono Noto)
 mkdir -p $HOME/.local/share/fonts
