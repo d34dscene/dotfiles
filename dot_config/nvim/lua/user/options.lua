@@ -57,6 +57,7 @@ g.mapleader = " "
 g.codeium_disable_bindings = 1
 g.better_escape_interval = 500
 g.highlighturl_enabled = true -- highlight URLs by default
+g.transparent_enabled = true
 
 -- disable some builtin vim plugins
 local default_plugins = {
