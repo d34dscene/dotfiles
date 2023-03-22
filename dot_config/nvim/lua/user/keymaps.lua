@@ -49,7 +49,7 @@ map("n", "<A-Right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab"
 map("n", "<A-Left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
 map("n", "<A-.>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
 map("n", "<A-,>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
-map("n", "mm", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer tab" })
+map("n", "mp", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer tab" })
 
 -- Buffer delete/wipeout & quit
 map("n", "qw", "<cmd>w<cr><cmd>bp<cr>:bd #<cr>", { desc = "Save and close buffer" })
@@ -187,9 +187,9 @@ end, { desc = "Search diagnostics" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search Todos" })
 
 -- Ufo
-map("n", "ym", "zR", { desc = "Open all folds" })
-map("n", "yr", "zM", { desc = "Close all folds" })
-map("n", "ya", "za", { desc = "Toggle fold under cursor" })
+map("n", "m.", "zR", { desc = "Open all folds" })
+map("n", "m,", "zM", { desc = "Close all folds" })
+map("n", "mm", "za", { desc = "Toggle fold under cursor" })
 
 -- Move text up and down
 map("n", "<A-Up>", ":move .-2<CR>==", { desc = "Move line up" })
@@ -200,15 +200,12 @@ map("v", "<A-Down>", ":move'>+<cr>gv=gv", { desc = "Move block down" })
 -- Jump between windows + close terminal
 map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
 map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
--- map("t", "<Tab>", "<cmd>ToggleTerm<cr><C-w>w", { desc = "Jump to next window" })
--- map("t", "<S-Tab>", "<cmd>ToggleTerm<cr><C-w>W", { desc = "Jump to previous window" })
 
 -- Extras
-map("i", "<C-d>", "<Del>", opts) -- forward delete
-map("i", "<C-H>", "<C-w>", opts) -- delete word
---map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
-map("n", "<C-o>", "o<Esc>k", opts) -- newline
+map("i", "<A-BS>", "<C-w>", opts) -- delete word
+map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
+map("n", "++", "o<Esc>k", opts) -- newline
 map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
