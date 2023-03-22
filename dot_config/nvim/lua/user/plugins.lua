@@ -88,18 +88,7 @@ return {
 	},
 	"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
 	"windwp/nvim-ts-autotag", -- Autoclose tags
-	{
-		"mrjones2014/nvim-ts-rainbow", -- Parenthesis highlighting
-		config = function()
-			require("nvim-treesitter.configs").setup {
-				rainbow = {
-					enable = true,
-					extended_mode = true,
-					max_file_lines = nil,
-				},
-			}
-		end,
-	},
+	"mrjones2014/nvim-ts-rainbow", -- Parenthesis highlighting
 	{
 		"Wansmer/treesj", -- Node splits/joins
 		config = function()
@@ -124,12 +113,7 @@ return {
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
 		config = function()
-			require("lsp_signature").setup {
-				floating_window = false,
-				handler_opts = {
-					border = "none",
-				},
-			}
+			require("lsp_signature").setup { floating_window = false }
 		end,
 	},
 	{
@@ -175,17 +159,9 @@ return {
 		end,
 	},
 	{
-		"stevearc/aerial.nvim", -- Code outline
-		config = function()
-			require("aerial").setup {}
-		end,
-	},
-	{
 		"abecodes/tabout.nvim", -- Tabout from different contexts
 		config = function()
-			require("tabout").setup {
-				ignore_beginning = false,
-			}
+			require("tabout").setup { ignore_beginning = false }
 		end,
 	},
 	{
@@ -197,9 +173,7 @@ return {
 	{
 		"johmsalas/text-case.nvim", -- Change text casing
 		config = function()
-			require("textcase").setup {
-				prefix = "t",
-			}
+			require("textcase").setup { prefix = "t" }
 		end,
 	},
 	{
@@ -233,9 +207,7 @@ return {
 	{
 		"danymat/neogen", -- Generate docs
 		config = function()
-			require("neogen").setup {
-				snippet_engine = "luasnip",
-			}
+			require("neogen").setup { snippet_engine = "luasnip" }
 		end,
 	},
 	{

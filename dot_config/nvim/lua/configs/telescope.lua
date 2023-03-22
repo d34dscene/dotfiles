@@ -8,11 +8,6 @@ if notify_present then
 	telescope.load_extension "notify"
 end
 
-local aerial_present, _ = pcall(require, "aerial")
-if aerial_present then
-	telescope.load_extension "aerial"
-end
-
 local actions = require "telescope.actions"
 
 telescope.setup {

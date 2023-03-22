@@ -12,11 +12,7 @@ local opts = { noremap = true, silent = true }
 -- Remap space as leader key
 map("", "<Space>", "<Nop>")
 
--- Autocomplete when searching
--- map("c", "<tab>", "<C-r><C-w>") -- replaced by wilder
-
 -- Standard Operations
-map("n", "<leader>z", "<cmd>lua ReloadConfig()<cr>", { desc = "Reload config" })
 map("n", "ss", "<cmd>w<cr>", { desc = "Save" })
 map("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "zz", "<cmd>q!<cr>", { desc = "Force quit" })
@@ -64,9 +60,6 @@ map("n", "<leader>n", ":lua require('neogen').generate()<cr>", { desc = "Neogen 
 
 -- Trouble
 map("n", "<leader>x", "<cmd>TroubleToggle<cr>", { desc = "Toggle Trouble" })
-
--- Aerial
-map("n", "<leader>a", "<cmd>AerialToggle!<cr>", { desc = "Toggle Aerial" })
 
 -- Markdown Preview
 map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
@@ -116,21 +109,6 @@ map(
 )
 
 -- GitSigns
-map("n", "gj", function()
-	require("gitsigns").next_hunk()
-end, { desc = "Next git hunk" })
-map("n", "gk", function()
-	require("gitsigns").prev_hunk()
-end, { desc = "Previous git hunk" })
-map("n", "gr", function()
-	require("gitsigns").reset_hunk()
-end, { desc = "Reset git hunk" })
-map("n", "gs", function()
-	require("gitsigns").stage_hunk()
-end, { desc = "Stage git hunk" })
-map("n", "gu", function()
-	require("gitsigns").undo_stage_hunk()
-end, { desc = "Unstage git hunk" })
 map("n", "gn", function()
 	require("gitsigns").toggle_numhl()
 end, { desc = "Toggle number highlight" })
@@ -215,6 +193,9 @@ map("n", "<C-d>", "yyp", opts) -- duplicate line
 map("n", "++", "o<Esc>k", opts) -- newline
 map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
+
+-- Autocomplete when searching
+-- map("c", "<tab>", "<C-r><C-w>") -- replaced by wilder
 
 -- Visual --
 map("v", "p", "\"_dP", opts)

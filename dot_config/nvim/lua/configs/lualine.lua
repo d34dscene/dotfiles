@@ -51,5 +51,5 @@ ll.setup {
 		lualine_z = { "location" },
 	},
 	tabline = {},
-	extensions = { "neo-tree", "aerial", "toggleterm" },
+	extensions = { "neo-tree", "toggleterm" },
 }
