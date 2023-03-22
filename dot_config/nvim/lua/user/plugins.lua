@@ -158,6 +158,13 @@ return {
 	"gelguy/wilder.nvim", -- Search suggestions
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions
+	"tpope/vim-repeat", -- Repeat dot
+	{
+		"ggandor/leap.nvim", -- Leap motion
+		config = function()
+			require("leap").setup {}
+		end,
+	},
 	{
 		"max397574/better-escape.nvim", -- Smooth escaping
 		config = function()
