@@ -41,6 +41,8 @@ map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Resize split left" })
 map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Resize split right" })
 
 -- Navigate buffers
+map("n", "<A-h>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
+map("n", "<A-l>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
 map("n", "<A-Right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
 map("n", "<A-Left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
 map("n", "<A-.>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
@@ -189,6 +191,7 @@ map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 -- Extras
 map("i", "<A-BS>", "<C-w>", opts) -- delete word
 map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
+map("i", "<S-p>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
 map("n", "++", "o<Esc>k", opts) -- newline
 map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
