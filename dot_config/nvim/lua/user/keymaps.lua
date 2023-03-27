@@ -168,9 +168,9 @@ map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search Todos" })
 
 -- Leap
 map({ "n", "x", "v" }, "f", "<Plug>(leap-forward-to)", { desc = "Leap forward" })
-map({ "n", "x", "v" }, "t", "<Plug>(leap-forward-till)", { desc = "Leap forward till" })
 map({ "n", "x", "v" }, "F", "<Plug>(leap-backward-to)", { desc = "Leap backward" })
-map({ "n", "x", "v" }, "T", "<Plug>(leap-backward-till)", { desc = "Leap backward till" })
+--map({ "n", "x", "v" }, "t", "<Plug>(leap-forward-till)", { desc = "Leap forward till" })
+--map({ "n", "x", "v" }, "T", "<Plug>(leap-backward-till)", { desc = "Leap backward till" })
 map({ "n", "x", "v" }, "sf", "<Plug>(leap-from-window)", { desc = "Leap window" })
 
 -- Ufo
@@ -191,7 +191,7 @@ map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 -- Extras
 map("i", "<A-BS>", "<C-w>", opts) -- delete word
 map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
-map("i", "<S-p>", "<Esc>pi", opts) -- paste line
+map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
 map("n", "++", "o<Esc>k", opts) -- newline
 map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution

@@ -6,8 +6,8 @@ end
 neotree.setup {
 	close_if_last_window = true,
 	enable_git_status = true,
-	git_status_async = false,
 	enable_diagnostics = true,
+	git_status_async = false,
 	hide_root_node = true,
 	source_selector = {
 		winbar = true,
@@ -96,18 +96,18 @@ neotree.setup {
 		filtered_items = {
 			visible = true,
 		},
-		-- follow_current_file = true,
-		-- hijack_netrw_behavior = "open_current",
+		follow_current_file = true,
+		hijack_netrw_behavior = "open_default",
 		use_libuv_file_watcher = true,
 		window = {
 			mappings = {
 				["<bs>"] = "navigate_up",
 				["."] = "set_root",
 				["H"] = "toggle_hidden",
-				["/"] = "fuzzy_finder",
+				["f"] = "fuzzy_finder",
 				["D"] = "fuzzy_finder_directory",
-				["f"] = "filter_on_submit",
-				["<c-x>"] = "clear_filter",
+				["/"] = "filter_on_submit",
+				["x"] = "clear_filter",
 				["[g"] = "prev_git_modified",
 				["]g"] = "next_git_modified",
 			},
@@ -135,3 +135,5 @@ neotree.setup {
 		},
 	},
 }
+
+vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]

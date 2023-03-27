@@ -88,7 +88,7 @@ return {
 	},
 	"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
 	"windwp/nvim-ts-autotag", -- Autoclose tags
-	"mrjones2014/nvim-ts-rainbow", -- Parenthesis highlighting
+	"HiPhish/nvim-ts-rainbow2", -- Rainbow highlighting
 	{
 		"Wansmer/treesj", -- Node splits/joins
 		config = function()
@@ -143,6 +143,19 @@ return {
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions
 	"tpope/vim-repeat", -- Repeat dot
+	{
+		"altermo/ultimate-autopair.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
+		config = function()
+			require("ultimate-autopair").setup {}
+		end,
+	},
+	{
+		"altermo/npairs-integrate-upair",
+		config = function()
+			require("npairs-int-upair").setup { map = "u" }
+		end,
+	},
 	{
 		"ggandor/leap.nvim", -- Leap motion
 		config = function()
