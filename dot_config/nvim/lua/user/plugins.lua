@@ -172,9 +172,9 @@ return {
 		end,
 	},
 	{
-		"abecodes/tabout.nvim", -- Tabout from different contexts
+		"lilibyte/tabhula.nvim", -- Tabout context
 		config = function()
-			require("tabout").setup { ignore_beginning = false }
+			require("tabhula").setup {}
 		end,
 	},
 	{
@@ -190,7 +190,7 @@ return {
 		end,
 	},
 	{
-		"kevinhwang91/nvim-ufo", -- Folding
+		"kevinhwang91/nvim-ufo", -- Better folding
 		config = function()
 			require("ufo").setup {}
 		end,
