@@ -15,6 +15,7 @@ local mappings = {
 local extra_sections = {
 	g = "Git",
 	r = "Replace",
+	d = "Go",
 }
 
 which_key.setup {

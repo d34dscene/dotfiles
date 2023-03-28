@@ -19,6 +19,12 @@ local sources = {
 	fmt.terraform_fmt,
 	fmt.isort,
 	fmt.packer,
+	fmt.golines.with {
+		extra_args = {
+			"--max-len=180",
+			"--base-formatter=gofmt",
+		},
+	},
 	fmt.shfmt.with {
 		extra_filetypes = { "zsh", "bash" },
 	},

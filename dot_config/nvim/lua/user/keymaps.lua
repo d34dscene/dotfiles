@@ -110,6 +110,13 @@ map(
 	{ desc = "Comment block" }
 )
 
+-- Go
+map("n", "<leader>ds", "<cmd>GoFillStruct<cr>", { desc = "Go fill struct" })
+map("n", "<leader>da", "<cmd>GoAddTag<cr>", { desc = "Go add tags" })
+map("n", "<leader>dr", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
+map("n", "<leader>dc", "<cmd>GoCmt<cr>", { desc = "Go add comment" })
+map("n", "<leader>dt", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
+
 -- GitSigns
 map("n", "gn", function()
 	require("gitsigns").toggle_numhl()
@@ -202,3 +209,4 @@ map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
 -- Visual --
 map("v", "p", "\"_dP", opts)
+map("v", "q", "<Esc>", opts)

@@ -143,6 +143,16 @@ return {
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions
 	"tpope/vim-repeat", -- Repeat dot
+	"godlygeek/tabular", -- Align columns
+	{
+		"ray-x/go.nvim", -- Lots of go tools
+		config = function()
+			require("go").setup()
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
+		build = ":lua require(\"go.install\").update_all_sync()",
+	},
 	{
 		"altermo/ultimate-autopair.nvim",
 		event = { "InsertEnter", "CmdlineEnter" },
