@@ -17,8 +17,9 @@ vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
 
 toggleterm.setup {
 	size = 10,
-	open_mapping = "\\\\",
+	open_mapping = "\\",
 	shading_factor = 2,
+	insert_mappings = false,
 	direction = "horizontal",
 	float_opts = {
 		border = "curved",

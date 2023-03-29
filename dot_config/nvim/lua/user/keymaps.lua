@@ -86,7 +86,7 @@ map("n", "[t", function()
 end, { desc = "Previous todo comment" })
 
 -- Codium
-map("i", "<A-]>", function()
+map("i", "<A-f>", function()
 	return vim.fn["codeium#Accept"]()
 end, { expr = true })
 map("i", "<PageUp>", function()
