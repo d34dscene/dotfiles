@@ -6,7 +6,6 @@ end
 
 mason_lspconfig.setup {
 	ensure_installed = {
-		"ansiblels",
 		"clangd",
 		"dockerls",
 		"gopls",
