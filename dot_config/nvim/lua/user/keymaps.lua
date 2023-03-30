@@ -41,12 +41,10 @@ map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Resize split left" })
 map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Resize split right" })
 
 -- Navigate buffers
-map("n", "<A-h>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
-map("n", "<A-l>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
-map("n", "<A-Right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
-map("n", "<A-Left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
-map("n", "<A-.>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
-map("n", "<A-,>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
+map("n", "<A-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
+map("n", "<A-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
+map("n", "<A-Right>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
+map("n", "<A-Left>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
 map("n", "mp", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer tab" })
 
 -- Buffer delete/wipeout & quit
