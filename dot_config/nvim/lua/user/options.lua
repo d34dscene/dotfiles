@@ -45,10 +45,8 @@ o.autoread = true
 o.hlsearch = false
 o.incsearch = true
 o.colorcolumn = "80"
---o.statuscolumn =
---"%=%{v:relnum?v:relnum:v:lnum}%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? \" \" : \" \") : \"  \" }%*"
 o.statuscolumn =
-	"%=%r%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? \" \" : \" \") : \"  \" }%*"
+	"%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? \" \" : \" \") : \"  \" }%*"
 o.foldenable = true
 o.foldcolumn = "1"
 o.foldlevel = 99
@@ -58,7 +56,7 @@ o.foldlevelstart = 99
 g.mapleader = " "
 g.codeium_disable_bindings = 1
 g.better_escape_interval = 500
-g.highlighturl_enabled = true
+g.highlighturl_enabled = true -- highlight URLs by default
 g.transparent_enabled = true
 
 -- disable some builtin vim plugins

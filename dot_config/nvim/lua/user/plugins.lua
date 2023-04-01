@@ -88,7 +88,18 @@ return {
 	},
 	"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
 	"windwp/nvim-ts-autotag", -- Autoclose tags
-	"HiPhish/nvim-ts-rainbow2", -- Rainbow highlighting
+	{
+		"mrjones2014/nvim-ts-rainbow", -- Parenthesis highlighting
+		config = function()
+			require("nvim-treesitter.configs").setup {
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+					max_file_lines = nil,
+				},
+			}
+		end,
+	},
 	{
 		"Wansmer/treesj", -- Node splits/joins
 		config = function()
@@ -113,7 +124,12 @@ return {
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
 		config = function()
-			require("lsp_signature").setup { floating_window = false }
+			require("lsp_signature").setup {
+				floating_window = false,
+				handler_opts = {
+					border = "none",
+				},
+			}
 		end,
 	},
 	{
@@ -142,36 +158,6 @@ return {
 	"gelguy/wilder.nvim", -- Search suggestions
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions
-	"tpope/vim-repeat", -- Repeat dot
-	"godlygeek/tabular", -- Align columns
-	{
-		"ray-x/go.nvim", -- Lots of go tools
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
-		build = ":lua require(\"go.install\").update_all_sync()",
-	},
-	{
-		"altermo/ultimate-autopair.nvim",
-		event = { "InsertEnter", "CmdlineEnter" },
-		config = function()
-			require("ultimate-autopair").setup {}
-		end,
-	},
-	{
-		"altermo/npairs-integrate-upair",
-		config = function()
-			require("npairs-int-upair").setup { map = "u" }
-		end,
-	},
-	{
-		"ggandor/leap.nvim", -- Leap motion
-		config = function()
-			require("leap").setup {}
-		end,
-	},
 	{
 		"max397574/better-escape.nvim", -- Smooth escaping
 		config = function()
@@ -182,9 +168,17 @@ return {
 		end,
 	},
 	{
-		"lilibyte/tabhula.nvim", -- Tabout context
+		"stevearc/aerial.nvim", -- Code outline
 		config = function()
-			require("tabhula").setup {}
+			require("aerial").setup {}
+		end,
+	},
+	{
+		"abecodes/tabout.nvim", -- Tabout from different contexts
+		config = function()
+			require("tabout").setup {
+				ignore_beginning = false,
+			}
 		end,
 	},
 	{
@@ -196,11 +190,13 @@ return {
 	{
 		"johmsalas/text-case.nvim", -- Change text casing
 		config = function()
-			require("textcase").setup { prefix = "t" }
+			require("textcase").setup {
+				prefix = "t",
+			}
 		end,
 	},
 	{
-		"kevinhwang91/nvim-ufo", -- Better folding
+		"kevinhwang91/nvim-ufo", -- Folding
 		config = function()
 			require("ufo").setup {}
 		end,
@@ -230,7 +226,9 @@ return {
 	{
 		"danymat/neogen", -- Generate docs
 		config = function()
-			require("neogen").setup { snippet_engine = "luasnip" }
+			require("neogen").setup {
+				snippet_engine = "luasnip",
+			}
 		end,
 	},
 	{
