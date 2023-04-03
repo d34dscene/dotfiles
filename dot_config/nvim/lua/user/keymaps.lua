@@ -41,8 +41,8 @@ map("n", "<C-h>", "<cmd>vertical resize -2<cr>", { desc = "Resize split left" })
 map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Resize split right" })
 
 -- Navigate buffers
-map("n", "<A-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
-map("n", "<A-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
+map("n", "<A-k>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
+map("n", "<A-j>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
 map("n", "<A-Right>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
 map("n", "<A-Left>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
 map("n", "mp", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer tab" })
