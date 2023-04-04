@@ -1,5 +1,46 @@
 #!/bin/bash
 
+set -euo pipefail
+
+# Get distro
+. /etc/os-release
+DISTRO=$NAME
+
+# No zsh = first time setup
+if [[ ${DISTRO} == Fedora* ]]; then
+	if ! type zsh >/dev/null; then
+		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm -y
+		sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+		sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
+
+		sudo dnf install -y @development-tools @virtualization \
+			htop zsh unar git openssl curl dnf-automatic bat exa duf procs \
+			fd-find ripgrep fzf tldr ncdu wl-clipboard gnome-tweaks lm_sensors \
+			libratbag-ratbagd alacritty lutris gamescope steam-devices yt-dlp \
+			ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
+			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
+			python3-pip gstreamer1-plugins-{bad-\*,good-\*,base} \
+			gstreamer1-plugin-openh264 gstreamer1-libav \
+			--exclude=gstreamer1-plugins-bad-free-devel \
+			lame\* --exclude=lame-devel
+
+		sudo dnf copr enable agriffis/neovim-nightly
+		sudo dnf install neovim python3-neovim -y
+		sudo tee /etc/dnf/dnf.conf <<EOF
+[main]
+gpgcheck=1
+installonly_limit=3
+clean_requirements_on_remove=True
+best=False
+skip_if_unavailable=True
+max_parallel_downloads=10
+defaultyes=True
+fastestmirror=True
+deltarpm=True
+EOF
+	fi
+fi
+
 # Add zsh plugin manager
 if [[ -e "$HOME/.antidote" ]]; then
 	git -C $HOME/.antidote pull
@@ -10,6 +51,10 @@ fi
 # Add flathub
 if type flatpak >/dev/null; then
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	flatpak install --noninteractive flathub com.discordapp.Discord \
+		com.mastermindzh.tidal-hifi tv.plex.PlexDesktop org.gnome.Geary \
+		com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
+		com.mattjakeman.ExtensionManager org.signal.Signal
 fi
 
 # Add pyenv
@@ -28,6 +73,12 @@ if ! type nvm >/dev/null; then
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 fi
 
+# Add npm and base packages
+if ! type npm >/dev/null; then
+	nvm install --lts
+	npm i -g npm@latest prettier eslint_d
+fi
+
 # Add go extensions
 if type go >/dev/null; then
 	type staticcheck &>/dev/null || go install honnef.co/go/tools/cmd/staticcheck@latest
@@ -37,7 +88,7 @@ if type go >/dev/null; then
 fi
 
 # Add nerd fonts
-required_fonts=(FiraCode FiraMono SourceCodePro JetBrainsMono SpaceMono Noto)
+required_fonts=(FiraCode FiraMono SourceCodePro JetBrainsMono)
 mkdir -p $HOME/.local/share/fonts
 
 missing_fonts=()
