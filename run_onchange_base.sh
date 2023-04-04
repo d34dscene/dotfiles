@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 # Get distro
 . /etc/os-release
 DISTRO=$NAME
@@ -19,10 +17,7 @@ if [[ ${DISTRO} == Fedora* ]]; then
 			libratbag-ratbagd alacritty lutris gamescope steam-devices yt-dlp \
 			ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
-			python3-pip gstreamer1-plugins-{bad-\*,good-\*,base} \
-			gstreamer1-plugin-openh264 gstreamer1-libav \
-			--exclude=gstreamer1-plugins-bad-free-devel \
-			lame\* --exclude=lame-devel
+			python3-pip
 
 		sudo dnf copr enable agriffis/neovim-nightly
 		sudo dnf install neovim python3-neovim -y
@@ -42,18 +37,18 @@ EOF
 fi
 
 # Add topgrade
-if type topgrade >/dev/null; then
+if ! type topgrade >/dev/null; then
 	URL=$(wget -qO- 'https://api.github.com/repos/topgrade-rs/topgrade/releases/latest' | jq -r '.assets[]|select(.name | contains("x86_64-unknown-linux-gnu")).browser_download_url')
-	wget -qO $HOME/.local/bin/topgrade.tar.gz $URL
-	tar -xzf $HOME/.local/bin/topgrade.tar.gz
+	wget -O $HOME/.local/bin/topgrade.tar.gz $URL
+	tar -xzf $HOME/.local/bin/topgrade.tar.gz -C $HOME/.local/bin/
 	rm $HOME/.local/bin/topgrade.tar.gz
-	chmod +x $HOME/.local/bin/topgrade
+	chmod +x $HOME/.local/bin/topgrade.tar.gz
 fi
 
 # Add wormhole
-if type wormhole >/dev/null; then
+if ! type wormhole >/dev/null; then
 	URL=$(wget -qO- 'https://api.github.com/repos/magic-wormhole/magic-wormhole.rs/releases/latest' | jq -r '.assets[]|select(.name=="wormhole-rs").browser_download_url')
-	wget -qO $HOME/.local/bin/wormhole $URL
+	wget -O $HOME/.local/bin/wormhole $URL
 	chmod +x $HOME/.local/bin/wormhole
 fi
 
@@ -87,11 +82,11 @@ fi
 # Add nvm
 if ! type nvm >/dev/null; then
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+	nvm install --lts
 fi
 
 # Add npm and base packages
-if ! type npm >/dev/null; then
-	nvm install --lts
+if type npm >/dev/null; then
 	npm i -g npm@latest prettier eslint_d
 fi
 
