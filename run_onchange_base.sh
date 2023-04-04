@@ -65,7 +65,7 @@ if type flatpak >/dev/null; then
 	flatpak install --noninteractive flathub com.discordapp.Discord \
 		com.mastermindzh.tidal-hifi tv.plex.PlexDesktop org.gnome.Geary \
 		com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
-		com.mattjakeman.ExtensionManager org.signal.Signal
+		com.mattjakeman.ExtensionManager org.signal.Signal com.brave.Browser
 fi
 
 # Add pyenv
