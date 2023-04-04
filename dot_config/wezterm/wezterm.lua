@@ -17,7 +17,6 @@ config.initial_rows = 32
 config.window_background_opacity = 0.90
 config.window_decorations = "RESIZE"
 config.scrollback_lines = 10000
-config.ssh_backend = "Ssh2"
 
 keybindings.apply_to_config(config)
 
