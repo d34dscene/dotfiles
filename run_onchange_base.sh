@@ -17,7 +17,7 @@ if [[ ${DISTRO} == Fedora* ]]; then
 			libratbag-ratbagd alacritty lutris gamescope steam-devices yt-dlp \
 			ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
-			python3-pip
+			python3-pip age direnv
 
 		sudo dnf copr enable agriffis/neovim-nightly
 		sudo dnf install neovim python3-neovim -y
@@ -50,6 +50,13 @@ if ! type wormhole >/dev/null; then
 	URL=$(wget -qO- 'https://api.github.com/repos/magic-wormhole/magic-wormhole.rs/releases/latest' | jq -r '.assets[]|select(.name=="wormhole-rs").browser_download_url')
 	wget -O $HOME/.local/bin/wormhole $URL
 	chmod +x $HOME/.local/bin/wormhole
+fi
+
+# Add sops
+if ! type sops >/dev/null; then
+	URL=$(wget -qO- 'https://api.github.com/repos/mozilla/sops/releases/latest' | jq -r '.assets[]|select(.name | contains("linux.amd64")).browser_download_url')
+	wget -O $HOME/.local/bin/sops $URL
+	chmod +x $HOME/.local/bin/sops
 fi
 
 # Add zsh plugin manager
