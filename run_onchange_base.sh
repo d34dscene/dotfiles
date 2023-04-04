@@ -41,6 +41,22 @@ EOF
 	fi
 fi
 
+# Add topgrade
+if type topgrade >/dev/null; then
+	URL=$(wget -qO- 'https://api.github.com/repos/topgrade-rs/topgrade/releases/latest' | jq -r '.assets[]|select(.name | contains("x86_64-unknown-linux-gnu")).browser_download_url')
+	wget -qO $HOME/.local/bin/topgrade.tar.gz $URL
+	tar -xzf $HOME/.local/bin/topgrade.tar.gz
+	rm $HOME/.local/bin/topgrade.tar.gz
+	chmod +x $HOME/.local/bin/topgrade
+fi
+
+# Add wormhole
+if type wormhole >/dev/null; then
+	URL=$(wget -qO- 'https://api.github.com/repos/magic-wormhole/magic-wormhole.rs/releases/latest' | jq -r '.assets[]|select(.name=="wormhole-rs").browser_download_url')
+	wget -qO $HOME/.local/bin/wormhole $URL
+	chmod +x $HOME/.local/bin/wormhole
+fi
+
 # Add zsh plugin manager
 if [[ -e "$HOME/.antidote" ]]; then
 	git -C $HOME/.antidote pull
