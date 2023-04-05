@@ -6,7 +6,7 @@ DISTRO=$NAME
 VARIANT=$VARIANT_ID
 
 # No zsh = first time setup
-if [[ ${DISTRO} == Fedora* && ${VARIANT_ID} == workstation ]]; then
+if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 	if ! type zsh >/dev/null; then
 		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm -y
 		sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
@@ -70,10 +70,12 @@ fi
 # Add flathub
 if type flatpak >/dev/null; then
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	flatpak install --noninteractive flathub com.discordapp.Discord \
-		com.mastermindzh.tidal-hifi tv.plex.PlexDesktop org.gnome.Geary \
-		com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
-		com.mattjakeman.ExtensionManager org.signal.Signal com.brave.Browser
+	if [[ ${VARIANT} == "workstation" ]]; then
+		flatpak install --noninteractive flathub com.discordapp.Discord \
+			com.mastermindzh.tidal-hifi tv.plex.PlexDesktop org.gnome.Geary \
+			com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
+			com.mattjakeman.ExtensionManager org.signal.Signal com.brave.Browser
+	fi
 fi
 
 # Add pyenv
@@ -88,14 +90,15 @@ if ! type poetry >/dev/null; then
 fi
 
 # Add nvm
-if ! type nvm >/dev/null; then
+if [[ ! -e "$HOME/.nvm/nvm.sh" ]]; then
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 	nvm install --lts
 fi
 
 # Add npm and base packages
 if type npm >/dev/null; then
-	npm i -g npm@latest prettier eslint_d
+	type prettier &>/dev/null || npm install -g prettier
+	type eslint_d &>/dev/null || npm install -g eslint_d
 fi
 
 # Add go extensions
