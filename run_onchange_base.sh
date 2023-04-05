@@ -3,9 +3,10 @@
 # Get distro
 . /etc/os-release
 DISTRO=$NAME
+VARIANT=$VARIANT_ID
 
 # No zsh = first time setup
-if [[ ${DISTRO} == Fedora* ]]; then
+if [[ ${DISTRO} == Fedora* && ${VARIANT_ID} == workstation ]]; then
 	if ! type zsh >/dev/null; then
 		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm -y
 		sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
