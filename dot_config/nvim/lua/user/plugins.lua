@@ -3,6 +3,7 @@ return {
 	-- ------------------------------------------------------------------------
 	"nvim-lua/popup.nvim", -- Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Lua functions
+	"ray-x/guihua.lua", -- UI library
 	"akinsho/bufferline.nvim", -- Bufferline
 	"MunifTanjim/nui.nvim", -- UI Library
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
@@ -104,12 +105,20 @@ return {
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
 	"lukas-reineke/indent-blankline.nvim", -- Indentation guides
-	"windwp/nvim-autopairs", -- Autoclose Brackets
 	"jose-elias-alvarez/null-ls.nvim", -- LSP hooks
 	"jose-elias-alvarez/typescript.nvim", -- Typescript features
 	"pearofducks/ansible-vim", -- Ansible support
 	"towolf/vim-helm", -- Helm support
 	"b0o/schemastore.nvim", -- JSON schemas
+	"mfussenegger/nvim-dap", -- DAP
+	"rcarriga/nvim-dap-ui", -- DAP UI
+	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
+	{
+		"windwp/nvim-autopairs", -- Autoclose Brackets
+		config = function()
+			require("nvim-autopairs").setup {}
+		end,
+	},
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
 		config = function()

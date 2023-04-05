@@ -1,9 +1,7 @@
 local wezterm = require "wezterm"
 local module = {}
 
-local date = wezterm.strftime " %H:%M | %A | %B %d "
-local hostname = " " .. wezterm.hostname() .. " "
-
+-- Fetch the current title and artist
 local title = io.popen "playerctl metadata -i chromium title"
 local out_title = ""
 if title ~= nil then
@@ -18,6 +16,10 @@ if artist ~= nil then
 	artist:close()
 end
 
+local date = wezterm.strftime " %H:%M | %A | %B %d "
+local hostname = " " .. wezterm.hostname() .. " "
+local music = " " .. out_title .. " - " .. out_artist .. " "
+
 function module.setup_statusline()
 	wezterm.on("update-right-status", function(window, _)
 		window:set_right_status(wezterm.format {
@@ -27,7 +29,7 @@ function module.setup_statusline()
 		} .. wezterm.format {
 			{ Foreground = { Color = "#1e1e2e" } },
 			{ Background = { Color = "#89b4fa" } },
-			{ Text = " " .. out_title .. " - " .. out_artist .. " " },
+			{ Text = music },
 		} .. wezterm.format {
 			{ Foreground = { Color = "#89b4fa" } },
 			{ Background = { Color = "#1e1e2e" } },

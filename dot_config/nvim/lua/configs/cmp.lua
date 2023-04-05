@@ -7,6 +7,8 @@ end
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 require("luasnip.loaders.from_vscode").lazy_load()
 
+--cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false })
+
 cmp.setup {
 	snippet = {
 		expand = function(args)
