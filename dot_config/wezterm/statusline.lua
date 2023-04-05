@@ -24,47 +24,47 @@ function module.setup_statusline()
 	wezterm.on("update-right-status", function(window, _)
 		window:set_right_status(wezterm.format {
 			{ Foreground = { Color = "#89b4fa" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = "" },
 		} .. wezterm.format {
-			{ Foreground = { Color = "#1e1e2e" } },
+			{ Foreground = { Color = "#11111b" } },
 			{ Background = { Color = "#89b4fa" } },
 			{ Text = music },
 		} .. wezterm.format {
 			{ Foreground = { Color = "#89b4fa" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = "" },
 		} .. wezterm.format {
-			{ Foreground = { Color = "#1e1e2e" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Foreground = { Color = "#11111b" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = " " },
 		} .. wezterm.format {
 			{ Foreground = { Color = "#f2cdcd" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = "" },
 		} .. wezterm.format {
-			{ Foreground = { Color = "#1e1e2e" } },
+			{ Foreground = { Color = "#11111b" } },
 			{ Background = { Color = "#f2cdcd" } },
 			{ Text = date },
 		} .. wezterm.format {
 			{ Foreground = { Color = "#f2cdcd" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = "" },
 		} .. wezterm.format {
-			{ Foreground = { Color = "#1e1e2e" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Foreground = { Color = "#11111b" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = " " },
 		} .. wezterm.format {
 			{ Foreground = { Color = "#f38ba8" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = "" },
 		} .. wezterm.format {
-			{ Foreground = { Color = "#1e1e2e" } },
+			{ Foreground = { Color = "#11111b" } },
 			{ Background = { Color = "#f38ba8" } },
 			{ Text = hostname },
 		} .. wezterm.format {
 			{ Foreground = { Color = "#f38ba8" } },
-			{ Background = { Color = "#1e1e2e" } },
+			{ Background = { Color = "#11111b" } },
 			{ Text = "" },
 		})
 	end)
