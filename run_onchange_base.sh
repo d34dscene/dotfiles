@@ -103,6 +103,7 @@ if type go >/dev/null; then
 	type shfmt &>/dev/null || go install mvdan.cc/sh/v3/cmd/shfmt@latest
 	type goimports &>/dev/null || go install golang.org/x/tools/cmd/goimports@latest
 	type gomodifytags &>/dev/null || go install github.com/fatih/gomodifytags@latest
+	type flarectl &>/dev/null || go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
 fi
 
 # Add nerd fonts
