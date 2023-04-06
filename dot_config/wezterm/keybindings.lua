@@ -59,7 +59,7 @@ function module.apply_to_config(config)
 	-- Mouse bindings -------------------------------------------------------------
 	config.mouse_bindings = {
 		{
-			event = { Up = { streak = 1, button = "Left" } },
+			event = { Drag = { streak = 2, button = "Left" } },
 			mods = "NONE",
 			action = wezterm.action.Multiple {
 				wezterm.action.ExtendSelectionToMouseCursor "Word",
@@ -72,13 +72,8 @@ function module.apply_to_config(config)
 			action = wezterm.action.PasteFrom "Clipboard",
 		},
 		{
-			event = { Up = { streak = 2, button = "Left" } },
-			mods = "NONE",
-			action = wezterm.action.ExtendSelectionToMouseCursor "Line",
-		},
-		{
 			event = { Up = { streak = 1, button = "Left" } },
-			mods = "SHIFT|ALT",
+			mods = "NONE",
 			action = wezterm.action.OpenLinkAtMouseCursor,
 		},
 	}
