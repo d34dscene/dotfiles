@@ -6,7 +6,7 @@ mkdir -p $HOME/.local/share/fonts
 
 missing_fonts=()
 for font in ${required_fonts[@]}; do
-	if [[ ! -e "$HOME/.local/share/fonts/$font" ]]; then
+	if [[ -f "$HOME/.local/share/fonts/$font" ]]; then
 		missing_fonts+=($font)
 	fi
 done
