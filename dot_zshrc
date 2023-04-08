@@ -1,0 +1,95 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+type direnv >/dev/null && emulate zsh -c "$(direnv export zsh)"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+type direnv >/dev/null && emulate zsh -c "$(direnv hook zsh)"
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+type nvm >/dev/null && source "$NVM_DIR/bash_completion"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# go
+export GOPATH="$HOME/.local"
+export PATH="/usr/local/go/bin:$GOPATH:$PATH"
+
+# poetry
+export POETRY_HOME="$HOME/.poetry/bin"
+export PATH="$POETRY_HOME:$PATH"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# rust
+export RUST_HOME="$HOME/.cargo/bin"
+export PATH="$RUST_HOME:$PATH"
+
+# General
+export PF_INFO="ascii title os de host kernel uptime pkgs shell memory wm palette"
+export PATH="$HOME/.local/bin:$PATH"
+export HISTFILE="$HOME/.zsh_history"
+export HISTIGNORE="*sudo -S*"
+export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
+export SAVEHIST=10000
+export EDITOR="nvim"
+
+# Zsh options
+setopt extendedhistory      # save timestamps in history
+setopt histignoredups       # ignore consecutive dups in history
+setopt histfindnodups       # backwards search produces diff result each time
+setopt histreduceblanks     # compact consecutive white space chars
+setopt histnostore          # don"t store history related functions
+setopt incappendhistory     # incrementally add items to HISTFILE
+setopt extendedglob         # use extended globbing (#, ~, ^)
+setopt listpacked           # variable col widths
+setopt no_histbeep          # don"t beep for erroneous history expansions
+setopt no_listbeep          # don"t beep on ambiguous listings
+
+# Load plugins
+type pyenv >/dev/null && eval "$(pyenv init -)"
+type zoxide >/dev/null && eval "$(zoxide init zsh)"
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+bundlefile=~/.zsh_plugins
+zstyle ":antidote:bundle" file $bundlefile
+antidote load
+
+# Load completions paths
+autoload -Uz compinit; compinit
+autoload -Uz promptinit; promptinit
+autoload -Uz bashcompinit; bashcompinit
+autoload -Uz bracketed-paste-magic
+autoload -Uz url-quote-magic
+zle -N bracketed-paste bracketed-paste-magic
+zle -N self-insert url-quote-magic
+
+# Prompt theme
+prompt powerlevel10k
+
+# Additional completions
+type kubectl >/dev/null && source <(kubectl completion zsh)
+type helm >/dev/null && source <(helm completion zsh)
+type flux >/dev/null && source <(flux completion zsh)
+type terraform >/dev/null && complete -o nospace -C /usr/bin/terraform terraform
+
+# Custom Bindings
+bindkey "^[[1;3D" backward-word
+bindkey "^[[1;3C" forward-word
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
+bindkey "^I"   complete-word       
+bindkey "^[f" autosuggest-accept
+
+# Load aliases & functions
+source ~/.zsh_aliases
+source ~/.zsh_functions
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
