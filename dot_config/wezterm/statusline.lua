@@ -30,7 +30,7 @@ function module.setup_statusline()
 	local wttr_url = "curl -s wttr.in/" .. location:read("*a"):gsub("[\n\r]", "") .. "?format=%C+%t"
 	location:close()
 
-	wezterm.on("update-right-status", function(window, _)
+	wezterm.on("update-status", function(window, _)
 		local wttr = assert(io.popen(wttr_url))
 		weather = " " .. wttr:read("*a"):gsub("[\n\r]", "") .. " "
 		wttr:close()

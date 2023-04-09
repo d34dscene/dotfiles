@@ -75,6 +75,7 @@ alias gcp="git checkout --patch"
 alias grs="git remote show origin"
 alias gra="git remote add origin"
 alias gru="git remote set-url --add --push origin"
+alias gg="git stash;git pull;git stash pop"
 
 # Go
 alias gou="go get -u; go mod tidy"
