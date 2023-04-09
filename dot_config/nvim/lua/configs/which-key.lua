@@ -40,6 +40,7 @@ init_table("n", "<leader>", "t")
 init_table("n", "<leader>", "f")
 init_table("n", "<leader>", "g")
 init_table("n", "<leader>", "r")
+init_table("n", "<leader>", "d")
 
 for mode, prefixes in pairs(mappings) do
 	for prefix, mapping_table in pairs(prefixes) do
