@@ -26,27 +26,21 @@ function module.setup_statusline()
 	local weather = " "
 	local hostname = " " .. wezterm.hostname() .. " 󰊠 "
 
-	local location = assert(io.popen "curl -s http://ip-api.com/json | jq -r .city")
-	local wttr_url = "curl -s wttr.in/" .. location:read("*a"):gsub("[\n\r]", "") .. "?format=%C+%t"
-	location:close()
+	-- local location = io.popen "curl -s http://ip-api.com/json | jq -r .city"
+	-- local wttr_url = "curl -s wttr.in/" .. location:read("*a"):gsub("[\n\r]", "") .. "?format=%C+%t"
+	-- location:close()
+	-- local wttr = io.popen(wttr_url)
+	-- weather = " " .. wttr:read("*a"):gsub("[\n\r]", "") .. " "
+	-- wttr:close()
 
 	wezterm.on("update-status", function(window, _)
-		local wttr = assert(io.popen(wttr_url))
-		weather = " " .. wttr:read("*a"):gsub("[\n\r]", "") .. " "
-		wttr:close()
-
-		local metadata = assert(io.popen "playerctl metadata -i chromium --format '{{ artist }} - {{ title }}'")
+		local metadata = io.popen "playerctl metadata -i chromium --format '{{ artist }} - {{ title }}'"
 		music = "󰎈 " .. metadata:read("*a"):gsub("[\n\r]", "")
 		metadata:close()
 
 		local date = wezterm.strftime " %H:%M | %A | %B %d "
 
-		window:set_right_status(
-			bubble(music, "#89b4fa")
-				.. bubble(date, "#f2cdcd")
-				.. bubble(weather, "#cba6f7")
-				.. bubble(hostname, "#f38ba8")
-		)
+		window:set_right_status(bubble(music, "#89b4fa") .. bubble(date, "#f2cdcd") .. bubble(hostname, "#f38ba8"))
 	end)
 end
 
