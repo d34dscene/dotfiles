@@ -26,8 +26,8 @@ function module.setup_statusline()
 	local weather = " "
 	local hostname = " " .. wezterm.hostname() .. " 󰊠 "
 
-	-- local location = io.popen "curl -s http://ip-api.com/json | jq -r .city"
-	-- local wttr_url = "curl -s wttr.in/" .. location:read("*a"):gsub("[\n\r]", "") .. "?format=%C+%t"
+	-- local location = io.popen "curl -s -m 1 http://ip-api.com/json | jq -r .city"
+	-- local wttr_url = "curl -s -m 1 wttr.in/" .. location:read("*a"):gsub("[\n\r]", "") .. "?format=%C+%t"
 	-- location:close()
 	-- local wttr = io.popen(wttr_url)
 	-- weather = " " .. wttr:read("*a"):gsub("[\n\r]", "") .. " "
