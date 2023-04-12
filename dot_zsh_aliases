@@ -18,7 +18,7 @@ alias reload="source ~/.zshrc"
 
 # System aliases
 alias flush="sudo resolvectl flush-caches"
-alias vblk="lsblk -o PATH,SIZE,RO,TYPE,MOUNTPOINT,UUID,MODEL"
+alias vblk="lsblk -o PATH,SIZE,RO,TYPE,FSTYPE,MOUNTPOINT,UUID,MODEL"
 alias bios="systemctl reboot --firmware-setup"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
 alias sec="fwupdmgr security"
