@@ -45,6 +45,7 @@ alias xg="xh get"
 alias xp="xh post"
 alias xd="xh delete"
 alias xl="xh -d"
+alias rs="rsync -auvz --progress"
 
 # Dotfiles
 alias cz="chezmoi"
