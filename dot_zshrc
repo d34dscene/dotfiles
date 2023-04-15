@@ -38,20 +38,20 @@ export PATH="$HOME/.local/bin:$PATH"
 export HISTFILE="$HOME/.zsh_history"
 export HISTIGNORE="*sudo -S*"
 export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
-export SAVEHIST=10000
+export SAVEHIST=100000
 export EDITOR="nvim"
 
 # Zsh options
 setopt extendedhistory      # save timestamps in history
 setopt histignoredups       # ignore consecutive dups in history
+setopt histignorespace      # ignore spaces in history
 setopt histfindnodups       # backwards search produces diff result each time
 setopt histreduceblanks     # compact consecutive white space chars
-setopt histnostore          # don"t store history related functions
+setopt histnostore          # don't store history related functions
 setopt incappendhistory     # incrementally add items to HISTFILE
 setopt extendedglob         # use extended globbing (#, ~, ^)
 setopt listpacked           # variable col widths
-setopt no_histbeep          # don"t beep for erroneous history expansions
-setopt no_listbeep          # don"t beep on ambiguous listings
+setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds HISTSIZE
 
 # Load plugins
 type pyenv >/dev/null && eval "$(pyenv init -)"
