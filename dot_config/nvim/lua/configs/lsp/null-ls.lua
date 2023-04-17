@@ -16,8 +16,8 @@ local sources = {
 	fmt.clang_format,
 	fmt.gofmt,
 	fmt.goimports,
-	fmt.terraform_fmt,
 	fmt.isort,
+	fmt.terraform_fmt,
 	fmt.golines.with {
 		extra_args = {
 			"--max-len=180",

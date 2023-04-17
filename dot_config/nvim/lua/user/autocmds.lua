@@ -78,3 +78,10 @@ cmd("FileType", {
 		vim.opt_local.buflisted = false
 	end,
 })
+
+cmd({ "BufNewFile", "BufRead" }, {
+	desc = "Fix terraform syntax highlighting",
+	group = vim.api.nvim_create_augroup("change_tfvars", { clear = true }),
+	pattern = "terraform*",
+	command = "set ft=terraform",
+})
