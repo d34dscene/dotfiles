@@ -19,6 +19,7 @@ config.window_decorations = "RESIZE"
 config.scrollback_lines = 10000
 config.check_for_updates = false
 config.status_update_interval = 5000
+config.enable_wayland = false
 
 keybindings.apply_to_config(config)
 statusline.setup_statusline()
