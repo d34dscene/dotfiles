@@ -106,11 +106,11 @@ alias pvv="pyenv versions"
 alias svv="source venv/bin/activate"
 
 # Terraform
-alias tf="terraform"
-alias tfp="terraform apply"
-alias tfa="terraform apply -auto-approve"
-alias tfd="terraform destroy"
-alias tfu="terraform init -upgrade"
+alias tf="terragrunt"
+alias tfp="terragrunt apply"
+alias tfa="terragrunt apply -auto-approve"
+alias tfd="terragrunt destroy"
+alias tfu="terragrunt init -upgrade"
 
 # Flux
 alias fl="flux"
@@ -121,7 +121,7 @@ alias flr="flux resume"
 alias fle="flux reconcile"
 
 # Cloudflare
-alias cf="flarectl"
+alias cf="flarectl --json"
 alias cfz="flarectl zone dns --zone"
 
 # Vault

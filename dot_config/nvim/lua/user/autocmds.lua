@@ -82,6 +82,6 @@ cmd("FileType", {
 cmd({ "BufNewFile", "BufRead" }, {
 	desc = "Fix terraform syntax highlighting",
 	group = vim.api.nvim_create_augroup("change_tfvars", { clear = true }),
-	pattern = "terraform*",
+	pattern = { "*.tfvars", "terragrunt.hcl" },
 	command = "set ft=terraform",
 })
