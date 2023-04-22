@@ -61,7 +61,7 @@ neotree.setup {
 		mappings = {
 			["<space>"] = {
 				"toggle_node",
-				nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+				nowait = false,
 			},
 			["<2-LeftMouse>"] = "open",
 			["<cr>"] = "open",
@@ -70,8 +70,6 @@ neotree.setup {
 			["S"] = "open_split",
 			["s"] = "open_vsplit",
 			["t"] = "open_tabnew",
-			-- ["<cr>"] = "open_drop",
-			-- ["t"] = "open_tab_drop",
 			["w"] = "open_with_window_picker",
 			["C"] = "close_node",
 			["z"] = "close_all_nodes",

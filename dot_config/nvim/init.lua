@@ -19,10 +19,8 @@ require "configs.wilder"
 require "configs.cmp"
 
 -- LSP Configs
-require "configs.lsp.mason"
-require "configs.lsp.mason-null-ls"
-require "configs.lsp.mason-lspconfig"
-require "configs.lsp.null-ls"
+require "configs.lspconfig"
+require "configs.null-ls"
 
 -- Load theme
 vim.cmd.colorscheme "catppuccin"

@@ -174,8 +174,6 @@ map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search Todos" })
 -- Leap
 map({ "n", "x", "v" }, "f", "<Plug>(leap-forward-to)", { desc = "Leap forward" })
 map({ "n", "x", "v" }, "F", "<Plug>(leap-backward-to)", { desc = "Leap backward" })
---map({ "n", "x", "v" }, "t", "<Plug>(leap-forward-till)", { desc = "Leap forward till" })
---map({ "n", "x", "v" }, "T", "<Plug>(leap-backward-till)", { desc = "Leap backward till" })
 map({ "n", "x", "v" }, "sf", "<Plug>(leap-from-window)", { desc = "Leap window" })
 
 -- Ufo

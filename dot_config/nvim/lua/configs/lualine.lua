@@ -15,7 +15,7 @@ local function getLspName()
 			return " " .. client.name
 		end
 	end
-	return ""
+	return " "
 end
 
 local lsp = {

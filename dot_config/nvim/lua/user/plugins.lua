@@ -99,9 +99,20 @@ return {
 
 	-- LSP
 	-- ------------------------------------------------------------------------
-	"williamboman/mason.nvim", -- LSP installer
+	{ -- LSP installer
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate",
+		config = function()
+			require("mason").setup {}
+		end,
+	},
+	{ -- Null-ls helper
+		"jayp0521/mason-null-ls.nvim",
+		config = function()
+			require("mason-null-ls").setup {}
+		end,
+	},
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
-	"jayp0521/mason-null-ls.nvim", -- Null-ls helper
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
 	"lukas-reineke/indent-blankline.nvim", -- Indentation guides
