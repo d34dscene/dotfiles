@@ -46,7 +46,7 @@ o.hlsearch = false
 o.incsearch = true
 o.colorcolumn = "80"
 o.statuscolumn =
-	"%=%{v:relnum:v:lnum}%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? \" \" : \" \") : \"  \" }%*"
+	"%=%{v:lnum:}%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? \" \" : \" \") : \"  \" }%*"
 o.foldenable = true
 o.foldcolumn = "1"
 o.foldlevel = 99
