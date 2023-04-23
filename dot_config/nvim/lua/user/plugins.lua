@@ -265,10 +265,4 @@ return {
 			require("codeium").setup {}
 		end,
 	},
-	-- { -- ChatGPT
-	-- 	"jackMort/ChatGPT.nvim",
-	-- 	config = function()
-	-- 		require("chatgpt").setup {}
-	-- 	end,
-	-- },
 }
