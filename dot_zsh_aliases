@@ -59,10 +59,8 @@ alias yt="yt-dlp --sponsorblock-remove default"
 alias ytx="yt-dlp -x --audio-quality 0 --sponsorblock-remove intro,outro -o '%(uploader)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 # Benchmark
-alias fire="cassowary run -u"
-alias fire1="cassowary run -c 1000 -n 10 -u"
-alias fire2="cassowary run -c 10000 -n 10 -u"
-alias fire3="cassowary run -c 100000 -n 10 -u"
+alias fire="oha --latency-correction --disable-keepalive -z 1m -n 10000"
+alias firemore="oha --latency-correction --disable-keepalive -z 1m -n 10000 -c 500"
 
 # Git
 alias g="git"
