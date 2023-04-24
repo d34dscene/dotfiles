@@ -59,8 +59,8 @@ alias yt="yt-dlp --sponsorblock-remove default"
 alias ytx="yt-dlp -x --audio-quality 0 --sponsorblock-remove intro,outro -o '%(uploader)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 # Benchmark
-alias fire="oha --latency-correction --disable-keepalive -z 1m -n 10000"
-alias firemore="oha --latency-correction --disable-keepalive -z 1m -n 10000 -c 500"
+alias fire="oha --latency-correction --disable-keepalive -z 30s -n 10000"
+alias firemore="oha --latency-correction --disable-keepalive -z 30s -n 10000 -c 500"
 
 # Git
 alias g="git"
