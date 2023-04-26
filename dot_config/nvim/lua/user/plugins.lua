@@ -3,9 +3,9 @@ return {
 	-- ------------------------------------------------------------------------
 	"nvim-lua/popup.nvim", -- Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Lua functions
+	"MunifTanjim/nui.nvim", -- UI Library
 	"ray-x/guihua.lua", -- UI library
 	"akinsho/bufferline.nvim", -- Bufferline
-	"MunifTanjim/nui.nvim", -- UI Library
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
 	{

@@ -7,8 +7,6 @@ end
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 require("luasnip.loaders.from_vscode").lazy_load()
 
---cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false })
-
 cmp.setup {
 	snippet = {
 		expand = function(args)
@@ -86,7 +84,6 @@ cmp.setup {
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
-				--vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
 			else
 				fallback()
 			end
@@ -96,7 +93,6 @@ cmp.setup {
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
-				--vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
 			else
 				fallback()
 			end
