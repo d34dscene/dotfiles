@@ -75,7 +75,7 @@ telescope.setup {
 				["<C-l>"] = actions.complete_tag,
 			},
 			n = {
-				["q"] = actions.close,
+				["<Esc>"] = actions.close,
 				["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
