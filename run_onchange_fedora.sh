@@ -20,6 +20,8 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
 			python3-pip age direnv
 
+		sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
+		sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 		sudo dnf copr enable agriffis/neovim-nightly
 		sudo dnf install neovim python3-neovim -y
 		sudo tee /etc/dnf/dnf.conf <<EOF
