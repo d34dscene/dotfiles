@@ -95,6 +95,12 @@ alias dlo="docker logs"
 alias dflo="docker logs -f"
 alias dcp="docker system prune -a -f; docker volume prune -f"
 
+# Distrobox
+alias bx="distrobox"
+alias bxa="distrobox assemble"
+alias bxe="distrobox enter"
+alias bxl="distrobox list"
+
 # Pyenv
 alias pv="pyenv"
 alias pvi="pyenv install"
