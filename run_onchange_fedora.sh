@@ -2,22 +2,12 @@
 
 # Get distro
 . /etc/os-release
+ID=$ID
 DISTRO=$NAME
 VARIANT=$VARIANT_ID
 
 # No zsh = first time setup
 if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
-	sudo tee /etc/dnf/dnf.conf <<-EOF
-		[main]
-		gpgcheck=1
-		installonly_limit=3
-		clean_requirements_on_remove=True
-		best=False
-		skip_if_unavailable=True
-		max_parallel_downloads=10
-		defaultyes=True
-		deltarpm=True
-	EOF
 
 	if ! type zsh >/dev/null; then
 		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm -y
@@ -30,13 +20,11 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 			libratbag-ratbagd alacritty lutris gamescope steam-devices yt-dlp \
 			ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
-			python3-pip age direnv
+			python3-pip age direnv neovim python3-neovim
 
 		sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld -y
 		sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld -y
 		sudo dnf update --best --allowerasing -y
-		sudo dnf copr enable agriffis/neovim-nightly -y
-		sudo dnf install neovim python3-neovim -y
 	fi
 fi
 
@@ -50,4 +38,18 @@ if type flatpak >/dev/null; then
 			com.mattjakeman.ExtensionManager org.signal.Signal \
 			com.github.tchx84.Flatseal
 	fi
+fi
+
+if [[ $ID == "fedora" ]]; then
+	sudo tee /etc/dnf/dnf.conf <<-EOF
+		[main]
+		gpgcheck=1
+		installonly_limit=3
+		clean_requirements_on_remove=True
+		best=False
+		skip_if_unavailable=True
+		max_parallel_downloads=10
+		defaultyes=True
+		deltarpm=True
+	EOF
 fi
