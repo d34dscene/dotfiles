@@ -7,6 +7,18 @@ VARIANT=$VARIANT_ID
 
 # No zsh = first time setup
 if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
+	sudo tee /etc/dnf/dnf.conf <<-EOF
+		[main]
+		gpgcheck=1
+		installonly_limit=3
+		clean_requirements_on_remove=True
+		best=False
+		skip_if_unavailable=True
+		max_parallel_downloads=10
+		defaultyes=True
+		deltarpm=True
+	EOF
+
 	if ! type zsh >/dev/null; then
 		sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm -y
 		sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
@@ -25,17 +37,6 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 		sudo dnf update --best --allowerasing -y
 		sudo dnf copr enable agriffis/neovim-nightly -y
 		sudo dnf install neovim python3-neovim -y
-		sudo tee /etc/dnf/dnf.conf <<-EOF
-			[main]
-			gpgcheck=1
-			installonly_limit=3
-			clean_requirements_on_remove=True
-			best=False
-			skip_if_unavailable=True
-			max_parallel_downloads=10
-			defaultyes=True
-			deltarpm=True
-		EOF
 	fi
 fi
 
