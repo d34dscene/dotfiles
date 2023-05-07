@@ -8,6 +8,21 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+config.launch_menu = {
+	{
+		label = "Fedora",
+		args = { "distrobox", "enter", "fedora" },
+	},
+	{
+		label = "Arch",
+		args = { "distrobox", "enter", "arch" },
+	},
+	{
+		label = "Ubuntu",
+		args = { "distrobox", "enter", "ubuntu" },
+	},
+}
+
 -- Config ---------------------------------------------------------------------
 config.color_scheme = "Catppuccin Mocha"
 config.use_fancy_tab_bar = false

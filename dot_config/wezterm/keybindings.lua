@@ -5,6 +5,11 @@ function module.apply_to_config(config)
 	-- Key bindings -----------------------------------------------------------
 	config.keys = {
 		{
+			key = "l",
+			mods = "ALT",
+			action = wezterm.action.ShowLauncher,
+		},
+		{
 			key = "Enter",
 			mods = "ALT",
 			action = wezterm.action.ToggleFullScreen,
