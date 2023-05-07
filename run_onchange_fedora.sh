@@ -20,22 +20,22 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
 			python3-pip age direnv
 
-		sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
-		sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-		sudo dnf copr enable agriffis/neovim-nightly
+		sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld -y
+		sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld -y
+		sudo dnf update --best --allowerasing -y
+		sudo dnf copr enable agriffis/neovim-nightly -y
 		sudo dnf install neovim python3-neovim -y
-		sudo tee /etc/dnf/dnf.conf <<EOF
-[main]
-gpgcheck=1
-installonly_limit=3
-clean_requirements_on_remove=True
-best=False
-skip_if_unavailable=True
-max_parallel_downloads=10
-defaultyes=True
-fastestmirror=True
-deltarpm=True
-EOF
+		sudo tee /etc/dnf/dnf.conf <<-EOF
+			[main]
+			gpgcheck=1
+			installonly_limit=3
+			clean_requirements_on_remove=True
+			best=False
+			skip_if_unavailable=True
+			max_parallel_downloads=10
+			defaultyes=True
+			deltarpm=True
+		EOF
 	fi
 fi
 
@@ -47,6 +47,6 @@ if type flatpak >/dev/null; then
 			com.mastermindzh.tidal-hifi tv.plex.PlexDesktop org.gnome.Geary \
 			com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
 			com.mattjakeman.ExtensionManager org.signal.Signal \
-			com.usebottles.bottles com.valvesoftware.Steam.Utility.gamescope
+			com.github.tchx84.Flatseal
 	fi
 fi
