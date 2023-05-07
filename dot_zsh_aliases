@@ -97,9 +97,12 @@ alias dcp="docker system prune -a -f; docker volume prune -f"
 
 # Distrobox
 alias bx="distrobox"
-alias bxa="distrobox assemble"
+alias bxa="distrobox assemble create"
 alias bxe="distrobox enter"
+alias bxd="distrobox rm"
 alias bxl="distrobox list"
+alias bxu="distrobox upgrade"
+alias bxx="distrobox-export --app"
 
 # Pyenv
 alias pv="pyenv"
