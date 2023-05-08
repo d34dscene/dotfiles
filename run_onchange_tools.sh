@@ -66,6 +66,7 @@ type distrobox &>/dev/null || wget -qO- https://raw.githubusercontent.com/89luca
 
 # Add go extensions
 if type go &>/dev/null; then
+	type go-global-update &>/dev/null || go install github.com/Gelio/go-global-update@latest
 	type staticcheck &>/dev/null || go install honnef.co/go/tools/cmd/staticcheck@latest
 	type shfmt &>/dev/null || go install mvdan.cc/sh/v3/cmd/shfmt@latest
 	type goimports &>/dev/null || go install golang.org/x/tools/cmd/goimports@latest
@@ -77,7 +78,8 @@ fi
 
 if type cargo &>/dev/null; then
 	type cargo-install-update &>/dev/null || cargo install cargo-update
-	type topgrade &>/dev/null || cargo install topgrade-rs
+	type cargo-cache &>/dev/null || cargo install cargo-cache
+	type topgrade &>/dev/null || cargo install topgrade
 	type stylua &>/dev/null || cargo install stylua
 	type procs &>/dev/null || cargo install procs
 	type bat &>/dev/null || cargo install bat
