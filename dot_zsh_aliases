@@ -64,6 +64,7 @@ alias firemore="oha --latency-correction --disable-keepalive -z 30s -n 10000 -c 
 
 # Git
 alias g="git"
+alias gcl="git clone"
 alias ga="git add"
 alias gaa="git add -A"
 alias gp="git push"
