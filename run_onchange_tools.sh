@@ -61,6 +61,9 @@ if type npm &>/dev/null; then
 	type eslint_d &>/dev/null || npm install -g eslint_d
 fi
 
+# Add distrobox dev version
+type distrobox &>/dev/null || wget -qO- https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --next --prefix ~/.local
+
 # Add go extensions
 if type go &>/dev/null; then
 	type staticcheck &>/dev/null || go install honnef.co/go/tools/cmd/staticcheck@latest
