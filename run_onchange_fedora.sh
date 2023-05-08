@@ -15,7 +15,7 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 		sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
 
 		sudo dnf install -y @development-tools @virtualization \
-			htop zsh unar git openssl curl dnf-automatic bat exa duf procs \
+			golang rust cargo htop zsh unar git openssl curl dnf-automatic exa \
 			fd-find ripgrep fzf tldr ncdu wl-clipboard gnome-tweaks lm_sensors \
 			libratbag-ratbagd alacritty lutris gamescope steam-devices yt-dlp \
 			ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
