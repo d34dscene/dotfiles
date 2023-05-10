@@ -32,11 +32,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export RUST_HOME="$HOME/.cargo/bin"
 export PATH="$RUST_HOME:$PATH"
 
-# cuda
-export CUDA_HOME="/usr/local/cuda-11.7"
-export PATH="$CUDA_HOME/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda-11.7/lib64:$LD_LIBRARY_PATH"
-
 # brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
