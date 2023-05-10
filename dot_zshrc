@@ -32,6 +32,14 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export RUST_HOME="$HOME/.cargo/bin"
 export PATH="$RUST_HOME:$PATH"
 
+# cuda
+export CUDA_HOME="/usr/local/cuda-11.7"
+export PATH="$CUDA_HOME/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-11.7/lib64:$LD_LIBRARY_PATH"
+
+# brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # General
 export PF_INFO="ascii title os de host kernel uptime pkgs shell memory wm palette"
 export PATH="$HOME/.local/bin:$PATH"
@@ -93,3 +101,19 @@ source ~/.zsh_functions
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
