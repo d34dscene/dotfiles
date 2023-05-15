@@ -90,12 +90,16 @@ alias gor="go run"
 alias dc="docker-compose"
 alias dcu="docker-compose up -d"
 alias dcd="docker-compose down"
+alias dcp="docker system prune -af --volumes"
 alias dbl="docker build"
 alias dipu="docker push"
 alias dr="docker run -it"
 alias dlo="docker logs"
 alias dflo="docker logs -f"
-alias dcp="docker system prune -a -f; docker volume prune -f"
+
+# Podman
+alias pbl="podman build"
+alias pipu="podman push"
 
 # Distrobox
 alias bx="distrobox"
