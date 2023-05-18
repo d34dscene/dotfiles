@@ -99,7 +99,10 @@ alias dflo="docker logs -f"
 
 # Podman
 alias pbl="podman build"
+alias pcp="podman system prune -af --volumes"
 alias pipu="podman push"
+alias plo="podman logs"
+alias pflo="podman logs -f"
 
 # Distrobox
 alias bx="distrobox"
