@@ -75,6 +75,13 @@ map("n", "tt", function()
 	require("treesj").toggle()
 end, { desc = "Toggle node under cursor" })
 
+-- Jupiter
+map({ "n", "v" }, "<leader>j", "<cmd>MagmaEvaluateOperator<cr>", { desc = "Evaluate operator" })
+map("n", "<leader>jj", "<cmd>MagmaEvaluateLine<cr>", { desc = "Evaluate line" })
+map("n", "<leader>jc", "<cmd>MagmaReevaluateCell<cr>", { desc = "Reevaluate cell" })
+map("n", "<leader>jd", "<cmd>MagmaDelete<cr>", { desc = "Delete cell" })
+map("n", "<leader>jo", "<cmd>MagmaShowOutput<cr>", { desc = "Show output" })
+
 -- Todo
 map("n", "]t", function()
 	require("todo-comments").jump_next()

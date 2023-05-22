@@ -165,6 +165,10 @@ return {
 	"tpope/vim-repeat", -- Repeat dot
 	"godlygeek/tabular", -- Align columns
 	{
+		"dccsillag/magma-nvim", -- Jupiter notebook
+		build = ":UpdateRemotePlugins",
+	},
+	{
 		"ray-x/go.nvim", -- Lots of go tools
 		config = function()
 			require("go").setup()
