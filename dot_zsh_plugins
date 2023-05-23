@@ -7,9 +7,10 @@ ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/copypath
 ohmyzsh/ohmyzsh path:plugins/git-auto-fetch
 ahmetb/kubectx path:completion kind:fpath
+bonnefoa/kubectl-fzf path:shell kind:defer
 laggardkernel/git-ignore
 jgogstad/passwordless-history
-sunlei/zsh-ssh
+sunlei/zsh-ssh kind:defer
 
 # Theme
 romkatv/powerlevel10k kind:fpath
