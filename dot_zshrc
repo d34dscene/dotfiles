@@ -57,6 +57,7 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 setopt extendedglob         # use extended globbing (#, ~, ^)
 setopt listpacked           # variable col widths
 setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds HISTSIZE
+unsetopt beep               # don't beep 
 
 # Load plugins
 type pyenv >/dev/null && eval "$(pyenv init -)"
