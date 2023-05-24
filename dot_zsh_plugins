@@ -7,9 +7,6 @@ ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/copypath
 ohmyzsh/ohmyzsh path:plugins/git-auto-fetch
 ahmetb/kubectx path:completion kind:fpath
-# asdf-vm/asdf path:completions kind:fpath
-# asdf-vm/asdf path:bin kind:path
-# asdf-vm/asdf kind:path
 Aloxaf/fzf-tab kind:defer
 laggardkernel/git-ignore
 jgogstad/passwordless-history
