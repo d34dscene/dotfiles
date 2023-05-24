@@ -7,15 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 type direnv >/dev/null && emulate zsh -c "$(direnv hook zsh)"
 
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
-type nvm >/dev/null && source "$NVM_DIR/bash_completion"
-
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
 # go
 export GOPATH="$HOME/.local"
 export PATH="/usr/local/go/bin:$GOPATH:$PATH"
@@ -24,18 +15,14 @@ export PATH="/usr/local/go/bin:$GOPATH:$PATH"
 export POETRY_HOME="$HOME/.poetry/bin"
 export PATH="$POETRY_HOME:$PATH"
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 # rust
 export RUST_HOME="$HOME/.cargo/bin"
 export PATH="$RUST_HOME:$PATH"
 
 # cuda
-export CUDA_HOME="/usr/local/cuda"
-export CUDA_INCLUDE_PATH="$CUDA_HOME/include"
-export PATH="$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH"
+# export CUDA_HOME="/usr/local/cuda"
+# export CUDA_INCLUDE_PATH="$CUDA_HOME/include"
+# export PATH="$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH"
 
 # General
 export PF_INFO="ascii title os de host kernel uptime pkgs shell memory wm palette"

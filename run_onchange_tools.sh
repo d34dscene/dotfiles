@@ -37,17 +37,6 @@ else
 	git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
 
-# Add pyenv
-if ! type pyenv &>/dev/null; then
-	curl https://pyenv.run | bash
-fi
-
-# Add nvm
-if [[ ! -e "$HOME/.nvm/nvm.sh" ]]; then
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-	nvm install --lts
-fi
-
 # Add pipx
 if type python &>/dev/null; then
 	type pipx &>/dev/null || python -m pip install --user pipx
