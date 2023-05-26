@@ -51,7 +51,6 @@ setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds
 unsetopt beep               # don't beep 
 
 # Load plugins
-type pyenv >/dev/null && eval "$(pyenv init -)"
 type zoxide >/dev/null && eval "$(zoxide init zsh)"
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 bundlefile=~/.zsh_plugins
