@@ -10,16 +10,12 @@ end
 
 config.launch_menu = {
 	{
-		label = "Fedora",
-		args = { "distrobox", "enter", "fedora" },
-	},
-	{
 		label = "Arch",
-		args = { "distrobox", "enter", "arch" },
+		args = { "zsh", "-c", "~/.local/bin/distrobox-enter arch" },
 	},
 	{
 		label = "Ubuntu",
-		args = { "distrobox", "enter", "ubuntu" },
+		args = { "zsh", "-c", "~/.local/bin/distrobox-enter ubuntu" },
 	},
 }
 
