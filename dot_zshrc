@@ -87,5 +87,11 @@ bindkey "^[f" autosuggest-accept
 source ~/.zsh_aliases
 source ~/.zsh_functions
 
+# Extra prompt segments
+prompt_my_container() {
+  p10k segment -t ${CONTAINER_ID}
+}
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=(my_container)
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

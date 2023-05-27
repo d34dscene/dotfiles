@@ -1,6 +1,5 @@
 local status_ok, pairs = pcall(require, "nvim-autopairs")
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not (status_ok and cmp_status_ok) then
+if not status_ok then
 	return
 end
 
@@ -24,6 +23,3 @@ pairs.setup {
 		highlight_grey = "LineNr",
 	},
 }
-
-local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { tex = false })

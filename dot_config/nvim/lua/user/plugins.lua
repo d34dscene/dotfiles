@@ -178,16 +178,6 @@ return {
 		build = ":lua require(\"go.install\").update_all_sync()",
 	},
 	{
-		"altermo/ultimate-autopair.nvim",
-		event = { "InsertEnter", "CmdlineEnter" },
-	},
-	{
-		"altermo/npairs-integrate-upair",
-		config = function()
-			require("npairs-int-upair").setup { map = "u" }
-		end,
-	},
-	{
 		"ggandor/leap.nvim", -- Leap motion
 		config = function()
 			require("leap").setup {}
