@@ -24,6 +24,7 @@ alias ports="sudo lsof -i -P -n | grep LISTEN"
 alias sec="fwupdmgr security"
 alias kll="pkill -SIGKILL"
 alias battery="sudo tlp-stat -b"
+alias ram="sudo lshw -short -C memory"
 alias epoch="date +%s"
 alias cssl="openssl x509 -text -noout -in"
 

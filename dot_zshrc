@@ -19,6 +19,9 @@ export PATH="$POETRY_HOME:$PATH"
 export RUST_HOME="$HOME/.cargo/bin"
 export PATH="$RUST_HOME:$PATH"
 
+# kubescape
+export PATH="$HOME/.kubescape/bin:$PATH"
+
 # asdf
 . "$HOME/.asdf/asdf.sh"
 fpath=(${ASDF_DIR}/completions $fpath)
