@@ -74,6 +74,7 @@ prompt powerlevel10k
 
 # Additional completions
 type kubectl >/dev/null && source <(kubectl completion zsh)
+type docker >/dev/null && source <(docker completion zsh)
 type helm >/dev/null && source <(helm completion zsh)
 type flux >/dev/null && source <(flux completion zsh)
 type terraform >/dev/null && complete -o nospace -C /usr/bin/terraform terraform
