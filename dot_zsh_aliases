@@ -62,6 +62,7 @@ alias ytx="yt-dlp -x --audio-quality 0 --sponsorblock-remove intro,outro -o '%(u
 # Benchmark
 alias fire="oha --latency-correction --disable-keepalive -z 30s -n 10000"
 alias firec="oha --latency-correction --disable-keepalive -z 30s -n 10000 -c 500"
+alias map="rustscan -b 65535 -t 1000 --ulimit 70000 -g -a"
 
 # Git
 alias g="git"
