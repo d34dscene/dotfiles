@@ -96,6 +96,7 @@ alias dcp="docker system prune -af --volumes"
 alias dbl="docker build"
 alias dipu="docker push"
 alias dr="docker run -it"
+alias dx="docker exec -it"
 alias dlo="docker logs"
 alias dflo="docker logs -f"
 
