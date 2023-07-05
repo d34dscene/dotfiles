@@ -55,21 +55,6 @@ cmd("TextYankPost", {
 	end,
 })
 
-cmd({
-	"WinResized",
-	"BufWinEnter",
-	"CursorHold",
-	"InsertLeave",
-	"BufWritePost",
-	"TextChanged",
-	"TextChangedI",
-}, {
-	group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-	callback = function()
-		require("barbecue.ui").update()
-	end,
-})
-
 cmd("FileType", {
 	desc = "Unlist quickfist buffers",
 	group = augroup("unlist_quickfist", { clear = true }),

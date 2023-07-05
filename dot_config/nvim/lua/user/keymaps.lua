@@ -70,17 +70,13 @@ map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
 -- LSP Installer
 map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
 
+-- Zen mode
+map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
+
 -- Treesj
 map("n", "tt", function()
 	require("treesj").toggle()
 end, { desc = "Toggle node under cursor" })
-
--- Jupiter
-map({ "n", "v" }, "<leader>j", "<cmd>MagmaEvaluateOperator<cr>", { desc = "Evaluate operator" })
-map("n", "<leader>jj", "<cmd>MagmaEvaluateLine<cr>", { desc = "Evaluate line" })
-map("n", "<leader>jc", "<cmd>MagmaReevaluateCell<cr>", { desc = "Reevaluate cell" })
-map("n", "<leader>jd", "<cmd>MagmaDelete<cr>", { desc = "Delete cell" })
-map("n", "<leader>jo", "<cmd>MagmaShowOutput<cr>", { desc = "Show output" })
 
 -- Todo
 map("n", "]t", function()

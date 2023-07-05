@@ -1,10 +1,9 @@
 return {
-	-- Main plugins
+	-- Important plugins
 	-- ------------------------------------------------------------------------
 	"nvim-lua/popup.nvim", -- Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Lua functions
 	"MunifTanjim/nui.nvim", -- UI Library
-	"ray-x/guihua.lua", -- UI library
 	"akinsho/bufferline.nvim", -- Bufferline
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
@@ -16,52 +15,26 @@ return {
 	-- Design
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
+	"nvim-tree/nvim-web-devicons", -- Icons
 	"nvim-lualine/lualine.nvim", -- Statusline
 	"onsails/lspkind.nvim", -- Vscode-like pictograms
-	"SmiteshP/nvim-navic", -- Navic
+	"folke/zen-mode.nvim", -- Zen mode
+	{
+		"catppuccin/nvim", -- Main Theme
+		name = "catppuccin",
+	},
+	{
+		"folke/todo-comments.nvim", -- Highlight todo comments
+		config = true,
+	},
+	{
+		"xiyaowong/nvim-transparent", -- Add transparency
+		config = true,
+	},
 	{
 		"norcalli/nvim-colorizer.lua", -- Colorize rgb codes
 		config = function()
 			require("colorizer").setup({ "*" }, { mode = "background" })
-		end,
-	},
-	{
-		"catppuccin/nvim", -- Theme
-		name = "catppuccin",
-	},
-	{
-		"xiyaowong/nvim-transparent", -- Add transparency
-		config = function()
-			require("transparent").setup {}
-		end,
-	},
-	{
-		"nvim-tree/nvim-web-devicons", -- Icons
-		config = function()
-			require("nvim-web-devicons").setup { default = true }
-		end,
-	},
-	{
-		"rcarriga/nvim-notify", -- Pretty notifications
-		config = function()
-			require("notify").setup {
-				background_colour = "#000000",
-				render = "minimal",
-				top_down = false,
-			}
-			vim.notify = require "notify"
-		end,
-	},
-	{
-		"utilyre/barbecue.nvim", -- Winbar
-		config = function()
-			require("barbecue").setup {
-				attach_navic = false,
-				symbols = {
-					separator = "",
-				},
-				theme = "catppuccin",
-			}
 		end,
 	},
 	{
@@ -72,12 +45,6 @@ return {
 				numhl = true,
 				linehl = false,
 			}
-		end,
-	},
-	{
-		"gen740/SmoothCursor.nvim", -- Follow cursor
-		config = function()
-			require("smoothcursor").setup {}
 		end,
 	},
 
@@ -102,15 +69,11 @@ return {
 	{ -- LSP installer
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		config = function()
-			require("mason").setup {}
-		end,
+		config = true,
 	},
 	{ -- Null-ls helper
 		"jayp0521/mason-null-ls.nvim",
-		config = function()
-			require("mason-null-ls").setup {}
-		end,
+		config = true,
 	},
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
@@ -121,14 +84,9 @@ return {
 	"pearofducks/ansible-vim", -- Ansible support
 	"towolf/vim-helm", -- Helm support
 	"b0o/schemastore.nvim", -- JSON schemas
-	"mfussenegger/nvim-dap", -- DAP
-	"rcarriga/nvim-dap-ui", -- DAP UI
-	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
 	{
 		"windwp/nvim-autopairs", -- Autoclose Brackets
-		config = function()
-			require("nvim-autopairs").setup {}
-		end,
+		config = true,
 	},
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
@@ -138,9 +96,7 @@ return {
 	},
 	{
 		"smjonas/inc-rename.nvim", -- Highlight refactors
-		config = function()
-			require("inc_rename").setup {}
-		end,
+		config = true,
 	},
 
 	-- Completion
@@ -163,21 +119,24 @@ return {
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions
 	"tpope/vim-repeat", -- Repeat dot
-	"godlygeek/tabular", -- Align columns
 	{
-		"ray-x/go.nvim", -- Lots of go tools
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
-		build = ":lua require(\"go.install\").update_all_sync()",
+		"akinsho/git-conflict.nvim", -- Solve git conflicts
+		config = true,
 	},
 	{
+		"lilibyte/tabhula.nvim", -- Tabout context
+		config = true,
+	},
+	-- {
+	-- 	"ray-x/go.nvim", -- Lots of go tools
+	-- 	config = true,
+	-- 	event = { "CmdlineEnter" },
+	-- 	ft = { "go", "gomod" },
+	-- 	build = ":lua require(\"go.install\").update_all_sync()",
+	-- },
+	{
 		"ggandor/leap.nvim", -- Leap motion
-		config = function()
-			require("leap").setup {}
-		end,
+		config = true,
 	},
 	{
 		"max397574/better-escape.nvim", -- Smooth escaping
@@ -189,18 +148,6 @@ return {
 		end,
 	},
 	{
-		"lilibyte/tabhula.nvim", -- Tabout context
-		config = function()
-			require("tabhula").setup {}
-		end,
-	},
-	{
-		"folke/todo-comments.nvim", -- Highlight todo comments
-		config = function()
-			require("todo-comments").setup {}
-		end,
-	},
-	{
 		"johmsalas/text-case.nvim", -- Change text casing
 		config = function()
 			require("textcase").setup { prefix = "t" }
@@ -208,9 +155,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-ufo", -- Better folding
-		config = function()
-			require("ufo").setup {}
-		end,
+		config = true,
 		dependencies = { "kevinhwang91/promise-async" },
 	},
 	{
@@ -226,21 +171,6 @@ return {
 		end,
 	},
 	{
-		"folke/trouble.nvim", -- Diagnostics
-		config = function()
-			require("trouble").setup {
-				auto_open = false,
-				use_diagnostic_signs = true,
-			}
-		end,
-	},
-	{
-		"danymat/neogen", -- Generate docs
-		config = function()
-			require("neogen").setup { snippet_engine = "luasnip" }
-		end,
-	},
-	{
 		"iamcco/markdown-preview.nvim", -- Live Markdown preview
 		build = function()
 			vim.fn["mkdp#util#install"]()
@@ -248,8 +178,6 @@ return {
 	},
 	{
 		"jcdickinson/codeium.nvim", -- Codium cmp integration
-		config = function()
-			require("codeium").setup {}
-		end,
+		config = true,
 	},
 }

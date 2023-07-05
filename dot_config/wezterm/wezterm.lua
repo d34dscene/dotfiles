@@ -10,6 +10,14 @@ end
 
 config.launch_menu = {
 	{
+		label = "Sentinel",
+		domain = { DomainName = "SSH:jk" },
+	},
+	{
+		label = "Router",
+		domain = { DomainName = "SSH:ub" },
+	},
+	{
 		label = "Arch",
 		args = { "zsh", "-c", "~/.local/bin/distrobox-enter arch" },
 	},

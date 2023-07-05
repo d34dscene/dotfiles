@@ -3,11 +3,6 @@ if not status_ok then
 	return
 end
 
-local notify_present, _ = pcall(require, "notify")
-if notify_present then
-	telescope.load_extension "notify"
-end
-
 local actions = require "telescope.actions"
 
 telescope.setup {
