@@ -179,8 +179,4 @@ return {
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
-	{
-		"jcdickinson/codeium.nvim", -- Codium cmp integration
-		config = true,
-	},
 }

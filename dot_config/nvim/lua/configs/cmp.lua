@@ -35,7 +35,7 @@ cmp.setup {
 				mode = "symbol_text",
 				maxwidth = 50,
 				ellipsis_char = "...",
-				symbol_map = { Codeium = "" },
+				--symbol_map = { Codeium = "" },
 			}(entry, vim_item)
 			local strings = vim.split(kind.kind, "%s", { trimempty = true })
 			kind.kind = " " .. strings[1] .. " "
@@ -103,7 +103,7 @@ cmp.setup {
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "codeium" },
+		--{ name = "codeium" },
 		{ name = "buffer", keyword_length = 2 },
 	},
 }
