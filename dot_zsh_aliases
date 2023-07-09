@@ -185,6 +185,7 @@ alias kp="kubectl port-forward"
 alias kpa="kubectl patch -p '{\"metadata\": {\"finalizers\": null}}'"
 alias kdbg="kubectl run -i --tty busybox --image=busybox --restart=Never"
 alias kclean="kubectl delete pods --field-selector status.phase=Failed -A"
+alias kdpv="kubectl get pv | grep Released | awk '$1 {print$1}' | while read vol; do kubectl delete pv/${vol}; done"
 alias kcsrd="kubectl get csr | grep Denied | awk '{print $1;}' | xargs kubectl delete csr"
 
 # Helm
