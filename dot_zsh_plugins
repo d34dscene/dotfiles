@@ -11,6 +11,7 @@ Aloxaf/fzf-tab kind:defer
 laggardkernel/git-ignore
 jgogstad/passwordless-history
 sunlei/zsh-ssh kind:defer
+bonnefoa/kubectl-fzf kind:defer
 
 # Theme
 romkatv/powerlevel10k kind:fpath
