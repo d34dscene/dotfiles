@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Helper for checking if binary is available
+check() {
+	command -v "$1" >/dev/null 2>&1
+}
+
 # Custom download function to get latest release
 # ARGS: repository, match release name, output name
 fetch() {
@@ -30,48 +35,63 @@ fetch() {
 type wormhole &>/dev/null || fetch "magic-wormhole/magic-wormhole.rs" "wormhole-rs" "wormhole"
 type doggo &>/dev/null || fetch "mr-karan/doggo" "linux_amd64" "doggo"
 
+py_tools=(
+	black
+	isort
+)
+
+node_tools=(
+	prettier
+	eslint_d
+)
+
+rust_tools=(
+	cargo-update
+	cargo-cache
+	topgrade
+	stylua
+	procs
+	bat
+	oha
+	xh
+)
+
+if check "pip"; then
+	for tool in ${py_tools[@]}; do
+		pip install $tool
+	done
+fi
+
+if check "npm"; then
+	for tool in ${node_tools[@]}; do
+		npm install -g $tool
+	done
+fi
+
+if check "cargo"; then
+	for tool in ${rust_tools[@]}; do
+		cargo install $tool
+	done
+fi
+
+if check "go"; then
+	check "go-global-update" || go install github.com/Gelio/go-global-update@latest
+	check "staticcheck" || go install honnef.co/go/tools/cmd/staticcheck@latest
+	check "shfmt" || go install mvdan.cc/sh/v3/cmd/shfmt@latest
+	check "goimports" || go install golang.org/x/tools/cmd/goimports@latest
+	check "gomodifytags" || go install github.com/fatih/gomodifytags@latest
+	check "flarectl" || go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
+	check "sops" || go install go.mozilla.org/sops/v3/cmd/sops@latest
+	check "k9s" || go install github.com/derailed/k9s/cmd/k9s@latest
+	check "duf" || go install github.com/muesli/duf@latest
+fi
+
 # Add zsh plugin manager
-if [[ -e "$HOME/.antidote" ]]; then
-	git -C $HOME/.antidote pull
+if [[ -e "$HOME/.config/antidote" ]]; then
+	git -C $HOME/.config/antidote pull
 else
-	git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
-fi
-
-# Add pipx
-if type python &>/dev/null; then
-	type pipx &>/dev/null || python -m pip install --user pipx
-	type black &>/dev/null || pipx install black
-	type isort &>/dev/null || pipx install isort
-fi
-
-# Add npm and base packages
-if type npm &>/dev/null; then
-	type prettier &>/dev/null || npm install -g prettier
-	type eslint_d &>/dev/null || npm install -g eslint_d
+	git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.config/antidote
 fi
 
 # Add distrobox dev version
-type distrobox &>/dev/null || wget -qO- https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --next --prefix ~/.local
-
-# Add go extensions
-if type go &>/dev/null; then
-	type go-global-update &>/dev/null || go install github.com/Gelio/go-global-update@latest
-	type staticcheck &>/dev/null || go install honnef.co/go/tools/cmd/staticcheck@latest
-	type shfmt &>/dev/null || go install mvdan.cc/sh/v3/cmd/shfmt@latest
-	type goimports &>/dev/null || go install golang.org/x/tools/cmd/goimports@latest
-	type gomodifytags &>/dev/null || go install github.com/fatih/gomodifytags@latest
-	type flarectl &>/dev/null || go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
-	type sops &>/dev/null || go install go.mozilla.org/sops/v3/cmd/sops@latest
-	type duf &>/dev/null || go install github.com/muesli/duf@latest
-fi
-
-if type cargo &>/dev/null; then
-	type cargo-install-update &>/dev/null || cargo install cargo-update
-	type cargo-cache &>/dev/null || cargo install cargo-cache
-	type topgrade &>/dev/null || cargo install topgrade
-	type stylua &>/dev/null || cargo install stylua
-	type procs &>/dev/null || cargo install procs
-	type bat &>/dev/null || cargo install bat
-	type oha &>/dev/null || cargo install oha
-	type xh &>/dev/null || cargo install xh
-fi
+check "distrobox" || wget -qO- https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --next --prefix ~/.local

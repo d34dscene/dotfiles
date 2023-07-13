@@ -19,13 +19,6 @@ export PATH="$POETRY_HOME:$PATH"
 export RUST_HOME="$HOME/.cargo/bin"
 export PATH="$RUST_HOME:$PATH"
 
-# kubescape
-export PATH="$HOME/.kubescape/bin:$PATH"
-
-# asdf
-. "$HOME/.asdf/asdf.sh"
-fpath=(${ASDF_DIR}/completions $fpath)
-
 # cuda
 export CUDA_HOME="/usr/local/cuda"
 export CUDA_INCLUDE_PATH="$CUDA_HOME/include"
@@ -55,7 +48,7 @@ unsetopt beep               # don't beep
 
 # Load plugins
 type zoxide >/dev/null && eval "$(zoxide init zsh)"
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+source ${ZDOTDIR:-~}/.config/antidote/antidote.zsh
 bundlefile=~/.zsh_plugins
 zstyle ":antidote:bundle" file $bundlefile
 antidote load
@@ -90,12 +83,6 @@ bindkey "^[f" autosuggest-accept
 # Load aliases & functions
 source ~/.zsh_aliases
 source ~/.zsh_functions
-
-# Extra prompt segments
-prompt_my_container() {
-  p10k segment -t ${CONTAINER_ID}
-}
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=(my_container)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
