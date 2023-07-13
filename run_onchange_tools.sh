@@ -64,7 +64,7 @@ fi
 
 if check "npm"; then
 	for tool in ${node_tools[@]}; do
-		npm install -g $tool
+		sudo npm install -g $tool
 	done
 fi
 
