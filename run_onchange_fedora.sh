@@ -40,16 +40,4 @@ if type flatpak >/dev/null; then
 	fi
 fi
 
-if [[ $ID == "fedora" ]]; then
-	sudo tee /etc/dnf/dnf.conf <<-EOF
-		[main]
-		gpgcheck=1
-		installonly_limit=3
-		clean_requirements_on_remove=True
-		best=False
-		skip_if_unavailable=True
-		max_parallel_downloads=10
-		defaultyes=True
-		deltarpm=True
-	EOF
-fi
+
