@@ -92,6 +92,3 @@ if [[ -e "$HOME/.config/antidote" ]]; then
 else
 	git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.config/antidote
 fi
-
-# Add distrobox dev version
-check "distrobox" || wget -qO- https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --next --prefix ~/.local
