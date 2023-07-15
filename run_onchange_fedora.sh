@@ -22,9 +22,9 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
 			python3-pip age direnv neovim python3-neovim
 
-		sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld -y
-		sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld -y
-		sudo dnf update --best --allowerasing -y
+		# sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld -y
+		# sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld -y
+		# sudo dnf update --best --allowerasing -y
 	fi
 fi
 

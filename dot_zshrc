@@ -8,16 +8,16 @@ fi
 type direnv >/dev/null && emulate zsh -c "$(direnv hook zsh)"
 
 # go
-export GOPATH="$HOME/.local"
-export PATH="/usr/local/go/bin:$GOPATH:$PATH"
+export GOPATH="$HOME/.local/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # poetry
-export POETRY_HOME="$HOME/.poetry/bin"
-export PATH="$POETRY_HOME:$PATH"
+export POETRY_HOME="$HOME/.local/poetry"
+export PATH="$POETRY_HOME/bin:$PATH"
 
 # rust
-export RUST_HOME="$HOME/.cargo/bin"
-export PATH="$RUST_HOME:$PATH"
+export CARGO_HOME="$HOME/.local/cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
 
 # cuda
 export CUDA_HOME="/usr/local/cuda"
