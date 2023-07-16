@@ -31,7 +31,7 @@ fi
 # Add flathub; Install apps only on workstation not server
 if type flatpak >/dev/null; then
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	if [[ ${VARIANT} == "workstation" ]]; then
+	if [[ ${VARIANT} == "workstation" || ${VARIANT} == "silverblue" ]]; then
 		flatpak install --noninteractive flathub com.discordapp.Discord \
 			com.mastermindzh.tidal-hifi tv.plex.PlexDesktop org.gnome.Geary \
 			com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
@@ -40,4 +40,16 @@ if type flatpak >/dev/null; then
 	fi
 fi
 
-
+if [[ -f "/etc/dnf/dnf.conf" ]]; then
+	sudo tee /etc/dnf/dnf.conf <<-EOF
+		[main]
+		gpgcheck=1
+		installonly_limit=3
+		clean_requirements_on_remove=True
+		best=False
+		skip_if_unavailable=True
+		max_parallel_downloads=10
+		defaultyes=True
+		deltarpm=True
+	EOF
+fi

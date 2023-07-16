@@ -43,23 +43,25 @@ local function get_exec_entries()
 	return entries
 end
 
-local base_domains = {
-	{
-		label = "Sentinel",
-		domain = { DomainName = "SSH:jk" },
-	},
-	{
-		label = "Router",
-		domain = { DomainName = "SSH:ub" },
-	},
-}
-
-for _, v in pairs(get_exec_entries()) do
-	table.insert(base_domains, v)
+local function merged_entries()
+	local base_domains = {
+		{
+			label = "Sentinel",
+			domain = { DomainName = "SSH:jk" },
+		},
+		{
+			label = "Router",
+			domain = { DomainName = "SSH:ub" },
+		},
+	}
+	for _, v in pairs(get_exec_entries()) do
+		table.insert(base_domains, v)
+	end
+	return base_domains
 end
 
 function module.apply_to_config(config)
-	config.launch_menu = base_domains
+	config.launch_menu = merged_entries()
 	config.exec_domains = get_exec_domains()
 end
 

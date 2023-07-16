@@ -20,6 +20,7 @@ config.window_decorations = "NONE"
 config.scrollback_lines = 50000
 config.check_for_updates = false
 config.status_update_interval = 5000
+config.allow_square_glyphs_to_overflow_width = "Always"
 
 domains.apply_to_config(config)
 keybindings.apply_to_config(config)
