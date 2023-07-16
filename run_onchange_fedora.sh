@@ -33,9 +33,9 @@ if type flatpak >/dev/null; then
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 	if [[ ${VARIANT} == "workstation" || ${VARIANT} == "silverblue" ]]; then
 		flatpak install --noninteractive flathub com.discordapp.Discord \
-			com.mastermindzh.tidal-hifi tv.plex.PlexDesktop org.gnome.Geary \
+			com.mastermindzh.tidal-hifi tv.plex.PlexDesktop io.beekeeperstudio.Studio \
 			com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
-			com.mattjakeman.ExtensionManager org.signal.Signal \
+			com.mattjakeman.ExtensionManager org.signal.Signal com.bitwarden.desktop \
 			com.github.tchx84.Flatseal
 	fi
 fi
