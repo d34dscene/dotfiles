@@ -2,6 +2,7 @@ local o = vim.opt
 local g = vim.g
 
 -- options
+o.shell = "/usr/bin/zsh" -- Shell to use
 o.backup = false -- creates a backup file
 o.clipboard = "unnamedplus" -- Connection to the system clipboard
 o.completeopt = { "menuone", "noselect" } -- options for insert mode completion
