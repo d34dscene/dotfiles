@@ -18,12 +18,16 @@ local function get_exec_domains()
 	for _, name in pairs(distro_list()) do
 		table.insert(
 			domains,
-			wezterm.exec_domain("DIST@" .. name, function(cmd)
+			wezterm.exec_domain("DIST:" .. name, function(cmd)
+				cmd.args = cmd.args or { os.getenv "SHELL" }
 				local wrapped = {
 					"bash",
 					"-c",
 					"/usr/bin/distrobox-enter " .. name,
 				}
+				for _, arg in ipairs(cmd.args) do
+					table.insert(wrapped, arg)
+				end
 				cmd.args = wrapped
 				return cmd
 			end)
@@ -37,7 +41,7 @@ local function get_exec_entries()
 	for _, name in pairs(distro_list()) do
 		table.insert(entries, {
 			label = name:gsub("^%l", string.upper),
-			domain = { DomainName = "DIST@" .. name },
+			domain = { DomainName = "DIST:" .. name },
 		})
 	end
 	return entries

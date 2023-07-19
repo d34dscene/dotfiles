@@ -2,6 +2,7 @@
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search kind:defer
+hlissner/zsh-autopair kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
 ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/copypath

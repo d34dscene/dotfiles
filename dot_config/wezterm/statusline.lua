@@ -40,19 +40,28 @@ local function slant(text, color)
 end
 
 function module.setup_statusline()
-	local music = "󰎈 "
-
 	wezterm.on("update-status", function(window, _)
 		local current_domain = wezterm.mux.get_domain(nil):name()
 		local hostname = " " .. wezterm.hostname() .. "@" .. current_domain .. "  "
-		-- local metadata = io.popen "playerctl metadata -i chromium --format '{{ artist }} - {{ title }}'"
-		-- music = "󰎈 " .. metadata:read("*a"):gsub("[\n\r]", "")
-		-- metadata:close()
-
 		local date = wezterm.strftime " %H:%M | %A | %B %d "
 
-		--window:set_right_status(bubble(music, "#89b4fa") .. bubble(date, "#f2cdcd") .. bubble(hostname, "#f38ba8"))
-		window:set_right_status(slant(date, "#cba6f7") .. slant(hostname, "#f38ba8"))
+		local player =
+			io.popen "gdbus introspect --session --dest org.mpris.MediaPlayer2.tidal-hifi --object-path /org/mpris/MediaPlayer2 --only-properties"
+		if player then
+			local output = player:read "*a"
+			local is_playing = string.match(output, "PlaybackStatus%s*=%s*'Playing'")
+			local title = string.match(output, "'xesam:title':%s*<%s*'([^']*)'>"):gsub("^%s*(.-)%s*$", "%1")
+			local artist = string.match(output, "'xesam:artist':%s*<%s*%['([^']*)'%]>"):gsub("^%s*(.-)%s*$", "%1")
+			player:close()
+
+			if is_playing then
+				local music = "󰎋 " .. title .. " - " .. artist
+				window:set_right_status(slant(music, "#89b4fa") .. slant(date, "#cba6f7") .. slant(hostname, "#f38ba8"))
+				--window:set_right_status(bubble(music, "#89b4fa") .. bubble(date, "#f2cdcd") .. bubble(hostname, "#f38ba8"))
+			end
+		else
+			window:set_right_status(slant(date, "#cba6f7") .. slant(hostname, "#f38ba8"))
+		end
 	end)
 end
 

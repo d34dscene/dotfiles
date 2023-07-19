@@ -32,12 +32,12 @@ function module.apply_to_config(config)
 		{
 			key = "w",
 			mods = "ALT",
-			action = wezterm.action.SplitVertical,
+			action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" },
 		},
 		{
 			key = "e",
 			mods = "ALT",
-			action = wezterm.action.SplitHorizontal,
+			action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
 		},
 		{
 			key = "s",
