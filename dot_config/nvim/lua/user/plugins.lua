@@ -130,13 +130,13 @@ return {
 		"lilibyte/tabhula.nvim", -- Tabout context
 		config = true,
 	},
-	-- {
-	-- 	"ray-x/go.nvim", -- Lots of go tools
-	-- 	config = true,
-	-- 	event = { "CmdlineEnter" },
-	-- 	ft = { "go", "gomod" },
-	-- 	build = ":lua require(\"go.install\").update_all_sync()",
-	-- },
+	{
+		"ray-x/go.nvim", -- Lots of go tools
+		config = true,
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
+		build = ":lua require(\"go.install\").update_all_sync()",
+	},
 	{
 		"ggandor/leap.nvim", -- Leap motion
 		config = true,

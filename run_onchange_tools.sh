@@ -49,6 +49,7 @@ rust_tools=(
 	cargo-update
 	cargo-cache
 	topgrade
+	rustscan
 	stylua
 	procs
 	bat
