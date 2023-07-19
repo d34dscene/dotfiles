@@ -83,7 +83,7 @@ if check "go"; then
 	check "gomodifytags" || go install github.com/fatih/gomodifytags@latest
 	check "flarectl" || go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
 	check "sops" || go install go.mozilla.org/sops/v3/cmd/sops@latest
-	check "k9s" || go install github.com/derailed/k9s/cmd/k9s@latest
+	check "k9s" || go install github.com/derailed/k9s@latest
 	check "duf" || go install github.com/muesli/duf@latest
 fi
 
