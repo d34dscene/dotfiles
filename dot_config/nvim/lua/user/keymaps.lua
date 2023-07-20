@@ -2,12 +2,12 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
+--   normal_"n",
+--   insert_"i",
+--   visual_"v",
+--   visual_block_"x",
+--   term_"t",
+--   command_"c",
 
 -- Remap space as leader key
 map("", "<Space>", "<Nop>")
@@ -62,7 +62,8 @@ map("n", "<leader>n", ":lua require('neogen').generate()<cr>", { desc = "Neogen 
 map("n", "<leader>x", "<cmd>TroubleToggle<cr>", { desc = "Toggle Trouble" })
 
 -- Markdown Preview
-map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
+map("n", "<leader>mg", "<cmd>Glow<cr>", { desc = "Glow" })
+map("n", "<leader>mm", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Lazy
 map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
@@ -174,10 +175,16 @@ map("n", "<leader>fd", function()
 end, { desc = "Search diagnostics" })
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Search Todos" })
 
--- Leap
-map({ "n", "x", "v" }, "f", "<Plug>(leap-forward-to)", { desc = "Leap forward" })
-map({ "n", "x", "v" }, "F", "<Plug>(leap-backward-to)", { desc = "Leap backward" })
-map({ "n", "x", "v" }, "sf", "<Plug>(leap-from-window)", { desc = "Leap window" })
+-- Flash
+map({ "n", "x", "o" }, "f", function()
+	require("flash").jump {
+		search = {
+			mode = function(str)
+				return "\\<" .. str
+			end,
+		},
+	}
+end, { desc = "Flash" })
 
 -- Ufo
 map("n", "m.", "zR", { desc = "Open all folds" })

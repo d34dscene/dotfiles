@@ -131,15 +131,29 @@ return {
 		config = true,
 	},
 	{
+		"lukas-reineke/headlines.nvim",
+		config = true,
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {
+			modes = {
+				search = {
+					enabled = false,
+				},
+				char = {
+					keys = { ["f"] = "ff", "F", "t", "T", ";", "," },
+				},
+			},
+		},
+	},
+	{
 		"ray-x/go.nvim", -- Lots of go tools
 		config = true,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ":lua require(\"go.install\").update_all_sync()",
-	},
-	{
-		"ggandor/leap.nvim", -- Leap motion
-		config = true,
 	},
 	{
 		"max397574/better-escape.nvim", -- Smooth escaping
