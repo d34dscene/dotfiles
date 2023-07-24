@@ -109,7 +109,7 @@ alias pflo="podman logs -f"
 
 # Distrobox
 alias bx="distrobox"
-alias bxa="distrobox assemble create -f $HOME/.config/distrobox.ini"
+alias bxa="distrobox assemble create --file $HOME/.config/distrobox.ini"
 alias bxe="distrobox enter"
 alias bxd="distrobox rm"
 alias bxl="distrobox list"
