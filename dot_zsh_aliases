@@ -151,6 +151,7 @@ alias vs="vault secrets list"
 alias vt="vault list /auth/token/accessors"
 alias vr="vault token revoke -accessor"
 alias vg="vault kv get"
+alias vout="vault token revoke -self"
 
 # Kubernetes
 alias k="kubectl"

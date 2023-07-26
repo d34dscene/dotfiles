@@ -50,18 +50,17 @@ function module.setup_statusline()
 		if player then
 			local output = player:read "*a"
 			local is_playing = string.match(output, "PlaybackStatus%s*=%s*'Playing'")
-			local title = string.match(output, "'xesam:title':%s*<%s*'([^']*)'>"):gsub("^%s*(.-)%s*$", "%1")
-			local artist = string.match(output, "'xesam:artist':%s*<%s*%['([^']*)'%]>"):gsub("^%s*(.-)%s*$", "%1")
 			player:close()
 
 			if is_playing then
+				local title = string.match(output, "'xesam:title':%s*<%s*'([^']*)'>"):gsub("^%s*(.-)%s*$", "%1")
+				local artist = string.match(output, "'xesam:artist':%s*<%s*%['([^']*)'%]>"):gsub("^%s*(.-)%s*$", "%1")
 				local music = "󰎋 " .. title .. " - " .. artist
 				window:set_right_status(slant(music, "#89b4fa") .. slant(date, "#cba6f7") .. slant(hostname, "#f38ba8"))
 				--window:set_right_status(bubble(music, "#89b4fa") .. bubble(date, "#f2cdcd") .. bubble(hostname, "#f38ba8"))
 			end
-		else
-			window:set_right_status(slant(date, "#cba6f7") .. slant(hostname, "#f38ba8"))
 		end
+		window:set_right_status(slant(date, "#cba6f7") .. slant(hostname, "#f38ba8"))
 	end)
 end
 
