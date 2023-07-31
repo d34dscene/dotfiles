@@ -167,7 +167,7 @@ return {
 	{
 		"johmsalas/text-case.nvim", -- Change text casing
 		config = function()
-			require("textcase").setup { prefix = "t" }
+			require("textcase").setup { prefix = "e" }
 		end,
 	},
 	{
