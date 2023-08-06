@@ -4,22 +4,17 @@ if not status_ok then
 end
 
 configs.setup {
-	sync_install = false,
 	auto_install = true,
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		additional_vim_regex_highlighting = false,
+		disable = function(lang, buf) -- Disable on large files
+			local max_filesize = 1000 * 1024 -- 1 MB
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
 	},
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
-	rainbow = {
-		enable = true,
-		disable = { "html" },
-		query = "rainbow-parens",
-		strategy = require("ts-rainbow").strategy.global,
-	},
+	context_commentstring = { enable = true },
 	autotag = { enable = true },
-	indent = { enable = false },
 }

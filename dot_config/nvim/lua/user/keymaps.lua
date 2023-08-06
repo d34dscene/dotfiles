@@ -62,7 +62,6 @@ map("n", "<leader>n", ":lua require('neogen').generate()<cr>", { desc = "Neogen 
 map("n", "<leader>x", "<cmd>TroubleToggle<cr>", { desc = "Toggle Trouble" })
 
 -- Markdown Preview
-map("n", "<leader>mg", "<cmd>Glow<cr>", { desc = "Glow" })
 map("n", "<leader>mm", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Lazy
@@ -70,9 +69,6 @@ map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
 
 -- LSP Installer
 map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
-
--- Zen mode
-map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 
 -- Treesj
 map("n", "tt", function()

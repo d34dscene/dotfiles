@@ -18,10 +18,10 @@ return {
 	"nvim-tree/nvim-web-devicons", -- Icons
 	"nvim-lualine/lualine.nvim", -- Statusline
 	"onsails/lspkind.nvim", -- Vscode-like pictograms
-	"folke/zen-mode.nvim", -- Zen mode
 	{
 		"catppuccin/nvim", -- Main Theme
 		name = "catppuccin",
+		priority = 1000,
 	},
 	{
 		"folke/todo-comments.nvim", -- Highlight todo comments
@@ -53,10 +53,11 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
+			"windwp/nvim-ts-autotag", -- Autoclose tags
+		},
 	},
-	"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
-	"windwp/nvim-ts-autotag", -- Autoclose tags
-	"HiPhish/nvim-ts-rainbow2", -- Rainbow highlighting
 	{
 		"Wansmer/treesj", -- Node splits/joins
 		config = function()

@@ -6,8 +6,11 @@ end
 catpuccin.setup {
 	flavour = "macchiato",
 	transparent_background = true,
-
 	integrations = {
+		cmp = true,
+		gitsigns = true,
+		treesitter = true,
+		notify = true,
 		indent_blankline = {
 			enabled = true,
 			colored_indent_levels = false,
