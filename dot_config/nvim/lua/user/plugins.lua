@@ -56,6 +56,7 @@ return {
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
 			"windwp/nvim-ts-autotag", -- Autoclose tags
+			"drybalka/tree-climber.nvim", -- Tree climber
 		},
 	},
 	{

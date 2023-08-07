@@ -56,7 +56,7 @@ local on_attach = function(client, bufnr)
 	map("<leader>lp", tsbuiltin.lsp_dynamic_workspace_symbols, "Workspace Symbols")
 
 	-- See `:help K` for why this keymap
-	map("K", vim.lsp.buf.hover, "Hover Documentation")
+	map("M", vim.lsp.buf.hover, "Hover Documentation")
 	map("gh", vim.lsp.buf.signature_help, "Signature Documentation")
 
 	-- Lesser used LSP functionality
