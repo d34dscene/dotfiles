@@ -55,12 +55,6 @@ map("n", "qx", "<cmd>bd<cr>", { desc = "Quit" })
 -- Neotree
 map("n", "<leader>e", "<cmd>NeoTreeRevealToggle<cr>", { desc = "Open Neotree" })
 
--- false
-map("n", "<leader>n", ":lua require('neogen').generate()<cr>", { desc = "Neogen generate" })
-
--- Trouble
-map("n", "<leader>x", "<cmd>TroubleToggle<cr>", { desc = "Toggle Trouble" })
-
 -- Markdown Preview
 map("n", "<leader>mm", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
@@ -200,6 +194,7 @@ map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 -- Extras
 map("i", "<A-BS>", "<C-w>", opts) -- delete word
 map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
+map("i", "<C-c>", "<Esc>yyi", opts) -- copy line
 map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
 map("n", "++", "o<Esc>k", opts) -- newline

@@ -7,6 +7,7 @@ configs.setup {
 	auto_install = true,
 	highlight = {
 		enable = true, -- false will disable the whole extension
+		additional_vim_regex_highlighting = true,
 		disable = function(lang, buf) -- Disable on large files
 			local max_filesize = 1000 * 1024 -- 1 MB
 			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
