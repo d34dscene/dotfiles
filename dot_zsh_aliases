@@ -126,11 +126,11 @@ alias pvv="pyenv versions"
 alias svv="source venv/bin/activate"
 
 # Terraform
-alias tf="terragrunt"
-alias tfp="terragrunt apply"
-alias tfa="terragrunt apply -auto-approve"
-alias tfd="terragrunt destroy"
-alias tfu="terragrunt init -upgrade"
+alias tf="terraform"
+alias tfp="terraform apply"
+alias tfa="terraform apply -auto-approve"
+alias tfd="terraform destroy"
+alias tfu="terraform init -upgrade"
 
 # Flux
 alias fl="flux"
