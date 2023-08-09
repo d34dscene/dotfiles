@@ -127,9 +127,9 @@ alias svv="source venv/bin/activate"
 
 # Terraform
 alias tf="terraform"
-alias tfp="terraform apply"
-alias tfa="terraform apply -auto-approve"
-alias tfd="terraform destroy"
+alias tfp="terraform get -update;terraform apply"
+alias tfa="terraform get -update;terraform apply -auto-approve"
+alias tfd="terraform get -update;terraform destroy"
 alias tfu="terraform init -upgrade"
 
 # Flux
