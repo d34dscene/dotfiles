@@ -31,16 +31,18 @@ cmp.setup {
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
-			local kind = require("lspkind").cmp_format {
-				mode = "symbol_text",
-				maxwidth = 50,
-				ellipsis_char = "...",
-				--symbol_map = { Codeium = "" },
-			}(entry, vim_item)
-			local strings = vim.split(kind.kind, "%s", { trimempty = true })
-			kind.kind = " " .. strings[1] .. " "
-			kind.menu = "    (" .. strings[2] .. ")"
-			return kind
+			local lspkind_ok, lspkind = pcall(require, "lspkind")
+			if lspkind_ok then
+				local kind = lspkind.cmp_format {
+					mode = "symbol_text",
+					maxwidth = 50,
+					ellipsis_char = "...",
+				}(entry, vim_item)
+				local strings = vim.split(kind.kind, "%s", { trimempty = true })
+				kind.kind = " " .. strings[1] .. " "
+				kind.menu = "    (" .. strings[2] .. ")"
+				return kind
+			end
 		end,
 	},
 	duplicates = {
@@ -103,7 +105,6 @@ cmp.setup {
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		--{ name = "codeium" },
 		{ name = "buffer", keyword_length = 2 },
 	},
 }
