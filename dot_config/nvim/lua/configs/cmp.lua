@@ -101,7 +101,6 @@ cmp.setup {
 		end,
 	},
 	sources = cmp.config.sources {
-		--{ name = "fuzzy_buffer" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
@@ -111,13 +110,6 @@ cmp.setup {
 		},
 	},
 }
-
--- cmp.setup.cmdline({ "/", "?" }, {
--- 	mapping = cmp.mapping.preset.cmdline(),
--- 	sources = {
--- 		{ name = "fuzzy_buffer" },
--- 	},
--- })
 
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
