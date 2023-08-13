@@ -234,7 +234,7 @@ map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
 -- Autocomplete when searching
--- map("c", "<tab>", "<C-r><C-w>") -- replaced by wilder
+-- map("c", "<tab>", "<C-r><C-w>") -- replaced by fuzzy
 
 -- Visual --
 map("v", "p", "\"_dP", opts)

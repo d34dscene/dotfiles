@@ -101,15 +101,24 @@ cmp.setup {
 		end,
 	},
 	sources = cmp.config.sources {
+		--{ name = "fuzzy_buffer" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "buffer", keyword_length = 2 },
+		{
+			{ name = "buffer", keyword_length = 2 },
+		},
 	},
 }
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline({ "/", "?" }, {
+-- 	mapping = cmp.mapping.preset.cmdline(),
+-- 	sources = {
+-- 		{ name = "fuzzy_buffer" },
+-- 	},
+-- })
+
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
