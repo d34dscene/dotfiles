@@ -7,10 +7,7 @@ return {
 	"akinsho/bufferline.nvim", -- Bufferline
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
-	{
-		"nvim-neo-tree/neo-tree.nvim", -- File explorer
-		branch = "v2.x",
-	},
+	"nvim-neo-tree/neo-tree.nvim", -- File explorer
 
 	-- Design
 	-- ------------------------------------------------------------------------
@@ -64,6 +61,11 @@ return {
 		config = function()
 			require("treesj").setup { use_default_keymaps = false }
 		end,
+	},
+	{
+		"sustech-data/wildfire.nvim", -- Incremental bracket selection
+		event = "VeryLazy",
+		config = true,
 	},
 
 	-- LSP

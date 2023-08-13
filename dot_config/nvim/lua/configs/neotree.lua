@@ -33,8 +33,9 @@ neotree.setup {
 		icon = {
 			folder_closed = "",
 			folder_open = "",
-			folder_empty = "ﰊ",
+			folder_empty = "󰜌",
 			default = "*",
+			highlight = "NeoTreeFileIcon",
 		},
 		git_status = {
 			symbols = {
@@ -42,11 +43,11 @@ neotree.setup {
 				added = "",
 				modified = "",
 				deleted = "✖",
-				renamed = "",
+				renamed = "󰁕",
 				-- Status type
 				untracked = "",
 				ignored = "",
-				unstaged = "",
+				unstaged = "󰄱",
 				staged = "",
 				conflict = "",
 			},
@@ -63,13 +64,21 @@ neotree.setup {
 				"toggle_node",
 				nowait = false,
 			},
+			["e"] = function()
+				vim.api.nvim_exec("Neotree focus filesystem left", true)
+			end,
+			["b"] = function()
+				vim.api.nvim_exec("Neotree focus buffers left", true)
+			end,
+			["g"] = function()
+				vim.api.nvim_exec("Neotree focus git_status left", true)
+			end,
 			["<2-LeftMouse>"] = "open",
 			["<cr>"] = "open",
-			["<esc>"] = "revert_preview",
+			["<esc>"] = "cancel",
 			["P"] = { "toggle_preview", config = { use_float = true } },
 			["S"] = "open_split",
 			["s"] = "open_vsplit",
-			["t"] = "open_tabnew",
 			["w"] = "open_with_window_picker",
 			["C"] = "close_node",
 			["z"] = "close_all_nodes",
@@ -94,7 +103,9 @@ neotree.setup {
 		filtered_items = {
 			visible = true,
 		},
-		follow_current_file = true,
+		follow_current_file = {
+			enabled = true,
+		},
 		hijack_netrw_behavior = "open_default",
 		use_libuv_file_watcher = true,
 		window = {
@@ -103,12 +114,43 @@ neotree.setup {
 				["."] = "set_root",
 				["H"] = "toggle_hidden",
 				["f"] = "fuzzy_finder",
-				["D"] = "fuzzy_finder_directory",
+				["u"] = "fuzzy_finder_directory",
+				["D"] = "diff_files",
 				["/"] = "filter_on_submit",
 				["x"] = "clear_filter",
 				["[g"] = "prev_git_modified",
 				["]g"] = "next_git_modified",
 			},
+		},
+		commands = {
+			diff_files = function(state)
+				local node = state.tree:get_node()
+				local log = require "neo-tree.log"
+				state.clipboard = state.clipboard or {}
+				if diff_Node and diff_Node ~= tostring(node.id) then
+					local current_Diff = node.id
+					require("neo-tree.utils").open_file(state, diff_Node, open)
+					vim.cmd("vert diffs " .. current_Diff)
+					log.info("Diffing " .. diff_Name .. " against " .. node.name)
+					diff_Node = nil
+					current_Diff = nil
+					state.clipboard = {}
+					require("neo-tree.ui.renderer").redraw(state)
+				else
+					local existing = state.clipboard[node.id]
+					if existing and existing.action == "diff" then
+						state.clipboard[node.id] = nil
+						diff_Node = nil
+						require("neo-tree.ui.renderer").redraw(state)
+					else
+						state.clipboard[node.id] = { action = "diff", node = node }
+						diff_Name = state.clipboard[node.id].node.name
+						diff_Node = tostring(state.clipboard[node.id].node.id)
+						log.info("Diff source file " .. diff_Name)
+						require("neo-tree.ui.renderer").redraw(state)
+					end
+				end
+			end,
 		},
 	},
 	git_status = {

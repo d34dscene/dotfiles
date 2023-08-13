@@ -53,7 +53,13 @@ map("n", "qe", "<cmd>wa<cr><cmd>%bd|e#|bd#<cr>", { desc = "Save and close all bu
 map("n", "qx", "<cmd>bd<cr>", { desc = "Quit" })
 
 -- Neotree
-map("n", "<leader>e", "<cmd>NeoTreeRevealToggle<cr>", { desc = "Open Neotree" })
+map("n", "<leader>e", function()
+	require("neo-tree.command").execute {
+		toggle = true,
+		source = "filesystem",
+		position = "left",
+	}
+end, { desc = "Open Neotree" })
 
 -- Markdown Preview
 map("n", "<leader>mm", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
