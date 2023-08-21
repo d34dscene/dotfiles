@@ -8,6 +8,7 @@ local mappings = {
 		["<leader>"] = {
 			f = { name = "File" },
 			l = { name = "LSP" },
+			go = { name = "Go" },
 		},
 	},
 }
@@ -15,7 +16,6 @@ local mappings = {
 local extra_sections = {
 	g = "Git",
 	r = "Replace",
-	d = "Go",
 }
 
 which_key.setup {
@@ -40,7 +40,7 @@ init_table("n", "<leader>", "t")
 init_table("n", "<leader>", "f")
 init_table("n", "<leader>", "g")
 init_table("n", "<leader>", "r")
-init_table("n", "<leader>", "d")
+init_table("n", "<leader>", "go")
 
 for mode, prefixes in pairs(mappings) do
 	for prefix, mapping_table in pairs(prefixes) do

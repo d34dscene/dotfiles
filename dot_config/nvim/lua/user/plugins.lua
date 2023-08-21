@@ -1,6 +1,7 @@
 return {
 	-- Important plugins
 	-- ------------------------------------------------------------------------
+	"ray-x/guihua.lua", -- GUI Library
 	"nvim-lua/popup.nvim", -- Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Lua functions
 	"MunifTanjim/nui.nvim", -- UI Library
@@ -83,15 +84,16 @@ return {
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
-	{
-		"lukas-reineke/indent-blankline.nvim", -- Indentation guides
-		version = "2.20.7",
-	},
+	"lukas-reineke/indent-blankline.nvim", -- Indentation guides
 	"jose-elias-alvarez/null-ls.nvim", -- LSP hooks
 	"jose-elias-alvarez/typescript.nvim", -- Typescript features
 	"pearofducks/ansible-vim", -- Ansible support
 	"towolf/vim-helm", -- Helm support
 	"b0o/schemastore.nvim", -- JSON schemas
+	"mfussenegger/nvim-dap", -- DAP plugins
+	"rcarriga/nvim-dap-ui", -- DAP UI
+	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
+	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
 	{
 		"windwp/nvim-autopairs", -- Autoclose Brackets
 		config = true,
@@ -148,7 +150,7 @@ return {
 					enabled = false,
 				},
 				char = {
-					keys = { ["f"] = "ff", "F", "t", "T", ";", "," },
+					keys = { ["f"] = "F", ["t"] = "T" },
 				},
 			},
 		},
@@ -172,7 +174,7 @@ return {
 	{
 		"johmsalas/text-case.nvim", -- Change text casing
 		config = function()
-			require("textcase").setup { prefix = "e" }
+			require("textcase").setup { prefix = "t" }
 		end,
 	},
 	{

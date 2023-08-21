@@ -129,6 +129,12 @@ mason_lspconfig.setup_handlers {
 						enable = true,
 					},
 				},
+				gopls = {
+					hints = {
+						constantValues = true,
+						parameterNames = true,
+					},
+				},
 			},
 		}
 	end,

@@ -135,11 +135,11 @@ map(
 )
 
 -- Go
-map("n", "<leader>ds", "<cmd>GoFillStruct<cr>", { desc = "Go fill struct" })
-map("n", "<leader>da", "<cmd>GoAddTag<cr>", { desc = "Go add tags" })
-map("n", "<leader>dr", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
-map("n", "<leader>dc", "<cmd>GoCmt<cr>", { desc = "Go add comment" })
-map("n", "<leader>dt", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
+map("n", "<leader>gos", "<cmd>GoFillStruct<cr>", { desc = "Go fill struct" })
+map("n", "<leader>goa", "<cmd>GoAddTag<cr>", { desc = "Go add tags" })
+map("n", "<leader>gor", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
+map("n", "<leader>goc", "<cmd>GoCmt<cr>", { desc = "Go add comment" })
+map("n", "<leader>got", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
 
 -- GitSigns
 map("n", "gn", function()
