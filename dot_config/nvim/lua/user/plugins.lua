@@ -7,7 +7,7 @@ return {
 	"akinsho/bufferline.nvim", -- Bufferline
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
-	"nvim-neo-tree/neo-tree.nvim", -- File explorer
+	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Fuzzy finder
 
 	-- Design
