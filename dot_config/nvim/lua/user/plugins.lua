@@ -1,35 +1,25 @@
 return {
 	-- Important plugins
 	-- ------------------------------------------------------------------------
-	"ray-x/guihua.lua", -- GUI Library
-	"nvim-lua/popup.nvim", -- Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Lua functions
+	"nvim-lua/popup.nvim", -- Popup API for nvim
+	"ray-x/guihua.lua", -- GUI & Util Library
 	"MunifTanjim/nui.nvim", -- UI Library
 	"akinsho/bufferline.nvim", -- Bufferline
+	"nvim-lualine/lualine.nvim", -- Statusline
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
+	"nvim-tree/nvim-web-devicons", -- Icon support
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Fuzzy finder
 
 	-- Design
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
-	"nvim-tree/nvim-web-devicons", -- Icons
-	"nvim-lualine/lualine.nvim", -- Statusline
 	"onsails/lspkind.nvim", -- Vscode-like pictograms
-	{
-		"catppuccin/nvim", -- Main Theme
-		name = "catppuccin",
-		priority = 1000,
-	},
-	{
-		"folke/todo-comments.nvim", -- Highlight todo comments
-		config = true,
-	},
-	{
-		"xiyaowong/nvim-transparent", -- Add transparency
-		config = true,
-	},
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
+	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
+	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{
 		"norcalli/nvim-colorizer.lua", -- Colorize rgb codes
 		config = function()
@@ -77,10 +67,7 @@ return {
 		build = ":MasonUpdate",
 		config = true,
 	},
-	{ -- Null-ls helper
-		"jayp0521/mason-null-ls.nvim",
-		config = true,
-	},
+	{ "jayp0521/mason-null-ls.nvim", config = true }, -- Null-ls helper
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
@@ -94,19 +81,13 @@ return {
 	"rcarriga/nvim-dap-ui", -- DAP UI
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
 	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
-	{
-		"windwp/nvim-autopairs", -- Autoclose Brackets
-		config = true,
-	},
+	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
+	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
 		config = function()
 			require("lsp_signature").setup { floating_window = false }
 		end,
-	},
-	{
-		"smjonas/inc-rename.nvim", -- Highlight refactors
-		config = true,
 	},
 
 	-- Completion
@@ -129,20 +110,11 @@ return {
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions
 	"tpope/vim-repeat", -- Repeat dot
+	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
+	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
+	{ "lukas-reineke/headlines.nvim", config = true }, -- Markdown highlights
 	{
-		"akinsho/git-conflict.nvim", -- Solve git conflicts
-		config = true,
-	},
-	{
-		"lilibyte/tabhula.nvim", -- Tabout context
-		config = true,
-	},
-	{
-		"lukas-reineke/headlines.nvim",
-		config = true,
-	},
-	{
-		"folke/flash.nvim",
+		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",
 		opts = {
 			modes = {

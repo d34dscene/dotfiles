@@ -64,9 +64,12 @@ cmd("FileType", {
 	end,
 })
 
-cmd({ "BufNewFile", "BufRead", "BufWinEnter" }, {
-	desc = "Fix terraform syntax highlighting",
-	group = vim.api.nvim_create_augroup("change_tfvars", { clear = true }),
-	pattern = { "*.tfvars", "terragrunt.hcl" },
-	command = "set ft=terraform",
+-- Show line diagnostics automatically in hover window
+cmd("CursorHold", {
+	desc = "Show line diagnostics",
+	group = augroup("show_line_diagnostics", { clear = true }),
+	pattern = "*",
+	callback = function()
+		vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+	end,
 })

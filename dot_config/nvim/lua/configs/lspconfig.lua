@@ -68,46 +68,12 @@ local on_attach = function(client, bufnr)
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, "Workspace List Folders")
 
-	map("<leader>f", function()
+	map("<leader>fs", function()
 		vim.lsp.buf.format { async = true }
 	end, "Format file")
-
-	-- Get nvim-navic working with multiple tabs
-	if client.server_capabilities["documentSymbolProvider"] then
-		require("nvim-navic").attach(client, bufnr)
-	end
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities = {
-	offsetEncoding = "utf-16",
-	textDocument = {
-		completion = {
-			completionItem = {
-				documentationFormat = { "markdown", "plaintext" },
-				snippetSupport = true,
-				preselectSupport = true,
-				insertReplaceSupport = true,
-				labelDetailsSupport = true,
-				deprecatedSupport = true,
-				commitCharactersSupport = true,
-				tagSupport = { valueSet = { 1 } },
-				resolveSupport = {
-					properties = {
-						"documentation",
-						"detail",
-						"additionalTextEdits",
-					},
-				},
-			},
-		},
-		foldingRange = {
-			dynamicRegistration = false,
-			lineFoldingOnly = true,
-		},
-	},
-}
-
 mason_lspconfig.setup_handlers {
 	function(server_name)
 		require("lspconfig")[server_name].setup {
@@ -133,6 +99,28 @@ mason_lspconfig.setup_handlers {
 					hints = {
 						constantValues = true,
 						parameterNames = true,
+					},
+				},
+				javascript = {
+					inlayHints = {
+						includeInlayEnumMemberValueHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayVariableTypeHints = true,
+					},
+				},
+				typescript = {
+					inlayHints = {
+						includeInlayEnumMemberValueHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayVariableTypeHints = true,
 					},
 				},
 			},

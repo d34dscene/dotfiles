@@ -7,7 +7,6 @@ configs.setup {
 	auto_install = true,
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		additional_vim_regex_highlighting = false,
 		disable = function(lang, buf) -- Disable on large files
 			local max_filesize = 1000 * 1024 -- 1 MB
 			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -15,7 +14,9 @@ configs.setup {
 				return true
 			end
 		end,
+		additional_vim_regex_highlighting = false,
 	},
-	context_commentstring = { enable = true },
+	indent = { enable = true },
 	autotag = { enable = true },
+	context_commentstring = { enable = true },
 }
