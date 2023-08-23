@@ -149,11 +149,11 @@ return {
 			require("textcase").setup { prefix = "t" }
 		end,
 	},
-	{
-		"kevinhwang91/nvim-ufo", -- Better folding
-		config = true,
-		dependencies = { "kevinhwang91/promise-async" },
-	},
+	-- {
+	-- 	"kevinhwang91/nvim-ufo", -- Better folding
+	-- 	config = true,
+	-- 	dependencies = { "kevinhwang91/promise-async" },
+	-- },
 	{
 		"numToStr/Comment.nvim", -- Smart commenting
 		config = function()
