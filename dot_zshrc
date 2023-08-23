@@ -8,21 +8,24 @@ fi
 type direnv >/dev/null && emulate zsh -c "$(direnv hook zsh)"
 
 # go
-export GOPATH="$HOME/.local/go"
-export PATH="$GOPATH/bin:$PATH"
+export GOPATH=$HOME/.local/go
+export PATH=$GOPATH/bin:$PATH
 
 # poetry
-export POETRY_HOME="$HOME/.local/poetry"
-export PATH="$POETRY_HOME/bin:$PATH"
+export POETRY_HOME=$HOME/.local/poetry
+export PATH=$POETRY_HOME/bin:$PATH
 
 # rust
-export CARGO_HOME="$HOME/.local/cargo"
-export PATH="$CARGO_HOME/bin:$PATH"
+export CARGO_HOME=$HOME/.local/cargo
+export PATH=$CARGO_HOME/bin:$PATH
 
 # cuda
-export CUDA_HOME="/usr/local/cuda"
-export CUDA_INCLUDE_PATH="$CUDA_HOME/include"
-export PATH="$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH"
+export CUDA_HOME=/usr/local/cuda
+export CUDA_INCLUDE_PATH=$CUDA_HOME/include
+export PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
+
+# Pulumi 
+export PATH=$HOME/.pulumi/bin:$PATH
 
 # General
 export PF_INFO="ascii title os de host kernel uptime pkgs shell memory wm palette"
@@ -96,3 +99,4 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

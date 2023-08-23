@@ -202,3 +202,6 @@ alias hr="helm rollback"
 alias hc="helm create"
 alias hpk="helm package"
 alias hp="helm push"
+
+# QOL
+alias wgvg="qrencode -t ansiutf8 <<< $(vault kv get -mount=secrets -field=wireguard ldap/raphael.lederer | base64 -d)"
