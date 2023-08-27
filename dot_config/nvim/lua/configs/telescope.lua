@@ -70,7 +70,8 @@ telescope.setup {
 				["<C-l>"] = actions.complete_tag,
 			},
 			n = {
-				["<Esc>"] = actions.close,
+				--["<Esc>"] = actions.close,
+				["q"] = actions.close,
 				["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
@@ -101,5 +102,15 @@ telescope.setup {
 		},
 	},
 	pickers = {},
-	extensions = {},
+	extensions = {
+		fzf = {
+			fuzzy = true, -- false will only do exact matching
+			override_generic_sorter = true, -- override the generic sorter
+			override_file_sorter = true, -- override the file sorter
+			case_mode = "smart_case", -- "smart_case" "ignore_case" "respect_case"
+		},
+	},
 }
+
+-- Load extensions
+require("telescope").load_extension "fzf"

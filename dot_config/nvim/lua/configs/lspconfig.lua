@@ -68,12 +68,12 @@ local on_attach = function(_, bufnr)
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, "Workspace List Folders")
 
-	map("<leader>fs", function()
-		vim.lsp.buf.format { async = true }
-	end, "Format file")
+	-- map("<leader>fa", function()
+	-- 	vim.lsp.buf.format { async = true }
+	-- end, "Format file")
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason_lspconfig.setup_handlers {
 	function(server_name)
 		require("lspconfig")[server_name].setup {

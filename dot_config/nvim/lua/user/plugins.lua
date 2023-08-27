@@ -104,7 +104,7 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	"folke/which-key.nvim", -- Key popup
-	"haya14busa/is.vim", -- Auto clear highlight
+	--"haya14busa/is.vim", -- Auto clear highlight
 	"gelguy/wilder.nvim", -- Search suggestions
 	"machakann/vim-sandwich", -- Surroundings
 	"Exafunction/codeium.vim", -- AI completions

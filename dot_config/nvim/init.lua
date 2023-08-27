@@ -15,7 +15,7 @@ require "configs.lualine"
 require "configs.toggleterm"
 require "configs.indent-line"
 require "configs.which-key"
-require "configs.wilder"
+--require "configs.wilder"
 require "configs.cmp"
 
 -- LSP Configs

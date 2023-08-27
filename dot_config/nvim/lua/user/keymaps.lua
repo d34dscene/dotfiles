@@ -62,7 +62,7 @@ map("n", "<leader>e", function()
 end, { desc = "Open Neotree" })
 
 -- Markdown Preview
-map("n", "<leader>mm", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
+map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Lazy
 map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
@@ -135,11 +135,10 @@ map(
 )
 
 -- Go
-map("n", "<leader>gos", "<cmd>GoFillStruct<cr>", { desc = "Go fill struct" })
-map("n", "<leader>goa", "<cmd>GoAddTag<cr>", { desc = "Go add tags" })
-map("n", "<leader>gor", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
-map("n", "<leader>goc", "<cmd>GoCmt<cr>", { desc = "Go add comment" })
-map("n", "<leader>got", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
+map("n", "<leader>gf", "<cmd>GoFillStruct<cr>", { desc = "Go fill struct" })
+map("n", "<leader>ga", "<cmd>GoAddTag<cr>", { desc = "Go add tags" })
+map("n", "<leader>gr", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
+map("n", "<leader>gm", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
 
 -- GitSigns
 map("n", "gn", function()
@@ -156,21 +155,18 @@ end, { desc = "Toggle deleted lines" })
 map("n", "<leader>fw", function()
 	require("telescope.builtin").live_grep()
 end, { desc = "Live grep" })
-map("n", "<leader>gt", function()
+map("n", "<leader>fs", function()
 	require("telescope.builtin").git_status()
 end, { desc = "Git status" })
-map("n", "<leader>gb", function()
+map("n", "<leader>fb", function()
 	require("telescope.builtin").git_branches()
 end, { desc = "Git branchs" })
-map("n", "<leader>gc", function()
+map("n", "<leader>fg", function()
 	require("telescope.builtin").git_bcommits()
 end, { desc = "Git commits" })
 map("n", "<leader>ff", function()
 	require("telescope.builtin").find_files()
 end, { desc = "Search files" })
-map("n", "<leader>fb", function()
-	require("telescope.builtin").buffers()
-end, { desc = "Search buffers" })
 map("n", "<leader>fh", function()
 	require("telescope.builtin").help_tags()
 end, { desc = "Search help" })
@@ -208,11 +204,6 @@ map({ "n", "x", "o" }, "f", function()
 	}
 end, { desc = "Flash" })
 
--- Ufo
-map("n", "m.", "zR", { desc = "Open all folds" })
-map("n", "m,", "zM", { desc = "Close all folds" })
-map("n", "mm", "za", { desc = "Toggle fold under cursor" })
-
 -- Move text up and down
 map("n", "<A-Up>", ":move .-2<CR>==", { desc = "Move line up" })
 map("n", "<A-Down>", ":move .+1<CR>==", { desc = "Move line down" })
@@ -239,7 +230,7 @@ map("x", "<leader>sr", ":sort!<cr>", { desc = "Sort lines reverse" })
 map("x", "<leader>su", ":sort u<cr>", { desc = "Sort unique lines" })
 
 -- Autocomplete when searching
--- map("c", "<tab>", "<C-r><C-w>") -- replaced by fuzzy
+map("c", "<tab>", "<C-r><C-w>")
 
 -- Visual --
 map("v", "p", "\"_dP", opts)
