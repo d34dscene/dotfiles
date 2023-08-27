@@ -233,6 +233,11 @@ map("n", "++", "o<Esc>k", opts) -- newline
 map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
+-- Sort lines
+map("x", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })
+map("x", "<leader>sr", ":sort!<cr>", { desc = "Sort lines reverse" })
+map("x", "<leader>su", ":sort u<cr>", { desc = "Sort unique lines" })
+
 -- Autocomplete when searching
 -- map("c", "<tab>", "<C-r><C-w>") -- replaced by fuzzy
 

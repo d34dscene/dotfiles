@@ -26,7 +26,7 @@ mason_lspconfig.setup {
 	automatic_installation = true,
 }
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	local map = function(keys, func, desc)
 		vim.keymap.set("n", keys, func, {
 			buffer = bufnr,
@@ -96,6 +96,12 @@ mason_lspconfig.setup_handlers {
 					},
 				},
 				gopls = {
+					experimentalPostfixCompletions = true,
+					analyses = {
+						unusedparams = true,
+						shadow = true,
+					},
+					staticcheck = true,
 					hints = {
 						assignVariableTypes = true,
 						compositeLiteralFields = true,

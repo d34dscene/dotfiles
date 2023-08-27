@@ -41,8 +41,7 @@ end
 
 function module.setup_statusline()
 	wezterm.on("update-status", function(window, _)
-		local current_domain = wezterm.mux.get_domain(nil):name()
-		local hostname = " " .. wezterm.hostname() .. "@" .. current_domain .. "  "
+		local hostname = " " .. wezterm.hostname() .. "  "
 		local date = wezterm.strftime " %H:%M | %A | %B %d "
 
 		local player =

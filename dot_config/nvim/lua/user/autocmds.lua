@@ -1,57 +1,36 @@
 local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-local url_matcher =
-	"\\v\\c%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)%([&:#*@~%_\\-=?!+;/0-9a-z]+%(%([.;/?]|[.][.]+)[&:#*@~%_\\-=?!+/0-9a-z]+|:\\d+|,%(%(%(h?ttps?|ftp|file|ssh|git)://|[a-z]+[@][a-z]+[.][a-z]+:)@![0-9a-z]+))*|\\([&:#*@~%_\\-=?!+;/.0-9a-z]*\\)|\\[[&:#*@~%_\\-=?!+;/.0-9a-z]*\\]|\\{%([&:#*@~%_\\-=?!+;/.0-9a-z]*|\\{[&:#*@~%_\\-=?!+;/.0-9a-z]*})\\})+"
-
-local function delete_url_match()
-	for _, match in ipairs(vim.fn.getmatches()) do
-		if match.group == "HighlightURL" then
-			vim.fn.matchdelete(match.id)
-		end
-	end
-end
-
-local function set_url_match()
-	delete_url_match()
-	if vim.g.highlighturl_enabled then
-		vim.fn.matchadd("HighlightURL", url_matcher, 15)
-	end
-end
-
-local function leave_snippet()
-	if
-		((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
-		and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-		and not require("luasnip").session.jump_active
-	then
-		require("luasnip").unlink_current()
-	end
-end
-
--- stop snippets when you leave to normal mode
-cmd("ModeChanged", {
-	pattern = "*",
-	callback = function()
-		leave_snippet()
-	end,
-})
-
-cmd({ "VimEnter", "FileType", "BufEnter", "WinEnter" }, {
-	desc = "URL Highlighting",
-	group = augroup("highlighturl", { clear = true }),
-	pattern = "*",
-	callback = function()
-		set_url_match()
-	end,
+cmd({ "FocusGained", "TermClose", "TermLeave" }, {
+	desc = "Reload the file when it changed",
+	group = augroup("checktime", { clear = true }),
+	command = "checktime",
 })
 
 cmd("TextYankPost", {
-	desc = "Highlight yanked text",
+	desc = "Highlight on yanked text",
 	group = augroup("highlightyank", { clear = true }),
 	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank()
+	end,
+})
+
+cmd("VimResized", {
+	desc = "Resize splits if window got resized",
+	group = augroup("resize_splits", { clear = true }),
+	callback = function()
+		vim.cmd "tabdo wincmd ="
+	end,
+})
+
+cmd("FileType", {
+	desc = "Wrap and spell check text in text files",
+	group = augroup("wrap_text", { clear = true }),
+	pattern = { "gitcommit", "markdown", "text" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.spell = true
 	end,
 })
 
@@ -64,9 +43,8 @@ cmd("FileType", {
 	end,
 })
 
--- Show line diagnostics automatically in hover window
 cmd("CursorHold", {
-	desc = "Show line diagnostics",
+	desc = "Show line diagnostics in hover window",
 	group = augroup("show_line_diagnostics", { clear = true }),
 	pattern = "*",
 	callback = function()

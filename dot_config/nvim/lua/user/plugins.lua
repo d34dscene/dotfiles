@@ -16,7 +16,6 @@ return {
 	-- Design
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
-	"onsails/lspkind.nvim", -- Vscode-like pictograms
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
@@ -149,11 +148,6 @@ return {
 			require("textcase").setup { prefix = "t" }
 		end,
 	},
-	-- {
-	-- 	"kevinhwang91/nvim-ufo", -- Better folding
-	-- 	config = true,
-	-- 	dependencies = { "kevinhwang91/promise-async" },
-	-- },
 	{
 		"numToStr/Comment.nvim", -- Smart commenting
 		config = function()

@@ -7,6 +7,34 @@ end
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 require("luasnip.loaders.from_vscode").lazy_load()
 
+local cmp_kinds = {
+	Text = "󰉿 ",
+	Method = "󰆧 ",
+	Function = "󰊕 ",
+	Constructor = " ",
+	Field = "󰜢 ",
+	Variable = "󰀫 ",
+	Class = "󰠱 ",
+	Interface = " ",
+	Module = " ",
+	Property = "󰜢 ",
+	Unit = "󰑭 ",
+	Value = "󰎠 ",
+	Enum = " ",
+	Keyword = "󰌋 ",
+	Snippet = " ",
+	Color = "󰏘 ",
+	File = "󰈙 ",
+	Reference = "󰈇 ",
+	Folder = "󰉋 ",
+	EnumMember = " ",
+	Constant = "󰏿 ",
+	Struct = "󰙅 ",
+	Event = " ",
+	Operator = "󰆕 ",
+	TypeParameter = " ",
+}
+
 cmp.setup {
 	snippet = {
 		expand = function(args)
@@ -30,19 +58,12 @@ cmp.setup {
 	end,
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
-		format = function(entry, vim_item)
-			local lspkind_ok, lspkind = pcall(require, "lspkind")
-			if lspkind_ok then
-				local kind = lspkind.cmp_format {
-					mode = "symbol_text",
-					maxwidth = 50,
-					ellipsis_char = "...",
-				}(entry, vim_item)
-				local strings = vim.split(kind.kind, "%s", { trimempty = true })
-				kind.kind = " " .. strings[1] .. " "
-				kind.menu = "    (" .. strings[2] .. ")"
-				return kind
-			end
+		format = function(_, vim_item)
+			vim_item.kind = (cmp_kinds[vim_item.kind] or "") .. vim_item.kind
+			local strings = vim.split(vim_item.kind, "%s", { trimempty = true })
+			vim_item.kind = " " .. strings[1] .. " "
+			vim_item.menu = "  (" .. strings[2] .. ")"
+			return vim_item
 		end,
 	},
 	duplicates = {
