@@ -64,11 +64,11 @@ local options = {
 	buttons = {
 		type = "group",
 		val = {
-			button("SPC f f", "  Find file"),
-			button("SPC e", "  Neotree"),
-			button("Ctrl \\", "  Terminal"),
-			button("SPC p", "  Update"),
-			button("SPC q", "  Quit"),
+			button("SPC f f", "  Find file"),
+			button("SPC e", "󱁕  Neotree"),
+			button("SPC ll", "󰑐  Update"),
+			button("\\", "  Terminal"),
+			button("qq", "  Quit"),
 		},
 		opts = {
 			spacing = 1,

@@ -114,7 +114,7 @@ alias bxe="distrobox enter"
 alias bxd="distrobox rm"
 alias bxl="distrobox list"
 alias bxu="distrobox upgrade"
-alias bxx="distrobox-export --app"
+alias bxx="distrobox export --app"
 alias bxnv="nvim ~/.config/distrobox.ini"
 
 # Pyenv
