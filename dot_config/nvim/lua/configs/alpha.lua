@@ -66,9 +66,9 @@ local options = {
 		val = {
 			button("SPC f f", "  Find file"),
 			button("SPC e", "󱁕  Neotree"),
-			button("SPC ll", "󰑐  Update"),
+			button("SPC ll", "  Update"),
 			button("\\", "  Terminal"),
-			button("qq", "  Quit"),
+			button("qq", "  Quit"),
 		},
 		opts = {
 			spacing = 1,
