@@ -15,6 +15,7 @@ alias ws="wormhole send"
 alias wr="wormhole receive"
 alias dac="direnv allow ."
 alias reload="source ~/.zshrc"
+alias svv="source venv/bin/activate"
 
 # System aliases
 alias flush="sudo resolvectl flush-caches"
@@ -117,13 +118,10 @@ alias bxu="distrobox upgrade"
 alias bxx="distrobox export --app"
 alias bxnv="nvim ~/.config/distrobox.ini"
 
-# Pyenv
-alias pv="pyenv"
-alias pvi="pyenv install"
-alias pvu="pyenv uninstall"
-alias pvg="pyenv global"
-alias pvv="pyenv versions"
-alias svv="source venv/bin/activate"
+# Pulumi
+alias pu="pulumi"
+alias pup="pulumi up"
+alias pud="pulumi destroy"
 
 # Terraform
 alias tf="terraform"
