@@ -186,6 +186,7 @@ alias kdbg="kubectl run -it busybox --image=alpine:latest --restart=Never;kubect
 alias kclean="kubectl delete pods --field-selector status.phase=Failed -A"
 alias kdpv="kubectl get pv | grep Released | awk '$1 {print$1}' | while read vol; do kubectl delete pv/${vol}; done"
 alias kcsrd="kubectl get csr | grep Denied | awk '{print $1;}' | xargs kubectl delete csr"
+alias kgall="kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found"
 
 # Helm
 alias h="helm"
