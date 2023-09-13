@@ -41,7 +41,8 @@ end
 
 function module.setup_statusline()
 	wezterm.on("update-status", function(window, _)
-		local hostname = " " .. wezterm.hostname() .. " 󱚡 "
+		local domain = window:active_pane():get_domain_name()
+		local hostname = " " .. wezterm.hostname() .. "@" .. string.match(domain, ":(.+)$") .. " 󱚡 "
 		local date = wezterm.strftime " %H:%M | %A | %B %d "
 
 		local player =
