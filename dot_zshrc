@@ -24,8 +24,8 @@ export CUDA_HOME=/usr/local/cuda
 export CUDA_INCLUDE_PATH=$CUDA_HOME/include
 export PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
 
-# Pulumi 
-export PATH=$HOME/.pulumi/bin:$PATH
+# rocm
+export PATH=/opt/rocm/bin:$PATH
 
 # General
 export PF_INFO="ascii title os de host kernel uptime pkgs shell memory wm palette"
