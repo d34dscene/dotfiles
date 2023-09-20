@@ -1,0 +1,29 @@
+# Fonts
+font:
+  normal:
+    family: FiraCode NFM
+    style: Regular
+
+  bold:
+    family: FiraCode NFM
+    style: Bold
+
+  italic:
+    family: FiraCode NFM
+    style: Italic
+
+  bold_italic:
+    family: FiraCode NFM
+    style: Bold Italic
+
+  size: 11
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  builtin_box_drawing: true
