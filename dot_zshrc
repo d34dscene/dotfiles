@@ -49,11 +49,9 @@ setopt listpacked           # variable col widths
 setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds HISTSIZE
 unsetopt beep               # don't beep 
 
-# Load plugins
-type zoxide >/dev/null && eval "$(zoxide init zsh)"
+# Load plugins & add custom styles
 source ${ZDOTDIR:-~}/.config/antidote/antidote.zsh
-bundlefile=~/.zsh_plugins
-zstyle ":antidote:bundle" file $bundlefile
+zstyle ':antidote:bundle' file ~/.zsh_plugins
 zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
 zstyle ':completion:*:descriptions' format '[%d]' # set descriptions format to enable group support
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # set list-colors to enable filename colorizing
@@ -72,6 +70,9 @@ zle -N self-insert url-quote-magic
 
 # Prompt theme
 prompt powerlevel10k
+
+# Load zoxide
+type zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Additional completions
 type kubectl >/dev/null && source <(kubectl completion zsh)
