@@ -1,7 +1,7 @@
 local wezterm = require "wezterm"
 local keybindings = require "keybindings"
-local statusline = require "statusline"
-local domains = require "domains"
+--local statusline = require "statusline"
+--local domains = require "domains"
 local config = {}
 
 -- Provide clearer error messages ---------------------------------------------
@@ -21,10 +21,11 @@ config.scrollback_lines = 50000
 config.check_for_updates = false
 config.status_update_interval = 5000
 config.allow_square_glyphs_to_overflow_width = "Always"
-config.enable_wayland = false
+-- config.enable_wayland = false
+config.exit_behavior = "Close"
 
-domains.apply_to_config(config)
+--domains.apply_to_config(config)
 keybindings.apply_to_config(config)
-statusline.setup_statusline()
+--statusline.setup_statusline()
 
 return config

@@ -15,7 +15,6 @@ alias ws="wormhole send"
 alias wr="wormhole receive"
 alias dac="direnv allow ."
 alias reload="source ~/.zshrc"
-alias svv="source venv/bin/activate"
 
 # System aliases
 alias flush="sudo resolvectl flush-caches"
@@ -61,8 +60,8 @@ alias yt="yt-dlp --sponsorblock-remove default"
 alias ytx="yt-dlp -x --audio-quality 0 --sponsorblock-remove intro,outro -o '%(uploader)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 # Benchmark
-alias fire="oha --latency-correction --disable-keepalive -z 30s -n 10000"
-alias firec="oha --latency-correction --disable-keepalive -z 30s -n 10000 -c 500"
+alias fire="oha --latency-correction -z 30s -q 100"
+alias firec="oha --latency-correction -z 30s -c 100 -q 200"
 alias map="rustscan -b 65535 -t 1000 --ulimit 70000 -g -a"
 
 # Git
@@ -79,7 +78,6 @@ alias gca="git commit -a -m"
 alias gco="git checkout"
 alias gcp="git checkout --patch"
 alias grs="git remote show origin"
-alias grsu="git remote show upstream"
 alias grao="git remote add origin"
 alias grau="git remote add upstream"
 alias grap="git remote set-url --add --push origin"
@@ -88,10 +86,12 @@ alias gg="git stash;git pull;git stash pop"
 # Go
 alias gou="go get -u; go mod tidy"
 alias gob="go clean; go build"
-alias gor="go run main.go"
+alias gor="go run"
 
 # Docker
-alias d="docker"
+alias dc="docker-compose"
+alias dcu="docker-compose up -d"
+alias dcd="docker-compose down"
 alias dcp="docker system prune -af --volumes"
 alias dbl="docker build"
 alias dipu="docker push"
@@ -99,21 +99,15 @@ alias dr="docker run -it"
 alias dx="docker exec -it"
 alias dlo="docker logs"
 alias dflo="docker logs -f"
-alias dc="docker compose"
-alias dcu="docker compose up -d"
-alias dcd="docker compose down"
 
 # Podman
-alias p="podman"
+alias pd="podman"
 alias pbl="podman build"
 alias pcp="podman system prune -af --volumes"
+alias pds="podman ps"
 alias pipu="podman push"
 alias plo="podman logs"
 alias pflo="podman logs -f"
-alias pc="podman-compose"
-alias pcu="podman-compose up -d"
-alias pcd="podman-compose down"
-alias pdc="cat ${XDG_RUNTIME_DIR}/containers/auth.json"
 
 # Distrobox
 alias bx="distrobox"
@@ -122,13 +116,16 @@ alias bxe="distrobox enter"
 alias bxd="distrobox rm"
 alias bxl="distrobox list"
 alias bxu="distrobox upgrade"
-alias bxx="distrobox export --app"
+alias bxx="distrobox-export --app"
 alias bxnv="nvim ~/.config/distrobox.ini"
 
-# Pulumi
-alias pu="pulumi"
-alias pup="pulumi up"
-alias pud="pulumi destroy"
+# Pyenv
+alias pv="pyenv"
+alias pvi="pyenv install"
+alias pvu="pyenv uninstall"
+alias pvg="pyenv global"
+alias pvv="pyenv versions"
+alias svv="source venv/bin/activate"
 
 # Terraform
 alias tf="terraform"
@@ -175,8 +172,7 @@ alias kga="kubectl get pods,services,deployments,jobs,daemonset"
 alias kgaa="kubectl get -A pods,services,deployments,jobs,daemonset"
 alias kgca="kubectl get certs,certificaterequests,order,challenges,ingress"
 alias kgcaa="kubectl get -A certs,certificaterequests,order,challenges,ingress"
-alias kl="kubectl logs --tail=1000"
-alias klf="kubectl logs -f"
+alias kl="kubectl logs"
 alias kf="kubectl apply -f"
 alias ke="kubectl edit"
 alias kex="kubectl exec -it"
@@ -194,7 +190,6 @@ alias kdbg="kubectl run -it busybox --image=alpine:latest --restart=Never;kubect
 alias kclean="kubectl delete pods --field-selector status.phase=Failed -A"
 alias kdpv="kubectl get pv | grep Released | awk '$1 {print$1}' | while read vol; do kubectl delete pv/${vol}; done"
 alias kcsrd="kubectl get csr | grep Denied | awk '{print $1;}' | xargs kubectl delete csr"
-alias kgall="kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found"
 
 # Helm
 alias h="helm"
