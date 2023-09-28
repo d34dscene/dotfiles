@@ -86,7 +86,7 @@ alias gg="git stash;git pull;git stash pop"
 # Go
 alias gou="go get -u; go mod tidy"
 alias gob="go clean; go build"
-alias gor="go run"
+alias gor="go run main.go"
 
 # Docker
 alias dc="docker-compose"
