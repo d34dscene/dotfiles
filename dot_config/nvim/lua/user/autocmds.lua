@@ -51,3 +51,12 @@ cmd("CursorHold", {
 		vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
 	end,
 })
+
+cmd("User", {
+	desc = "Show git conflict markers",
+	group = augroup("show_git_conflict_markers", { clear = true }),
+	pattern = "GitConflictDetected",
+	callback = function()
+		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
+	end,
+})

@@ -141,15 +141,18 @@ map("n", "<leader>gr", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
 map("n", "<leader>gm", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
 
 -- GitSigns
-map("n", "gn", function()
+map("n", "<leader>gn", function()
 	require("gitsigns").toggle_numhl()
 end, { desc = "Toggle number highlight" })
-map("n", "gl", function()
+map("n", "<leader>gl", function()
 	require("gitsigns").toggle_linehl()
 end, { desc = "Toggle line highlight" })
-map("n", "gd", function()
+map("n", "<leader>gd", function()
 	require("gitsigns").toggle_deleted()
 end, { desc = "Toggle deleted lines" })
+
+-- Git Conflict
+map("n", "<leader>gc", "<cmd>GitConflictListQf<cr>", { desc = "Git conflict" })
 
 -- Telescope
 map("n", "<leader>fw", function()
