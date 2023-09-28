@@ -2,6 +2,7 @@ local wezterm = require "wezterm"
 local keybindings = require "keybindings"
 local statusline = require "statusline"
 local domains = require "domains"
+local wayland_gnome = require "wayland_gnome"
 local config = {}
 
 -- Provide clearer error messages ---------------------------------------------
@@ -27,6 +28,7 @@ config.exit_behavior = "Close"
 
 domains.apply_to_config(config)
 keybindings.apply_to_config(config)
+wayland_gnome.apply_to_config(config)
 statusline.setup_statusline()
 
 return config
