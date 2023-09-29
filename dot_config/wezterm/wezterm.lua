@@ -1,7 +1,7 @@
 local wezterm = require "wezterm"
 local keybindings = require "keybindings"
 local statusline = require "statusline"
-local domains = require "domains"
+--local domains = require "domains"
 local wayland_gnome = require "wayland_gnome"
 local config = {}
 
@@ -17,18 +17,14 @@ config.tab_bar_at_bottom = true
 config.initial_cols = 150
 config.initial_rows = 32
 config.window_background_opacity = 0.90
-config.window_decorations = "NONE"
+config.window_decorations = "RESIZE"
 config.scrollback_lines = 50000
 config.check_for_updates = false
-config.status_update_interval = 5000
 config.allow_square_glyphs_to_overflow_width = "Always"
--- config.enable_wayland = false
-config.xcursor_theme = "Adwaita"
-config.exit_behavior = "Close"
 
-domains.apply_to_config(config)
-keybindings.apply_to_config(config)
 wayland_gnome.apply_to_config(config)
+keybindings.apply_to_config(config)
+--domains.apply_to_config(config)
 statusline.setup_statusline()
 
 return config

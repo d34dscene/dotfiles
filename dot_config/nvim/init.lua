@@ -13,7 +13,6 @@ require "configs.neotree"
 require "configs.bufferline"
 require "configs.lualine"
 require "configs.toggleterm"
-require "configs.indent-line"
 require "configs.which-key"
 require "configs.cmp"
 

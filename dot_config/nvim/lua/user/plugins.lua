@@ -70,7 +70,7 @@ return {
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
-	"lukas-reineke/indent-blankline.nvim", -- Indentation guides
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- Indentation guides
 	"jose-elias-alvarez/null-ls.nvim", -- LSP hooks
 	"jose-elias-alvarez/typescript.nvim", -- Typescript features
 	"pearofducks/ansible-vim", -- Ansible support

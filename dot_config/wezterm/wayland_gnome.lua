@@ -1,11 +1,11 @@
 local wezterm = require "wezterm"
-local mod = {}
+local module = {}
 
 local function gsettings(key)
 	return wezterm.run_child_process { "gsettings", "get", "org.gnome.desktop.interface", key }
 end
 
-function mod.apply_to_config(config)
+function module.apply_to_config(config)
 	if wezterm.target_triple ~= "x86_64-unknown-linux-gnu" then
 		-- skip if not running on linux
 		return
@@ -27,4 +27,4 @@ function mod.apply_to_config(config)
 	end
 end
 
-return mod
+return module
