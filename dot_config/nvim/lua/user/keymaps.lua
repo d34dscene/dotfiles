@@ -233,7 +233,7 @@ map("x", "<leader>sr", ":sort!<cr>", { desc = "Sort lines reverse" })
 map("x", "<leader>su", ":sort u<cr>", { desc = "Sort unique lines" })
 
 -- Autocomplete when searching
-map("c", "<tab>", "<C-r><C-w>")
+--map("c", "<tab>", "<C-r><C-w>")
 
 -- Visual --
 map("v", "p", "\"_dP", opts)

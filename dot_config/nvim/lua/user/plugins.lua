@@ -70,7 +70,13 @@ return {
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- Indentation guides
+	{
+		"lukas-reineke/indent-blankline.nvim", -- Indentation guides
+		main = "ibl",
+		opts = {
+			indent = { char = ">" },
+		},
+	},
 	"jose-elias-alvarez/null-ls.nvim", -- LSP hooks
 	"jose-elias-alvarez/typescript.nvim", -- Typescript features
 	"pearofducks/ansible-vim", -- Ansible support
@@ -150,7 +156,7 @@ return {
 		"numToStr/Comment.nvim", -- Smart commenting
 		config = function()
 			require("Comment").setup {
-				padding = true,
+				padding = false,
 				mappings = {
 					basic = false,
 					extra = false,

@@ -132,18 +132,21 @@ cmp.setup {
 	},
 }
 
--- cmp.setup.cmdline({ "/", "?" }, {
--- 	mapping = cmp.mapping.preset.cmdline(),
--- 	sources = {
--- 		{ name = "buffer" },
--- 	},
--- })
-
-cmp.setup.cmdline(":", {
+cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{ name = "cmdline" },
-	}),
+	sources = {
+		{ name = "buffer" },
+	},
+	view = {
+		entries = { name = "wildmenu", separator = "|" },
+	},
 })
+
+--cmp.setup.cmdline(":", {
+--	mapping = cmp.mapping.preset.cmdline(),
+--	sources = cmp.config.sources({
+--		{ name = "path" },
+--	}, {
+--		{ name = "cmdline" },
+--	}),
+--})
