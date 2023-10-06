@@ -21,10 +21,6 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 			ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
 			python3-pip age direnv neovim python3-neovim
-
-		# sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld -y
-		# sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld -y
-		# sudo dnf update --best --allowerasing -y
 	fi
 fi
 
@@ -35,7 +31,7 @@ if type flatpak >/dev/null; then
 		flatpak install --noninteractive flathub com.discordapp.Discord \
 			com.github.tchx84.Flatseal tv.plex.PlexDesktop io.beekeeperstudio.Studio \
 			com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
-			com.mattjakeman.ExtensionManager org.signal.Signal com.bitwarden.desktop \
+			com.mattjakeman.ExtensionManager org.signal.Signal com.bitwarden.desktop
 	fi
 fi
 
