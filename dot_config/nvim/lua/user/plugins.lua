@@ -66,15 +66,11 @@ return {
 		build = ":MasonUpdate",
 		config = true,
 	},
-	--{ "jayp0521/mason-null-ls.nvim", config = true }, -- Null-ls helper
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
-	--"jose-elias-alvarez/null-ls.nvim", -- LSP hooks
-	--"jose-elias-alvarez/typescript.nvim", -- Typescript features
 	"pearofducks/ansible-vim", -- Ansible support
 	"towolf/vim-helm", -- Helm support
-	--"b0o/schemastore.nvim", -- JSON schemas
 	"mfussenegger/nvim-dap", -- DAP plugins
 	"rcarriga/nvim-dap-ui", -- DAP UI
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
