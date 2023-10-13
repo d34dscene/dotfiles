@@ -14,11 +14,9 @@ require "configs.bufferline"
 require "configs.lualine"
 require "configs.toggleterm"
 require "configs.which-key"
-require "configs.cmp"
-
--- LSP Configs
 require "configs.lspconfig"
-require "configs.null-ls"
+require "configs.conform"
+require "configs.cmp"
 
 -- Load theme
 vim.cmd.colorscheme "catppuccin"
