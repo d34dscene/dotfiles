@@ -61,15 +61,27 @@ return {
 
 	-- LSP
 	-- ------------------------------------------------------------------------
-	{ -- LSP installer
-		"williamboman/mason.nvim",
+	{
+		"williamboman/mason.nvim", -- LSP installer
 		build = ":MasonUpdate",
 		config = true,
 	},
-	{ "jayp0521/mason-null-ls.nvim", config = true }, -- Null-ls helper
+	--{ "jayp0521/mason-null-ls.nvim", config = true }, -- Null-ls helper
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
 	"tpope/vim-sleuth", -- Indentation detection
+	--"jose-elias-alvarez/null-ls.nvim", -- LSP hooks
+	--"jose-elias-alvarez/typescript.nvim", -- Typescript features
+	"pearofducks/ansible-vim", -- Ansible support
+	"towolf/vim-helm", -- Helm support
+	--"b0o/schemastore.nvim", -- JSON schemas
+	"mfussenegger/nvim-dap", -- DAP plugins
+	"rcarriga/nvim-dap-ui", -- DAP UI
+	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
+	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
+	"stevearc/conform.nvim", -- Formatter
+	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
+	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{
 		"lukas-reineke/indent-blankline.nvim", -- Indentation guides
 		main = "ibl",
@@ -77,17 +89,6 @@ return {
 			indent = { char = ">" },
 		},
 	},
-	"jose-elias-alvarez/null-ls.nvim", -- LSP hooks
-	"jose-elias-alvarez/typescript.nvim", -- Typescript features
-	"pearofducks/ansible-vim", -- Ansible support
-	"towolf/vim-helm", -- Helm support
-	"b0o/schemastore.nvim", -- JSON schemas
-	"mfussenegger/nvim-dap", -- DAP plugins
-	"rcarriga/nvim-dap-ui", -- DAP UI
-	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
-	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
-	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
-	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
 		config = function()

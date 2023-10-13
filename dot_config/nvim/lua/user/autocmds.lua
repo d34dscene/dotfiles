@@ -20,7 +20,7 @@ cmd("VimResized", {
 	desc = "Resize splits if window got resized",
 	group = augroup("resize_splits", { clear = true }),
 	callback = function()
-		vim.cmd "tabdo wincmd ="
+		vim.cmd("tabdo wincmd =")
 	end,
 })
 
@@ -57,6 +57,6 @@ cmd("User", {
 	group = augroup("show_git_conflict_markers", { clear = true }),
 	pattern = "GitConflictDetected",
 	callback = function()
-		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
+		vim.notify("Conflict detected in " .. vim.fn.expand("<afile>"))
 	end,
 })

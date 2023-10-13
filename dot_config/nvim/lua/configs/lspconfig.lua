@@ -83,10 +83,6 @@ mason_lspconfig.setup_handlers {
 						globals = { "vim" },
 					},
 				},
-				json = {
-					schemas = require("schemastore").json.schemas(),
-					validate = { enable = true },
-				},
 				yaml = {
 					completion = true,
 					schemaStore = {
