@@ -58,15 +58,15 @@ local function merged_entries()
 			domain = { DomainName = "SSH:ub" },
 		},
 	}
-	for _, v in pairs(get_exec_entries()) do
-		table.insert(base_domains, v)
-	end
+	--for _, v in pairs(get_exec_entries()) do
+	--	table.insert(base_domains, v)
+	--end
 	return base_domains
 end
 
 function module.apply_to_config(config)
 	config.launch_menu = merged_entries()
-	config.exec_domains = get_exec_domains()
+	--config.exec_domains = get_exec_domains()
 end
 
 return module
