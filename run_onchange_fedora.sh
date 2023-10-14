@@ -20,7 +20,7 @@ if [[ ${DISTRO} == Fedora* && ${VARIANT} == workstation ]]; then
 			libratbag-ratbagd alacritty lutris gamescope steam-devices yt-dlp \
 			ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
 			clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
-			python3-pip age direnv neovim python3-neovim
+			python3-pip age direnv neovim python3-neovim shellcheck
 	fi
 fi
 

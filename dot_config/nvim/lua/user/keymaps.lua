@@ -70,6 +70,9 @@ map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
 -- LSP Installer
 map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
 
+-- Formatter
+map("n", "<leader>lf", "<cmd>ConformInfo<cr>", { desc = "Conform" })
+
 -- Treesj
 map("n", "tt", function()
 	require("treesj").toggle()

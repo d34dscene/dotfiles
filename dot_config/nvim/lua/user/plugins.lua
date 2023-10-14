@@ -20,20 +20,12 @@ return {
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{
-		"norcalli/nvim-colorizer.lua", -- Colorize rgb codes
-		config = function()
-			require("colorizer").setup({ "*" }, { mode = "background" })
-		end,
+		"NvChad/nvim-colorizer.lua", -- Colorize rgb codes
+		opts = { user_default_options = { names = false } },
 	},
 	{
 		"lewis6991/gitsigns.nvim", -- Git decorations
-		config = function()
-			require("gitsigns").setup {
-				current_line_blame = true,
-				numhl = true,
-				linehl = false,
-			}
-		end,
+		opts = { current_line_blame = true, numhl = true, linehl = false },
 	},
 
 	-- Treesitter
@@ -49,9 +41,7 @@ return {
 	},
 	{
 		"Wansmer/treesj", -- Node splits/joins
-		config = function()
-			require("treesj").setup { use_default_keymaps = false }
-		end,
+		opts = { use_default_keymaps = false },
 	},
 	{
 		"sustech-data/wildfire.nvim", -- Incremental bracket selection
@@ -81,15 +71,11 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim", -- Indentation guides
 		main = "ibl",
-		opts = {
-			indent = { char = ">" },
-		},
+		opts = { indent = { char = ">" } },
 	},
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
-		config = function()
-			require("lsp_signature").setup { floating_window = false }
-		end,
+		opts = { floating_window = false },
 	},
 
 	-- Completion
@@ -118,12 +104,8 @@ return {
 		event = "VeryLazy",
 		opts = {
 			modes = {
-				search = {
-					enabled = false,
-				},
-				char = {
-					keys = { ["f"] = "F", ["t"] = "T" },
-				},
+				search = { enabled = false },
+				char = { keys = { ["f"] = "F", ["t"] = "T" } },
 			},
 		},
 	},
@@ -136,30 +118,15 @@ return {
 	},
 	{
 		"max397574/better-escape.nvim", -- Smooth escaping
-		config = function()
-			require("better_escape").setup {
-				mapping = { "qq" },
-				keys = "<Esc>",
-			}
-		end,
+		opts = { mapping = { "qq" }, keys = "<Esc>", clear_empty_lines = true },
 	},
 	{
 		"johmsalas/text-case.nvim", -- Change text casing
-		config = function()
-			require("textcase").setup { prefix = "t" }
-		end,
+		opts = { prefix = "t" },
 	},
 	{
 		"numToStr/Comment.nvim", -- Smart commenting
-		config = function()
-			require("Comment").setup {
-				padding = false,
-				mappings = {
-					basic = false,
-					extra = false,
-				},
-			}
-		end,
+		opts = { padding = false, mappings = { basic = false, extra = false } },
 	},
 	{
 		"iamcco/markdown-preview.nvim", -- Live Markdown preview

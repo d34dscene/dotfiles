@@ -65,10 +65,6 @@ local on_attach = function(_, bufnr)
 	map("<leader>li", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, "Workspace List Folders")
-
-	-- map("<leader>fa", function()
-	-- 	vim.lsp.buf.format { async = true }
-	-- end, "Format file")
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
