@@ -32,8 +32,6 @@ fetch() {
 	rm "${DLPATH}"/*.md "${DLPATH}"/LICENSE
 }
 
-type wormhole &>/dev/null || fetch "magic-wormhole/magic-wormhole.rs" "wormhole-rs" "wormhole"
-
 py_tools=(
 	black
 	isort
@@ -85,6 +83,7 @@ if check "go"; then
 	check "shfmt" || go install mvdan.cc/sh/v3/cmd/shfmt@latest
 	check "goimports" || go install golang.org/x/tools/cmd/goimports@latest
 	check "gomodifytags" || go install github.com/fatih/gomodifytags@latest
+	check "wormhole-william" || go install github.com/psanford/wormhole-william@latest
 	check "flarectl" || go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
 	check "doggo" || go install github.com/mr-karan/doggo/cmd/doggo@latest
 	check "k9s" || go install github.com/derailed/k9s@latest
