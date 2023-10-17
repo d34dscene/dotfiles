@@ -82,7 +82,7 @@ fi
 if check "go"; then
 	check "go-global-update" || go install github.com/Gelio/go-global-update@latest
 	check "staticcheck" || go install honnef.co/go/tools/cmd/staticcheck@latest
-	check "yamlfmt" || go install github.com/google/yamlfmt@latest
+	check "yamlfmt" || go install github.com/google/yamlfmt/cmd/yamlfmt@latest
 	check "shfmt" || go install mvdan.cc/sh/v3/cmd/shfmt@latest
 	check "goimports" || go install golang.org/x/tools/cmd/goimports@latest
 	check "gomodifytags" || go install github.com/fatih/gomodifytags@latest

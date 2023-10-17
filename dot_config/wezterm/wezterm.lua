@@ -22,6 +22,7 @@ config.scrollback_lines = 50000
 config.check_for_updates = false
 config.font = wezterm.font("Victor Mono", { weight = "Medium" })
 config.allow_square_glyphs_to_overflow_width = "Always"
+config.xcursor_theme = "Adwaita"
 
 wayland_gnome.apply_to_config(config)
 keybindings.apply_to_config(config)
