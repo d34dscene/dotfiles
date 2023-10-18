@@ -39,3 +39,8 @@ local prettier = require "conform.formatters.prettier"
 conform.formatters.prettier = vim.tbl_deep_extend("force", prettier, {
 	args = util.extend_args(prettier.args, { "--tab", "--indent", "4" }),
 })
+
+local yamlfmt = require "conform.formatters.yamlfmt"
+conform.formatters.yamlfmt = vim.tbl_deep_extend("force", yamlfmt, {
+	args = util.extend_args(yamlfmt.args, { "-formatter", "indent=2,retain_line_breaks=true" }),
+})

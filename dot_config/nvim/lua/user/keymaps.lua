@@ -166,7 +166,7 @@ map("n", "<leader>fs", function()
 end, { desc = "Git status" })
 map("n", "<leader>fb", function()
 	require("telescope.builtin").git_branches()
-end, { desc = "Git branchs" })
+end, { desc = "Git branches" })
 map("n", "<leader>fg", function()
 	require("telescope.builtin").git_bcommits()
 end, { desc = "Git commits" })
@@ -226,7 +226,8 @@ map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
 map("i", "<C-c>", "<Esc>yyi", opts) -- copy line
 map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
-map("n", "++", "o<Esc>k", opts) -- newline
+map("n", "+", "O<Esc>j", opts) -- newline
+map("n", "=", "o<Esc>k", opts) -- newline
 map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 

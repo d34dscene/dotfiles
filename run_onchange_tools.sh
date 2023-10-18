@@ -86,6 +86,7 @@ if check "go"; then
 	check "wormhole-william" || go install github.com/psanford/wormhole-william@latest
 	check "flarectl" || go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
 	check "doggo" || go install github.com/mr-karan/doggo/cmd/doggo@latest
+	check "sops" || go install github.com/getsops/sops/v3/cmd/sops@latest
 	check "k9s" || go install github.com/derailed/k9s@latest
 	check "duf" || go install github.com/muesli/duf@latest
 fi
