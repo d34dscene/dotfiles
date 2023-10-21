@@ -1,8 +1,7 @@
 local wezterm = require "wezterm"
 local keybindings = require "keybindings"
 local statusline = require "statusline"
---local domains = require "domains"
-local wayland_gnome = require "wayland_gnome"
+local domains = require "domains"
 local config = {}
 
 -- Provide clearer error messages ---------------------------------------------
@@ -24,9 +23,8 @@ config.font = wezterm.font("Victor Mono", { weight = "Medium" })
 config.allow_square_glyphs_to_overflow_width = "Always"
 config.xcursor_theme = "Adwaita"
 
-wayland_gnome.apply_to_config(config)
 keybindings.apply_to_config(config)
---domains.apply_to_config(config)
+domains.apply_to_config(config)
 statusline.setup_statusline()
 
 return config
