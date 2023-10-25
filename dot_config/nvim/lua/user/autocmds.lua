@@ -1,5 +1,15 @@
 local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local command = vim.api.nvim_create_user_command
+
+command("Format", function(args)
+	local range = nil
+	if args.count ~= -1 then
+		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+		range = { start = { args.line1, 0 }, ["end"] = { args.line2, end_line:len() } }
+	end
+	require("conform").format { async = true, lsp_fallback = true, range = range }
+end, { range = true })
 
 cmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	desc = "Reload the file when it changed",
@@ -20,7 +30,7 @@ cmd("VimResized", {
 	desc = "Resize splits if window got resized",
 	group = augroup("resize_splits", { clear = true }),
 	callback = function()
-		vim.cmd("tabdo wincmd =")
+		vim.cmd "tabdo wincmd ="
 	end,
 })
 
@@ -57,6 +67,6 @@ cmd("User", {
 	group = augroup("show_git_conflict_markers", { clear = true }),
 	pattern = "GitConflictDetected",
 	callback = function()
-		vim.notify("Conflict detected in " .. vim.fn.expand("<afile>"))
+		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
 	end,
 })
