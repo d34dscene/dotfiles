@@ -50,6 +50,8 @@ local on_attach = function(_, bufnr)
 	map("gt", tsbuiltin.lsp_definitions, "Goto Definition")
 	map("gi", vim.lsp.buf.implementation, "Goto Implementation")
 	map("gr", tsbuiltin.lsp_references, "Goto References")
+	map("g[", vim.diagnostic.goto_prev, "Goto previous diagnostic")
+	map("g]", vim.diagnostic.goto_next, "Goto next diagnostic")
 	map("<leader>ld", tsbuiltin.lsp_document_symbols, "Document Symbols")
 	map("<leader>lp", tsbuiltin.lsp_dynamic_workspace_symbols, "Workspace Symbols")
 
