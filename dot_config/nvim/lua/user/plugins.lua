@@ -34,10 +34,13 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
-			"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
 			"windwp/nvim-ts-autotag", -- Autoclose tags
 			"drybalka/tree-climber.nvim", -- Tree climber
 		},
+	},
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
+		config = true,
 	},
 	{
 		"Wansmer/treesj", -- Node splits/joins
