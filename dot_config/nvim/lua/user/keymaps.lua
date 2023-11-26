@@ -68,8 +68,9 @@ map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Markdown Previ
 -- Lazy
 map("n", "<leader>ll", "<cmd>Lazy sync<cr>", { desc = "Update plugins" })
 
--- LSP Installer
-map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
+-- LSP
+map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason UI" })
+map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
 
 -- Formatter
 map("n", "<leader>lf", "<cmd>ConformInfo<cr>", { desc = "Conform" })
