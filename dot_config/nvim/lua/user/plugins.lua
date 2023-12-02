@@ -69,6 +69,7 @@ return {
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
 	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
 	"stevearc/conform.nvim", -- Formatter
+	{ "pmizio/typescript-tools.nvim", config = true },
 	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{

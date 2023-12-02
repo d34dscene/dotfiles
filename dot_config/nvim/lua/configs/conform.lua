@@ -7,7 +7,8 @@ conform.setup {
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "isort", "black" },
-		javascript = { { "prettierd", "prettier" }, "eslint_d" },
+		javascript = { "prettier", "eslint_d" },
+		typescript = { "prettier", "eslint_d" },
 		go = { "goimports", "gofmt", "golines" },
 		cpp = { "clang_format" },
 		c = { "clang-format" },
