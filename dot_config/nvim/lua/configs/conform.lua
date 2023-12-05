@@ -19,7 +19,7 @@ conform.setup {
 		zsh = { "shfmt", "shellcheck" },
 		bash = { "shfmt", "shellcheck" },
 		sql = { "sql_formatter" },
-		markdown = { "mdformat" },
+		markdown = { "mdformat", "injected" },
 		["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
 	},
