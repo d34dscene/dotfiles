@@ -33,6 +33,7 @@ local cmp_kinds = {
 	Event = " ",
 	Operator = "󰆕 ",
 	TypeParameter = " ",
+	Codeium = "",
 }
 
 cmp.setup {
@@ -125,10 +126,9 @@ cmp.setup {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
+		{ name = "codeium" },
 		{ name = "path" },
-		{
-			{ name = "buffer", keyword_length = 2 },
-		},
+		{ { name = "buffer", keyword_length = 2 } },
 	},
 }
 
