@@ -88,6 +88,13 @@ alias gou="go get -u; go mod tidy"
 alias gob="go clean; go build"
 alias gor="go run main.go"
 
+# Micromamba
+alias mamba="micromamba"
+alias mambac="micromamba create -c conda-forge -n"
+alias mambaa="micromamba activate"
+alias mambad="micromamba deactivate"
+alias mambar="micromamba run -n"
+
 # Docker
 alias dc="docker compose"
 alias dcu="docker compose up -d"

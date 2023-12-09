@@ -44,25 +44,6 @@ cmd("FileType", {
 	end,
 })
 
-cmd("BufWritePre", {
-	desc = "Run gofmt and goimports on save",
-	group = augroup("gofmt", { clear = true }),
-	pattern = "*.go",
-	callback = function()
-		require("go.format").goimport()
-		require("go.format").gofmt()
-	end,
-})
-
-cmd("BufWritePre", {
-	desc = "Run format on save",
-	group = augroup("format", { clear = true }),
-	pattern = "*",
-	callback = function()
-		require("conform").format { async = true, lsp_fallback = true }
-	end,
-})
-
 cmd("FileType", {
 	desc = "Unlist quickfist buffers",
 	group = augroup("unlist_quickfist", { clear = true }),

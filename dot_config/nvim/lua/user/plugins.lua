@@ -61,6 +61,7 @@ return {
 	},
 	"williamboman/mason-lspconfig.nvim", -- LSP config helper
 	"neovim/nvim-lspconfig", -- LSP config
+	"stevearc/conform.nvim", -- Formatter
 	"tpope/vim-sleuth", -- Indentation detection
 	"pearofducks/ansible-vim", -- Ansible support
 	"towolf/vim-helm", -- Helm support
@@ -68,7 +69,6 @@ return {
 	"rcarriga/nvim-dap-ui", -- DAP UI
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
 	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
-	"stevearc/conform.nvim", -- Formatter
 	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{
