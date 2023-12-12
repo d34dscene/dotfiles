@@ -97,8 +97,8 @@ return {
 	-- ------------------------------------------------------------------------
 	"folke/which-key.nvim", -- Key popup
 	"machakann/vim-sandwich", -- Surroundings
-	"Exafunction/codeium.vim", -- AI completions
 	"tpope/vim-repeat", -- Repeat dot
+	{ "Exafunction/codeium.vim", event = "BufEnter" }, -- AI completions
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
 	{ "lukas-reineke/headlines.nvim", config = true }, -- Markdown highlights

@@ -3,8 +3,8 @@ if not status_ok then
 	return
 end
 
-local icon = "󰅴 "
-local function getLspName()
+local function getLSP()
+	local icon = "󰅴 "
 	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 	local clients = vim.lsp.get_active_clients()
 	if next(clients) == nil then
@@ -19,20 +19,21 @@ local function getLspName()
 	return icon
 end
 
-local lsp = {
-	function()
-		return getLspName()
-	end,
-	separator = { right = "" },
-	left_padding = 2,
-}
+local function codeium()
+	return vim.fn["codeium#GetStatusString"]()
+end
 
 ll.setup {
 	options = {
 		theme = "catppuccin",
 		component_separators = "|",
-		--section_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
+		globalstatus = true,
+		refresh = {
+			statusline = 300,
+			tabline = 300,
+			winbar = 300,
+		},
 	},
 	sections = {
 		lualine_a = {
@@ -41,8 +42,8 @@ ll.setup {
 		lualine_b = { "filename", { "branch", icon = "" }, "diagnostics" },
 		lualine_c = { "fileformat", "diff" },
 		lualine_x = {},
-		lualine_y = { "filetype", "encoding", "filesize" },
-		lualine_z = { lsp },
+		lualine_y = { "filetype", "encoding", "filesize", { codeium, icon = "󱙺" } },
+		lualine_z = { { getLSP, separator = { right = "", left_padding = 2 } } },
 	},
 	inactive_sections = {
 		lualine_a = { "filename" },
