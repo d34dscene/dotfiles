@@ -44,28 +44,27 @@ local on_attach = function(_, bufnr)
 
 	-- Mappings.
 	--map("<leader>rn", vim.lsp.buf.rename, "Refactor") -- Replaced by inc-rename
-	map("n", "<leader>lc", vim.lsp.buf.code_action, "Code Action")
-
-	map("n", "gt", tsbuiltin.lsp_definitions, "Goto Definition")
-	map("n", "gi", vim.lsp.buf.implementation, "Goto Implementation")
-	map("n", "gr", tsbuiltin.lsp_references, "Goto References")
-	map("n", "[d", vim.diagnostic.goto_prev, "Goto previous diagnostic")
-	map("n", "]d", vim.diagnostic.goto_next, "Goto next diagnostic")
-	map("n", "<leader>ld", tsbuiltin.lsp_document_symbols, "Document Symbols")
-	map("n", "<leader>lp", tsbuiltin.lsp_dynamic_workspace_symbols, "Workspace Symbols")
+	map("n", "<leader>lc", vim.lsp.buf.code_action, { desc = "Code Action" })
+	map("n", "gt", tsbuiltin.lsp_definitions, { desc = "Goto Definition" })
+	map("n", "gi", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
+	map("n", "gr", tsbuiltin.lsp_references, { desc = "Goto References" })
+	map("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
+	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
+	map("n", "<leader>ld", tsbuiltin.lsp_document_symbols, { desc = "Document Symbols" })
+	map("n", "<leader>lp", tsbuiltin.lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
 
 	-- See `:help K` for why this keymap
-	map("n", "M", vim.lsp.buf.hover, "Hover Documentation")
-	map("n", "gh", vim.lsp.buf.signature_help, "Signature Documentation")
+	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 
 	-- Lesser used LSP functionality
-	map("n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
-	map("n", "<leader>lt", vim.lsp.buf.type_definition, "Type Definition")
-	map("n", "<leader>la", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
-	map("n", "<leader>lg", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
+	map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
+	map("n", "<leader>lt", vim.lsp.buf.type_definition, { desc = "Type Definition" })
+	map("n", "<leader>la", vim.lsp.buf.add_workspace_folder, { desc = "Workspace Add Folder" })
+	map("n", "<leader>lg", vim.lsp.buf.remove_workspace_folder, { desc = "Workspace Remove Folder" })
 	map("n", "<leader>li", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, "Workspace List Folders")
+	end, { desc = "Workspace List Folders" })
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
