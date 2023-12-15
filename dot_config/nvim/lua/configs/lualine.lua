@@ -1,4 +1,4 @@
-local status_ok, ll = pcall(require, "lualine")
+local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return
 end
@@ -23,11 +23,11 @@ local function codeium()
 	return vim.fn["codeium#GetStatusString"]()
 end
 
-ll.setup {
+lualine.setup {
 	options = {
 		theme = "catppuccin",
 		component_separators = "|",
-		section_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		globalstatus = true,
 		refresh = {
 			statusline = 300,

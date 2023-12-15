@@ -16,7 +16,6 @@ map("", "<Space>", "<Nop>")
 map("n", "ss", "<cmd>w<cr><cmd>Format<cr>", { desc = "Save and format" })
 map("n", "sw", "<cmd>w<cr>", { desc = "Save" })
 map("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
-map("n", "zz", "<cmd>q!<cr>", { desc = "Force quit" })
 
 -- Search and replace
 map("n", "rt", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
@@ -144,17 +143,6 @@ map("n", "<leader>gf", "<cmd>GoFillStruct<cr>", { desc = "Go fill struct" })
 map("n", "<leader>ga", "<cmd>GoAddTag<cr>", { desc = "Go add tags" })
 map("n", "<leader>gr", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
 map("n", "<leader>gm", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
-
--- GitSigns
-map("n", "<leader>gn", function()
-	require("gitsigns").toggle_numhl()
-end, { desc = "Toggle number highlight" })
-map("n", "<leader>gl", function()
-	require("gitsigns").toggle_linehl()
-end, { desc = "Toggle line highlight" })
-map("n", "<leader>gd", function()
-	require("gitsigns").toggle_deleted()
-end, { desc = "Toggle deleted lines" })
 
 -- Git Conflict
 map("n", "<leader>gc", "<cmd>GitConflictListQf<cr>", { desc = "Git conflict" })

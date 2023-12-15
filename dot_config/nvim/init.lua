@@ -16,6 +16,7 @@ require "configs.toggleterm"
 require "configs.which-key"
 require "configs.lspconfig"
 require "configs.conform"
+require "configs.gitsigns"
 require "configs.cmp"
 
 -- Load theme

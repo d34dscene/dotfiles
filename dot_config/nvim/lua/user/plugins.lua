@@ -16,16 +16,13 @@ return {
 	-- Design
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
+	"lewis6991/gitsigns.nvim", -- Git decorations
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{
 		"NvChad/nvim-colorizer.lua", -- Colorize rgb codes
 		opts = { user_default_options = { names = false } },
-	},
-	{
-		"lewis6991/gitsigns.nvim", -- Git decorations
-		opts = { current_line_blame = true, numhl = true, linehl = false },
 	},
 
 	-- Treesitter

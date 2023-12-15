@@ -25,11 +25,10 @@ mason_lspconfig.setup {
 }
 
 local on_attach = function(_, bufnr)
-	local map = function(keys, func, desc)
-		vim.keymap.set("n", keys, func, {
-			buffer = bufnr,
-			desc = desc,
-		})
+	local function map(mode, l, r, opts)
+		opts = opts or {}
+		opts.buffer = bufnr
+		vim.keymap.set(mode, l, r, opts)
 	end
 
 	-- Disable diagnostic for helm charts
@@ -45,26 +44,26 @@ local on_attach = function(_, bufnr)
 
 	-- Mappings.
 	--map("<leader>rn", vim.lsp.buf.rename, "Refactor") -- Replaced by inc-rename
-	map("<leader>lc", vim.lsp.buf.code_action, "Code Action")
+	map("n", "<leader>lc", vim.lsp.buf.code_action, "Code Action")
 
-	map("gt", tsbuiltin.lsp_definitions, "Goto Definition")
-	map("gi", vim.lsp.buf.implementation, "Goto Implementation")
-	map("gr", tsbuiltin.lsp_references, "Goto References")
-	map("[d", vim.diagnostic.goto_prev, "Goto previous diagnostic")
-	map("]d", vim.diagnostic.goto_next, "Goto next diagnostic")
-	map("<leader>ld", tsbuiltin.lsp_document_symbols, "Document Symbols")
-	map("<leader>lp", tsbuiltin.lsp_dynamic_workspace_symbols, "Workspace Symbols")
+	map("n", "gt", tsbuiltin.lsp_definitions, "Goto Definition")
+	map("n", "gi", vim.lsp.buf.implementation, "Goto Implementation")
+	map("n", "gr", tsbuiltin.lsp_references, "Goto References")
+	map("n", "[d", vim.diagnostic.goto_prev, "Goto previous diagnostic")
+	map("n", "]d", vim.diagnostic.goto_next, "Goto next diagnostic")
+	map("n", "<leader>ld", tsbuiltin.lsp_document_symbols, "Document Symbols")
+	map("n", "<leader>lp", tsbuiltin.lsp_dynamic_workspace_symbols, "Workspace Symbols")
 
 	-- See `:help K` for why this keymap
-	map("M", vim.lsp.buf.hover, "Hover Documentation")
-	map("gh", vim.lsp.buf.signature_help, "Signature Documentation")
+	map("n", "M", vim.lsp.buf.hover, "Hover Documentation")
+	map("n", "gh", vim.lsp.buf.signature_help, "Signature Documentation")
 
 	-- Lesser used LSP functionality
-	map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-	map("<leader>lt", vim.lsp.buf.type_definition, "Type Definition")
-	map("<leader>la", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
-	map("<leader>lg", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
-	map("<leader>li", function()
+	map("n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
+	map("n", "<leader>lt", vim.lsp.buf.type_definition, "Type Definition")
+	map("n", "<leader>la", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
+	map("n", "<leader>lg", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
+	map("n", "<leader>li", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, "Workspace List Folders")
 end
