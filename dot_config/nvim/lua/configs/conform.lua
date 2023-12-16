@@ -11,7 +11,7 @@ conform.setup {
 		typescript = { "prettier", "eslint_d" },
 		go = { "goimports", "gofmt", "golines" },
 		cpp = { "clang_format" },
-		c = { "clang-format" },
+		c = { "clang_format" },
 		terraform = { "terraform_fmt" },
 		json = { "prettier", "fixjson" },
 		yaml = { "yamlfmt" },
@@ -22,6 +22,13 @@ conform.setup {
 		markdown = { "mdformat", "injected" },
 		["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
+	},
+	formatters = {
+		injected = { options = { ignore_errors = true } },
+	},
+	format_on_save = {
+		timeout_ms = 1000,
+		lsp_fallback = true,
 	},
 }
 

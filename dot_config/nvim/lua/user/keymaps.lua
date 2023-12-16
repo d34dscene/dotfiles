@@ -13,8 +13,8 @@ local opts = { noremap = true, silent = true }
 map("", "<Space>", "<Nop>")
 
 -- Standard Operations
-map("n", "ss", "<cmd>w<cr><cmd>Format<cr>", { desc = "Save and format" })
-map("n", "sw", "<cmd>w<cr>", { desc = "Save" })
+map("n", "ss", "<cmd>w<cr>", { desc = "Save" })
+--map("n", "sw", "<cmd>w<cr>", { desc = "Save" })
 map("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
 
 -- Search and replace
