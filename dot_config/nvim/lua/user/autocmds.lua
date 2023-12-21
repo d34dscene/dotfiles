@@ -11,6 +11,15 @@ command("Format", function(args)
 	require("conform").format { async = true, lsp_fallback = true, range = range }
 end, { range = true })
 
+cmd("BufWritePre", {
+	desc = "Format on save",
+	group = augroup("format_on_save", { clear = true }),
+	pattern = "*",
+	callback = function(args)
+		require("conform").format { bufnr = args.buf, lsp_fallback = true }
+	end,
+})
+
 cmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	desc = "Reload the file when it changed",
 	group = augroup("checktime", { clear = true }),
