@@ -19,15 +19,12 @@ conform.setup {
 		zsh = { "shfmt", "shellcheck" },
 		bash = { "shfmt", "shellcheck" },
 		sql = { "sql_formatter" },
-		markdown = { "mdformat", "injected" },
+		markdown = { "mdformat" },
 		["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
 	},
-	formatters = {
-		injected = { options = { ignore_errors = true } },
-	},
 	format_on_save = {
-		timeout_ms = 1000,
+		timeout_ms = 500,
 		lsp_fallback = true,
 	},
 }

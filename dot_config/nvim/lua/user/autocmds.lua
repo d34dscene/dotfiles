@@ -2,7 +2,6 @@ local cmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local command = vim.api.nvim_create_user_command
 
--- Extra user commands
 command("Format", function(args)
 	local range = nil
 	if args.count ~= -1 then
@@ -12,25 +11,6 @@ command("Format", function(args)
 	require("conform").format { async = true, lsp_fallback = true, range = range }
 end, { range = true })
 
-command("FormatDisable", function(args)
-	if args.bang then
-		vim.b.disable_autoformat = true
-	else
-		vim.g.disable_autoformat = true
-	end
-end, {
-	desc = "Disable autoformat-on-save",
-	bang = true,
-})
-
-command("FormatEnable", function()
-	vim.b.disable_autoformat = false
-	vim.g.disable_autoformat = false
-end, {
-	desc = "Re-enable autoformat-on-save",
-})
-
--- Autocmds
 cmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	desc = "Reload the file when it changed",
 	group = augroup("checktime", { clear = true }),
@@ -64,22 +44,13 @@ cmd("FileType", {
 	end,
 })
 
---cmd("BufWritePre", {
---	desc = "Run gofmt and goimports on save",
---	group = augroup("gofmt", { clear = true }),
---	pattern = "*.go",
---	callback = function()
---		require("go.format").goimport()
---		require("go.format").gofmt()
---	end,
---})
-
 cmd("BufWritePre", {
-	desc = "Run format on save",
-	group = augroup("format", { clear = true }),
-	pattern = "*",
+	desc = "Run gofmt and goimports on save",
+	group = augroup("gofmt", { clear = true }),
+	pattern = "*.go",
 	callback = function()
-		require("conform").format { async = true, lsp_fallback = true }
+		require("go.format").goimport()
+		require("go.format").gofmt()
 	end,
 })
 
