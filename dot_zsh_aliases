@@ -47,7 +47,6 @@ alias xgs="xhs get --verify no"
 alias xp="xh post --verify no"
 alias xps="xhs post --verify no"
 alias xd="xh delete --verify no"
-alias xds="xhs delete --verify no"
 alias xdl="xh -d"
 alias rs="rsync -auh --info=progress2"
 
