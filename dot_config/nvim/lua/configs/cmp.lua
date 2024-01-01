@@ -36,7 +36,24 @@ local cmp_kinds = {
 	Codeium = "",
 }
 
+local compare = require "cmp.config.compare"
+
 cmp.setup {
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			compare.offset,
+			compare.exact,
+			-- compare.scopes,
+			compare.score,
+			compare.recently_used,
+			compare.locality,
+			compare.kind,
+			-- compare.sort_text,
+			compare.length,
+			compare.order,
+		},
+	},
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
@@ -126,7 +143,6 @@ cmp.setup {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
-		{ name = "codeium" },
 		{ name = "path" },
 		{ { name = "buffer", keyword_length = 2 } },
 	},

@@ -9,7 +9,7 @@ conform.setup {
 		python = { "isort", "black" },
 		javascript = { "prettier", "eslint_d" },
 		typescript = { "prettier", "eslint_d" },
-		go = { "goimports", "gofmt", "golines" },
+		go = { "goimports", "gofumpt", "golines" },
 		cpp = { "clang_format" },
 		c = { "clang_format" },
 		terraform = { "terraform_fmt" },

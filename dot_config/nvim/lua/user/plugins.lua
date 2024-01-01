@@ -4,6 +4,7 @@ return {
 	"nvim-lua/plenary.nvim", -- Lua functions
 	"nvim-lua/popup.nvim", -- Popup API for nvim
 	"ray-x/guihua.lua", -- GUI & Util Library
+	"3rd/image.nvim", -- Image preview
 	"MunifTanjim/nui.nvim", -- UI Library
 	"akinsho/bufferline.nvim", -- Bufferline
 	"nvim-lualine/lualine.nvim", -- Statusline
@@ -95,7 +96,7 @@ return {
 	"folke/which-key.nvim", -- Key popup
 	"machakann/vim-sandwich", -- Surroundings
 	"tpope/vim-repeat", -- Repeat dot
-	{ "Exafunction/codeium.vim", event = "BufEnter" }, -- AI completions
+	{ "Exafunction/codeium.nvim", config = true }, -- AI completions
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
 	{ "lukas-reineke/headlines.nvim", config = true }, -- Markdown highlights
