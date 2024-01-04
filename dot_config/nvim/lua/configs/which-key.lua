@@ -10,6 +10,7 @@ local mappings = {
 			l = { name = "LSP" },
 			h = { name = "Hunk" },
 			t = { name = "Toggles" },
+			o = { name = "Ollama" },
 		},
 	},
 	v = {

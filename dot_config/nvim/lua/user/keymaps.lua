@@ -128,7 +128,8 @@ map("i", "<A-[>", function()
 end, { expr = true })
 
 -- Ollama
-map("n", "<leader>o", ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>", { desc = "Generate Code" })
+map("n", "<leader>oo", ":<c-u>lua require('ollama').prompt()<cr>", { desc = "Show prompts" })
+map("n", "<leader>og", ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>", { desc = "Generate Code" })
 map("v", "<leader>os", ":<c-u>lua require('ollama').prompt('Simplify_Code')<cr>", { desc = "Simplify Code" })
 map("v", "<leader>oe", ":<c-u>lua require('ollama').prompt('Explain_Code')<cr>", { desc = "Explain Code" })
 map("v", "<leader>oc", ":<c-u>lua require('ollama').prompt('Add_Comments')<cr>", { desc = "Add Comments" })

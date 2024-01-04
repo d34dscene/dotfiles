@@ -6,6 +6,7 @@ return {
 	"ray-x/guihua.lua", -- GUI & Util Library
 	"3rd/image.nvim", -- Image preview
 	"MunifTanjim/nui.nvim", -- UI Library
+	"stevearc/dressing.nvim", -- UI hooks
 	"akinsho/bufferline.nvim", -- Bufferline
 	"nvim-lualine/lualine.nvim", -- Statusline
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
@@ -97,20 +98,7 @@ return {
 	"folke/which-key.nvim", -- Key popup
 	"machakann/vim-sandwich", -- Surroundings
 	"tpope/vim-repeat", -- Repeat dot
-	{
-		"nomnivore/ollama.nvim", -- Ollama
-		opts = {
-			model = "hub/chronixsc/emily:latest",
-			prompts = {
-				Add_Comments = {
-					prompt = "Add useful comments to the following $ftype code without modifying it. Add the comment above the code line. Don't need to explain every line, just the important ones. Do not add comments to error handling lines. Each sentence should be put in a separate line. Keep it short and simple!"
-						.. "Respond EXACTLY in this format:\n```$ftype\n<your code>\n```"
-						.. "\n\n```$ftype\n$sel```",
-					action = "replace",
-				},
-			},
-		},
-	},
+	"nomnivore/ollama.nvim", -- Ollama
 	{ "Exafunction/codeium.vim", event = "BufEnter" }, -- AI completions
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
