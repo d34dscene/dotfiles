@@ -1,0 +1,16 @@
+encryption = "age"
+[age]
+    identity = "~/.age/git.age"
+    recipient = "age1mm6r3km39fza3vatcyuvhrde8a759e3ned2d4u2ke97y97yx75vs7x0xls"
+
+[diff]
+    command = "nvim"
+    args = ["-d", "{{ .Destination }}", "{{ .Target }}"]
+
+[merge]
+    command = "nvim"
+    args = ["-d", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
+
+[git]
+    autoCommit = true
+    autoPush = true
