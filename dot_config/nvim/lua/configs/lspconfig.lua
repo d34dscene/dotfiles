@@ -52,6 +52,9 @@ local on_attach = function(_, bufnr)
 	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
 	map("n", "<leader>ld", tsbuiltin.lsp_document_symbols, { desc = "Document Symbols" })
 	map("n", "<leader>lp", tsbuiltin.lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
+	map("n", "<leader>ls", function()
+		require("lsp_signature").toggle_float_win()
+	end, { desc = "Toggle Signature" })
 
 	-- See `:help K` for why this keymap
 	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })

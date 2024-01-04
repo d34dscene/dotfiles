@@ -17,7 +17,7 @@ return {
 	-- Design
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
-	"lewis6991/gitsigns.nvim", -- Git decorations
+	{ "lewis6991/gitsigns.nvim", event = { "BufReadPre", "BufNewFile" } }, -- Git decorations
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
@@ -76,6 +76,7 @@ return {
 	},
 	{
 		"ray-x/lsp_signature.nvim", -- Show signature
+		event = "VeryLazy",
 		opts = { floating_window = false },
 	},
 
@@ -96,7 +97,21 @@ return {
 	"folke/which-key.nvim", -- Key popup
 	"machakann/vim-sandwich", -- Surroundings
 	"tpope/vim-repeat", -- Repeat dot
-	{ "Exafunction/codeium.nvim", config = true }, -- AI completions
+	{
+		"nomnivore/ollama.nvim", -- Ollama
+		opts = {
+			model = "hub/chronixsc/emily:latest",
+			prompts = {
+				Add_Comments = {
+					prompt = "Add useful comments to the following $ftype code without modifying it. Add the comment above the code line. Don't need to explain every line, just the important ones. Do not add comments to error handling lines. Each sentence should be put in a separate line. Keep it short and simple!"
+						.. "Respond EXACTLY in this format:\n```$ftype\n<your code>\n```"
+						.. "\n\n```$ftype\n$sel```",
+					action = "replace",
+				},
+			},
+		},
+	},
+	{ "Exafunction/codeium.vim", event = "BufEnter" }, -- AI completions
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
 	{ "lukas-reineke/headlines.nvim", config = true }, -- Markdown highlights
