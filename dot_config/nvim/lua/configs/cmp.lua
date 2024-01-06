@@ -44,12 +44,10 @@ cmp.setup {
 		comparators = {
 			compare.offset,
 			compare.exact,
-			-- compare.scopes,
 			compare.score,
 			compare.recently_used,
 			compare.locality,
 			compare.kind,
-			-- compare.sort_text,
 			compare.length,
 			compare.order,
 		},
@@ -158,11 +156,11 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
---cmp.setup.cmdline(":", {
---	mapping = cmp.mapping.preset.cmdline(),
---	sources = cmp.config.sources({
---		{ name = "path" },
---	}, {
---		{ name = "cmdline" },
---	}),
---})
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+})

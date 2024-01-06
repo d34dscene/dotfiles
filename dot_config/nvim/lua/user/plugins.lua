@@ -23,6 +23,15 @@ return {
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{
+		"j-hui/fidget.nvim", -- LSP progress
+		opts = {
+			notification = {
+				override_vim_notify = true,
+				window = { winblend = 0 },
+			},
+		},
+	},
+	{
 		"NvChad/nvim-colorizer.lua", -- Colorize rgb codes
 		opts = { user_default_options = { names = false } },
 	},
@@ -99,7 +108,7 @@ return {
 	"machakann/vim-sandwich", -- Surroundings
 	"tpope/vim-repeat", -- Repeat dot
 	"nomnivore/ollama.nvim", -- Ollama
-	{ "Exafunction/codeium.vim", event = "BufEnter" }, -- AI completions
+	"Exafunction/codeium.vim", -- AI completions
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
 	{ "lukas-reineke/headlines.nvim", config = true }, -- Markdown highlights
