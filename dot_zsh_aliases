@@ -14,6 +14,7 @@ alias gi="git-ignore"
 alias ws="wormhole-william send"
 alias wr="wormhole-william receive"
 alias dac="direnv allow ."
+alias restore="sudo restorecon -rv"
 alias reload="source ~/.zshrc"
 
 # System aliases
