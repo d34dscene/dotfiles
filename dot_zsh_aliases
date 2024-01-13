@@ -30,14 +30,14 @@ alias epoch="date +%s"
 alias cssl="openssl x509 -text -noout -in"
 
 # GNU replacements
-exa_params=('--git' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
-alias l="exa --git-ignore ${exa_params}"
-alias la="exa -lha ${exa_params}"
-alias ll="exa -lh ${exa_params}"
-alias llm="exa -lha --sort=modified ${exa_params}"
-alias ls="exa ${exa_params}"
-alias lt="exa -T -L 3 ${exa_params}"
-alias lx="exa -lbhHigUmuSa@"
+eza_params=('--git' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
+alias l="eza --git-ignore ${eza_params}"
+alias la="eza -lha ${eza_params}"
+alias ll="eza -lh ${eza_params}"
+alias llm="eza -lha --sort=modified ${eza_params}"
+alias ls="eza ${eza_params}"
+alias lt="eza -T -L 3 ${eza_params}"
+alias lx="eza -lbhHigUmuSa@"
 alias cat="bat --style=plain --paging=never --theme=base16"
 alias ps="procs --sortd cpu"
 alias pst="procs --tree"
