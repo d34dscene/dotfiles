@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Get distro
-. /etc/os-release
-ID=$ID
-DISTRO=$NAME
-VARIANT=$VARIANT_ID
-
 # Better dnf config
 {{ if eq .chezmoi.osRelease.id "fedora" -}}
 sudo tee /etc/dnf/dnf.conf <<-EOF

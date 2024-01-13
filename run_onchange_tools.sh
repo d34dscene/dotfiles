@@ -42,6 +42,7 @@ py_tools=(
 node_tools=(
 	prettier
 	eslint_d
+	corepack
 	fixjson
 	sql-formatter
 )
