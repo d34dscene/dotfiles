@@ -90,6 +90,14 @@ alias gou="go get -u; go mod tidy"
 alias gob="go clean; go build"
 alias gor="go run main.go"
 
+# npm/pnpm
+alias n="pnpm"
+alias na="pnpm add"
+alias nr="pnpm run"
+alias ni="pnpm install"
+alias nu="pnpm update"
+alias nd="pnpm remove"
+
 # Micromamba
 alias mamba="micromamba"
 alias mambac="micromamba create -c conda-forge -n"
