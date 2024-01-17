@@ -17,8 +17,8 @@ config.window_background_opacity = 0.90
 config.window_decorations = "RESIZE"
 config.scrollback_lines = 50000
 config.check_for_updates = false
-config.font = wezterm.font("Victor Mono", { weight = "Medium" })
 config.allow_square_glyphs_to_overflow_width = "Always"
+config.font = wezterm.font("Victor Mono", { weight = "Medium" })
 
 keybindings.apply_to_config(config)
 --domains.apply_to_config(config)
