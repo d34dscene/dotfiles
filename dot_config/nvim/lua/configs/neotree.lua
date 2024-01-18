@@ -95,8 +95,8 @@ neotree.setup {
 			["q"] = "close_window",
 			["R"] = "refresh",
 			["?"] = "show_help",
-			["<"] = "prev_source",
-			[">"] = "next_source",
+			["<A-j>"] = "prev_source",
+			["<A-k>"] = "next_source",
 		},
 	},
 	filesystem = {

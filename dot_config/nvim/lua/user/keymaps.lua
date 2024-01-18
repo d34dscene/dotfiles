@@ -14,7 +14,6 @@ map("", "<Space>", "<Nop>")
 
 -- Standard Operations
 map("n", "ss", "<cmd>w<cr>", { desc = "Save" })
---map("n", "sw", "<cmd>w<cr>", { desc = "Save" })
 map("n", "qq", "<cmd>q<cr>", { desc = "Quit" })
 
 -- Search and replace
@@ -43,14 +42,13 @@ map("n", "<C-l>", "<cmd>vertical resize +2<cr>", { desc = "Resize split right" }
 -- Navigate buffers
 map("n", "<A-k>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
 map("n", "<A-j>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
-map("n", "<A-Right>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
-map("n", "<A-Left>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
+map("n", "<A-K>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
+map("n", "<A-J>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
 map("n", "mp", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer tab" })
 
 -- Buffer delete/wipeout & quit
-map("n", "qw", "<cmd>w<cr><cmd>bp<cr>:bd #<cr>", { desc = "Save and close buffer" })
-map("n", "qe", "<cmd>wa<cr><cmd>%bd|e#|bd#<cr>", { desc = "Save and close all buffer" })
-map("n", "qx", "<cmd>bd<cr>", { desc = "Quit" })
+map("n", "qw", "<cmd>w<cr><cmd>bd<cr>", { desc = "Save and close buffer" })
+map("n", "qe", "<cmd>wa<cr><cmd>BufferLineCloseOthers<cr>", { desc = "Save and close all buffer" })
 
 -- Neotree
 map("n", "<leader>e", function()
@@ -224,9 +222,12 @@ map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
 map("i", "<C-c>", "<Esc>yyi", opts) -- copy line
 map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
-map("n", "+", "O<Esc>j", opts) -- newline
-map("n", "=", "o<Esc>k", opts) -- newline
-map("n", "-", "<cmd>%&<cr>", opts) -- repeat substitution
+map("n", "+", "<C-a>", opts) -- increment
+map("n", "-", "<C-x>", opts) -- decrement
+map("n", "++", "O<Esc>j", opts) -- newline below
+map("n", "==", "o<Esc>k", opts) -- newline above
+map("n", "--", "<cmd>%&<cr>", opts) -- repeat substitution
+map("n", "<C-a>", "gg<S-v>G", opts) -- select all
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
 -- Sort lines

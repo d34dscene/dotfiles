@@ -16,6 +16,7 @@ local mappings = {
 	v = {
 		["<leader>"] = {
 			o = { name = "Ollama" },
+			s = { name = "Sort" },
 		},
 	},
 }
