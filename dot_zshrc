@@ -19,6 +19,10 @@ export PATH=$CARGO_HOME/bin:$PATH
 export POETRY_HOME=$HOME/.local/poetry
 export PATH=$POETRY_HOME/bin:$PATH
 
+# pnpm
+export PNPM_HOME="/home/roxas/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 # cuda
 export CUDA_HOME=/usr/local/cuda
 export CUDA_INCLUDE_PATH=$CUDA_HOME/include
@@ -144,3 +148,8 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+# pnpm
+export PNPM_HOME="/home/roxas/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
