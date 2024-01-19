@@ -148,8 +148,3 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
-
-# pnpm
-export PNPM_HOME="/home/roxas/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
