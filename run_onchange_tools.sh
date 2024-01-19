@@ -69,6 +69,7 @@ if check "npm"; then
 	for tool in ${node_tools[@]}; do
 		sudo npm install -g "$tool"
 	done
+	corepack prepare pnpm@latest --activate
 fi
 
 if check "cargo"; then
