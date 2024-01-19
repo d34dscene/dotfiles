@@ -47,8 +47,8 @@ map("n", "<A-J>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer tab left"
 map("n", "mp", "<cmd>BufferLinePick<cr>", { desc = "Pick buffer tab" })
 
 -- Buffer delete/wipeout & quit
-map("n", "qw", "<cmd>w<cr><cmd>bd<cr>", { desc = "Save and close buffer" })
-map("n", "qe", "<cmd>wa<cr><cmd>BufferLineCloseOthers<cr>", { desc = "Save and close all buffer" })
+map("n", "qw", "<cmd>w|bp|bd #<cr>", { desc = "Save and close buffer" })
+map("n", "qe", "<cmd>wa|BufferLineCloseOthers<cr>", { desc = "Save and close all buffer" })
 
 -- Neotree
 map("n", "<leader>e", function()
@@ -126,12 +126,12 @@ map("i", "<A-[>", function()
 end, { expr = true })
 
 -- Ollama
-map("n", "<leader>oo", ":<c-u>lua require('ollama').prompt()<cr>", { desc = "Show prompts" })
-map("n", "<leader>og", ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>", { desc = "Generate Code" })
-map("v", "<leader>os", ":<c-u>lua require('ollama').prompt('Simplify_Code')<cr>", { desc = "Simplify Code" })
-map("v", "<leader>op", ":<c-u>lua require('ollama').prompt('Optimize_Code')<cr>", { desc = "Optimize Code" })
-map("v", "<leader>oe", ":<c-u>lua require('ollama').prompt('Explain_Code')<cr>", { desc = "Explain Code" })
-map("v", "<leader>oc", ":<c-u>lua require('ollama').prompt('Add_Comments')<cr>", { desc = "Add Comments" })
+map("n", "<leader>oo", "<cmd><c-u>lua require('ollama').prompt()<cr>", { desc = "Show prompts" })
+map("n", "<leader>og", "<cmd><c-u>lua require('ollama').prompt('Generate_Code')<cr>", { desc = "Generate Code" })
+map("v", "<leader>os", "<cmd><c-u>lua require('ollama').prompt('Simplify_Code')<cr>", { desc = "Simplify Code" })
+map("v", "<leader>op", "<cmd><c-u>lua require('ollama').prompt('Optimize_Code')<cr>", { desc = "Optimize Code" })
+map("v", "<leader>oe", "<cmd><c-u>lua require('ollama').prompt('Explain_Code')<cr>", { desc = "Explain Code" })
+map("v", "<leader>oc", "<cmd><c-u>lua require('ollama').prompt('Add_Comments')<cr>", { desc = "Add Comments" })
 
 -- Comment
 map("n", "x", function()
