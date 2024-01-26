@@ -28,6 +28,7 @@ alias battery="sudo tlp-stat -b"
 alias ram="sudo lshw -short -C memory"
 alias epoch="date +%s"
 alias cssl="openssl x509 -text -noout -in"
+alias signalwork="flatpak run org.signal.Signal --user-data-dir=/home/roxas/.var/app/org.signal.Signal/work"
 
 # GNU replacements
 eza_params=('--git' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
