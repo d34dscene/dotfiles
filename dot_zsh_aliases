@@ -159,7 +159,8 @@ alias flg="flux get kustomizations"
 alias flw="flux get kustomizations --watch"
 alias fls="flux suspend"
 alias flr="flux resume"
-alias file="flux reconcile"
+alias flre="flux reconcile"
+alias flf="flux get all -A --status-selector ready=false"
 
 # Cloudflare
 alias cf="flarectl --json"
