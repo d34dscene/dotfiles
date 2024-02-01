@@ -1,7 +1,6 @@
 local wezterm = require "wezterm"
 local keybindings = require "keybindings"
 local statusline = require "statusline"
---local domains = require "domains"
 local config = {}
 
 -- Provide clearer error messages ---------------------------------------------
@@ -21,7 +20,6 @@ config.allow_square_glyphs_to_overflow_width = "Always"
 config.font = wezterm.font("Victor Mono", { weight = "Medium" })
 
 keybindings.apply_to_config(config)
---domains.apply_to_config(config)
 statusline.setup_statusline()
 
 return config

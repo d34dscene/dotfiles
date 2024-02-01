@@ -18,7 +18,7 @@ alias restore="sudo restorecon -rv"
 alias reload="source ~/.zshrc"
 
 # System aliases
-alias flush="sudo resolvectl flush-caches"
+alias flush="resolvectl flush-caches"
 alias vblk="lsblk -o PATH,SIZE,RO,TYPE,FSTYPE,MOUNTPOINT,UUID,MODEL"
 alias bios="systemctl reboot --firmware-setup"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
@@ -28,7 +28,6 @@ alias battery="sudo tlp-stat -b"
 alias ram="sudo lshw -short -C memory"
 alias epoch="date +%s"
 alias cssl="openssl x509 -text -noout -in"
-alias signalwork="flatpak run org.signal.Signal --user-data-dir=/home/roxas/.var/app/org.signal.Signal/work"
 
 # GNU replacements
 eza_params=('--git' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
@@ -51,6 +50,7 @@ alias xps="xhs post --verify no"
 alias xd="xh delete --verify no"
 alias xdl="xh -d"
 alias rs="rsync -auh --info=progress2"
+alias rsm="rsync -auessh --info=progress2"
 
 # Dotfiles
 alias cz="chezmoi"
@@ -159,8 +159,7 @@ alias flg="flux get kustomizations"
 alias flw="flux get kustomizations --watch"
 alias fls="flux suspend"
 alias flr="flux resume"
-alias flre="flux reconcile"
-alias flrf="flux get all -A --status-selector ready=false"
+alias file="flux reconcile"
 
 # Cloudflare
 alias cf="flarectl --json"
