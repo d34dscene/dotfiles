@@ -139,7 +139,7 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim", -- Smart commenting
-		opts = { padding = false, mappings = { basic = false, extra = false } },
+		opts = { mappings = { basic = false, extra = false } },
 	},
 	{
 		"iamcco/markdown-preview.nvim", -- Live Markdown preview
