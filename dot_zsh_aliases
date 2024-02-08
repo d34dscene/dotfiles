@@ -62,6 +62,7 @@ alias czp="chezmoi update; chezmoi apply"
 alias s="kitten ssh"
 alias kdl="kitten transfer"
 alias kup="kitten transfer --direction=upload"
+alias kdiff="kitten diff"
 
 # Youtube
 alias yt="yt-dlp --sponsorblock-remove default"
