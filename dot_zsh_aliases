@@ -7,7 +7,6 @@ alias zalias="$EDITOR ~/.zsh_aliases"
 alias zfunc="$EDITOR ~/.zsh_functions"
 alias up="topgrade -y -c --skip-notify"
 alias cd="z"
-alias s="kitten ssh"
 alias nv="nvim"
 alias py="python3"
 alias gi="git-ignore"
@@ -58,6 +57,11 @@ alias cza="chezmoi add"
 alias cze="chezmoi add --encrypt"
 alias czr="chezmoi re-add"
 alias czp="chezmoi update; chezmoi apply"
+
+# Kittens
+alias s="kitten ssh"
+alias kdl="kitten transfer"
+alias kup="kitten transfer --direction=upload"
 
 # Youtube
 alias yt="yt-dlp --sponsorblock-remove default"
