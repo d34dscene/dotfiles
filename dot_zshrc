@@ -38,6 +38,7 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTIGNORE="*sudo -S*"
 export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
 export SAVEHIST=100000
+export VISUAL="nvim"
 export EDITOR="nvim"
 
 # Zsh options
