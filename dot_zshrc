@@ -8,38 +8,41 @@ fi
 type direnv >/dev/null && emulate zsh -c "$(direnv hook zsh)"
 
 # go
-export GOPATH=$HOME/.local/go
-export PATH=$GOPATH/bin:$PATH
+GOPATH=$HOME/.local/go
+PATH=$GOPATH/bin:$PATH
 
 # rust
-export CARGO_HOME=$HOME/.local/cargo
-export PATH=$CARGO_HOME/bin:$PATH
+CARGO_HOME=$HOME/.local/cargo
+PATH=$CARGO_HOME/bin:$PATH
 
 # poetry
-export POETRY_HOME=$HOME/.local/poetry
-export PATH=$POETRY_HOME/bin:$PATH
+POETRY_HOME=$HOME/.local/poetry
+PATH=$POETRY_HOME/bin:$PATH
 
 # pnpm
-export PNPM_HOME="/home/$USER/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+PNPM_HOME=$HOME/.local/share/pnpm
+PATH="$PNPM_HOME:$PATH"
 
 # cuda
-export CUDA_HOME=/usr/local/cuda
-export CUDA_INCLUDE_PATH=$CUDA_HOME/include
-export PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
+CUDA_HOME=/usr/local/cuda
+CUDA_INCLUDE_PATH=$CUDA_HOME/include
+PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
 
 # rocm
-export PATH=/opt/rocm/bin:$PATH
+PATH=/opt/rocm/bin:$PATH
+
+# mamba
+MAMBA_EXE=$HOME/.local/bin/micromamba
+MAMBA_ROOT_PREFIX=$HOME/micromamba
 
 # General
-export PF_INFO="ascii title os de host kernel uptime pkgs shell memory wm palette"
-export PATH="$HOME/.local/bin:$PATH"
-export HISTFILE="$HOME/.zsh_history"
-export HISTIGNORE="*sudo -S*"
-export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
-export SAVEHIST=100000
-export VISUAL="nvim"
-export EDITOR="nvim"
+ZDOTDIR=${ZDOTDIR:-$HOME}
+PATH=$HOME/.local/bin:$PATH
+HISTFILE=$HOME/.zsh_history
+HISTIGNORE="*sudo -S*"
+PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
+SAVEHIST=100000
+EDITOR="nvim"
 
 # Zsh options
 setopt extendedhistory      # save timestamps in history
@@ -55,15 +58,20 @@ setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds
 unsetopt beep               # don't beep 
 
 # Load plugins & add custom styles
-source "$HOME"/.config/antidote/antidote.zsh
-zstyle ':antidote:bundle' file ~/.zsh_plugins
+source "$ZDOTDIR"/.config/antidote/antidote.zsh
+zstyle ':antidote:bundle' file "$ZDOTDIR"/.zsh_plugins
 zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
 zstyle ':completion:*:descriptions' format '[%d]' # set descriptions format to enable group support
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # set list-colors to enable filename colorizing
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath' # preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -1 --color=always $realpath' # preview directory's content with exa when completing cd
+if type eza >/dev/null; then
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath' # preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath' 
+else
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 $realpath' 
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls -1  $realpath' 
+fi
 zstyle ':fzf-tab:*' switch-group ',' '.' # switch group using `,` and `.`
-antidote load
+type antidote >/dev/null && antidote load
 
 # Load completions paths
 autoload -Uz compinit; compinit
@@ -96,51 +104,13 @@ bindkey "^I"   complete-word
 bindkey "^[f" autosuggest-accept
 
 # Load aliases & functions
-source ~/.zsh_aliases
-source ~/.zsh_functions
-
-# Wezterm fix for exec domains
-__vte_urlencode() (
-  # This is important to make sure string manipulation is handled byte-by-byte.
-  LC_ALL=C
-  str="$1"
-  while [ -n "$str" ]; do
-    safe="${str%%[!a-zA-Z0-9/:_\.\-\!\'\(\)~]*}"
-    printf "%s" "$safe"
-    str="${str#"$safe"}"
-    if [ -n "$str" ]; then
-      printf "%%%02X" "'$str"
-      str="${str#?}"
-    fi
-  done
-)
-
-__vte_osc7 () {
-  printf "\033]7;file://%s%s\007" "${HOSTNAME:-}" "$(__vte_urlencode "${PWD}")"
-}
-
-__vte_prompt_command() {
-  local command=$(HISTTIMEFORMAT= history 1 | sed 's/^ *[0-9]\+ *//')
-  command="${command//;/ }"
-  local pwd='~'
-  [ "$PWD" != "$HOME" ] && pwd=${PWD/#$HOME\//\~\/}
-  printf "\033]777;notify;Command completed;%s\007\033]0;%s@%s:%s\007%s" "${command}" "${USER}" "${HOSTNAME%%.*}" "${pwd}" "$(__vte_osc7)"
-}
-
-case "$TERM" in
-  xterm*|vte*)
-    [ -n "$BASH_VERSION" ] && PROMPT_COMMAND="__vte_prompt_command"
-    [ -n "$ZSH_VERSION"  ] && precmd_functions+=(__vte_osc7)
-    ;;
-esac
+[[ -f "$ZDOTDIR"/.zsh_aliases ]] && source "$ZDOTDIR"/.zsh_aliases
+[[ -f "$ZDOTDIR"/.zsh_functions ]] && source "$ZDOTDIR"/.zsh_functions
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ -f "$ZDOTDIR"/.p10k.zsh ]] && source "$ZDOTDIR"/.p10k.zsh
 
 # >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/home/roxas/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/roxas/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
