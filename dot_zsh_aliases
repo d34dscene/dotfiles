@@ -204,10 +204,13 @@ alias kr="kubectl rollout restart deployment"
 alias krs="kubectl rollout restart statefulset"
 alias kp="kubectl port-forward"
 alias kinfo="kubectl cluster-info"
-alias kpa="kubectl patch -p '{\"metadata\": {\"finalizers\": null}}'"
-alias kdbg="kubectl run -it busybox --image=alpine:latest --restart=Never;kubectl exec -it busybox -- apk --update add curl bind-tools nmap"
-alias kclean="kubectl delete pods --field-selector status.phase=Failed -A"
+
+# Kubernetes Special
+alias kpatch="kubectl patch -p '{\"metadata\": {\"finalizers\": null}}'"
+alias kdebug="kubectl run -it busybox --image=alpine:latest --restart=Never;kubectl exec -it busybox -- apk --update add curl bind-tools nmap"
+alias kdrepl="kubectl delete replicaset $(kubectl get replicaset -o jsonpath='{ .items[?(@.spec.replicas==0)].metadata.name }')"
 alias kdpv="kubectl get pv | grep Released | awk '$1 {print$1}' | while read vol; do kubectl delete pv/${vol}; done"
+alias kclean="kubectl delete pods --field-selector status.phase=Failed -A"
 alias kcsrd="kubectl get csr | grep Denied | awk '{print $1;}' | xargs kubectl delete csr"
 
 # Helm
