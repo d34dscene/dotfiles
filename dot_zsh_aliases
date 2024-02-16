@@ -7,6 +7,7 @@ alias zalias="$EDITOR ~/.zsh_aliases"
 alias zfunc="$EDITOR ~/.zsh_functions"
 alias up="topgrade -y -c --skip-notify"
 alias cd="z"
+alias s="ssh"
 alias nv="nvim"
 alias py="python3"
 alias gi="git-ignore"
@@ -34,6 +35,7 @@ alias l="eza --git-ignore ${eza_params}"
 alias la="eza -lha ${eza_params}"
 alias ll="eza -lh ${eza_params}"
 alias llm="eza -lha --sort=modified ${eza_params}"
+alias lss="eza ${eza_params}"
 alias lt="eza -T -L 3 ${eza_params}"
 alias lx="eza -lbhHigUmuSa@"
 alias cat="bat --style=plain --paging=never --theme=base16"
@@ -57,17 +59,8 @@ alias cze="chezmoi add --encrypt"
 alias czr="chezmoi re-add"
 alias czp="chezmoi update; chezmoi apply"
 
-# Kittens
-alias s="kitten ssh"
-alias kls="ls --hyperlink=auto"
-alias icat="kitten icat"
-alias kdl="kitten transfer"
-alias kup="kitten transfer --direction=upload"
-alias kdiff="kitten diff"
-
 # Youtube
 alias yt="yt-dlp --sponsorblock-remove default"
-alias ytd="yt-dlp -w -o '%(uploader)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias ytx="yt-dlp -x --audio-quality 0 --sponsorblock-remove intro,outro -o '%(uploader)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 # Benchmark
@@ -166,7 +159,7 @@ alias flg="flux get kustomizations"
 alias flw="flux get kustomizations --watch"
 alias fls="flux suspend"
 alias flr="flux resume"
-alias flre="flux reconcile"
+alias file="flux reconcile"
 
 # Cloudflare
 alias cf="flarectl --json"
@@ -211,13 +204,10 @@ alias kr="kubectl rollout restart deployment"
 alias krs="kubectl rollout restart statefulset"
 alias kp="kubectl port-forward"
 alias kinfo="kubectl cluster-info"
-
-# Kubernetes Special
-alias kpatch="kubectl patch -p '{\"metadata\": {\"finalizers\": null}}'"
-alias kdebug="kubectl run -it busybox --image=alpine:latest --restart=Never;kubectl exec -it busybox -- apk --update add curl bind-tools nmap"
-alias kdrepl="kubectl delete replicaset $(kubectl get replicaset -o jsonpath='{ .items[?(@.spec.replicas==0)].metadata.name }')"
-alias kdpv="kubectl get pv | grep Released | awk '$1 {print$1}' | while read vol; do kubectl delete pv/${vol}; done"
+alias kpa="kubectl patch -p '{\"metadata\": {\"finalizers\": null}}'"
+alias kdbg="kubectl run -it busybox --image=alpine:latest --restart=Never;kubectl exec -it busybox -- apk --update add curl bind-tools nmap"
 alias kclean="kubectl delete pods --field-selector status.phase=Failed -A"
+alias kdpv="kubectl get pv | grep Released | awk '$1 {print$1}' | while read vol; do kubectl delete pv/${vol}; done"
 alias kcsrd="kubectl get csr | grep Denied | awk '{print $1;}' | xargs kubectl delete csr"
 
 # Helm
