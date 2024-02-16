@@ -61,6 +61,7 @@ alias czp="chezmoi update; chezmoi apply"
 
 # Youtube
 alias yt="yt-dlp --sponsorblock-remove default"
+alias ytd="yt-dlp -w -o '%(uploader)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias ytx="yt-dlp -x --audio-quality 0 --sponsorblock-remove intro,outro -o '%(uploader)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 # Benchmark
@@ -159,7 +160,7 @@ alias flg="flux get kustomizations"
 alias flw="flux get kustomizations --watch"
 alias fls="flux suspend"
 alias flr="flux resume"
-alias file="flux reconcile"
+alias flre="flux reconcile"
 
 # Cloudflare
 alias cf="flarectl --json"
