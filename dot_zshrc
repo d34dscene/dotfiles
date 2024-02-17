@@ -6,41 +6,41 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # go
-GOPATH=$HOME/.local/go
-PATH=$GOPATH/bin:$PATH
+export GOPATH=$HOME/.local/go
+export PATH=$GOPATH/bin:$PATH
 
 # rust
-CARGO_HOME=$HOME/.local/cargo
-PATH=$CARGO_HOME/bin:$PATH
+export CARGO_HOME=$HOME/.local/cargo
+export PATH=$CARGO_HOME/bin:$PATH
 
 # poetry
-POETRY_HOME=$HOME/.local/poetry
-PATH=$POETRY_HOME/bin:$PATH
+export POETRY_HOME=$HOME/.local/poetry
+export PATH=$POETRY_HOME/bin:$PATH
 
 # pnpm
-PNPM_HOME=$HOME/.local/share/pnpm
-PATH="$PNPM_HOME:$PATH"
+export PNPM_HOME=$HOME/.local/share/pnpm
+export PATH="$PNPM_HOME:$PATH"
 
 # cuda
-CUDA_HOME=/usr/local/cuda
-CUDA_INCLUDE_PATH=$CUDA_HOME/include
-PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
+export CUDA_HOME=/usr/local/cuda
+export CUDA_INCLUDE_PATH=$CUDA_HOME/include
+export PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
 
 # rocm
-PATH=/opt/rocm/bin:$PATH
+export PATH=/opt/rocm/bin:$PATH
 
 # mamba
-MAMBA_EXE=$HOME/.local/bin/micromamba
-MAMBA_ROOT_PREFIX=$HOME/micromamba
+export MAMBA_EXE=$HOME/.local/bin/micromamba
+export MAMBA_ROOT_PREFIX=$HOME/micromamba
 
 # General
-ZDOTDIR=${ZDOTDIR:-$HOME}
-PATH=$HOME/.local/bin:$PATH
-HISTFILE=$HOME/.zsh_history
-HISTIGNORE="*sudo -S*"
-PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
-SAVEHIST=100000
-EDITOR="nvim"
+export ZDOTDIR=${ZDOTDIR:-$HOME}
+export PATH=$HOME/.local/bin:$PATH
+export HISTFILE=$HOME/.zsh_history
+export HISTIGNORE="*sudo -S*"
+export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
+export SAVEHIST=100000
+export EDITOR="nvim"
 
 # Zsh options
 setopt extendedhistory      # save timestamps in history
