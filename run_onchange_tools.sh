@@ -94,10 +94,3 @@ if check "go"; then
 	check "k9s" || go install github.com/derailed/k9s@latest
 	check "duf" || go install github.com/muesli/duf@latest
 fi
-
-# Add zsh plugin manager
-if [[ -e "$HOME/.config/antidote" ]]; then
-	git -C "$HOME"/.config/antidote pull
-else
-	git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-~}"/.config/antidote
-fi
