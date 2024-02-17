@@ -2,16 +2,16 @@
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search kind:defer
-hlissner/zsh-autopair kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
+hlissner/zsh-autopair kind:defer
 ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/copypath
 ohmyzsh/ohmyzsh path:plugins/git-auto-fetch
 ahmetb/kubectx path:completion kind:fpath
 Aloxaf/fzf-tab kind:defer
 ptavares/zsh-direnv kind:defer
-laggardkernel/git-ignore
-jgogstad/passwordless-history
+laggardkernel/git-ignore kind:defer
+jgogstad/passwordless-history kind:defer
 sunlei/zsh-ssh kind:defer
 bonnefoa/kubectl-fzf kind:defer
 
