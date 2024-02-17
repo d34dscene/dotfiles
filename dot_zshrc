@@ -1,11 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-type direnv >/dev/null && emulate zsh -c "$(direnv export zsh)"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-type direnv >/dev/null && emulate zsh -c "$(direnv hook zsh)"
 
 # go
 GOPATH=$HOME/.local/go
@@ -57,8 +55,11 @@ setopt listpacked           # variable col widths
 setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds HISTSIZE
 unsetopt beep               # don't beep 
 
-# Load plugins & add custom styles
+# Install antidote if it doesn't exist
+[[ -d "$ZDOTDIR"/.config/antidote ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR"/.config/antidote
 source "$ZDOTDIR"/.config/antidote/antidote.zsh
+
+# Load plugins & add custom styles
 zstyle ':antidote:bundle' file "$ZDOTDIR"/.zsh_plugins
 zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
 zstyle ':completion:*:descriptions' format '[%d]' # set descriptions format to enable group support
