@@ -28,7 +28,6 @@ o.showmode = false -- Disable showing modes in command line
 o.sidescrolloff = 8 -- Number of columns to keep at the sides of the cursor
 o.signcolumn = "yes" -- Always show the sign column
 o.smartcase = true -- Do not ignore case with capitals
-o.smartindent = true -- Insert indents automatically
 o.splitbelow = true -- Splitting a new window below the current one
 o.splitright = true -- Splitting a new window at the right of the current one
 o.statuscolumn = "%=%{&nu?(&rnu && v:relnum?v:relnum:v:lnum):''}%s%*"
