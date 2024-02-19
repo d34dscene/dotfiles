@@ -9,6 +9,10 @@ alias up="topgrade -y -c --skip-notify"
 alias cd="z"
 alias nv="nvim"
 alias py="python3"
+alias l="ls"
+alias la="ls -la"
+alias ll="ls -lh"
+alias lt="tree -L 3"
 alias gi="git-ignore"
 alias ws="wormhole-william send"
 alias wr="wormhole-william receive"
@@ -29,20 +33,7 @@ alias epoch="date +%s"
 alias cssl="openssl x509 -text -noout -in"
 
 # GNU replacements
-if type eza &>/dev/null; then
-	eza_params=('--git' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
-	alias l="eza --git-ignore ${eza_params}"
-	alias la="eza -lha ${eza_params}"
-	alias ll="eza -lh ${eza_params}"
-	alias llm="eza -lha --sort=modified ${eza_params}"
-	alias lt="eza -T -L 3 ${eza_params}"
-	alias lx="eza -lbhHigUmuSa@"
-else
-	alias l="ls"
-	alias la="ls -la"
-	alias ll="ls -lh"
-	alias lt="tree -L 3"
-fi
+type lsd &>/dev/null && alias ls="lsd --icon=never"
 type bat &>/dev/null && alias cat="bat --style=plain --paging=never --theme=base16"
 type procs &>/dev/null && alias ps="procs --sortd cpu"
 type procs &>/dev/null && alias pst="procs --tree"
