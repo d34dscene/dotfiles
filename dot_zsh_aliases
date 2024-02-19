@@ -6,6 +6,7 @@ alias zplug="$EDITOR ~/.zsh_plugins"
 alias zalias="$EDITOR ~/.zsh_aliases"
 alias zfunc="$EDITOR ~/.zsh_functions"
 alias up="topgrade -y -c --skip-notify"
+alias cd="z"
 alias nv="nvim"
 alias py="python3"
 alias gi="git-ignore"
@@ -14,9 +15,6 @@ alias wr="wormhole-william receive"
 alias dac="direnv allow ."
 alias restore="sudo restorecon -rv"
 alias reload="source ~/.zshrc"
-
-# Checks
-type z &>/dev/null && alias cd="z"
 
 # System aliases
 alias flush="resolvectl flush-caches"

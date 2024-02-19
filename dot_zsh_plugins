@@ -1,5 +1,6 @@
 # Plugins
 zsh-users/zsh-completions
+skywind3000/z.lua kind:defer
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
