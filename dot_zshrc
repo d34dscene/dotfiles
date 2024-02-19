@@ -64,13 +64,9 @@ zstyle ':antidote:bundle' file "$ZDOTDIR"/.zsh_plugins
 zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
 zstyle ':completion:*:descriptions' format '[%d]' # set descriptions format to enable group support
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # set list-colors to enable filename colorizing
-if type eza >/dev/null; then
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath' # preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath' 
-else
+zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 $realpath' 
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls -1  $realpath' 
-fi
+zstyle ':fzf-tab:complete:ls:*' fzf-preview 'ls -1  $realpath' 
 zstyle ':fzf-tab:*' switch-group ',' '.' # switch group using `,` and `.`
 type antidote >/dev/null && antidote load
 
