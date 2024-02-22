@@ -117,7 +117,7 @@ neotree.setup {
 				["u"] = "fuzzy_finder_directory",
 				["D"] = "diff_files",
 				["/"] = "filter_on_submit",
-				["x"] = "clear_filter",
+				["cl"] = "clear_filter",
 				["[g"] = "prev_git_modified",
 				["]g"] = "next_git_modified",
 			},

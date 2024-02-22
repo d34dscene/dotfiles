@@ -11,14 +11,15 @@ command("Format", function(args)
 	require("conform").format { async = true, lsp_fallback = true, range = range }
 end, { range = true })
 
-cmd("BufWritePre", {
-	desc = "Format on save",
-	group = augroup("format_on_save", { clear = true }),
-	pattern = "*",
-	callback = function(args)
-		require("conform").format { bufnr = args.buf, lsp_fallback = true }
-	end,
-})
+command("FormatSave", function(args)
+	local range = nil
+	if args.count ~= -1 then
+		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+		range = { start = { args.line1, 0 }, ["end"] = { args.line2, end_line:len() } }
+	end
+	require("conform").format { lsp_fallback = true, range = range }
+	vim.cmd "w"
+end, { range = true })
 
 cmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	desc = "Reload the file when it changed",
@@ -50,16 +51,6 @@ cmd("FileType", {
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
-	end,
-})
-
-cmd("BufWritePre", {
-	desc = "Run gofmt and goimports on save",
-	group = augroup("gofmt", { clear = true }),
-	pattern = "*.go",
-	callback = function()
-		require("go.format").goimport()
-		require("go.format").gofmt()
 	end,
 })
 
