@@ -21,6 +21,29 @@ command("FormatSave", function(args)
 	vim.cmd "w"
 end, { range = true })
 
+-- Function to automatically add missing imports
+local function addMissingImports()
+	local params = vim.lsp.util.make_range_params()
+	params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
+
+	-- Request code actions for the current buffer
+	vim.lsp.buf_request(0, "textDocument/codeAction", params, function(_, _, actions)
+		if not actions then
+			return
+		end
+
+		for _, action in ipairs(actions) do
+			if action.edit then
+				-- Apply edits to add missing imports
+				vim.lsp.util.apply_workspace_edit(action.edit)
+			end
+		end
+	end)
+end
+
+-- Keymap to trigger the function
+vim.api.nvim_set_keymap("n", "<leader>ia", ":lua addMissingImports()<CR>", { noremap = true, silent = true })
+
 cmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	desc = "Reload the file when it changed",
 	group = augroup("checktime", { clear = true }),

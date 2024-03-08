@@ -44,7 +44,11 @@ local on_attach = function(_, bufnr)
 
 	-- Mappings.
 	--map("<leader>rn", vim.lsp.buf.rename, "Refactor") -- Replaced by inc-rename
-	map("n", "<leader>lc", vim.lsp.buf.code_action, { desc = "Code Action" })
+	map("n", "sc", function()
+		vim.lsp.buf.code_action { context = { only = { "source" } }, apply = true }
+	end, { desc = "Code Action" })
+	-- list code actions
+	map("n", "sx", vim.lsp.buf.code_action, { desc = "Code Action" })
 	map("n", "gt", tsbuiltin.lsp_definitions, { desc = "Goto Definition" })
 	map("n", "gi", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
 	map("n", "gr", tsbuiltin.lsp_references, { desc = "Goto References" })
