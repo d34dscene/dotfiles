@@ -18,7 +18,6 @@ return {
 	-- Design
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
-	{ "lewis6991/gitsigns.nvim", event = { "BufReadPre", "BufNewFile" } }, -- Git decorations
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
@@ -77,6 +76,10 @@ return {
 	"rcarriga/nvim-dap-ui", -- DAP UI
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
 	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
+	{
+		"aznhe21/actions-preview.nvim", -- Code actions preview
+		config = true,
+	},
 	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{

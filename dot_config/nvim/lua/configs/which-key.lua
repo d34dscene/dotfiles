@@ -8,8 +8,7 @@ local mappings = {
 		["<leader>"] = {
 			f = { name = "File" },
 			l = { name = "LSP" },
-			h = { name = "Hunk" },
-			t = { name = "Toggles" },
+			c = { name = "Code Actions" },
 			o = { name = "Ollama" },
 		},
 	},
@@ -25,9 +24,8 @@ local extra_sections = {
 	g = "Go",
 	r = "Replace",
 	s = "Sort",
-	h = "Hunk",
-	t = "Toggles",
 	o = "Ollama",
+	c = "Code Actions",
 }
 
 which_key.setup {

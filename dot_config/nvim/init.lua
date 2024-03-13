@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 -- Main
 require "user.options"
 require "user.keymaps"
@@ -10,7 +12,6 @@ require "configs.alpha"
 require "configs.bufferline"
 require "configs.cmp"
 require "configs.conform"
-require "configs.gitsigns"
 require "configs.lspconfig"
 require "configs.lualine"
 require "configs.neotree"

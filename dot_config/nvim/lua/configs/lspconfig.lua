@@ -9,13 +9,13 @@ mason_lspconfig.setup {
 		"clangd",
 		"dockerls",
 		"gopls",
-		"html",
 		"helm_ls",
+		"html",
 		"jdtls",
 		"jsonls",
 		"lua_ls",
 		"marksman",
-		"pyright",
+		"pylsp",
 		"sqlls",
 		"tailwindcss",
 		"tsserver",
@@ -27,50 +27,31 @@ mason_lspconfig.setup {
 local on_attach = function(_, bufnr)
 	local function map(mode, l, r, opts)
 		opts = opts or {}
+		opts.noremap = true
+		opts.silent = true
 		opts.buffer = bufnr
 		vim.keymap.set(mode, l, r, opts)
-	end
-
-	-- Disable diagnostic for helm charts
-	if vim.bo[bufnr].filetype == "helm" then
-		vim.diagnostic.disable(bufnr)
-		vim.defer_fn(function()
-			vim.diagnostic.reset(nil, bufnr)
-		end, 1000)
 	end
 
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Mappings.
-	--map("<leader>rn", vim.lsp.buf.rename, "Refactor") -- Replaced by inc-rename
-	map("n", "sc", function()
-		vim.lsp.buf.code_action { context = { only = { "source" } }, apply = true }
-	end, { desc = "Code Action" })
-	-- list code actions
-	map("n", "sx", vim.lsp.buf.code_action, { desc = "Code Action" })
 	map("n", "gt", tsbuiltin.lsp_definitions, { desc = "Goto Definition" })
 	map("n", "gi", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
 	map("n", "gr", tsbuiltin.lsp_references, { desc = "Goto References" })
 	map("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
 	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
+	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 	map("n", "<leader>ls", function()
 		require("lsp_signature").toggle_float_win()
 	end, { desc = "Toggle Signature" })
-
-	-- See `:help K` for why this keymap
-	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
-	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 
 	-- Lesser used LSP functionality
 	map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
 	map("n", "gd", vim.lsp.buf.definition, { desc = "Type Definition" })
 	map("n", "gy", vim.lsp.buf.type_definition, { desc = "Type Definition" })
-	map("n", "<leader>la", vim.lsp.buf.add_workspace_folder, { desc = "Workspace Add Folder" })
-	map("n", "<leader>lg", vim.lsp.buf.remove_workspace_folder, { desc = "Workspace Remove Folder" })
-	map("n", "<leader>li", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, { desc = "Workspace List Folders" })
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -111,4 +92,36 @@ mason_lspconfig.setup_handlers {
 			},
 		}
 	end,
+}
+
+local status_ok_s, sonarlint = pcall(require, "sonarlint")
+if not status_ok_s then
+	return
+end
+
+sonarlint.setup {
+	server = {
+		cmd = {
+			"sonarlint-language-server",
+			"-stdio",
+			"-analyzers",
+			-- paths to the analyzers you need, using those for python and java in this example
+			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarpython.jar",
+			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarcfamily.jar",
+			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarjava.jar",
+			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonargo.jar",
+			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarhtml.jar",
+			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarjs.jar",
+			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonariac.jar",
+		},
+	},
+	filetypes = {
+		"python",
+		"cpp",
+		"java",
+		"go",
+		"html",
+		"javascript",
+		"svelte",
+	},
 }

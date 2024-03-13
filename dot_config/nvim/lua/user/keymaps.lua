@@ -70,7 +70,16 @@ map("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason UI" })
 map("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
 
 -- Formatter
-map("n", "<leader>lf", "<cmd>ConformInfo<cr>", { desc = "Conform" })
+map("n", "<leader>lf", "<cmd>ConformInfo<cr>", { desc = "Conform Info" })
+map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
+
+-- Code actions preview
+map({ "v", "n" }, "<leader>cc", function()
+	require("actions-preview").code_actions { context = { only = { "source" } } }
+end, { desc = "Code actions Buffer" })
+map({ "v", "n" }, "<leader>ca", function()
+	require("actions-preview").code_actions()
+end, { desc = "Code actions preview" })
 
 -- Treesj
 map("n", "tt", function()
