@@ -146,12 +146,8 @@ alias bxu="distrobox upgrade"
 alias bxx="distrobox-export --app"
 alias bxnv="nvim ~/.config/distrobox.ini"
 
-# Pyenv
-alias pv="pyenv"
-alias pvi="pyenv install"
-alias pvu="pyenv uninstall"
-alias pvg="pyenv global"
-alias pvv="pyenv versions"
+# Python Virtualenv
+alias pvv="python3 -m venv venv"
 alias svv="source venv/bin/activate"
 
 # Terraform
