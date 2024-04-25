@@ -33,6 +33,10 @@ local on_attach = function(_, bufnr)
 		vim.keymap.set(mode, l, r, opts)
 	end
 
+	if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+		vim.diagnostic.disable()
+	end
+
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
