@@ -158,6 +158,7 @@ map("n", "<leader>gf", "<cmd>GoFillStruct<cr>", { desc = "Go fill struct" })
 map("n", "<leader>ga", "<cmd>GoAddTag<cr>", { desc = "Go add tags" })
 map("n", "<leader>gr", "<cmd>GoRmTag<cr>", { desc = "Go remove tags" })
 map("n", "<leader>gm", "<cmd>GoModTidy<cr>", { desc = "Go mod tidy" })
+map("n", "<leader>gt", "<cmd>GoAddAllTest -bench<cr>", { desc = "Go add tests" })
 
 -- Git Conflict
 map("n", "<leader>gc", "<cmd>GitConflictListQf<cr>", { desc = "Git conflict" })

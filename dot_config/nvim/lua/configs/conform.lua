@@ -19,6 +19,7 @@ conform.setup {
 		sh = { "shfmt", "shellcheck" },
 		zsh = { "shfmt", "shellcheck" },
 		bash = { "shfmt", "shellcheck" },
+		proto = { "buf" },
 		sql = { "sql_formatter" },
 		markdown = { "mdformat" },
 		["*"] = { "codespell" },

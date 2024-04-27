@@ -17,6 +17,7 @@ mason_lspconfig.setup {
 		"marksman",
 		"pylsp",
 		"sqlls",
+		"svelte",
 		"tailwindcss",
 		"tsserver",
 		"yamlls",
@@ -61,71 +62,47 @@ end
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason_lspconfig.setup_handlers {
 	function(server_name)
-		require("lspconfig")[server_name].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
+		if server_name == "clangd" then
+			require("lspconfig").clangd.setup {
+				on_attach = on_attach,
+				capabilities = capabilities,
+				filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+			}
+		else
+			require("lspconfig")[server_name].setup {
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+					yaml = {
+						completion = true,
+						schemaStore = {
+							enable = true,
+						},
+					},
+					gopls = {
+						experimentalPostfixCompletions = true,
+						analyses = {
+							unusedparams = true,
+							shadow = true,
+						},
+						staticcheck = true,
+						hints = {
+							assignVariableTypes = true,
+							compositeLiteralFields = true,
+							compositeLiteralTypes = true,
+							constantValues = true,
+							functionTypeParameters = true,
+							parameterNames = true,
+							rangeVariableTypes = true,
+						},
 					},
 				},
-				yaml = {
-					completion = true,
-					schemaStore = {
-						enable = true,
-					},
-				},
-				gopls = {
-					experimentalPostfixCompletions = true,
-					analyses = {
-						unusedparams = true,
-						shadow = true,
-					},
-					staticcheck = true,
-					hints = {
-						assignVariableTypes = true,
-						compositeLiteralFields = true,
-						compositeLiteralTypes = true,
-						constantValues = true,
-						functionTypeParameters = true,
-						parameterNames = true,
-						rangeVariableTypes = true,
-					},
-				},
-			},
-		}
+			}
+		end
 	end,
-}
-
-local status_ok_s, sonarlint = pcall(require, "sonarlint")
-if not status_ok_s then
-	return
-end
-
-sonarlint.setup {
-	server = {
-		cmd = {
-			"sonarlint-language-server",
-			"-stdio",
-			"-analyzers",
-			-- paths to the analyzers you need, using those for python and java in this example
-			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarpython.jar",
-			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarcfamily.jar",
-			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarjava.jar",
-			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonargo.jar",
-			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarhtml.jar",
-			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonarjs.jar",
-			vim.fn.expand "$MASON/share/sonarlint-analyzers/sonariac.jar",
-		},
-	},
-	filetypes = {
-		"python",
-		"cpp",
-		"java",
-		"go",
-		"html",
-		"javascript",
-		"svelte",
-	},
 }
