@@ -49,6 +49,18 @@ alias xdl="xh -d"
 alias rs="rsync -auh --info=progress2"
 alias rsm="rsync -auessh --info=progress2"
 
+# Systemd
+alias sd="sudo systemctl"
+alias sdus="sudo systemctl --user"
+alias sdusd="sudo systemctl --user daemon-reload"
+alias sdd="sudo systemctl daemon-reload"
+alias sda="sudo systemctl start"
+alias sds="sudo systemctl status"
+alias sdp="sudo systemctl stop"
+alias sde="sudo systemctl enable"
+alias sdi="sudo systemctl disable"
+alias sdr="sudo systemctl daemon-reload; sudo systemctl restart"
+
 # Dotfiles
 alias cz="chezmoi"
 alias cza="chezmoi add"
