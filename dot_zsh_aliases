@@ -71,7 +71,7 @@ alias czp="chezmoi update; chezmoi apply"
 # Kittens
 alias s="kitten ssh"
 alias kls="ls --hyperlink=auto"
-alias icat="kitten icat"
+alias kcat="kitten icat"
 alias knv="kitten edit-in-kitty"
 alias kdl="kitten transfer"
 alias kup="kitten transfer --direction=upload"
