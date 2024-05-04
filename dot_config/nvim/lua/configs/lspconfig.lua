@@ -6,9 +6,11 @@ end
 
 mason_lspconfig.setup {
 	ensure_installed = {
+		"bufls",
 		"clangd",
 		"dockerls",
 		"gopls",
+		"golangci_lint_ls",
 		"helm_ls",
 		"html",
 		"jdtls",
@@ -82,6 +84,9 @@ mason_lspconfig.setup_handlers {
 						completion = true,
 						schemaStore = {
 							enable = true,
+						},
+						schemas = {
+							["https://goreleaser.com/static/schema.json"] = ".goreleaser.{yml,yaml}",
 						},
 					},
 					gopls = {

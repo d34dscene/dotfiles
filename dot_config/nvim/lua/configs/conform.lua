@@ -60,5 +60,8 @@ conform.formatters.prettier = vim.tbl_deep_extend("force", prettier, {
 
 local yamlfmt = require "conform.formatters.yamlfmt"
 conform.formatters.yamlfmt = vim.tbl_deep_extend("force", yamlfmt, {
-	args = util.extend_args(yamlfmt.args, { "-formatter", "indent=2,retain_line_breaks=true" }),
+	args = util.extend_args(
+		yamlfmt.args,
+		{ "-formatter", "indent=2,retain_line_breaks=true,scan_folded_as_literal=true" }
+	),
 })
