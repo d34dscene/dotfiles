@@ -66,7 +66,11 @@ return {
 		build = ":MasonUpdate",
 		config = true,
 	},
-	"williamboman/mason-lspconfig.nvim", -- LSP config helper
+	{
+		"williamboman/mason-lspconfig.nvim", -- LSP config helper
+		config = true,
+	},
+	"WhoIsSethDaniel/mason-tool-installer.nvim", -- LSP tool installer
 	"neovim/nvim-lspconfig", -- LSP config
 	"stevearc/conform.nvim", -- Formatter
 	"tpope/vim-sleuth", -- Indentation detection

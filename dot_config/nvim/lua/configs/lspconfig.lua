@@ -1,30 +1,48 @@
 local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+local status_ok_t, tool = pcall(require, "mason-tool-installer")
 local status_ok_ts, tsbuiltin = pcall(require, "telescope.builtin")
-if not status_ok and not status_ok_ts then
+if not status_ok and not status_ok_t and not status_ok_ts then
 	return
 end
 
-mason_lspconfig.setup {
+tool.setup {
 	ensure_installed = {
-		"bufls",
+		"black",
+		"buf",
 		"clangd",
-		"dockerls",
+		"eslint_d",
+		"gofumpt",
+		"golines",
+		"gomodifytags",
 		"gopls",
-		"golangci_lint_ls",
-		"helm_ls",
-		"html",
+		"gotests",
+		"isort",
 		"jdtls",
-		"jsonls",
-		"lua_ls",
 		"marksman",
-		"pylsp",
+		"prettier",
+		"shellcheck",
+		"shfmt",
+		"sql-formatter",
 		"sqlls",
-		"svelte",
-		"tailwindcss",
-		"tsserver",
-		"yamlls",
+		"staticcheck",
+		"stylua",
+		"helm-ls",
+		"html-lsp",
+		"emmet-language-server",
+		"buf-language-server",
+		"dockerfile-language-server",
+		"golangci-lint-langserver",
+		"lua-language-server",
+		"svelte-language-server",
+		"tailwindcss-language-server",
+		"typescript-language-server",
+		"python-lsp-server",
+		"vim-language-server",
+		"yaml-language-server",
 	},
-	automatic_installation = true,
+
+	auto_update = true,
+	run_on_start = true,
 }
 
 local on_attach = function(_, bufnr)
