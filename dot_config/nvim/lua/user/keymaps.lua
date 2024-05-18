@@ -59,9 +59,6 @@ map("n", "<leader>e", function()
 	}
 end, { desc = "Open Neotree" })
 
--- Markdown Preview
-map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
-
 -- Lazy
 map("n", "<leader>ll", ":Lazy sync<cr>", { desc = "Update plugins" })
 
