@@ -37,18 +37,25 @@ export MAMBA_ROOT_PREFIX=$HOME/micromamba
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 export PATH=$HOME/.local/bin:$PATH
-export HISTFILE=$HOME/.zsh_history
-export HISTIGNORE="*sudo -S*"
 export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
-export SAVEHIST=100000
 export EDITOR="nvim"
 
+# History
+export HISTSIZE=5000
+export SAVEHIST=$HISTSIZE
+export HISTFILE=$HOME/.zsh_history
+export HISTDUP=erase
+export HISTIGNORE="*sudo -S*"
+
 # Zsh options
+setopt appendhistory        # append to HISTFILE
+setopt sharehistory         # share command history
 setopt extendedhistory      # save timestamps in history
 setopt histignoredups       # ignore consecutive dups in history
 setopt histignorespace      # ignore spaces in history
 setopt histfindnodups       # backwards search produces diff result each time
 setopt histreduceblanks     # compact consecutive white space chars
+setopt histsavenodups       # don't save dups in history
 setopt histnostore          # don't store history related functions
 setopt incappendhistory     # incrementally add items to HISTFILE
 setopt extendedglob         # use extended globbing (#, ~, ^)
