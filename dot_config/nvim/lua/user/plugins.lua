@@ -134,9 +134,7 @@ return {
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ":lua require(\"go.install\").update_all_sync()",
-		opts = {
-			lsp_inlay_hints = { right_align = true },
-		},
+		config = true,
 	},
 	{
 		"max397574/better-escape.nvim", -- Smooth escaping
