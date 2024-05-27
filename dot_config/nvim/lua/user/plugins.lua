@@ -131,10 +131,12 @@ return {
 	},
 	{
 		"ray-x/go.nvim", -- Lots of go tools
-		config = true,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ":lua require(\"go.install\").update_all_sync()",
+		opts = {
+			lsp_inlay_hints = { right_align = true },
+		},
 	},
 	{
 		"max397574/better-escape.nvim", -- Smooth escaping
