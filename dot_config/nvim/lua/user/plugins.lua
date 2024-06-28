@@ -4,7 +4,7 @@ return {
 	"nvim-lua/plenary.nvim", -- Lua functions
 	"nvim-lua/popup.nvim", -- Popup API for nvim
 	"ray-x/guihua.lua", -- GUI & Util Library
-	"3rd/image.nvim", -- Image preview
+	--"3rd/image.nvim", -- Image preview
 	"MunifTanjim/nui.nvim", -- UI Library
 	"stevearc/dressing.nvim", -- UI hooks
 	"akinsho/bufferline.nvim", -- Bufferline

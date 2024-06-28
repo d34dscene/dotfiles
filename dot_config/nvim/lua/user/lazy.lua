@@ -17,6 +17,9 @@ require("lazy").setup("user.plugins", {
 	install = { missing = true, colorscheme = { "catppuccin-mocha", "habamax" } },
 	checker = { enabled = true, notify = false },
 	change_detection = { enabled = true, notify = false },
+	rocks = {
+		enabled = false,
+	},
 	performance = {
 		cache = {
 			enabled = true,
