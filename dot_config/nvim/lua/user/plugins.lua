@@ -139,8 +139,8 @@ return {
 		},
 	},
 	{
-		"max397574/better-escape.nvim", -- Smooth escaping
-		opts = { mapping = { "qq" }, keys = "<Esc>", clear_empty_lines = true },
+		"max397574/better-escape.nvim",
+		config = true,
 	},
 	{
 		"johmsalas/text-case.nvim", -- Change text casing

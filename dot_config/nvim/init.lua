@@ -10,6 +10,7 @@ require "user.theme"
 -- Plugin Configs
 require "configs.alpha"
 require "configs.bufferline"
+require "configs.better-escape"
 require "configs.cmp"
 require "configs.conform"
 require "configs.lspconfig"
