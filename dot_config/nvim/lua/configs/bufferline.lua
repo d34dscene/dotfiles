@@ -13,7 +13,6 @@ bufferline.setup {
 			{ filetype = "Outline", text = "File Explorer", padding = 1 },
 		},
 		diagnostics = "nvim_lsp",
-		diagnostics_update_in_insert = true,
 		diagnostics_indicator = function(count, level, _, _)
 			local icon = level:match "error" and " " or " "
 			return " " .. icon .. count
