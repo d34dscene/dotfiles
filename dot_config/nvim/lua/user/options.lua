@@ -42,7 +42,6 @@ o.whichwrap:append "<>[]hl" -- Go to previous/next line on end/beginning
 o.wrap = true -- Wrap lines longer than the width of window
 
 -- Global
-g.mapleader = " " -- Leader key
 g.codeium_disable_bindings = 1
 g.better_escape_interval = 500
 g.highlighturl_enabled = true

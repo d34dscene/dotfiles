@@ -1,10 +1,10 @@
 vim.loader.enable()
 
 -- Main
+require "user.lazy"
 require "user.options"
 require "user.keymaps"
 require "user.autocmds"
-require "user.lazy"
 require "user.theme"
 
 -- Plugin Configs
