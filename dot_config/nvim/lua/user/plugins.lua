@@ -112,10 +112,10 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	"folke/which-key.nvim", -- Key popup
-	"machakann/vim-sandwich", -- Surroundings
 	"tpope/vim-repeat", -- Repeat dot
 	"nomnivore/ollama.nvim", -- Ollama
 	"Exafunction/codeium.vim", -- AI completions
+	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
 	{ "lukas-reineke/headlines.nvim", config = true }, -- Markdown highlights
