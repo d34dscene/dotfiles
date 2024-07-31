@@ -4,7 +4,7 @@ return {
 	"nvim-lua/plenary.nvim", -- Lua functions
 	"nvim-lua/popup.nvim", -- Popup API for nvim
 	"ray-x/guihua.lua", -- GUI & Util Library
-	--"3rd/image.nvim", -- Image preview
+	"3rd/image.nvim", -- Image preview
 	"MunifTanjim/nui.nvim", -- UI Library
 	"stevearc/dressing.nvim", -- UI hooks
 	"akinsho/bufferline.nvim", -- Bufferline
@@ -42,7 +42,6 @@ return {
 		build = ":TSUpdate",
 		dependencies = {
 			"windwp/nvim-ts-autotag", -- Autoclose tags
-			"drybalka/tree-climber.nvim", -- Tree climber
 		},
 	},
 	{
@@ -79,7 +78,6 @@ return {
 	"mfussenegger/nvim-dap", -- DAP plugins
 	"rcarriga/nvim-dap-ui", -- DAP UI
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
-	"nvim-telescope/telescope-dap.nvim", -- DAP telescope extension
 	{
 		"aznhe21/actions-preview.nvim", -- Code actions preview
 		config = true,

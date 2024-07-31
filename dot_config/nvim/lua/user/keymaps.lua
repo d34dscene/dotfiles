@@ -13,7 +13,7 @@ local opts = { noremap = true, silent = true }
 map("", "<Space>", "<Nop>")
 
 -- Standard Operations
-map("n", "ss", ":w<cr>", { desc = "Save" })
+map("n", "ss", ":FormatSave<cr>", { desc = "Save" })
 map("n", "qq", ":q<cr>", { desc = "Quit" })
 
 -- Search and replace
@@ -82,32 +82,6 @@ end, { desc = "Code actions preview" })
 map("n", "tt", function()
 	require("treesj").toggle()
 end, { desc = "Toggle node under cursor" })
-
--- Tree climber
-map({ "n", "v", "o" }, "H", function()
-	require("tree-climber").goto_parent()
-end, { desc = "Tree parent" })
-map({ "n", "v", "o" }, "L", function()
-	require("tree-climber").goto_child()
-end, { desc = "Tree child" })
-map({ "n", "v", "o" }, "J", function()
-	require("tree-climber").goto_next()
-end, { desc = "Tree next node" })
-map({ "n", "v", "o" }, "K", function()
-	require("tree-climber").goto_prev()
-end, { desc = "Tree prev node" })
-map({ "v", "o" }, "in", function()
-	require("tree-climber").select_node()
-end, { desc = "Tree select node" })
-map("n", "<c-l>", function()
-	require("tree-climber").swap_prev()
-end, { desc = "Swap prev node" })
-map("n", "<c-h>", function()
-	require("tree-climber").swap_next()
-end, { desc = "Swap next node" })
-map("n", "<c-h>", function()
-	require("tree-climber").swap_prev()
-end, { desc = "Swap prev node" })
 
 -- Todo
 map("n", "]t", function()
