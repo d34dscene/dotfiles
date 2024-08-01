@@ -29,7 +29,7 @@ map("n", "re", function()
 end, { expr = true, desc = "Refactor expand" })
 
 -- Splits
-map("n", "<leader>v", "<C-w>v", { desc = "Create vertical split" })
+map("n", "vv", "<C-w>v", { desc = "Vertical split" })
 map("n", "<A-h>", "<C-w>h", { desc = "Move to left split" })
 map("n", "<A-j>", "<C-w>j", { desc = "Move to below split" })
 map("n", "<A-k>", "<C-w>k", { desc = "Move to above split" })
@@ -71,10 +71,10 @@ map("n", "<leader>lf", ":ConformInfo<cr>", { desc = "Conform Info" })
 map("n", "<leader>li", ":LspInfo<cr>", { desc = "LSP Info" })
 
 -- Code actions preview
-map({ "v", "n" }, "<leader>cc", function()
+map({ "v", "n" }, "cc", function()
 	require("actions-preview").code_actions { context = { only = { "source" } } }
 end, { desc = "Code actions Buffer" })
-map({ "v", "n" }, "<leader>ca", function()
+map({ "v", "n" }, "ca", function()
 	require("actions-preview").code_actions()
 end, { desc = "Code actions preview" })
 
@@ -92,18 +92,18 @@ map("n", "[t", function()
 end, { desc = "Previous todo comment" })
 
 -- Codium
-map("i", "<A-f>", function()
-	return vim.fn["codeium#Accept"]()
-end, { expr = true })
-map("i", "<PageUp>", function()
-	return vim.fn["codeium#CycleCompletions"](1)
-end, { expr = true })
-map("i", "<PageDown>", function()
-	return vim.fn["codeium#CycleCompletions"](-1)
-end, { expr = true })
-map("i", "<A-[>", function()
-	return vim.fn["codeium#Clear"]()
-end, { expr = true })
+-- map("i", "<A-f>", function()
+-- 	return vim.fn["codeium#Accept"]()
+-- end, { expr = true })
+-- map("i", "<PageUp>", function()
+-- 	return vim.fn["codeium#CycleCompletions"](1)
+-- end, { expr = true })
+-- map("i", "<PageDown>", function()
+-- 	return vim.fn["codeium#CycleCompletions"](-1)
+-- end, { expr = true })
+-- map("i", "<A-[>", function()
+-- 	return vim.fn["codeium#Clear"]()
+-- end, { expr = true })
 
 -- Ollama
 map("n", "<leader>oo", ":<c-u>lua require('ollama').prompt()<cr>", { desc = "Show prompts" })
@@ -171,6 +171,12 @@ map("n", "<leader>fd", function()
 	require("telescope.builtin").diagnostics()
 end, { desc = "Search diagnostics" })
 map("n", "<leader>ft", ":TodoTelescope<cr>", { desc = "Search Todos" })
+
+-- Trouble
+map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics" })
+map("n", "<leader>xf", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics" })
+map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List" })
+map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List" })
 
 -- Flash
 map({ "n", "x", "o" }, "f", function()

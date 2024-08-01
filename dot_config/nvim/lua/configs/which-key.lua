@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 which_key.setup {
+	icons = { mappings = false },
 	plugins = {
 		spelling = { enabled = true },
 		presets = { operators = false },
@@ -16,6 +17,7 @@ which_key.add {
 	{ "<leader>g", group = "Go", nowait = false, remap = false },
 	{ "<leader>l", group = "LSP", nowait = false, remap = false },
 	{ "<leader>r", group = "Replace", nowait = false, remap = false },
+	{ "<leader>x", group = "Trouble", nowait = false, remap = false },
 	{ "<leader>s", group = "Sort", mode = "v", nowait = false, remap = false },
 	{
 		mode = { "n", "v" },

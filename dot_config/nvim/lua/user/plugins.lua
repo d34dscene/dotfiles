@@ -19,7 +19,9 @@ return {
 	-- ------------------------------------------------------------------------
 	"goolord/alpha-nvim", -- Dashboard
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
+	{ "brenoprata10/nvim-highlight-colors", config = true }, -- Highlight colors
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
+	{ "folke/trouble.nvim", config = true }, -- Quickfix list
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{
 		"j-hui/fidget.nvim", -- LSP progress
@@ -29,10 +31,6 @@ return {
 				window = { winblend = 0 },
 			},
 		},
-	},
-	{
-		"NvChad/nvim-colorizer.lua", -- Colorize rgb codes
-		opts = { user_default_options = { names = false } },
 	},
 
 	-- Treesitter
@@ -44,19 +42,9 @@ return {
 			"windwp/nvim-ts-autotag", -- Autoclose tags
 		},
 	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring", -- Context based commenting
-		config = true,
-	},
-	{
-		"Wansmer/treesj", -- Node splits/joins
-		opts = { use_default_keymaps = false },
-	},
-	{
-		"sustech-data/wildfire.nvim", -- Incremental bracket selection
-		event = "VeryLazy",
-		config = true,
-	},
+	{ "JoosepAlviste/nvim-ts-context-commentstring", config = true }, -- Context based commenting
+	{ "sustech-data/wildfire.nvim", config = true }, -- Incremental bracket selection
+	{ "Wansmer/treesj", opts = { use_default_keymaps = false } }, -- Node splits/joins
 
 	-- LSP
 	-- ------------------------------------------------------------------------
@@ -65,23 +53,17 @@ return {
 		build = ":MasonUpdate",
 		config = true,
 	},
-	{
-		"williamboman/mason-lspconfig.nvim", -- LSP config helper
-		config = true,
-	},
+	{ "williamboman/mason-lspconfig.nvim", config = true }, -- LSP config helper
 	"WhoIsSethDaniel/mason-tool-installer.nvim", -- LSP tool installer
 	"neovim/nvim-lspconfig", -- LSP config
 	"stevearc/conform.nvim", -- Formatter
 	"tpope/vim-sleuth", -- Indentation detection
-	"pearofducks/ansible-vim", -- Ansible support
 	"towolf/vim-helm", -- Helm support
+	"pearofducks/ansible-vim", -- Ansible support
 	"mfussenegger/nvim-dap", -- DAP plugins
 	"rcarriga/nvim-dap-ui", -- DAP UI
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
-	{
-		"aznhe21/actions-preview.nvim", -- Code actions preview
-		config = true,
-	},
+	{ "aznhe21/actions-preview.nvim", config = true }, -- Code actions preview
 	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{
@@ -93,43 +75,6 @@ return {
 		"ray-x/lsp_signature.nvim", -- Show signature
 		event = "VeryLazy",
 		opts = { floating_window = false },
-	},
-	{
-		"echasnovski/mini.indentscope", -- Indentation Animation
-		version = "*",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			draw = { delay = 100 },
-		},
-		config = function(_, opts)
-			require("mini.indentscope").setup(opts)
-			-- Disable for certain filetypes
-			vim.api.nvim_create_autocmd({ "FileType" }, {
-				desc = "Disable indentscope for certain filetypes",
-				callback = function()
-					local ignored_filetypes = {
-						"aerial",
-						"dashboard",
-						"help",
-						"lazy",
-						"leetcode.nvim",
-						"mason",
-						"neo-tree",
-						"NvimTree",
-						"neogitstatus",
-						"notify",
-						"startify",
-						"toggleterm",
-						"Trouble",
-						"calltree",
-						"coverage",
-					}
-					if vim.tbl_contains(ignored_filetypes, vim.bo.filetype) then
-						vim.b.miniindentscope_disable = true
-					end
-				end,
-			})
-		end,
 	},
 
 	-- Completion
@@ -149,11 +94,23 @@ return {
 	"folke/which-key.nvim", -- Key popup
 	"tpope/vim-repeat", -- Repeat dot
 	"nomnivore/ollama.nvim", -- Ollama
-	"Exafunction/codeium.vim", -- AI completions
+	--"Exafunction/codeium.vim", -- AI completions
 	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
-	{ "lukas-reineke/headlines.nvim", config = true }, -- Markdown highlights
+	{ "max397574/better-escape.nvim", config = true }, -- Fast escape
+	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing
+	{ "numToStr/Comment.nvim", opts = { mappings = false } }, -- Smart commenting
+	{
+		"supermaven-inc/supermaven-nvim", -- AI completions
+		opts = {
+			keymaps = {
+				accept_suggestion = "<M-f>",
+				clear_suggestion = "<M-d>",
+				accept_word = "<M-a>",
+			},
+		},
+	},
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",
@@ -172,18 +129,6 @@ return {
 		opts = {
 			lsp_inlay_hints = { style = "eol" },
 		},
-	},
-	{
-		"max397574/better-escape.nvim",
-		config = true,
-	},
-	{
-		"johmsalas/text-case.nvim", -- Change text casing
-		opts = { prefix = "t" },
-	},
-	{
-		"numToStr/Comment.nvim", -- Smart commenting
-		opts = { mappings = { basic = false, extra = false } },
 	},
 	{
 		"iamcco/markdown-preview.nvim", -- Live Markdown preview
