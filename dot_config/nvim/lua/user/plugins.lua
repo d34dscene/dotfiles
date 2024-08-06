@@ -21,6 +21,7 @@ return {
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "brenoprata10/nvim-highlight-colors", config = true }, -- Highlight colors
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
+	{ "lewis6991/gitsigns.nvim", config = true }, -- Git signs
 	{ "folke/trouble.nvim", config = true }, -- Quickfix list
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{

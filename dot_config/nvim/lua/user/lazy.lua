@@ -20,7 +20,7 @@ vim.g.maplocalleader = "\\"
 
 -- load lazy
 require("lazy").setup("user.plugins", {
-	defaults = { lazy = true },
+	defaults = { lazy = false },
 	install = { missing = true, colorscheme = { "catppuccin-mocha", "habamax" } },
 	checker = { enabled = true, notify = false },
 	rocks = { enabled = vim.fn.executable "luarocks" == 1 },

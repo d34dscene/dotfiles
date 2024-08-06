@@ -58,11 +58,11 @@ o.diffopt:append { "algorithm:histogram", "linematch:60" } -- Enable linematch d
 
 -- Global
 g.diagnostics_mode = 3
-g.better_escape_interval = 500
-g.transparent_enabled = true
 g.url_effect_enabled = true
+g.transparent_enabled = true
 g.codelens_enabled = true
 g.codeactions_enabled = true
+g.better_escape_interval = 500
 g.semantic_tokens_enabled = true
 g.codeium_disable_bindings = 1
 
