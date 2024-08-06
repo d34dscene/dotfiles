@@ -20,14 +20,12 @@ vim.g.maplocalleader = "\\"
 
 -- load lazy
 require("lazy").setup("user.plugins", {
-	defaults = { lazy = false, version = false },
+	defaults = { lazy = true },
 	install = { missing = true, colorscheme = { "catppuccin-mocha", "habamax" } },
 	checker = { enabled = true, notify = false },
+	rocks = { enabled = vim.fn.executable "luarocks" == 1 },
 	change_detection = { enabled = true, notify = false },
 	performance = {
-		cache = {
-			enabled = true,
-		},
 		rtp = {
 			disabled_plugins = {
 				"gzip",
