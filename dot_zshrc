@@ -30,10 +30,6 @@ export PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
 # rocm
 export PATH=/opt/rocm/bin:$PATH
 
-# mamba
-export MAMBA_EXE=$HOME/.local/bin/micromamba
-export MAMBA_ROOT_PREFIX=$HOME/micromamba
-
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 export PATH=$HOME/.local/bin:$PATH
@@ -114,13 +110,3 @@ bindkey "^[f" autosuggest-accept
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f "$ZDOTDIR"/.p10k.zsh ]] && source "$ZDOTDIR"/.p10k.zsh
-
-# >>> mamba initialize >>>
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<

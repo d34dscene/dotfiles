@@ -1,12 +1,12 @@
 # Plugins
-zsh-users/zsh-completions
+zsh-users/zsh-completions kind:defer
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
 hlissner/zsh-autopair kind:defer
-ohmyzsh/ohmyzsh path:plugins/sudo
-ohmyzsh/ohmyzsh path:plugins/copypath
-ohmyzsh/ohmyzsh path:plugins/git-auto-fetch
+ohmyzsh/ohmyzsh path:plugins/sudo kind:defer
+ohmyzsh/ohmyzsh path:plugins/copypath kind:defer
+ohmyzsh/ohmyzsh path:plugins/git-auto-fetch kind:defer
 ahmetb/kubectx path:completion kind:fpath
 Aloxaf/fzf-tab kind:defer
 ptavares/zsh-direnv kind:defer
