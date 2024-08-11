@@ -68,7 +68,7 @@ alias cz="chezmoi"
 alias cza="chezmoi add"
 alias cze="chezmoi add --encrypt"
 alias czr="chezmoi re-add"
-alias czp="chezmoi update; chezmoi apply"
+alias czp="chezmoi update"
 
 # Kittens
 alias s="kitten ssh"
