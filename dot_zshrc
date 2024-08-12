@@ -104,6 +104,9 @@ bindkey "^[[B" history-substring-search-down
 bindkey "^I"   complete-word       
 bindkey "^[f" autosuggest-accept
 
+# Various plugin settings
+export YSU_MESSAGE_FORMAT="Existing %alias_type for %command => %alias"
+
 # Load aliases & functions
 [[ -f "$ZDOTDIR"/.zsh_aliases ]] && source "$ZDOTDIR"/.zsh_aliases
 [[ -f "$ZDOTDIR"/.zsh_functions ]] && source "$ZDOTDIR"/.zsh_functions

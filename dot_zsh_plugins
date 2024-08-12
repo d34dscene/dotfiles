@@ -9,6 +9,7 @@ ohmyzsh/ohmyzsh path:plugins/copypath kind:defer
 ohmyzsh/ohmyzsh path:plugins/git-auto-fetch kind:defer
 ahmetb/kubectx path:completion kind:fpath
 MichaelAquilina/zsh-autoswitch-virtualenv kind:defer
+MichaelAquilina/zsh-you-should-use kind:defer
 Aloxaf/fzf-tab kind:defer
 ptavares/zsh-direnv kind:defer
 laggardkernel/git-ignore kind:defer
