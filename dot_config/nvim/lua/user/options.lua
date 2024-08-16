@@ -4,7 +4,6 @@ local g = vim.g
 -- options
 o.breakindent = true -- Wrap indent to match  line start.
 o.clipboard = "unnamedplus" -- Connection to the system clipboard.
-o.cmdheight = 0 -- Hide command line unless needed.
 o.completeopt = { "menu", "menuone", "noselect" } -- Options for insert mode completion.
 o.copyindent = true -- Copy the previous indentation on autoindenting.
 o.cursorline = true -- Highlight the text line of the cursor.
@@ -17,6 +16,7 @@ o.foldlevelstart = 99 -- Start with all code unfolded.
 o.foldcolumn = "1" -- Show foldcolumn in nvim 0.9+.
 o.ignorecase = true -- Case insensitive searching.
 o.infercase = true -- Infer cases in keyword completion.
+o.autoread = true -- Automatically read file when changed from outside.
 
 o.laststatus = 3 -- Global statusline.
 o.linebreak = true -- Wrap lines at 'breakat'.
@@ -47,7 +47,6 @@ o.wrap = true -- Disable wrapping of lines longer than the width of window.
 o.colorcolumn = "80" -- PEP8 like character limit vertical bar.
 o.mousescroll = "ver:1,hor:0" -- Disables hozirontal scroll in neovim.
 o.guicursor = "n:blinkon200,i-ci-ve:ver25" -- Enable cursor blink.
-o.scrolloff = 1000 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
 o.sidescrolloff = 8 -- Same but for side scrolling.
 o.selection = "old" -- Don't select the newline symbol when using <End> on visual mode.
 

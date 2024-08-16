@@ -98,7 +98,6 @@ return {
 	--"Exafunction/codeium.vim", -- AI completions
 	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
-	{ "lilibyte/tabhula.nvim", config = true }, -- Tabout context
 	{ "max397574/better-escape.nvim", config = true }, -- Fast escape
 	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing
 	{ "numToStr/Comment.nvim", opts = { mappings = false } }, -- Smart commenting

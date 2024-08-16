@@ -192,8 +192,8 @@ end, { desc = "Flash" })
 -- Move text up and down
 map("n", "<A-Up>", ":move .-2<CR>==", { desc = "Move line up" })
 map("n", "<A-Down>", ":move .+1<CR>==", { desc = "Move line down" })
-map("v", "<A-Up>", ":move-2<cr>gv=gv", { desc = "Move block up" })
-map("v", "<A-Down>", ":move'>+<cr>gv=gv", { desc = "Move block down" })
+map("v", "<A-Up>", ":move-2<CR>gv=gv", { desc = "Move block up" })
+map("v", "<A-Down>", ":move'>+<CR>gv=gv", { desc = "Move block down" })
 
 -- Jump between windows + close terminal
 map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
