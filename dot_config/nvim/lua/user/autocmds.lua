@@ -80,3 +80,22 @@ cmd("User", {
 		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
 	end,
 })
+
+local large_file_size = 100000 -- 100KB
+cmd("BufReadPre", {
+	desc = "Disable certain features for large files",
+	group = augroup("large_file_optimization", { clear = true }),
+	callback = function()
+		local file_size = vim.fn.getfsize(vim.fn.expand "%")
+		if file_size > large_file_size then
+			vim.opt_local.syntax = "off"
+			vim.opt_local.swapfile = false
+			vim.opt_local.bufhidden = "unload"
+			vim.opt_local.undofile = false
+			vim.opt_local.foldenable = false
+			vim.opt_local.spell = false
+			vim.opt_local.relativenumber = false
+			vim.opt_local.number = false
+		end
+	end,
+})

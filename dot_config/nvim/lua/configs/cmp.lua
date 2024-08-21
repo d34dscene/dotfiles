@@ -39,16 +39,14 @@ local cmp_kinds = {
 local compare = require "cmp.config.compare"
 
 cmp.setup {
+	preselect = cmp.PreselectMode.None,
 	sorting = {
-		priority_weight = 2,
+		priority_weight = 1.0,
 		comparators = {
-			compare.offset,
-			compare.exact,
-			compare.score,
-			compare.recently_used,
 			compare.locality,
-			compare.kind,
-			compare.length,
+			compare.recently_used,
+			compare.score,
+			compare.offset,
 			compare.order,
 		},
 	},
@@ -84,6 +82,7 @@ cmp.setup {
 	},
 	duplicates = {
 		nvim_lsp = 1,
+		lazydev = 1,
 		luasnip = 1,
 		cmp_tabnine = 1,
 		buffer = 1,
@@ -137,12 +136,16 @@ cmp.setup {
 			end
 		end,
 	},
+	confirm_opts = {
+		behavior = cmp.ConfirmBehavior.Replace,
+		select = false,
+	},
 	sources = cmp.config.sources {
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
-		{ name = "luasnip" },
-		{ name = "path" },
-		{ { name = "buffer", keyword_length = 2 } },
+		{ name = "nvim_lsp", priority = 1000 },
+		{ name = "lazydev", priority = 850 },
+		{ name = "luasnip", priority = 750 },
+		{ name = "buffer", priority = 500 },
+		{ name = "path", priority = 250 },
 	},
 }
 

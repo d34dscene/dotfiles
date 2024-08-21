@@ -49,6 +49,8 @@ o.mousescroll = "ver:1,hor:0" -- Disables hozirontal scroll in neovim.
 o.guicursor = "n:blinkon200,i-ci-ve:ver25" -- Enable cursor blink.
 o.sidescrolloff = 8 -- Same but for side scrolling.
 o.selection = "old" -- Don't select the newline symbol when using <End> on visual mode.
+o.ttyfast = true -- Enable async scrolling in terminal.
+o.lazyredraw = true -- Do not redraw while executing macros, registers and other commands that have not been typed.
 
 o.viewoptions:remove "curdir" -- Disable saving current directory with views.
 o.shortmess:append { s = true, I = true } -- Disable startup message.
