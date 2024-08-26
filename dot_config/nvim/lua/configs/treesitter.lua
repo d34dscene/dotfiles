@@ -13,6 +13,10 @@ configs.setup {
 			if ok and stats and stats.size > max_filesize then
 				return true
 			end
+			-- Ignore chezmoi templates
+			if string.find(vim.bo.filetype, "chezmoitmpl") then
+				return true
+			end
 		end,
 		additional_vim_regex_highlighting = false,
 	},

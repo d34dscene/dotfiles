@@ -131,6 +131,12 @@ return {
 		},
 	},
 	{
+		"alker0/chezmoi.vim", -- Chezmoi syntax highlighting
+		init = function()
+			vim.g["chezmoi#use_tmp_buffer"] = true
+		end,
+	},
+	{
 		"iamcco/markdown-preview.nvim", -- Live Markdown preview
 		build = function()
 			vim.fn["mkdp#util#install"]()

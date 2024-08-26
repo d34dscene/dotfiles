@@ -40,7 +40,7 @@ flatpak install --noninteractive flathub com.github.tchx84.Flatseal \
 {{ if eq .chezmoi.osRelease.variantID "server" -}}
 sudo dnf install -y dnf-automatic dnf-plugins-core htop zsh unar git git-lfs \
 	openssl curl lsd fd-find ripgrep fzf tldr ncdu zoxide jq lm_sensors age \
-	neovim python3-neovim anacron rsnapshot nfs-utils
+	neovim python3-neovim anacron rsnapshot tuned nfs-utils
 
 # Add docker
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
