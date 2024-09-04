@@ -81,18 +81,6 @@ cmd("User", {
 	end,
 })
 
--- cmd({ "BufRead", "BufNewFile" }, {
--- 	desc = "Set filetype for *.tmpl files",
--- 	group = augroup("detect_filetype", { clear = true }),
--- 	pattern = "*.tmpl",
--- 	callback = function()
--- 		local ext = vim.fn.matchstr(vim.fn.expand "%:t", "\\v\\.(.*)\\.tmpl$")
--- 		if ext ~= "" then
--- 			vim.opt_local.filetype = ext
--- 		end
--- 	end,
--- })
-
 local large_file_size = 100000 -- 100KB
 cmd("BufReadPre", {
 	desc = "Disable certain features for large files",

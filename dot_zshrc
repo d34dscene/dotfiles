@@ -35,9 +35,10 @@ export ZDOTDIR=${ZDOTDIR:-$HOME}
 export PATH=$HOME/.local/bin:$PATH
 export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
 export EDITOR="nvim"
+export VISUAL="nvim"
 
 # History
-export HISTSIZE=5000
+export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=$HOME/.zsh_history
 export HISTDUP=erase
@@ -57,6 +58,7 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 setopt extendedglob         # use extended globbing (#, ~, ^)
 setopt listpacked           # variable col widths
 setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt sharehistory         # share command history
 unsetopt beep               # don't beep 
 
 # Install antidote if it doesn't exist
@@ -89,6 +91,9 @@ prompt powerlevel10k
 # Load zoxide
 type zoxide >/dev/null && eval "$(zoxide init zsh)"
 
+# Load direnv
+type direnv >/dev/null && eval "$(direnv hook zsh)"
+
 # Additional completions
 type kubectl >/dev/null && source <(kubectl completion zsh)
 type docker >/dev/null && source <(docker completion zsh)
@@ -106,6 +111,7 @@ bindkey "^[f" autosuggest-accept
 
 # Various plugin settings
 export YSU_MESSAGE_FORMAT="Existing %alias_type for %command => %alias"
+unset ZSH_AUTOSUGGEST_USE_ASYNC # fix prompt error
 
 # Load aliases & functions
 [[ -f "$ZDOTDIR"/.zsh_aliases ]] && source "$ZDOTDIR"/.zsh_aliases
