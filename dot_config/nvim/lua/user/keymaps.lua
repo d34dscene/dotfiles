@@ -126,6 +126,7 @@ map("n", "<leader>gr", ":GoRmTag<cr>", { desc = "Go remove tags" })
 map("n", "<leader>gm", ":GoModTidy<cr>", { desc = "Go mod tidy" })
 map("n", "<leader>gl", ":GoLint<cr>", { desc = "Go lint" })
 map("n", "<leader>gt", ":GoAddAllTest -bench<cr>", { desc = "Go add tests" })
+map("n", "<leader>gv", ":GoCoverage<cr>", { desc = "Go coverage" })
 
 -- Git Conflict
 map("n", "<leader>gc", ":GitConflictListQf<cr>", { desc = "Git conflict" })
@@ -177,6 +178,9 @@ map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnost
 map("n", "<leader>xf", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics" })
 map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List" })
+
+-- Markdown Preview
+map("n", "<leader>mm", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Flash
 map({ "n", "x", "o" }, "f", function()

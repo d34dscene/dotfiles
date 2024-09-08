@@ -45,6 +45,17 @@ tool.setup {
 	run_on_start = true,
 }
 
+local diagnostic_signs = {
+	{ name = "DiagnosticSignError", text = "" },
+	{ name = "DiagnosticSignWarn", text = "" },
+	{ name = "DiagnosticSignHint", text = "󰌵" },
+	{ name = "DiagnosticSignInfo", text = "" },
+}
+
+for _, sign in ipairs(diagnostic_signs) do
+	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+end
+
 local on_attach = function(_, bufnr)
 	local function map(mode, l, r, opts)
 		opts = opts or {}
@@ -58,8 +69,22 @@ local on_attach = function(_, bufnr)
 		vim.diagnostic.disable()
 	end
 
+	vim.diagnostic.config {
+		virtual_text = { spacing = 4, prefix = "" },
+		underline = true,
+		update_in_insert = false,
+		severity_sort = true,
+	}
+
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		style = "minimal",
+	})
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+		style = "minimal",
+	})
 
 	-- Mappings.
 	map("n", "gt", tsbuiltin.lsp_definitions, { desc = "Goto Definition" })
