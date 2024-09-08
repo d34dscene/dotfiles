@@ -28,7 +28,7 @@ o.shiftwidth = 2 -- Number of space inserted for indentation.
 o.showmode = false -- Disable showing modes in command line.
 o.showtabline = 2 -- always display tabline.
 o.signcolumn = "yes" -- Always show the sign column.
-o.statuscolumn = "%=%{&nu?(&rnu && v:relnum?v:relnum:v:lnum):''}%s%*" -- Statusline
+o.statuscolumn = "%=%{&nu?(&rnu && v:relnum?v:relnum:v:lnum):''} %s%*" -- Statusline
 o.smartcase = true -- Case sensitivie searching.
 o.smartindent = false -- Smarter autoindentation.
 o.splitbelow = true -- Splitting a new window below the current one.
