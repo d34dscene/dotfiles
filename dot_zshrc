@@ -91,9 +91,6 @@ prompt powerlevel10k
 # Load zoxide
 type zoxide >/dev/null && eval "$(zoxide init zsh)"
 
-# Load direnv
-type direnv >/dev/null && eval "$(direnv hook zsh)"
-
 # Additional completions
 type kubectl >/dev/null && source <(kubectl completion zsh)
 type docker >/dev/null && source <(docker completion zsh)
