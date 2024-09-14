@@ -95,22 +95,22 @@ return {
 	"folke/which-key.nvim", -- Key popup
 	"tpope/vim-repeat", -- Repeat dot
 	"nomnivore/ollama.nvim", -- Ollama
-	--"Exafunction/codeium.vim", -- AI completions
+	"Exafunction/codeium.vim", -- AI completions
 	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "max397574/better-escape.nvim", config = true }, -- Fast escape
 	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing
 	{ "numToStr/Comment.nvim", opts = { mappings = false } }, -- Smart commenting
-	{
-		"supermaven-inc/supermaven-nvim", -- AI completions
-		opts = {
-			keymaps = {
-				accept_suggestion = "<M-f>",
-				clear_suggestion = "<M-d>",
-				accept_word = "<M-a>",
-			},
-		},
-	},
+	-- {
+	-- 	"supermaven-inc/supermaven-nvim", -- AI completions
+	-- 	opts = {
+	-- 		keymaps = {
+	-- 			accept_suggestion = "<M-f>",
+	-- 			clear_suggestion = "<M-d>",
+	-- 			accept_word = "<M-a>",
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",
