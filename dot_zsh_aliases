@@ -5,10 +5,10 @@ alias zenv="$EDITOR ~/.zshenv"
 alias zplug="$EDITOR ~/.zsh_plugins"
 alias zalias="$EDITOR ~/.zsh_aliases"
 alias zfunc="$EDITOR ~/.zsh_functions"
+alias ..='cd ..'
 alias path='echo -e "${PATH//:/\\n}"'
 alias up="topgrade -y -c --skip-notify"
 alias nv="nvim"
-alias py="python3"
 alias l="ls"
 alias la="ls -la --permission=octal"
 alias ll="ls -lh --permission=octal"
@@ -23,14 +23,15 @@ alias signalwork="flatpak run org.signal.Signal --user-data-dir=$HOME/.var/app/o
 
 # System aliases
 alias flush="resolvectl flush-caches"
-alias vblk="lsblk -o PATH,SIZE,RO,TYPE,FSTYPE,MOUNTPOINT,UUID,MODEL"
 alias bios="systemctl reboot --firmware-setup"
+alias vblk="lsblk -o PATH,SIZE,RO,TYPE,FSTYPE,MOUNTPOINT,UUID,MODEL"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
 alias sec="fwupdmgr security"
 alias kll="pkill -SIGKILL"
+alias distro="cat /etc/*-release"
 alias battery="sudo tlp-stat -b"
-alias ram="sudo lshw -short -C memory"
 alias epoch="date +%s"
+alias myip="curl ifconfig.me"
 alias cssl="openssl x509 -text -noout -in"
 
 # GNU replacements
@@ -49,6 +50,9 @@ alias xd="xh delete --verify no"
 alias xdl="xh -d"
 alias rs="rsync -auh --info=progress2"
 alias rsm="rsync -auessh --info=progress2"
+
+# Suffixes
+alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=cat
 
 # Systemd
 alias sd="sudo systemctl"
@@ -114,9 +118,25 @@ alias grau="git remote add upstream"
 alias grap="git remote set-url --add --push origin"
 
 # Go
+alias goi="go install"
+alias gom="go mod"
+alias gomu="go mod tidy; go mod vendor"
+alias gomt="go mod tidy"
+alias gomv="go mod vendor"
+alias goc="go clean -i; go clean -i -cache; go clean -i -testcache"
 alias gou="go get -u; go mod tidy"
 alias gob="go clean; go build"
 alias gor="go run main.go"
+
+# Python
+alias py="python3"
+alias pip="pip3"
+alias pipu="pip3 install --upgrade"
+alias pipi="pip3 install"
+
+# Python Virtualenv
+alias pvv="python3 -m venv venv"
+alias svv="source venv/bin/activate"
 
 # npm/pnpm
 alias n="pnpm"
@@ -158,6 +178,7 @@ alias dsp="docker system prune -af --volumes"
 alias dc="docker compose"
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
+alias dcp="docker compose pull"
 
 # Podman
 alias pd="podman"
@@ -182,10 +203,6 @@ alias bxl="distrobox list"
 alias bxu="distrobox upgrade"
 alias bxx="distrobox-export --app"
 alias bxnv="nvim ~/.config/distrobox.ini"
-
-# Python Virtualenv
-alias pvv="python3 -m venv venv"
-alias svv="source venv/bin/activate"
 
 # Terraform
 alias tf="terraform"
