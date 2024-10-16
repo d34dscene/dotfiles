@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # go
-export GOBIN=$HOME/.local/go//bin
+export GOBIN=$HOME/.local/go/bin
 export PATH=$GOBIN:$PATH
 
 # rust
