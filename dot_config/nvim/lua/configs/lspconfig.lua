@@ -105,6 +105,8 @@ local on_attach = function(_, bufnr)
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+--local capabilities = require("blink.cmp").get_lsp_capabilities()
+
 mason_lspconfig.setup_handlers {
 	function(server_name)
 		if server_name == "clangd" then
