@@ -24,10 +24,6 @@ conform.setup {
 		["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
 	},
-	format_on_save = {
-		timeout_ms = 2500,
-		lsp_fallback = true,
-	},
 }
 
 -- Custom commands
