@@ -53,11 +53,6 @@ conform.formatters.stylua = vim.tbl_deep_extend("force", stylua, {
 	args = util.extend_args(stylua.args, { "--quote-style", "ForceDouble", "--call-parentheses", "None" }),
 })
 
-local prettier = require "conform.formatters.prettier"
-conform.formatters.prettier = vim.tbl_deep_extend("force", prettier, {
-	args = util.extend_args(prettier.args, { "--tab", "--indent", "4" }),
-})
-
 local black = require "conform.formatters.black"
 conform.formatters.black = vim.tbl_deep_extend("force", black, {
 	args = util.extend_args(black.args, { "--line-length", "79" }),

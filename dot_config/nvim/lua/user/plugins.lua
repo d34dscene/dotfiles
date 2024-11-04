@@ -58,7 +58,6 @@ return {
 	"WhoIsSethDaniel/mason-tool-installer.nvim", -- LSP tool installer
 	"neovim/nvim-lspconfig", -- LSP config
 	"stevearc/conform.nvim", -- Formatter
-	"tpope/vim-sleuth", -- Indentation detection
 	"towolf/vim-helm", -- Helm support
 	"pearofducks/ansible-vim", -- Ansible support
 	"mfussenegger/nvim-dap", -- DAP plugins
