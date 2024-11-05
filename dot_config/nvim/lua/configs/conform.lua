@@ -20,7 +20,7 @@ conform.setup {
 		bash = { "shfmt", "shellcheck" },
 		proto = { "buf" },
 		sql = { "sql_formatter" },
-		markdown = { "mdformat" },
+		markdown = { "prettier" },
 		["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
 	},
