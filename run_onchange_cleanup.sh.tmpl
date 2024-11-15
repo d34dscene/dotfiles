@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Better dnf config
+{{ if eq .chezmoi.osRelease.id "fedora" -}}
+sudo dnf autoremove -y
+sudo dnf install clean-rpm-gpg-pubkey remove-retired-packages symlinks
+sudo clean-rpm-gpg-pubkey
+sudo symlinks -r -d /usr
+{{ end -}}
