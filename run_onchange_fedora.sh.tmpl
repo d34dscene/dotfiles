@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Better dnf config
 {{ if eq .chezmoi.osRelease.id "fedora" -}}
+
+# Better dnf config
 sudo tee /etc/dnf/dnf.conf <<-EOF
 	[main]
 	gpgcheck=1
@@ -12,6 +13,17 @@ sudo tee /etc/dnf/dnf.conf <<-EOF
 	max_parallel_downloads=10
 	defaultyes=True
 	deltarpm=True
+EOF
+
+# Better docker config
+sudo tee /etc/docker/daemon.json <<-EOF
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
+}
 EOF
 
 {{ if eq .chezmoi.osRelease.variantID "workstation" -}}
