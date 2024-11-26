@@ -49,8 +49,8 @@ alias xp="xh post --verify no"
 alias xps="xhs post --verify no"
 alias xd="xh delete --verify no"
 alias xdl="xh -d"
-alias rs="rsync -auhz --info=progress2"
-alias rsm="rsync -auessh --info=progress2"
+alias rs="rsync -avzh --info=progress2"  # Overwrite
+alias rsu="rsync -auzh --info=progress2" # Update only if newer
 
 # Suffixes
 alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=cat
