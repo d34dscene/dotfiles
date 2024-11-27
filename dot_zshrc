@@ -107,6 +107,7 @@ type flux >/dev/null && source <(flux completion zsh)
 type terraform >/dev/null && complete -o nospace -C /usr/bin/terraform terraform
 
 # Custom Bindings
+bindkey -e
 bindkey "^[[1;3D" backward-word
 bindkey "^[[1;3C" forward-word
 bindkey "^[[A" history-substring-search-up
