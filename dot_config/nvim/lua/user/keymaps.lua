@@ -106,12 +106,12 @@ map("i", "<A-[>", function()
 end, { expr = true })
 
 -- Ollama
-map("n", "<leader>oo", ":<c-u>lua require('ollama').prompt()<cr>", { desc = "Show prompts" })
-map("n", "<leader>og", ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>", { desc = "Generate Code" })
-map("v", "<leader>os", ":<c-u>lua require('ollama').prompt('Simplify_Code')<cr>", { desc = "Simplify Code" })
-map("v", "<leader>op", ":<c-u>lua require('ollama').prompt('Optimize_Code')<cr>", { desc = "Optimize Code" })
-map("v", "<leader>oe", ":<c-u>lua require('ollama').prompt('Explain_Code')<cr>", { desc = "Explain Code" })
-map("v", "<leader>oc", ":<c-u>lua require('ollama').prompt('Add_Comments')<cr>", { desc = "Add Comments" })
+map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionActions<cr>", { desc = "Code companion actions" })
+map({ "n", "v" }, "<leader>cx", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
+map("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add visually selected chat" })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd [[cab cc CodeCompanion]]
 
 -- Comment
 map("n", "x", function()
@@ -194,9 +194,9 @@ map({ "n", "x", "o" }, "f", function()
 end, { desc = "Flash" })
 
 -- Move text up and down
-map("n", "<A-Up>", ":move .2<CR>==", { desc = "Move line up" })
-map("n", "<A-Down>", ":move .+5<CR>==", { desc = "Move line down" })
-map("v", "<A-Up>", ":move2<CR>gv=gv", { desc = "Move block up" })
+map("n", "<A-Up>", ":move .-2<CR>==", { desc = "Move line up" })
+map("n", "<A-Down>", ":move .+1<CR>==", { desc = "Move line down" })
+map("v", "<A-Up>", ":move-2<CR>gv=gv", { desc = "Move block up" })
 map("v", "<A-Down>", ":move'>+<CR>gv=gv", { desc = "Move block down" })
 
 -- Jump between windows + close terminal
@@ -216,12 +216,13 @@ map("n", "<C-a>", "gg<S-v>G", opts) -- select all
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
 -- Copy to clipboard
-map({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy to clipboard" })
+map("v", "<leader>y", "\"+y", { desc = "Copy to clipboard" })
+map("n", "<leader>yY", "\"+yg_", { desc = "Copy to clipboard" })
 map("n", "<leader>yy", "\"+yy", { desc = "Copy line to clipboard" })
 
 -- Paste from clipboard
-map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
-map("n", "<leader>pp", "\"+P", { desc = "Paste line from clipboard" })
+map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste below" })
+map({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste above" })
 
 -- Sort lines
 map("x", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })

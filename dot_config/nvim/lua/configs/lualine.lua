@@ -19,10 +19,6 @@ local function getLSP()
 	return icon
 end
 
-local function codeium()
-	return vim.fn["codeium#GetStatusString"]()
-end
-
 lualine.setup {
 	options = {
 		theme = "catppuccin",

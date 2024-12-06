@@ -100,8 +100,8 @@ return {
 	-- ------------------------------------------------------------------------
 	"folke/which-key.nvim", -- Key popup
 	"tpope/vim-repeat", -- Repeat dot
-	"nomnivore/ollama.nvim", -- Ollama
 	"Exafunction/codeium.vim", -- AI completions
+	{ "olimorris/codecompanion.nvim", config = true }, -- AI completions
 	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "max397574/better-escape.nvim", config = true }, -- Fast escape
