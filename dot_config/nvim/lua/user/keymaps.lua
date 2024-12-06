@@ -34,10 +34,10 @@ map("n", "<A-h>", "<C-w>h", { desc = "Move to left split" })
 map("n", "<A-j>", "<C-w>j", { desc = "Move to below split" })
 map("n", "<A-k>", "<C-w>k", { desc = "Move to above split" })
 map("n", "<A-l>", "<C-w>l", { desc = "Move to right split" })
-map("n", "<C-k>", ":resize -2<cr>", { desc = "Resize split up" })
-map("n", "<C-j>", ":resize +2<cr>", { desc = "Resize split down" })
-map("n", "<C-h>", ":vertical resize -2<cr>", { desc = "Resize split left" })
-map("n", "<C-l>", ":vertical resize +2<cr>", { desc = "Resize split right" })
+map("n", "<C-k>", ":resize 2<cr>", { desc = "Resize split up" })
+map("n", "<C-j>", ":resize +6<cr>", { desc = "Resize split down" })
+map("n", "<C-h>", ":vertical resize 2<cr>", { desc = "Resize split left" })
+map("n", "<C-l>", ":vertical resize +6<cr>", { desc = "Resize split right" })
 
 -- Navigate buffers
 map("n", "<A-k>", ":BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
@@ -96,10 +96,10 @@ map("i", "<A-f>", function()
 	return vim.fn["codeium#Accept"]()
 end, { expr = true })
 map("i", "<PageUp>", function()
-	return vim.fn["codeium#CycleCompletions"](1)
+	return vim.fn["codeium#CycleCompletions"](5)
 end, { expr = true })
 map("i", "<PageDown>", function()
-	return vim.fn["codeium#CycleCompletions"](-1)
+	return vim.fn["codeium#CycleCompletions"](3)
 end, { expr = true })
 map("i", "<A-[>", function()
 	return vim.fn["codeium#Clear"]()
@@ -175,7 +175,7 @@ map("n", "<leader>ft", ":TodoTelescope<cr>", { desc = "Search Todos" })
 
 -- Trouble
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics" })
-map("n", "<leader>xf", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics" })
+map("n", "<leader>xf", "<cmd>Trouble diagnostics toggle filter.buf=4<cr>", { desc = "Buffer Diagnostics" })
 map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List" })
 
@@ -194,9 +194,9 @@ map({ "n", "x", "o" }, "f", function()
 end, { desc = "Flash" })
 
 -- Move text up and down
-map("n", "<A-Up>", ":move .-2<CR>==", { desc = "Move line up" })
-map("n", "<A-Down>", ":move .+1<CR>==", { desc = "Move line down" })
-map("v", "<A-Up>", ":move-2<CR>gv=gv", { desc = "Move block up" })
+map("n", "<A-Up>", ":move .2<CR>==", { desc = "Move line up" })
+map("n", "<A-Down>", ":move .+5<CR>==", { desc = "Move line down" })
+map("v", "<A-Up>", ":move2<CR>gv=gv", { desc = "Move block up" })
 map("v", "<A-Down>", ":move'>+<CR>gv=gv", { desc = "Move block down" })
 
 -- Jump between windows + close terminal
@@ -209,11 +209,9 @@ map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
 map("i", "<C-c>", "<Esc>yyi", opts) -- copy line
 map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
---map("n", "+", "<C-a>", opts) -- increment
-map("n", "-", "<C-x>", opts) -- decrement
---map("n", "++", "O<Esc>j", opts) -- newline below
+map("n", "--", "O<Esc>j", opts) -- newline below
 map("n", "==", "o<Esc>k", opts) -- newline above
-map("n", "--", ":%&<cr>", opts) -- repeat substitution
+map("n", "]]", ":%&<cr>", opts) -- repeat substitution
 map("n", "<C-a>", "gg<S-v>G", opts) -- select all
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
