@@ -3,7 +3,6 @@ local g = vim.g
 
 -- options
 o.breakindent = true -- Wrap indent to match  line start.
-o.clipboard = "unnamedplus" -- Connection to the system clipboard.
 o.completeopt = { "menu", "menuone", "noselect" } -- Options for insert mode completion.
 o.copyindent = true -- Copy the previous indentation on autoindenting.
 o.cursorline = true -- Highlight the text line of the cursor.

@@ -209,13 +209,21 @@ map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
 map("i", "<C-c>", "<Esc>yyi", opts) -- copy line
 map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
-map("n", "+", "<C-a>", opts) -- increment
+--map("n", "+", "<C-a>", opts) -- increment
 map("n", "-", "<C-x>", opts) -- decrement
-map("n", "++", "O<Esc>j", opts) -- newline below
+--map("n", "++", "O<Esc>j", opts) -- newline below
 map("n", "==", "o<Esc>k", opts) -- newline above
 map("n", "--", ":%&<cr>", opts) -- repeat substitution
 map("n", "<C-a>", "gg<S-v>G", opts) -- select all
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
+
+-- Copy to clipboard
+map({ "n", "v" }, "<leader>y", "\"+y", { desc = "Copy to clipboard" })
+map("n", "<leader>yy", "\"+yy", { desc = "Copy line to clipboard" })
+
+-- Paste from clipboard
+map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
+map("n", "<leader>pp", "\"+P", { desc = "Paste line from clipboard" })
 
 -- Sort lines
 map("x", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })
