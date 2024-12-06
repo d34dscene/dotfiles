@@ -19,6 +19,7 @@ which_key.add {
 	{ "<leader>r", group = "Replace", nowait = false, remap = false },
 	{ "<leader>x", group = "Trouble", nowait = false, remap = false },
 	{ "<leader>s", group = "Sort", mode = "v", nowait = false, remap = false },
+	{ "<leader>y", group = "Clipboard", nowait = false, remap = false },
 	{
 		mode = { "n", "v" },
 		{ "<leader>o", group = "Ollama", nowait = false, remap = false },

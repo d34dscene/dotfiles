@@ -21,14 +21,6 @@ export PATH=$POETRY_HOME/bin:$PATH
 export PNPM_HOME=$HOME/.local/share/pnpm
 export PATH="$PNPM_HOME:$PATH"
 
-# cuda
-export CUDA_HOME=/usr/local/cuda
-export CUDA_INCLUDE_PATH=$CUDA_HOME/include
-export PATH=$CUDA_HOME/bin:$CUDA_INCLUDE_PATH:$PATH
-
-# rocm
-export PATH=/opt/rocm/bin:$PATH
-
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 export PATH=$HOME/.local/bin:$PATH

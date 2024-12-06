@@ -180,7 +180,7 @@ map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "Location Lis
 map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List" })
 
 -- Markdown Preview
-map("n", "<leader>mm", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
+map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Flash
 map({ "n", "x", "o" }, "f", function()
