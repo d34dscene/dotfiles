@@ -9,9 +9,6 @@ alias ...='cd ..'
 alias path='echo -e "${PATH//:/\\n}"'
 alias up="topgrade -y -c --skip-notify"
 alias nv="nvim"
-alias l="ls"
-alias la="ls -la --permission=octal"
-alias ll="ls -lh --permission=octal"
 alias lt="tree -L 3"
 alias gi="git-ignore"
 alias ws="wormhole-william send"
@@ -37,23 +34,39 @@ alias cssl="openssl x509 -text -noout -in"
 
 # GNU replacements
 type z &>/dev/null && alias cd="z"
-type lsd &>/dev/null && alias ls="lsd --icon=never"
-type bat &>/dev/null && alias cat="bat --style=plain --paging=never --theme=base16"
-type procs &>/dev/null && alias ps="procs --sortd cpu"
-type procs &>/dev/null && alias pst="procs --tree"
+if type lsd &>/dev/null; then
+  alias ls="lsd --icon=never"
+  alias la="ls -la --permission=octal"
+  alias ll="ls -lh --permission=octal"
+else
+  alias ls="ls --color=auto"
+  alias la="ls -la --color=auto"
+  alias ll="ls -lh --color=auto"
+fi
+if type procs &>/dev/null; then
+  alias ps="procs --sortd cpu"
+  alias pst="procs --tree"
+fi
+if type bat &>/dev/null; then
+  alias cat="bat --style=plain --paging=never --theme=base16"
+  alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=bat
+else
+  alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=cat
+fi
+if type xh &>/dev/null; then
+  alias xg="xh get --verify no"
+  alias xgs="xhs get --verify no"
+  alias xp="xh post --verify no"
+  alias xps="xhs post --verify no"
+  alias xd="xh delete --verify no"
+  alias xdl="xh -d"
+fi
 alias dog="doggo --time"
-alias duf="duf --sort size"
-alias xg="xh get --verify no"
-alias xgs="xhs get --verify no"
-alias xp="xh post --verify no"
-alias xps="xhs post --verify no"
-alias xd="xh delete --verify no"
-alias xdl="xh -d"
+alias duf="duf --sort=size -only=local"
+
+# Rsync
 alias rs="rsync -avzh --info=progress2"  # Overwrite
 alias rsu="rsync -auzh --info=progress2" # Update only if newer
-
-# Suffixes
-alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=cat
 
 # Systemd
 alias sd="sudo systemctl"
