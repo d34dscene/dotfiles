@@ -36,7 +36,7 @@ sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
 sudo dnf install -y @development-tools @virtualization \
   golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
   flatpak lsd fd-find ripgrep fzf tldr ncdu wl-clipboard lm_sensors \
-  gnome-tweaks lutris gamescope steam-devices yt-dlp jq upx \
+  gnome-tweaks lutris gamescope duf steam-devices yt-dlp jq upx \
   ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
   clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
   python3-pip python3-virtualenv age neovim python3-neovim shellcheck
@@ -52,7 +52,7 @@ flatpak install --noninteractive flathub com.github.tchx84.Flatseal \
 {{ if eq .chezmoi.osRelease.variantID "server" -}}
 sudo dnf install -y dnf-automatic dnf-plugins-core htop zsh unar git git-lfs \
   openssl curl lsd fd-find ripgrep fzf tldr ncdu zoxide jq lm_sensors age \
-  neovim python3-neovim anacron rsnapshot tuned nfs-utils
+  duf neovim python3-neovim anacron rsnapshot tuned nfs-utils
 
 # Add docker
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
