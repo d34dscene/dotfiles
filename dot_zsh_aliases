@@ -83,6 +83,13 @@ alias sdi="sudo systemctl disable"
 alias sdt="systemctl list-timers --no-pager"
 alias sdr="sudo systemctl daemon-reload; sudo systemctl restart"
 
+# Firewalld
+alias fw="sudo firewall-cmd"
+alias fwl="sudo firewall-cmd --list-all"
+alias fwz="sudo firewall-cmd --get-active-zones"
+alias fwadd="sudo firewall-cmd --add-port"
+alias fwrm="sudo firewall-cmd --remove-port"
+
 # Dotfiles
 alias cz="chezmoi"
 alias cza="chezmoi add"
