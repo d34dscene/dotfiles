@@ -5,11 +5,11 @@ encryption = "age"
 
 [diff]
     command = "nvim"
-    args = ["-d", {{ "{{ .Destination }}" }}, {{ "{{ .Target }}" }}]
+    args = ["-d", {{ "\"{{ .Destination }}\"" }}, {{ "\"{{ .Source }}\"" }}]
 
 [merge]
     command = "nvim"
-    args = ["-d", {{ "{{ .Destination }}" }}, {{ "{{ .Source }}" }}, {{ "{{ .Target }}" }}]
+    args = ["-d", {{ "\"{{ .Destination }}\"" }}, {{ "\"{{ .Source }}\"" }}, {{ "\"{{ .Target }}\"" }}]
 
 [git]
     autoCommit = true
