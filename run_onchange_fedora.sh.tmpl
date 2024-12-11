@@ -16,7 +16,8 @@ sudo tee /etc/dnf/dnf.conf <<-EOF
 EOF
 
 # Better docker config
-sudo tee /etc/docker/daemon.json <<-EOF
+if command -v nvidia-smi >/dev/null && command -v nvidia-container-runtime >/dev/null; then
+  sudo tee /etc/docker/daemon.json <<-EOF
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -32,6 +33,17 @@ sudo tee /etc/docker/daemon.json <<-EOF
   }
 }
 EOF
+else
+  sudo tee /etc/docker/daemon.json <<-EOF
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-file": "3",
+    "max-size": "10m"
+  },
+}
+EOF
+fi
 
 {{ if eq .chezmoi.osRelease.variantID "workstation" -}}
 # Install RPM Fusion
