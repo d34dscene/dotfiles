@@ -6,6 +6,7 @@ alias zplug="$EDITOR ~/.zsh_plugins"
 alias zalias="$EDITOR ~/.zsh_aliases"
 alias zfunc="$EDITOR ~/.zsh_functions"
 alias ...='cd ..'
+alias ff="fastfetch"
 alias path='echo -e "${PATH//:/\\n}"'
 alias up="topgrade -y -c --skip-notify"
 alias nv="nvim"
