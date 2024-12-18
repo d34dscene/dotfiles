@@ -105,13 +105,16 @@ map("i", "<A-[>", function()
 	return vim.fn["codeium#Clear"]()
 end, { expr = true })
 
--- Ollama
+-- CodeCompanion
 map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionActions<cr>", { desc = "Code companion actions" })
 map({ "n", "v" }, "<leader>cx", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
 map("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add visually selected chat" })
-
--- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd [[cab cc CodeCompanion]]
+map("n", "<leader>cd", function()
+	require("codecompanion").prompt "debug_buffer"
+end, { desc = "Debug buffer" })
+map("n", "<leader>cs", function()
+	require("codecompanion").prompt "document_buffer"
+end, { desc = "Document buffer" })
 
 -- Comment
 map("n", "x", function()
