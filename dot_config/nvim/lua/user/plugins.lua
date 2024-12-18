@@ -71,11 +71,11 @@ return {
 		main = "ibl",
 		opts = { indent = { char = ">" } },
 	},
-	{
-		"ray-x/lsp_signature.nvim", -- Show signature
-		event = "VeryLazy",
-		opts = { floating_window = false },
-	},
+	-- {
+	-- 	"ray-x/lsp_signature.nvim", -- Show signature
+	-- 	event = "VeryLazy",
+	-- 	opts = { floating_window = false },
+	-- },
 
 	-- Completion
 	-- ------------------------------------------------------------------------
