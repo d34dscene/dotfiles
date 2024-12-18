@@ -223,8 +223,9 @@ map({ "n", "v" }, "y", "\"+y", { desc = "Copy to clipboard" })
 map({ "n", "v" }, "Y", "\"+yg_", { desc = "Copy to clipboard" })
 
 -- Paste from clipboard
-map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste below" })
-map({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste above" })
+-- map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste below" })
+-- map({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste above" })
+map("n", "<leader>pp", "V\"+p", { desc = "Overwrite line" })
 
 -- Sort lines
 map("x", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })

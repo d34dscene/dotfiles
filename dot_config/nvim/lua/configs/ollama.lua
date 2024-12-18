@@ -62,7 +62,8 @@ cc.setup {
 				{
 					role = "user",
 					content = function(context)
-						return "Please review the following code and suggest any simplifications or optimizations to improve readability and performance. Also identify and fix any potential issues:\n\n```"
+						return "Please review the following code and suggest any simplifications or optimizations to improve readability and performance. Also identify and fix any potential issues, delete or refactor unnecessary code and provide a step-by-step explanation of the changes made:"
+							.. "\n\n```"
 							.. context.filetype
 							.. "\n"
 							.. buf_utils.get_content(context.bufnr)
@@ -89,7 +90,8 @@ cc.setup {
 				{
 					role = "user",
 					content = function(context)
-						return "Please generate appropriate documentation comments for the following code, WITHOUT modifying the code:\n\n```"
+						return "Please generate appropriate documentation comments for the following code, WITHOUT modifying the code. Also no need to output any code, just write the comments separated by newlines:"
+							.. "\n\n```"
 							.. context.filetype
 							.. "\n"
 							.. buf_utils.get_content(context.bufnr)
@@ -121,7 +123,8 @@ cc.setup {
 						local text =
 							require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
-						return "@rag \nDebug the following code:\n\n```"
+						return "@rag\nDebug the following code:"
+							.. "\n\n```"
 							.. context.filetype
 							.. "\n"
 							.. text
