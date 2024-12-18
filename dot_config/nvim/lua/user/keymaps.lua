@@ -216,9 +216,8 @@ map("n", "<C-a>", "gg<S-v>G", opts) -- select all
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
 -- Copy to clipboard
-map("v", "<leader>y", "\"+y", { desc = "Copy to clipboard" })
-map("n", "<leader>yY", "\"+yg_", { desc = "Copy to clipboard" })
-map("n", "<leader>yy", "\"+yy", { desc = "Copy line to clipboard" })
+map({ "n", "v" }, "y", "\"+y", { desc = "Copy to clipboard" })
+map({ "n", "v" }, "Y", "\"+yg_", { desc = "Copy to clipboard" })
 
 -- Paste from clipboard
 map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste below" })

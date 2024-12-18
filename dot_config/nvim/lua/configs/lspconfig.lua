@@ -1,7 +1,8 @@
-local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+local status_ok, lspconfig = pcall(require, "lspconfig")
+local status_ok_m, mason_lspconfig = pcall(require, "mason-lspconfig")
 local status_ok_t, tool = pcall(require, "mason-tool-installer")
 local status_ok_ts, tsbuiltin = pcall(require, "telescope.builtin")
-if not status_ok and not status_ok_t and not status_ok_ts then
+if not status_ok and not status_ok_m and not status_ok_t and not status_ok_ts then
 	return
 end
 
@@ -104,19 +105,18 @@ local on_attach = function(_, bufnr)
 	map("n", "gy", vim.lsp.buf.type_definition, { desc = "Type Definition" })
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
---local capabilities = require("blink.cmp").get_lsp_capabilities()
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 mason_lspconfig.setup_handlers {
 	function(server_name)
 		if server_name == "clangd" then
-			require("lspconfig").clangd.setup {
+			lspconfig.clangd.setup {
 				on_attach = on_attach,
 				capabilities = capabilities,
 				filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 			}
 		else
-			require("lspconfig")[server_name].setup {
+			lspconfig[server_name].setup {
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = {

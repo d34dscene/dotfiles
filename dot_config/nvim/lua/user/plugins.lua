@@ -79,22 +79,32 @@ return {
 
 	-- Completion
 	-- ------------------------------------------------------------------------
-	"L3MON4D3/LuaSnip", -- Snippet engine
+	{
+		"saghen/blink.cmp",
+		version = "*",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"hrsh7th/cmp-emoji",
+			"chrisgrieser/cmp-nerdfont",
+		},
+	},
+	{ "saghen/blink.compat", lazy = true },
+	--"L3MON4D3/LuaSnip", -- Snippet engine
 	-- "hrsh7th/nvim-cmp", -- Autocomplete engine
 	-- "hrsh7th/cmp-nvim-lsp", -- LSP completion
 	-- "hrsh7th/cmp-buffer", -- Buffer completion
-	"hrsh7th/cmp-path", -- Path completion
+	--"hrsh7th/cmp-path", -- Path completion
 	-- "hrsh7th/cmp-cmdline", -- Cmd completion
 	-- "hrsh7th/cmp-nvim-lua", -- Lua completion
-	"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-	"rafamadriz/friendly-snippets", -- Vscode friendly snippets
+	--"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
+	--"rafamadriz/friendly-snippets", -- Vscode friendly snippets
 	-- Testing cmp fork
-	{ "iguanacucumber/magazine.nvim", name = "nvim-cmp" },
-	{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
-	{ "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
-	{ "iguanacucumber/mag-buffer", name = "cmp-buffer" },
-	{ "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
-	"https://codeberg.org/FelipeLema/cmp-async-path",
+	-- { "iguanacucumber/magazine.nvim", name = "nvim-cmp" },
+	-- { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+	-- { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
+	-- { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+	-- { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+	-- "https://codeberg.org/FelipeLema/cmp-async-path",
 
 	-- Extras
 	-- ------------------------------------------------------------------------
@@ -107,16 +117,6 @@ return {
 	{ "max397574/better-escape.nvim", config = true }, -- Fast escape
 	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing
 	{ "numToStr/Comment.nvim", opts = { mappings = false } }, -- Smart commenting
-	-- {
-	-- 	"supermaven-inc/supermaven-nvim", -- AI completions
-	-- 	opts = {
-	-- 		keymaps = {
-	-- 			accept_suggestion = "<M-f>",
-	-- 			clear_suggestion = "<M-d>",
-	-- 			accept_word = "<M-a>",
-	-- 		},
-	-- 	},
-	-- },
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",
