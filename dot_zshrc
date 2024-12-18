@@ -27,15 +27,15 @@ export PATH=$HOME/.local/bin:$PATH
 export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
 
 # Editor
-#if command -v nvim &> /dev/null; then
-export EDITOR="nvim"
-export VISUAL="nvim"
-# elif command -v vim &> /dev/null; then
-#   export EDITOR="vim"
-#   export VISUAL="vim"
-# else
-#   export EDITOR="vi"
-# fi
+if command -v nvim &> /dev/null; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+elif command -v vim &> /dev/null; then
+  export EDITOR="vim"
+  export VISUAL="vim"
+else
+  export EDITOR="vi"
+fi
 
 # History
 export HISTSIZE=100000
