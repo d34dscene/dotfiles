@@ -55,11 +55,9 @@ return {
 		config = true,
 	},
 	{ "williamboman/mason-lspconfig.nvim", config = true }, -- LSP config helper
-	"WhoIsSethDaniel/mason-tool-installer.nvim", -- LSP tool installer
 	"neovim/nvim-lspconfig", -- LSP config
 	"stevearc/conform.nvim", -- Formatter
-	"towolf/vim-helm", -- Helm support
-	"pearofducks/ansible-vim", -- Ansible support
+	"mfussenegger/nvim-ansible", -- Ansible support
 	"mfussenegger/nvim-dap", -- DAP plugins
 	"rcarriga/nvim-dap-ui", -- DAP UI
 	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
@@ -71,11 +69,6 @@ return {
 		main = "ibl",
 		opts = { indent = { char = ">" } },
 	},
-	-- {
-	-- 	"ray-x/lsp_signature.nvim", -- Show signature
-	-- 	event = "VeryLazy",
-	-- 	opts = { floating_window = false },
-	-- },
 
 	-- Completion
 	-- ------------------------------------------------------------------------
@@ -89,22 +82,6 @@ return {
 		},
 	},
 	{ "saghen/blink.compat", lazy = true },
-	--"L3MON4D3/LuaSnip", -- Snippet engine
-	-- "hrsh7th/nvim-cmp", -- Autocomplete engine
-	-- "hrsh7th/cmp-nvim-lsp", -- LSP completion
-	-- "hrsh7th/cmp-buffer", -- Buffer completion
-	--"hrsh7th/cmp-path", -- Path completion
-	-- "hrsh7th/cmp-cmdline", -- Cmd completion
-	-- "hrsh7th/cmp-nvim-lua", -- Lua completion
-	--"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-	--"rafamadriz/friendly-snippets", -- Vscode friendly snippets
-	-- Testing cmp fork
-	-- { "iguanacucumber/magazine.nvim", name = "nvim-cmp" },
-	-- { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
-	-- { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
-	-- { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
-	-- { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
-	-- "https://codeberg.org/FelipeLema/cmp-async-path",
 
 	-- Extras
 	-- ------------------------------------------------------------------------
