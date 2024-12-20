@@ -22,6 +22,7 @@ o.fileformats = { "unix", "dos", "mac" } -- Set supported file formats
 -- UI options
 o.cursorline = true -- Highlight the line under the cursor
 o.number = true -- Show line numbers
+o.numberwidth = 2 -- Minimum width for line numbers
 o.relativenumber = false -- Do not show relative line numbers
 o.signcolumn = "yes" -- Always show the sign column
 o.statuscolumn = "%=%{&nu?(&rnu && v:relnum?v:relnum:v:lnum):''} %s%*" -- Custom statusline
@@ -30,6 +31,7 @@ o.showtabline = 2 -- Always display the tab line
 o.laststatus = 3 -- Global statusline always on
 o.ruler = true -- Show cursor position in the command line
 o.colorcolumn = "80" -- PEP8 like character limit vertical bar.
+o.whichwrap:append "<>[]hl" -- Move to the next line when the cursor reaches the end of the line
 
 -- Search options
 o.ignorecase = true -- Ignore case when searching
@@ -47,6 +49,12 @@ g.codeactions_enabled = true
 g.better_escape_interval = 500
 g.semantic_tokens_enabled = true
 g.codeium_disable_bindings = 1
+
+-- Disable some default providers
+g.loaded_node_provider = 0
+g.loaded_python3_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
 
 -- disable some builtin vim plugins
 local default_plugins = {

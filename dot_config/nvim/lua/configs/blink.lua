@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 blink.setup {
+	min_keyword_length = 1,
 	keymap = {
 		preset = "enter",
 		["<Tab>"] = {
