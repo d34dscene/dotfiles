@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 blink.setup {
-	min_keyword_length = 1,
 	keymap = {
 		preset = "enter",
 		["<Tab>"] = {
@@ -25,19 +24,16 @@ blink.setup {
 			"snippet_backward",
 			"fallback",
 		},
-		cmdline = {
-			preset = "super-tab",
-		},
 	},
 	appearance = {
 		use_nvim_cmp_as_default = true, -- will be removed
 		nerd_font_variant = "mono",
 	},
-	path = {
-		opts = {
-			show_hidden_files_by_default = true,
-		},
-	},
+	-- path = {
+	-- 	opts = {
+	-- 		show_hidden_files_by_default = true,
+	-- 	},
+	-- },
 	completion = {
 		documentation = {
 			auto_show = true,
@@ -47,9 +43,8 @@ blink.setup {
 		enabled = true,
 	},
 	sources = {
-		completion = {
-			enabled_providers = { "lsp", "path", "snippets", "buffer", "nerdfont", "emoji" },
-		},
+		min_keyword_length = 1,
+		default = { "lsp", "path", "snippets", "buffer", "nerdfont", "emoji" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
 			emoji = { name = "emoji", module = "blink.compat.source" },
