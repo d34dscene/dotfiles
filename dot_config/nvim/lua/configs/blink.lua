@@ -44,10 +44,15 @@ blink.setup {
 	},
 	sources = {
 		min_keyword_length = 1,
-		default = { "lsp", "path", "snippets", "buffer", "nerdfont", "emoji" },
+		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "nerdfont", "emoji" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
 			emoji = { name = "emoji", module = "blink.compat.source" },
+			codecompanion = {
+				name = "CodeCompanion",
+				module = "codecompanion.providers.completion.blink",
+				enabled = true,
+			},
 			snippets = { opts = { global_snippets = {} } },
 		},
 	},

@@ -4,14 +4,52 @@ if not cc_status_ok then
 end
 
 local buf_utils = require "codecompanion.utils.buffers"
+local ollama_url = "https://ollama.mizuchi.dev"
+
+-- Get all models from Ollama API
+local function get_models()
+	local curl = require "plenary.curl"
+	local response = curl.get(ollama_url .. "/v1/models", {
+		sync = true,
+		headers = {
+			["content-type"] = "application/json",
+			--["Authorization"] = "Bearer " .. api_key,
+		},
+	})
+	if not response then
+		return {}
+	end
+
+	local ok, json = pcall(vim.json.decode, response.body)
+	if not ok then
+		return {}
+	end
+
+	local models = {}
+	for _, model in ipairs(json.data) do
+		table.insert(models, model.id)
+	end
+
+	return models
+end
 
 cc.setup {
 	adapters = {
 		ollama = function()
 			return require("codecompanion.adapters").extend("ollama", {
+				name = "qwen2.5-coder",
+				env = {
+					url = ollama_url,
+					--api_key = "",
+				},
+				headers = {
+					["Content-Type"] = "application/json",
+					--["Authorization"] = "Bearer ${api_key}",
+				},
 				schema = {
 					model = {
 						default = "qwen2.5-coder:32b",
+						choices = get_models(),
 					},
 					num_ctx = {
 						default = 16384,
@@ -19,15 +57,6 @@ cc.setup {
 					num_predict = {
 						default = -1,
 					},
-				},
-				env = {
-					url = "https://ollama.mizuchi.dev",
-				},
-				headers = {
-					["Content-Type"] = "application/json",
-				},
-				parameters = {
-					sync = true,
 				},
 			})
 		end,
