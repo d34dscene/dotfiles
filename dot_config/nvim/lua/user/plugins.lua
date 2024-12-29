@@ -64,6 +64,7 @@ return {
 	{ "aznhe21/actions-preview.nvim", config = true }, -- Code actions preview
 	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
+	{ "pmizio/typescript-tools.nvim", config = true }, -- Typescript tools
 	{
 		"lukas-reineke/indent-blankline.nvim", -- Indentation guides
 		main = "ibl",

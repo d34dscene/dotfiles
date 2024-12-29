@@ -23,7 +23,6 @@ mason_lspconfig.setup {
 		"sqlls",
 		"svelte",
 		"tailwindcss",
-		"ts_ls",
 		"yamlls",
 	},
 }
@@ -46,10 +45,6 @@ local on_attach = function(_, bufnr)
 		opts.silent = true
 		opts.buffer = bufnr
 		vim.keymap.set(mode, l, r, opts)
-	end
-
-	if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
-		vim.diagnostic.disable()
 	end
 
 	vim.diagnostic.config {
@@ -77,9 +72,7 @@ local on_attach = function(_, bufnr)
 	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
 	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
-	map("n", "<leader>ls", function()
-		require("lsp_signature").toggle_float_win()
-	end, { desc = "Toggle Signature" })
+	map("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 	-- Lesser used LSP functionality
 	map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
