@@ -2,7 +2,7 @@
 zsh-users/zsh-completions kind:defer
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search kind:defer
-zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-syntax-highlighting kind:defer
 hlissner/zsh-autopair kind:defer
 ohmyzsh/ohmyzsh path:plugins/sudo kind:defer
 ohmyzsh/ohmyzsh path:plugins/copypath kind:defer
@@ -13,7 +13,6 @@ MichaelAquilina/zsh-you-should-use kind:defer
 Aloxaf/fzf-tab kind:defer
 ptavares/zsh-direnv kind:defer
 laggardkernel/git-ignore kind:defer
-jgogstad/passwordless-history kind:defer
 sunlei/zsh-ssh kind:defer
 bonnefoa/kubectl-fzf kind:defer
 
