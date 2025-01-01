@@ -14,7 +14,6 @@
 
       // Window movement bindings
       "tab": "project_panel::ToggleFocus",
-      "shift-tab": "assistant::ToggleFocus",
 
       // LSP
       "space c a": "editor::ToggleCodeActions",
@@ -48,12 +47,14 @@
       "alt-a": "pane::ActivatePrevItem",
       "alt-d": "pane::ActivateNextItem",
 
-      "space f f": "file_finder::Toggle",
-      "space f a": "pane::DeploySearch",
-
       // General
       "s s": "workspace::Save",
-      "ctrl-d": "editor::DuplicateLineDown"
+      "ctrl-d": "editor::DuplicateLineDown",
+      "f f": "file_finder::Toggle", // Search file
+      "f p": "projects::OpenRecent",
+      "f a": "assistant::ToggleFocus", // AI Chat
+      "f w": "buffer_search::Deploy", // Search word under cursor in buffer
+      "m m": "markdown::OpenPreviewToTheSide" // Markdown preview
     }
   },
   {
@@ -78,12 +79,6 @@
       "space g h r": "editor::RevertSelectedHunks",
 
       "space t i": "editor::ToggleInlayHints",
-      "space u w": "editor::ToggleSoftWrap",
-      "space c z": "workspace::ToggleCenteredLayout", // Zen Mode
-      "space m m": "markdown::OpenPreviewToTheSide", // Markdown preview
-      "space f p": "projects::OpenRecent", // Open recent project
-      "space s w": "pane::DeploySearch", // Search word under cursor
-      "space c c": "assistant::ToggleFocus", // AI Chat
       "g f": "editor::OpenExcerpts", // Go to file
       "x": "editor::ToggleComments" // Toggle comment
     }
@@ -97,25 +92,21 @@
     }
   },
   {
-    "context": "EmptyPane || SharedScreen",
-    "bindings": {
-      "space f f": "file_finder::Toggle",
-      "space f p": "projects::OpenRecent"
-    }
-  },
-  {
     "context": "Editor",
     "bindings": {
       "alt-f": "editor::AcceptInlineCompletion",
+      "super-u": "editor::RevertFile",
       "alt-backspace": "editor::DeleteToPreviousWordStart"
     }
   },
   {
     "context": "Workspace",
     "bindings": {
+      "space z": "workspace::ToggleCenteredLayout", // Zen Mode
       "alt-q": "pane::CloseActiveItem",
       "alt-w": "pane::CloseInactiveItems",
       "alt-p": "project_panel::Open",
+      "alt-b": "branches::OpenRecent", // Switch branch
       "\\ \\": "terminal_panel::ToggleFocus"
     }
   },
