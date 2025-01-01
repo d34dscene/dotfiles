@@ -1,0 +1,130 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+// keymap.json, generated at Thu Nov 07 2024 18:01:50 GMT+0800 (Singapore Standard Time)
+[
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // Normal & Visual mode
+
+      // Git
+      "space g h d": "editor::ToggleHunkDiff",
+      "space g h r": "editor::RevertSelectedHunks",
+
+      "space t i": "editor::ToggleInlayHints",
+      "space u w": "editor::ToggleSoftWrap",
+      "space c z": "workspace::ToggleCenteredLayout", // Zen Mode
+      "space m m": "markdown::OpenPreviewToTheSide", // Markdown preview
+      "space f p": "projects::OpenRecent", // Open recent project
+      "space s w": "pane::DeploySearch", // Search word under cursor
+      "space c c": "assistant::ToggleFocus", // AI Chat
+      "g f": "editor::OpenExcerpts", // Go to file
+      "x": "editor::ToggleComments" // Toggle comment
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == insert || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // Insert & Visual mode
+
+      "q q": "vim::NormalBefore" // Better escape
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // Normal mode
+
+      // Window movement bindings
+      "tab": "project_panel::ToggleFocus",
+      "shift-tab": "assistant::ToggleFocus",
+
+      // LSP
+      "space c a": "editor::ToggleCodeActions",
+      "space .": "editor::ToggleCodeActions",
+      "r r": "editor::Rename",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic",
+      "] e": "editor::GoToDiagnostic",
+      "[ e": "editor::GoToPrevDiagnostic",
+      "shift-m": "editor::Hover", // Toggle hover popover
+
+      // Outline
+      "space o": "outline::Toggle",
+      "space O": "project_symbols::Toggle",
+
+      // Diagnostic
+      "space x x": "diagnostics::Deploy",
+
+      // Git
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPrevHunk",
+
+      // Buffers
+      "alt-a": "pane::ActivatePrevItem",
+      "alt-d": "pane::ActivateNextItem",
+
+      "space f f": "file_finder::Toggle",
+      "space f a": "pane::DeploySearch",
+
+      // General
+      "s s": "workspace::Save",
+      "ctrl-d": "editor::DuplicateLineDown"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-f": "editor::AcceptInlineCompletion"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-q": "pane::CloseActiveItem",
+      "alt-w": "pane::CloseInactiveItems",
+      "\\ \\": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-e": "workspace::NewTerminal",
+      "alt-d": "pane::ActivateNextItem",
+      "alt-a": "pane::ActivatePrevItem",
+      "tab": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "tab": ["workspace::ActivatePaneInDirection", "Right"] // Jump to editor
+    }
+  }
+]
