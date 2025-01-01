@@ -8,34 +8,6 @@
 // keymap.json, generated at Thu Nov 07 2024 18:01:50 GMT+0800 (Singapore Standard Time)
 [
   {
-    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
-    "bindings": {
-      // Normal & Visual mode
-
-      // Git
-      "space g h d": "editor::ToggleHunkDiff",
-      "space g h r": "editor::RevertSelectedHunks",
-
-      "space t i": "editor::ToggleInlayHints",
-      "space u w": "editor::ToggleSoftWrap",
-      "space c z": "workspace::ToggleCenteredLayout", // Zen Mode
-      "space m m": "markdown::OpenPreviewToTheSide", // Markdown preview
-      "space f p": "projects::OpenRecent", // Open recent project
-      "space s w": "pane::DeploySearch", // Search word under cursor
-      "space c c": "assistant::ToggleFocus", // AI Chat
-      "g f": "editor::OpenExcerpts", // Go to file
-      "x": "editor::ToggleComments" // Toggle comment
-    }
-  },
-  {
-    "context": "Editor && (vim_mode == insert || vim_mode == visual) && !VimWaiting && !menu",
-    "bindings": {
-      // Insert & Visual mode
-
-      "q q": "vim::NormalBefore" // Better escape
-    }
-  },
-  {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       // Normal mode
@@ -85,6 +57,46 @@
     }
   },
   {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      // Visual mode
+
+      // Sort lines
+      "s s": "editor::SortLinesCaseInsensitive",
+      "s S": "editor::SortLinesCaseSensitive",
+
+      "q": "vim::NormalBefore" // Better escape
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // Normal & Visual mode
+
+      // Git
+      "space g h d": "editor::ToggleHunkDiff",
+      "space g h r": "editor::RevertSelectedHunks",
+
+      "space t i": "editor::ToggleInlayHints",
+      "space u w": "editor::ToggleSoftWrap",
+      "space c z": "workspace::ToggleCenteredLayout", // Zen Mode
+      "space m m": "markdown::OpenPreviewToTheSide", // Markdown preview
+      "space f p": "projects::OpenRecent", // Open recent project
+      "space s w": "pane::DeploySearch", // Search word under cursor
+      "space c c": "assistant::ToggleFocus", // AI Chat
+      "g f": "editor::OpenExcerpts", // Go to file
+      "x": "editor::ToggleComments" // Toggle comment
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !VimWaiting && !menu",
+    "bindings": {
+      // Insert mode
+
+      "q q": "vim::NormalBefore" // Better escape
+    }
+  },
+  {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
       "space f f": "file_finder::Toggle",
@@ -94,7 +106,8 @@
   {
     "context": "Editor",
     "bindings": {
-      "alt-f": "editor::AcceptInlineCompletion"
+      "alt-f": "editor::AcceptInlineCompletion",
+      "alt-backspace": "editor::DeleteToPreviousWordStart"
     }
   },
   {
@@ -102,6 +115,7 @@
     "bindings": {
       "alt-q": "pane::CloseActiveItem",
       "alt-w": "pane::CloseInactiveItems",
+      "alt-p": "project_panel::Open",
       "\\ \\": "terminal_panel::ToggleFocus"
     }
   },
