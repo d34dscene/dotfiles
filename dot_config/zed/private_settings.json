@@ -31,7 +31,9 @@
     "html": true,
     "lua": true,
     "make": true,
+    "proto": true,
     "ruff": true,
+    "snippets": true,
     "sql": true,
     "svelte": true,
     "terraform": true,
@@ -52,7 +54,25 @@
   },
   "languages": {
     "Python": {
-      "language_servers": ["pyright", "ruff"]
+      "language_servers": ["pyright", "ruff"],
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
     }
   },
   "telemetry": {

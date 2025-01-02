@@ -52,7 +52,6 @@
       "ctrl-d": "editor::DuplicateLineDown",
       "f f": "file_finder::Toggle", // Search file
       "f p": "projects::OpenRecent",
-      "f a": "assistant::ToggleFocus", // AI Chat
       "f w": "buffer_search::Deploy", // Search word under cursor in buffer
       "m m": "markdown::OpenPreviewToTheSide" // Markdown preview
     }
@@ -96,17 +95,18 @@
     "bindings": {
       "alt-f": "editor::AcceptInlineCompletion",
       "super-u": "editor::RevertFile",
-      "alt-backspace": "editor::DeleteToPreviousWordStart"
+      "alt-backspace": "editor::DeleteToPreviousWordStart",
+      "alt-/": "assistant::ToggleFocus" // AI Chat
     }
   },
   {
     "context": "Workspace",
     "bindings": {
       "space z": "workspace::ToggleCenteredLayout", // Zen Mode
+      "alt-b": "branches::OpenRecent", // Switch branch
+      "alt-p": "project_panel::Open",
       "alt-q": "pane::CloseActiveItem",
       "alt-w": "pane::CloseInactiveItems",
-      "alt-p": "project_panel::Open",
-      "alt-b": "branches::OpenRecent", // Switch branch
       "\\ \\": "terminal_panel::ToggleFocus"
     }
   },
@@ -115,8 +115,7 @@
     "bindings": {
       "alt-e": "workspace::NewTerminal",
       "alt-d": "pane::ActivateNextItem",
-      "alt-a": "pane::ActivatePrevItem",
-      "tab": "terminal_panel::ToggleFocus"
+      "alt-a": "pane::ActivatePrevItem"
     }
   },
   {
