@@ -53,7 +53,8 @@
       "f f": "file_finder::Toggle", // Search file
       "f p": "projects::OpenRecent",
       "f w": "buffer_search::Deploy", // Search word under cursor in buffer
-      "m m": "markdown::OpenPreviewToTheSide" // Markdown preview
+      "m m": "markdown::OpenPreviewToTheSide", // Markdown preview
+      "shift-y": ["workspace::SendKeystrokes", "y $"]
     }
   },
   {
