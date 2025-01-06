@@ -54,7 +54,7 @@
       "f p": "projects::OpenRecent",
       "f w": "buffer_search::Deploy", // Search word under cursor in buffer
       "m m": "markdown::OpenPreviewToTheSide", // Markdown preview
-      "shift-y": ["workspace::SendKeystrokes", "y $"]
+      "shift-y": ["workspace::SendKeystrokes", "y $"] // Neovim yank
     }
   },
   {
@@ -80,7 +80,16 @@
 
       "space t i": "editor::ToggleInlayHints",
       "g f": "editor::OpenExcerpts", // Go to file
-      "x": "editor::ToggleComments" // Toggle comment
+      "x": "editor::ToggleComments", // Toggle comment
+
+      // Convert case
+      "t l": "editor::ConvertToLowerCase",
+      "t u": "editor::ConvertToUpperCase",
+      "t s": "editor::ConvertToSnakeCase",
+      "t t": "editor::ConvertToTitleCase",
+      "t o": "editor::ConvertToLowerCamelCase",
+      "t c": "editor::ConvertToUpperCamelCase",
+      "t k": "editor::ConvertToKebabCase"
     }
   },
   {
@@ -95,15 +104,18 @@
     "context": "Editor",
     "bindings": {
       "alt-f": "editor::AcceptInlineCompletion",
+      "alt-]": "editor::NextInlineCompletion",
+      "alt-[": "editor::PreviousInlineCompletion",
+      "alt-c": "editor::ToggleCodeActions",
       "super-u": "editor::RevertFile",
-      "alt-backspace": "editor::DeleteToPreviousWordStart",
-      "alt-/": "assistant::ToggleFocus" // AI Chat
+      "alt-backspace": "editor::DeleteToPreviousWordStart"
     }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "space z": "workspace::ToggleCenteredLayout", // Zen Mode
+      "alt-/": "assistant::ToggleFocus", // AI Chat
+      "alt-z": "workspace::ToggleCenteredLayout", // Zen Mode
       "alt-b": "branches::OpenRecent", // Switch branch
       "alt-p": "project_panel::Open",
       "alt-q": "pane::CloseActiveItem",
