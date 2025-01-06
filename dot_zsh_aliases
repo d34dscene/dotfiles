@@ -32,6 +32,7 @@ alias epoch="date +%s"
 alias sshr="ssh-keygen -R"
 alias myip="curl ifconfig.me"
 alias cssl="openssl x509 -text -noout -in"
+alias meta="identify -verbose"
 
 # GNU replacements
 type z &>/dev/null && alias cd="z"
