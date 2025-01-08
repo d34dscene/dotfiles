@@ -63,8 +63,8 @@
       // Visual mode
 
       // Sort lines
-      "s s": "editor::SortLinesCaseInsensitive",
-      "s S": "editor::SortLinesCaseSensitive",
+      "s l": "editor::SortLinesCaseInsensitive",
+      "s L": "editor::SortLinesCaseSensitive",
 
       "q": "vim::NormalBefore" // Better escape
     }
@@ -78,9 +78,8 @@
       "space g h d": "editor::ToggleHunkDiff",
       "space g h r": "editor::RevertSelectedHunks",
 
-      "space t i": "editor::ToggleInlayHints",
-      "g f": "editor::OpenExcerpts", // Go to file
-      "x": "editor::ToggleComments", // Toggle comment
+      // Toggle comment
+      "x": "editor::ToggleComments",
 
       // Convert case
       "t l": "editor::ConvertToLowerCase",
@@ -108,6 +107,7 @@
       "alt-[": "editor::PreviousInlineCompletion",
       "alt-c": "editor::ToggleCodeActions",
       "super-u": "editor::RevertFile",
+      "super-t": "editor::ToggleInlayHints",
       "alt-backspace": "editor::DeleteToPreviousWordStart"
     }
   },
@@ -117,10 +117,16 @@
       "alt-/": "assistant::ToggleFocus", // AI Chat
       "alt-z": "workspace::ToggleCenteredLayout", // Zen Mode
       "alt-b": "branches::OpenRecent", // Switch branch
-      "alt-p": "project_panel::Open",
+      "\\ \\": "terminal_panel::ToggleFocus",
+
+      // Pane management
+      "alt-h": "pane::SplitLeft",
+      "alt-j": "pane::SplitDown",
+      "alt-k": "pane::SplitUp",
+      "alt-l": "pane::SplitRight",
+      "alt-o": "pane::JoinAll",
       "alt-q": "pane::CloseActiveItem",
-      "alt-w": "pane::CloseInactiveItems",
-      "\\ \\": "terminal_panel::ToggleFocus"
+      "alt-w": "pane::CloseInactiveItems"
     }
   },
   {
