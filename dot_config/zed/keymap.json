@@ -16,8 +16,6 @@
       "tab": "project_panel::ToggleFocus",
 
       // LSP
-      "space c a": "editor::ToggleCodeActions",
-      "space .": "editor::ToggleCodeActions",
       "r r": "editor::Rename",
       "g d": "editor::GoToDefinition",
       "g D": "editor::GoToDefinitionSplit",

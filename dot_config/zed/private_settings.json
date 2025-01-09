@@ -46,8 +46,8 @@
     "enabled": true,
     "coloring": "indent_aware" // Rainbow indentation
   },
-  "inlay_hints": {
-    "enabled": true
+  "terminal": {
+    "copy_on_select": true
   },
   "features": {
     "inline_completion_provider": "supermaven"
@@ -70,22 +70,43 @@
         }
       ]
     },
-    "JavaScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
-    },
     "TypeScript": {
-      "code_actions_on_format": {
-        "source.organizeImports": true,
-        "source.addMissingImports": true,
-        "source.fixAll.ts": true
-      }
+      "language_servers": ["typescript-language-server", "eslint"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.eslint": true,
+            "source.fixAll.eslint": true,
+            "source.removeUnused": true,
+            "source.addMissingImports": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "eslint"
+          }
+        }
+      ]
     },
-    "TSX": {
-      "code_actions_on_format": {
-        "source.organizeImports": true
-      }
+    "JavaScript": {
+      "language_servers": ["javascript-typescript-stdio", "eslint"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.eslint": true,
+            "source.fixAll.eslint": true,
+            "source.removeUnused": true,
+            "source.addMissingImports": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "eslint"
+          }
+        }
+      ]
     }
   },
   "telemetry": {
