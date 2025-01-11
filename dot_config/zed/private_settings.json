@@ -19,6 +19,7 @@
   "buffer_font_size": 16,
   "buffer_font_family": "VictorMono Nerd Font",
   "autosave": "on_window_change",
+  "wrap_guides": [80],
   "theme": {
     "mode": "system",
     "light": "Catppuccin Frappé",
@@ -107,6 +108,24 @@
           }
         }
       ]
+    },
+    "Proto": {
+      "format_on_save": "on",
+      "tab_size": 4,
+      "formatter": {
+        "external": {
+          "command": "clang-format",
+          "arguments": ["-style={IndentWidth: 4, ColumnLimit: 0}"]
+        }
+      }
+    }
+  },
+  "lsp": {
+    "protobuf-language-server": {
+      "binary": {
+        "path": "buf",
+        "arguments": ["beta", "lsp"]
+      }
     }
   },
   "telemetry": {

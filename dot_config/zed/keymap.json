@@ -94,7 +94,8 @@
     "bindings": {
       // Insert mode
 
-      "q q": "vim::NormalBefore" // Better escape
+      "q q": "vim::NormalBefore", // Better escape
+      "tab": null
     }
   },
   {
