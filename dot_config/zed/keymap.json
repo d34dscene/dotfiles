@@ -50,7 +50,7 @@
       "ctrl-d": "editor::DuplicateLineDown",
       "f f": "file_finder::Toggle", // Search file
       "f p": "projects::OpenRecent",
-      "f w": "buffer_search::Deploy", // Search word under cursor in buffer
+      "r w": ["buffer_search::Deploy", { "replace_enabled": true }], // Replace word under cursor in buffer
       "m m": "markdown::OpenPreviewToTheSide", // Markdown preview
       "shift-y": ["workspace::SendKeystrokes", "y $"] // Neovim yank
     }
@@ -94,8 +94,7 @@
     "bindings": {
       // Insert mode
 
-      "q q": "vim::NormalBefore", // Better escape
-      "tab": null
+      "q q": "vim::NormalBefore" // Better escape
     }
   },
   {
