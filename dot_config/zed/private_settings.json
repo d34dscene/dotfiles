@@ -128,6 +128,11 @@
       }
     }
   },
+  "language_models": {
+    "ollama": {
+      "api_url": "https://ollama.mizuchi.dev"
+    }
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false
