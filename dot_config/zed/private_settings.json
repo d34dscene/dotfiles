@@ -9,8 +9,8 @@
 {
   "assistant": {
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "provider": "ollama",
+      "model": "qwen2.5-coder:32b"
     },
     "version": "2"
   },
