@@ -25,6 +25,11 @@ return {
 	{ "folke/trouble.nvim", config = true }, -- Quickfix list
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{
+		"rachartier/tiny-glimmer.nvim",
+		event = "VeryLazy",
+		opts = { transparency_color = "#1e1e2e" },
+	},
+	{
 		"j-hui/fidget.nvim", -- LSP progress
 		opts = {
 			notification = {

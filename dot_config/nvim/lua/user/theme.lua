@@ -4,10 +4,11 @@ if not status_ok then
 end
 
 catpuccin.setup {
-	flavour = "macchiato",
+	flavour = "mocha",
 	transparent_background = true,
 	integrations = {
 		cmp = true,
+		blink_cmp = true,
 		gitsigns = true,
 		treesitter = true,
 		notify = true,
