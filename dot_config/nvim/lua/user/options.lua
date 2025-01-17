@@ -14,9 +14,9 @@ o.linebreak = true
 
 -- Indentation and whitespace
 o.expandtab = true -- Convert tabs to spaces
-o.shiftwidth = 2 -- Number of spaces inserted for indentation
-o.tabstop = 2 -- Number of spaces a tab counts for
-o.softtabstop = 2 -- Number of spaces in a tab when editing
+o.shiftwidth = 4 -- Number of spaces inserted for indentation
+o.tabstop = 4 -- Number of spaces a tab counts for
+o.softtabstop = 4 -- Number of spaces in a tab when editing
 o.autoindent = true -- Enable auto-indentation
 o.smartindent = true -- Smart indentation (works with some filetypes)
 o.fileformats = { "unix", "dos", "mac" } -- Set supported file formats

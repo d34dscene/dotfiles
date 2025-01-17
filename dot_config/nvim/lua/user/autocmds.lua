@@ -70,6 +70,27 @@ cmd("User", {
 	end,
 })
 
+cmd({ "User" }, {
+	pattern = "CodeCompanionChatCreated",
+	group = augroup("code_companion_add_rag", { clear = true }),
+	callback = function()
+		vim.defer_fn(function()
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i@rag<cr><esc>", true, false, true), "n", false)
+		end, 100)
+	end,
+})
+
+cmd({ "ColorScheme" }, {
+	desc = "Make all backgrounds transparent",
+	group = augroup("transparent_background", { clear = true }),
+	pattern = "*",
+	callback = function()
+		vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
+		vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE", ctermbg = "NONE" })
+		vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE", ctermbg = "NONE" })
+	end,
+})
+
 local large_file_size = 100000 -- 100KB
 cmd("BufReadPre", {
 	desc = "Disable certain features for large files",

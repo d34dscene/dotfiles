@@ -8,11 +8,11 @@ require "user.autocmds"
 require "user.theme"
 
 -- Plugin Configs
+require "configs.ai"
 require "configs.alpha"
 require "configs.bufferline"
 require "configs.blink"
 require "configs.bufferline"
-require "configs.codecompanion"
 require "configs.conform"
 require "configs.lspconfig"
 require "configs.lualine"

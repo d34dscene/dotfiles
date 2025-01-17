@@ -50,10 +50,11 @@ map("n", "mp", ":BufferLinePick<cr>", { desc = "Pick buffer tab" })
 map(
 	"n",
 	"qq",
-	"<cmd>|if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1 | q | else | bp | bd # | endif<cr>",
-	{ desc = "Save and close buffer or exit Neovim if last buffer" }
+	"<cmd>if &modifiable && &buftype == '' | w | endif | if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) <= 1 | q | else | bp | bd # | endif<cr>",
+	{ desc = "Save and close buffer or exit Neovim if last buffer or buffer not writable" }
 )
-map("n", "qe", "<cmd>wa|BufferLineCloseOthers<cr>", { desc = "Save and close all buffer" })
+map("n", "qw", "<cmd>wa | qa<cr>", { desc = "Save all and quit Neovim" })
+map("n", "qe", "<cmd>wa|BufferLineCloseOthers<cr>", { desc = "Save and close all other buffer" })
 
 -- Spider
 map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
@@ -116,8 +117,8 @@ map("i", "<A-[>", function()
 end, { expr = true })
 
 -- CodeCompanion
+map({ "n", "v" }, "<A-\\>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
 map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionActions<cr>", { desc = "Code companion actions" })
-map({ "n", "v" }, "<leader>cx", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
 map("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add visually selected chat" })
 map("n", "<leader>cd", function()
 	require("codecompanion").prompt "debug_buffer"
@@ -127,10 +128,13 @@ map("n", "<leader>cs", function()
 end, { desc = "Document buffer" })
 
 -- Comment
--- map("n", "x", function()
--- 	require("Comment.api").toggle.linewise.current(nil, {})
--- end, { desc = "Comment line" })
--- map("v", "x", "<esc>:lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", { desc = "Comment block" })
+map("n", "x", function()
+	require("Comment.api").toggle.linewise.current()
+end, { desc = "Comment line" })
+map("v", "x", function()
+	vim.api.nvim_feedkeys("<esc>", "nx", false)
+	require("Comment.api").toggle.linewise(vim.fn.visualmode())
+end, { desc = "Comment block" })
 
 -- Go
 map("n", "<leader>gf", ":GoFillStruct<cr>", { desc = "Go fill struct" })

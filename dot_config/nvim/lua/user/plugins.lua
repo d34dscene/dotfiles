@@ -95,14 +95,7 @@ return {
 	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing
-	{
-		"numToStr/Comment.nvim", -- Smart commenting
-		opts = {
-			toggler = { line = "x", block = "xb" },
-			opleader = { line = "x", block = "xb" },
-			mappings = { extra = false },
-		},
-	},
+	{ "numToStr/Comment.nvim", opts = { mappings = false } }, -- Smart commenting
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",
