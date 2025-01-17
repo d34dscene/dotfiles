@@ -9,10 +9,7 @@ require "user.theme"
 
 -- Plugin Configs
 require "configs.alpha"
-<<<<<<< HEAD
 require "configs.bufferline"
-=======
->>>>>>> 9879dcc (Update .config/nvim/init.lua)
 require "configs.blink"
 require "configs.bufferline"
 require "configs.codecompanion"

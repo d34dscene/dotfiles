@@ -8,8 +8,8 @@ o.writebackup = false -- Do not create a backup before overwriting a file
 o.undofile = true -- Enable persistent undo between sessions
 o.termguicolors = true -- Enable 24-bit RGB color in the TUI
 o.mouse = "a" -- Enable mouse support for all modes
--- o.updatetime = 200 -- Faster CursorHold events
--- o.timeoutlen = 300 -- Faster key sequence completion
+o.updatetime = 200 -- Faster CursorHold events
+o.timeoutlen = 300 -- Faster key sequence completion
 o.linebreak = true
 
 -- Indentation and whitespace
