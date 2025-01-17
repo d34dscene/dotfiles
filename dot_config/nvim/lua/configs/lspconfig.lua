@@ -109,23 +109,14 @@ mason_lspconfig.setup_handlers {
 							["https://goreleaser.com/static/schema.json"] = ".goreleaser.{yml,yaml}",
 						},
 					},
-					-- gopls = {
-					-- 	experimentalPostfixCompletions = true,
-					-- 	analyses = {
-					-- 		unusedparams = true,
-					-- 		shadow = true,
-					-- 	},
-					-- 	staticcheck = true,
-					-- 	hints = {
-					-- 		assignVariableTypes = true,
-					-- 		compositeLiteralFields = true,
-					-- 		compositeLiteralTypes = true,
-					-- 		constantValues = true,
-					-- 		functionTypeParameters = true,
-					-- 		parameterNames = true,
-					-- 		rangeVariableTypes = true,
-					-- 	},
-					-- },
+					gopls = {
+						experimentalPostfixCompletions = true,
+						analyses = {
+							unusedparams = true,
+							shadow = true,
+						},
+						staticcheck = true,
+					},
 				},
 			}
 		end

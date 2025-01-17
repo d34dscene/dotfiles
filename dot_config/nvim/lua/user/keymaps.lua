@@ -14,7 +14,7 @@ map("", "<Space>", "<Nop>")
 
 -- Standard Operations
 map("n", "ss", ":FormatSave<cr>", { desc = "Save" })
-map("n", "qq", ":q<cr>", { desc = "Quit" })
+map("i", "qq", "<esc>", { desc = "Escape" })
 
 -- Search and replace
 map("n", "rt", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
@@ -47,8 +47,18 @@ map("n", "<A-J>", ":BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
 map("n", "mp", ":BufferLinePick<cr>", { desc = "Pick buffer tab" })
 
 -- Buffer delete/wipeout & quit
-map("n", "qw", ":w|bp|bd #<cr>", { desc = "Save and close buffer" })
-map("n", "qe", ":wa|BufferLineCloseOthers<cr>", { desc = "Save and close all buffer" })
+map(
+	"n",
+	"qq",
+	"<cmd>|if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1 | q | else | bp | bd # | endif<cr>",
+	{ desc = "Save and close buffer or exit Neovim if last buffer" }
+)
+map("n", "qe", "<cmd>wa|BufferLineCloseOthers<cr>", { desc = "Save and close all buffer" })
+
+-- Spider
+map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+map({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+map({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
 
 -- Neotree
 map("n", "<leader>e", function()
@@ -117,10 +127,10 @@ map("n", "<leader>cs", function()
 end, { desc = "Document buffer" })
 
 -- Comment
-map("n", "x", function()
-	require("Comment.api").toggle.linewise.current(nil, {})
-end, { desc = "Comment line" })
-map("v", "x", "<esc>:lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", { desc = "Comment block" })
+-- map("n", "x", function()
+-- 	require("Comment.api").toggle.linewise.current(nil, {})
+-- end, { desc = "Comment line" })
+-- map("v", "x", "<esc>:lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", { desc = "Comment block" })
 
 -- Go
 map("n", "<leader>gf", ":GoFillStruct<cr>", { desc = "Go fill struct" })
@@ -222,15 +232,17 @@ map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 map({ "n", "v" }, "y", "\"+y", { desc = "Copy to clipboard" })
 map({ "n", "v" }, "Y", "\"+yg_", { desc = "Copy to clipboard" })
 
+-- Stay in indent mode when indenting
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
+
 -- Paste from clipboard
--- map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste below" })
--- map({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste above" })
 map("n", "<leader>pp", "V\"+p", { desc = "Overwrite line" })
 
 -- Sort lines
-map("x", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })
-map("x", "<leader>sr", ":sort!<cr>", { desc = "Sort lines reverse" })
-map("x", "<leader>su", ":sort u<cr>", { desc = "Sort unique lines" })
+map("v", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })
+map("v", "<leader>sr", ":sort!<cr>", { desc = "Sort lines reverse" })
+map("v", "<leader>su", ":sort u<cr>", { desc = "Sort unique lines" })
 
 -- Autocomplete when searching
 --map("c", "<tab>", "<C-r><C-w>")

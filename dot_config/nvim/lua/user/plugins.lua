@@ -2,9 +2,7 @@ return {
 	-- Important plugins
 	-- ------------------------------------------------------------------------
 	"nvim-lua/plenary.nvim", -- Lua functions
-	"nvim-lua/popup.nvim", -- Popup API for nvim
 	"ray-x/guihua.lua", -- GUI & Util Library
-	"3rd/image.nvim", -- Image preview
 	"MunifTanjim/nui.nvim", -- UI Library
 	"stevearc/dressing.nvim", -- UI hooks
 	"akinsho/bufferline.nvim", -- Bufferline
@@ -12,6 +10,7 @@ return {
 	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
 	"nvim-tree/nvim-web-devicons", -- Icon support
+	{ "chrisgrieser/nvim-spider", lazy = true }, -- Easy motion
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Fuzzy finder
 
@@ -44,6 +43,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"windwp/nvim-ts-autotag", -- Autoclose tags
 		},
@@ -63,9 +63,6 @@ return {
 	"neovim/nvim-lspconfig", -- LSP config
 	"stevearc/conform.nvim", -- Formatter
 	"mfussenegger/nvim-ansible", -- Ansible support
-	"mfussenegger/nvim-dap", -- DAP plugins
-	"rcarriga/nvim-dap-ui", -- DAP UI
-	"theHamsta/nvim-dap-virtual-text", -- DAP virtual text
 	{ "aznhe21/actions-preview.nvim", config = true }, -- Code actions preview
 	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
@@ -73,7 +70,7 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim", -- Indentation guides
 		main = "ibl",
-		opts = { indent = { char = ">" } },
+		config = true,
 	},
 
 	-- Completion
@@ -97,9 +94,15 @@ return {
 	{ "olimorris/codecompanion.nvim", config = true }, -- AI completions
 	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
-	{ "max397574/better-escape.nvim", config = true }, -- Fast escape
 	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing
-	{ "numToStr/Comment.nvim", opts = { mappings = false } }, -- Smart commenting
+	{
+		"numToStr/Comment.nvim", -- Smart commenting
+		opts = {
+			toggler = { line = "x", block = "xb" },
+			opleader = { line = "x", block = "xb" },
+			mappings = { extra = false },
+		},
+	},
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",

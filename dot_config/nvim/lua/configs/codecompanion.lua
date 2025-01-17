@@ -64,6 +64,24 @@ cc.setup {
 	strategies = {
 		chat = {
 			adapter = "ollama",
+			slash_commands = {
+				["file"] = {
+					callback = "strategies.chat.slash_commands.file",
+					description = "Select a file using Telescope",
+					opts = {
+						provider = "telescope",
+						contains_code = true,
+					},
+				},
+			},
+			keymaps = {
+				send = {
+					modes = { n = "ss" },
+				},
+				close = {
+					modes = { n = "q" },
+				},
+			},
 		},
 		inline = {
 			adapter = "ollama",

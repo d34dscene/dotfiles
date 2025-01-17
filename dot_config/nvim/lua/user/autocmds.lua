@@ -43,6 +43,15 @@ cmd("FileType", {
 	end,
 })
 
+cmd("FileType", {
+	desc = "Disable continuation of comments",
+	group = augroup("disable_continuation", { clear = true }),
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove { "c", "r", "o" }
+	end,
+})
+
 cmd("CursorHold", {
 	desc = "Show line diagnostics in hover window",
 	group = augroup("show_line_diagnostics", { clear = true }),

@@ -19,6 +19,14 @@ local function getLSP()
 	return icon
 end
 
+local function getLineCount()
+	local starts = vim.fn.line "v"
+	local ends = vim.fn.line "."
+	local count = starts <= ends and ends - starts + 1 or starts - ends + 1
+	local wc = vim.fn.wordcount()
+	return count .. ":" .. wc["visual_words"]
+end
+
 lualine.setup {
 	options = {
 		theme = "catppuccin",
@@ -38,7 +46,7 @@ lualine.setup {
 		lualine_b = { "filename", { "branch", icon = "" }, "diagnostics" },
 		lualine_c = { "fileformat", "diff" },
 		lualine_x = {},
-		lualine_y = { "filetype", "encoding", "filesize" }, --, { codeium, icon = "󱙺" } },
+		lualine_y = { "filetype", "encoding", "filesize", getLineCount }, --, { codeium, icon = "󱙺" } },
 		lualine_z = { { getLSP, separator = { right = "", left_padding = 2 } } },
 	},
 	inactive_sections = {

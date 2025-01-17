@@ -8,6 +8,8 @@ o.writebackup = false -- Do not create a backup before overwriting a file
 o.undofile = true -- Enable persistent undo between sessions
 o.termguicolors = true -- Enable 24-bit RGB color in the TUI
 o.mouse = "a" -- Enable mouse support for all modes
+-- o.updatetime = 200 -- Faster CursorHold events
+-- o.timeoutlen = 300 -- Faster key sequence completion
 o.linebreak = true
 
 -- Indentation and whitespace
@@ -32,6 +34,12 @@ o.laststatus = 3 -- Global statusline always on
 o.ruler = true -- Show cursor position in the command line
 o.colorcolumn = "80" -- PEP8 like character limit vertical bar.
 o.whichwrap:append "<>[]hl" -- Move to the next line when the cursor reaches the end of the line
+o.pumheight = 10 -- Limit popup menu height
+o.scrolloff = 8 -- Keep 8 lines above/below cursor
+o.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
+o.splitbelow = true -- Open horizontal splits below
+o.splitright = true -- Open vertical splits right
+o.conceallevel = 2 -- Hide markup in markdown files
 
 -- Search options
 o.ignorecase = true -- Ignore case when searching
