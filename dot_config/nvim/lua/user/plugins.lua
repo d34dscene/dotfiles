@@ -29,7 +29,7 @@ return {
 		opts = { transparency_color = "#1e1e2e" },
 	},
 	{
-		"j-hui/fidget.nvim", -- LSP progress
+		"j-hui/fidget.nvim", -- Notifications
 		opts = {
 			notification = {
 				override_vim_notify = true,
@@ -91,7 +91,7 @@ return {
 	"folke/which-key.nvim", -- Key popup
 	"tpope/vim-repeat", -- Repeat dot
 	"Exafunction/codeium.vim", -- AI completions
-	{ "olimorris/codecompanion.nvim", config = true }, -- AI completions
+	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI completions
 	{ "kylechui/nvim-surround", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
 	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing

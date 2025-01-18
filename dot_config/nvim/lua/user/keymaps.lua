@@ -132,7 +132,7 @@ map("n", "x", function()
 	require("Comment.api").toggle.linewise.current()
 end, { desc = "Comment line" })
 map("v", "x", function()
-	vim.api.nvim_feedkeys("<esc>", "nx", false)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
 	require("Comment.api").toggle.linewise(vim.fn.visualmode())
 end, { desc = "Comment block" })
 
