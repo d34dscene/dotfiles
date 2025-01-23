@@ -118,6 +118,7 @@ end, { expr = true })
 
 -- CodeCompanion
 map({ "n", "v" }, "<A-\\>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
+map({ "n", "v" }, "<A-->", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
 map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionActions<cr>", { desc = "Code companion actions" })
 map("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add visually selected chat" })
 map("n", "<leader>cd", function()
