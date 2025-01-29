@@ -13,10 +13,10 @@ return {
 	{ "chrisgrieser/nvim-spider", lazy = true }, -- Easy motion
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Fuzzy finder
+	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple qol plugins
 
 	-- Design
 	-- ------------------------------------------------------------------------
-	"goolord/alpha-nvim", -- Dashboard
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "brenoprata10/nvim-highlight-colors", config = true }, -- Highlight colors
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
@@ -27,15 +27,6 @@ return {
 		"rachartier/tiny-glimmer.nvim",
 		event = "VeryLazy",
 		opts = { transparency_color = "#1e1e2e" },
-	},
-	{
-		"j-hui/fidget.nvim", -- Notifications
-		opts = {
-			notification = {
-				override_vim_notify = true,
-				window = { winblend = 0 },
-			},
-		},
 	},
 
 	-- Treesitter
@@ -67,11 +58,6 @@ return {
 	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{ "pmizio/typescript-tools.nvim", config = true }, -- Typescript tools
-	{
-		"lukas-reineke/indent-blankline.nvim", -- Indentation guides
-		main = "ibl",
-		config = true,
-	},
 
 	-- Completion
 	-- ------------------------------------------------------------------------
