@@ -47,14 +47,32 @@ map("n", "<A-J>", ":BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
 map("n", "mp", ":BufferLinePick<cr>", { desc = "Pick buffer tab" })
 
 -- Buffer delete/wipeout & quit
-map(
-	"n",
-	"qq",
-	"<cmd>if &modifiable && &buftype == '' | w | endif | if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) <= 1 | q | else | bp | bd # | endif<cr>",
-	{ desc = "Save and close buffer or exit Neovim if last buffer or buffer not writable" }
-)
 map("n", "qw", "<cmd>wa | qa<cr>", { desc = "Save all and quit Neovim" })
 map("n", "qe", "<cmd>wa|BufferLineCloseOthers<cr>", { desc = "Save and close all other buffer" })
+
+-- Smart buffer close/quit
+map("n", "qq", function()
+	local buftype = vim.bo.buftype
+	local modified = vim.bo.modified
+
+	-- For special buffers (like CodeCompanion, help, etc)
+	if buftype ~= "" then
+		vim.cmd "q"
+		return
+	end
+
+	-- For normal buffers: save if modified
+	if modified and buftype == "" then
+		vim.cmd "w"
+	end
+
+	-- If it's the last buffer, quit
+	if #vim.fn.getbufinfo { buflisted = 1 } <= 1 then
+		vim.cmd "q"
+	else
+		vim.cmd "bp|bd #"
+	end
+end, { desc = "Smart quit: save & close buffer or quit" })
 
 -- Spider
 map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
