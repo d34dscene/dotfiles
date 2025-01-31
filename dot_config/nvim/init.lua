@@ -17,7 +17,6 @@ require "configs.lualine"
 require "configs.neotree"
 require "configs.snacks"
 require "configs.telescope"
-require "configs.toggleterm"
 require "configs.treesitter"
 require "configs.which-key"
 

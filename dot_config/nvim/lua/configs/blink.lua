@@ -29,6 +29,7 @@ blink.setup {
 	signature = {
 		enabled = true,
 	},
+	snippets = { preset = "luasnip" },
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "nerdfont", "emoji" },
 		providers = {

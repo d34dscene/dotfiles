@@ -17,15 +17,14 @@ local header = [[
       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ]]
 
 snacks.setup {
-	dashboard = {
-		enabled = true,
-		preset = { header = header },
-	},
+	dashboard = { enabled = true, preset = { header = header } },
 	input = { enabled = true },
 	indent = { enabled = true },
 	notifier = { enabled = true },
 	quickfile = { enabled = true },
 	scroll = { enabled = true },
-	statuscolumn = { enabled = true },
+	statuscolumn = {},
+	-- statuscolumn = { enabled = true },
+	terminal = { enabled = true },
 	words = { enabled = true },
 }

@@ -218,6 +218,11 @@ map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List
 -- Markdown Preview
 map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
+-- Terminal
+map({ "n", "t" }, "\\", function()
+	Snacks.terminal()
+end, { desc = "Toggle terminal" })
+
 -- Flash
 map({ "n", "x", "o" }, "f", function()
 	require("flash").jump {

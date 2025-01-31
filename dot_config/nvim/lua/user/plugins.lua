@@ -7,7 +7,6 @@ return {
 	"stevearc/dressing.nvim", -- UI hooks
 	"akinsho/bufferline.nvim", -- Bufferline
 	"nvim-lualine/lualine.nvim", -- Statusline
-	"akinsho/nvim-toggleterm.lua", -- Floating terminal
 	"nvim-telescope/telescope.nvim", -- File search
 	"nvim-tree/nvim-web-devicons", -- Icon support
 	{ "chrisgrieser/nvim-spider", lazy = true }, -- Easy motion
@@ -21,7 +20,6 @@ return {
 	{ "brenoprata10/nvim-highlight-colors", config = true }, -- Highlight colors
 	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
 	{ "lewis6991/gitsigns.nvim", config = true }, -- Git signs
-	{ "folke/trouble.nvim", config = true }, -- Quickfix list
 	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
 	{
 		"rachartier/tiny-glimmer.nvim",
@@ -37,10 +35,10 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"windwp/nvim-ts-autotag", -- Autoclose tags
+			"windwp/nvim-autopairs", -- Autoclose brackets
 		},
 	},
-	{ "JoosepAlviste/nvim-ts-context-commentstring", config = true }, -- Context based commenting
-	{ "sustech-data/wildfire.nvim", config = true }, -- Incremental bracket selection
+	{ "sustech-data/wildfire.nvim", event = "VeryLazy", config = true }, -- Incremental bracket selection
 	{ "Wansmer/treesj", opts = { use_default_keymaps = false } }, -- Node splits/joins
 
 	-- LSP
@@ -54,8 +52,6 @@ return {
 	"neovim/nvim-lspconfig", -- LSP config
 	"stevearc/conform.nvim", -- Formatter
 	"mfussenegger/nvim-ansible", -- Ansible support
-	{ "aznhe21/actions-preview.nvim", config = true }, -- Code actions preview
-	{ "windwp/nvim-autopairs", config = true }, -- Autoclose Brackets
 	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
 	{ "pmizio/typescript-tools.nvim", config = true }, -- Typescript tools
 
@@ -65,7 +61,8 @@ return {
 		"saghen/blink.cmp",
 		version = "*",
 		dependencies = {
-			"rafamadriz/friendly-snippets",
+			-- "rafamadriz/friendly-snippets",
+			{ "L3MON4D3/LuaSnip", version = "v2.*" },
 			"hrsh7th/cmp-emoji",
 			"chrisgrieser/cmp-nerdfont",
 		},
