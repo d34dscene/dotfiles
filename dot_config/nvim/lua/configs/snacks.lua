@@ -23,8 +23,7 @@ snacks.setup {
 	notifier = { enabled = true },
 	quickfile = { enabled = true },
 	scroll = { enabled = true },
-	statuscolumn = {},
-	-- statuscolumn = { enabled = true },
+	statuscolumn = { enabled = true },
 	terminal = { enabled = true },
 	words = { enabled = true },
 }
