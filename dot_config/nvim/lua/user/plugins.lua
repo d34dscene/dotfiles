@@ -1,14 +1,14 @@
 return {
 	-- Important plugins
 	-- ------------------------------------------------------------------------
-	"nvim-lua/plenary.nvim", -- Lua functions
-	"ray-x/guihua.lua", -- GUI & Util Library
-	"MunifTanjim/nui.nvim", -- UI Library
-	"stevearc/dressing.nvim", -- UI hooks
-	"akinsho/bufferline.nvim", -- Bufferline
-	"nvim-lualine/lualine.nvim", -- Statusline
+	{ "nvim-lua/plenary.nvim", lazy = true }, -- Lua functions
+	{ "ray-x/guihua.lua", lazy = true }, -- GUI & Util Library
 	"nvim-telescope/telescope.nvim", -- File search
-	"nvim-tree/nvim-web-devicons", -- Icon support
+	{ "MunifTanjim/nui.nvim", lazy = true }, -- UI Library
+	{ "stevearc/dressing.nvim", event = "VeryLazy" }, -- UI hooks
+	{ "akinsho/bufferline.nvim", event = "VimEnter" }, -- Bufferline
+	{ "nvim-lualine/lualine.nvim", event = "VimEnter" }, -- Statusline
+	{ "nvim-tree/nvim-web-devicons", event = "VimEnter" }, -- Icon support
 	{ "chrisgrieser/nvim-spider", lazy = true }, -- Easy motion
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Fuzzy finder
@@ -17,10 +17,10 @@ return {
 	-- Design
 	-- ------------------------------------------------------------------------
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
-	{ "brenoprata10/nvim-highlight-colors", config = true }, -- Highlight colors
-	{ "folke/todo-comments.nvim", config = true }, -- Highlight todo comments
-	{ "lewis6991/gitsigns.nvim", config = true }, -- Git signs
-	{ "xiyaowong/nvim-transparent", config = true }, -- Add transparency
+	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost", config = true }, -- Highlight colors
+	{ "folke/todo-comments.nvim", event = "BufReadPost", config = true }, -- Highlight todo comments
+	{ "lewis6991/gitsigns.nvim", event = "BufReadPost", config = true }, -- Git signs
+	{ "xiyaowong/nvim-transparent", event = "VimEnter", config = true }, -- Add transparency
 	{
 		"rachartier/tiny-glimmer.nvim",
 		event = "VeryLazy",
@@ -39,7 +39,7 @@ return {
 		},
 	},
 	{ "sustech-data/wildfire.nvim", event = "VeryLazy", config = true }, -- Incremental bracket selection
-	{ "Wansmer/treesj", opts = { use_default_keymaps = false } }, -- Node splits/joins
+	{ "Wansmer/treesj", event = "BufReadPost", opts = { use_default_keymaps = false } }, -- Node splits/joins
 
 	-- LSP
 	-- ------------------------------------------------------------------------
@@ -48,12 +48,12 @@ return {
 		build = ":MasonUpdate",
 		config = true,
 	},
-	{ "williamboman/mason-lspconfig.nvim", config = true }, -- LSP config helper
-	"neovim/nvim-lspconfig", -- LSP config
-	"stevearc/conform.nvim", -- Formatter
-	"mfussenegger/nvim-ansible", -- Ansible support
-	{ "smjonas/inc-rename.nvim", config = true }, -- Highlight refactors
+	{ "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
+	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
+	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
+	{ "smjonas/inc-rename.nvim", event = "BufReadPost", config = true }, -- Highlight refactors
 	{ "pmizio/typescript-tools.nvim", config = true }, -- Typescript tools
+	"mfussenegger/nvim-ansible", -- Ansible support
 
 	-- Completion
 	-- ------------------------------------------------------------------------
@@ -61,7 +61,6 @@ return {
 		"saghen/blink.cmp",
 		version = "*",
 		dependencies = {
-			-- "rafamadriz/friendly-snippets",
 			{ "L3MON4D3/LuaSnip", version = "v2.*" },
 			"hrsh7th/cmp-emoji",
 			"chrisgrieser/cmp-nerdfont",
@@ -71,14 +70,14 @@ return {
 
 	-- Extras
 	-- ------------------------------------------------------------------------
-	"folke/which-key.nvim", -- Key popup
-	"tpope/vim-repeat", -- Repeat dot
-	"Exafunction/codeium.vim", -- AI completions
-	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI completions
-	{ "kylechui/nvim-surround", config = true }, -- Surrounding
-	{ "akinsho/git-conflict.nvim", config = true }, -- Solve git conflicts
-	{ "johmsalas/text-case.nvim", opts = { prefix = "t" } }, -- Change text casing
-	{ "numToStr/Comment.nvim", opts = { mappings = false } }, -- Smart commenting
+	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
+	{ "tpope/vim-repeat", event = "VeryLazy" }, -- Repeat commands
+	{ "Exafunction/codeium.vim", event = "InsertEnter" }, -- AI completions
+	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI chat
+	{ "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
+	{ "akinsho/git-conflict.nvim", event = "BufReadPost", config = true }, -- Solve git conflicts
+	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "t" } }, -- Change text casing
+	{ "numToStr/Comment.nvim", event = "VeryLazy", opts = { mappings = false } }, -- Smart commenting
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",
@@ -106,6 +105,7 @@ return {
 	},
 	{
 		"iamcco/markdown-preview.nvim", -- Live Markdown preview
+		ft = "markdown", -- Load only for markdown files
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
