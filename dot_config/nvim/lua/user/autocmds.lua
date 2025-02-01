@@ -75,7 +75,7 @@ cmd({ "User" }, {
 	group = augroup("code_companion_add_rag", { clear = true }),
 	callback = function()
 		vim.defer_fn(function()
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i@rag<cr><esc>", true, false, true), "n", false)
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("@rag<cr>", true, false, true), "n", false)
 		end, 100)
 	end,
 })

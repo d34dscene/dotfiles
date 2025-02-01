@@ -135,7 +135,19 @@ map("i", "<A-[>", function()
 end, { expr = true })
 
 -- CodeCompanion
-map({ "n", "v" }, "<A-\\>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
+map({ "n", "v", "i" }, "<A-\\>", function()
+	local win = vim.api.nvim_get_current_win()
+	local buf = vim.api.nvim_win_get_buf(win)
+	local is_codecompanion = vim.bo[buf].filetype == "codecompanion"
+
+	if is_codecompanion then
+		vim.cmd "CodeCompanionChat Toggle"
+		vim.cmd "stopinsert"
+	else
+		vim.cmd "CodeCompanionChat Toggle"
+		vim.cmd "startinsert"
+	end
+end, { desc = "Code companion chat toggle" })
 map({ "n", "v" }, "<A-->", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
 map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionActions<cr>", { desc = "Code companion actions" })
 map("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add visually selected chat" })

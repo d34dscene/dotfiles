@@ -143,6 +143,12 @@ local servers = {
 			["https://goreleaser.com/static/schema.json"] = ".goreleaser.{yml,yaml}",
 		},
 	},
+	clangd = {
+		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+	},
+	bufls = {
+		filetypes = { "proto" },
+	},
 }
 
 mason_lspconfig.setup_handlers {
