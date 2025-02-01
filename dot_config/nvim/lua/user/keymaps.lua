@@ -220,7 +220,7 @@ map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" 
 
 -- Terminal
 map({ "n", "t" }, "\\", function()
-	Snacks.terminal()
+	Snacks.terminal.toggle()
 end, { desc = "Toggle terminal" })
 
 -- Flash
