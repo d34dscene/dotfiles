@@ -221,19 +221,18 @@ map("n", "<leader>fd", function()
 end, { desc = "Search diagnostics" })
 map("n", "<leader>ft", ":TodoTelescope<cr>", { desc = "Search Todos" })
 
--- Trouble
-map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics" })
-map("n", "<leader>xf", "<cmd>Trouble diagnostics toggle filter.buf=4<cr>", { desc = "Buffer Diagnostics" })
-map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List" })
-map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List" })
-
 -- Markdown Preview
 map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
--- Terminal
+-- Snacks
 map({ "n", "t" }, "\\", function()
-	Snacks.terminal.toggle()
+	local curwin = vim.api.nvim_get_current_win()
+	Snacks.terminal.toggle(nil, { win = { id = curwin, style = "terminal" } })
 end, { desc = "Toggle terminal" })
+
+map("n", "<leader>gb", function()
+	Snacks.gitbrowse.open()
+end, { desc = "Git browse" })
 
 -- Flash
 map({ "n", "x", "o" }, "f", function()
