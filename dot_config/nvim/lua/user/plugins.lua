@@ -11,7 +11,6 @@ return {
 	{ "nvim-tree/nvim-web-devicons", event = "VimEnter" }, -- Icon support
 	{ "chrisgrieser/nvim-spider", lazy = true }, -- Easy motion
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Fuzzy finder
 	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple qol plugins
 
 	-- Design
