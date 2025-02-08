@@ -51,7 +51,7 @@ return {
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "smjonas/inc-rename.nvim", event = "BufReadPost", config = true }, -- Highlight refactors
-	{ "pmizio/typescript-tools.nvim", config = true }, -- Typescript tools
+	"b0o/schemastore.nvim", -- Schema store
 	"mfussenegger/nvim-ansible", -- Ansible support
 
 	-- Completion

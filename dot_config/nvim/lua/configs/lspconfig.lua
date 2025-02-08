@@ -10,7 +10,8 @@ end
 local lspconfig = safe_require "lspconfig"
 local mason_lspconfig = safe_require "mason-lspconfig"
 local tsbuiltin = safe_require "telescope.builtin"
-if not (lspconfig and mason_lspconfig and tsbuiltin) then
+local conform = safe_require "conform"
+if not (lspconfig and mason_lspconfig and tsbuiltin and conform) then
 	return
 end
 
@@ -32,6 +33,7 @@ mason_lspconfig.setup {
 		"sqlls",
 		"svelte",
 		"tailwindcss",
+		"vtsls",
 		"yamlls",
 	},
 }
@@ -88,14 +90,21 @@ local on_attach = function(_, bufnr)
 	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
 	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
-	map("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+	map("n", "<leader>cc", vim.lsp.buf.code_action, { desc = "Code Action (Cursor)" })
+	map("n", "<leader>ca", function()
+		vim.lsp.buf.code_action {
+			context = {
+				only = { "source" },
+				diagnostics = vim.diagnostic.get(0),
+			},
+		}
+	end, { desc = "Code Action (Buffer)" })
 
 	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
 	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
 	map("n", "<leader>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, { desc = "List workspace folders" })
-	map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 	map("n", "<leader>f", function()
 		vim.lsp.buf.format { async = true }
 	end, { desc = "Format buffer" })
@@ -107,11 +116,23 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
+	eslint = {
+		on_attach = function(client, bufnr)
+			on_attach(client, bufnr)
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				buffer = bufnr,
+				command = "EslintFixAll",
+			})
+		end,
+	},
 	lua_ls = {
 		settings = {
 			Lua = {
 				runtime = { version = "LuaJIT" },
-				diagnostics = { globals = { "vim" } },
+				diagnostics = {
+					globals = { "vim" },
+					disable = { "different-requires" },
+				},
 				workspace = {
 					library = vim.api.nvim_get_runtime_file("", true),
 					checkThirdParty = false,
@@ -134,20 +155,127 @@ local servers = {
 			},
 		},
 	},
+	pyright = {
+		settings = {
+			python = {
+				analysis = {
+					typeCheckingMode = "basic",
+					autoSearchPaths = true,
+					useLibraryCodeForTypes = true,
+					diagnosticMode = "workspace",
+				},
+			},
+		},
+	},
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
 	yaml = {
 		completion = true,
 		schemaStore = {
-			enable = true,
+			enable = false,
+			url = "",
 		},
-		schemas = {
-			["https://goreleaser.com/static/schema.json"] = ".goreleaser.{yml,yaml}",
-		},
+		schemas = require("schemastore").yaml.schemas(),
 	},
 	clangd = {
 		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	},
 	bufls = {
 		filetypes = { "proto" },
+	},
+	typescript = {
+		updateImportsOnFileMove = "always",
+	},
+	javascript = {
+		updateImportsOnFileMove = "always",
+	},
+	svelte = {
+		capabilities = {
+			workspace = {
+				didChangeWatchedFiles = vim.fn.has "nvim-0.10" == 0 and { dynamicRegistration = true },
+			},
+		},
+		on_attach = function(client, bufnr)
+			on_attach(client, bufnr)
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.code_action {
+						context = {
+							only = { "source.organizeImports" },
+							diagnostics = {},
+						},
+						apply = true,
+					}
+					conform.format { lsp_fallback = true }
+				end,
+			})
+		end,
+	},
+	vtsls = {
+		settings = {
+			complete_function_calls = true,
+			vtsls = {
+				enableMoveToFileCodeAction = true,
+				autoUseWorkspaceTsdk = true,
+				experimental = {
+					maxInlayHintLength = 30,
+					completion = {
+						enableServerSideFuzzyMatch = true,
+					},
+				},
+			},
+			typescript = {
+				updateImportsOnFileMove = { enabled = "always" },
+				suggest = {
+					completeFunctionCalls = true,
+				},
+				inlayHints = {
+					enumMemberValues = { enabled = true },
+					functionLikeReturnTypes = { enabled = true },
+					parameterNames = { enabled = "literals" },
+					parameterTypes = { enabled = true },
+					propertyDeclarationTypes = { enabled = true },
+					variableTypes = { enabled = false },
+				},
+			},
+		},
+		on_attach = function(client, bufnr)
+			on_attach(client, bufnr)
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.code_action {
+						context = {
+							only = { "source.addMissingImports.ts" },
+							diagnostics = {},
+						},
+						apply = true,
+					}
+					vim.lsp.buf.code_action {
+						context = {
+							only = { "source.removeUnused.ts" },
+							diagnostics = {},
+						},
+						apply = true,
+					}
+					vim.lsp.buf.code_action {
+						context = {
+							only = { "source.fixAll.ts" },
+							diagnostics = {},
+						},
+						apply = true,
+					}
+					conform.format { lsp_fallback = true }
+				end,
+			})
+		end,
 	},
 }
 
