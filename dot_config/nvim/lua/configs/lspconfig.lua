@@ -90,7 +90,7 @@ local on_attach = function(_, bufnr)
 	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
 	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
-	map("n", "<leader>cc", vim.lsp.buf.code_action, { desc = "Code Action (Cursor)" })
+	map("n", "<leader>cx", vim.lsp.buf.code_action, { desc = "Code Action (Cursor)" })
 	map("n", "<leader>ca", function()
 		vim.lsp.buf.code_action {
 			context = {
@@ -213,7 +213,12 @@ local servers = {
 						},
 						apply = true,
 					}
-					conform.format { lsp_fallback = true }
+					-- Ensure buffer is written after actions are applied
+					vim.defer_fn(function()
+						if vim.bo[bufnr].modified then
+							vim.cmd "silent! noautocmd w"
+						end
+					end, 150)
 				end,
 			})
 		end,
@@ -272,8 +277,13 @@ local servers = {
 						},
 						apply = true,
 					}
-					conform.format { lsp_fallback = true }
 				end,
+				-- Ensure buffer is written after actions are applied
+				vim.defer_fn(function()
+					if vim.bo[bufnr].modified then
+						vim.cmd "silent! noautocmd w"
+					end
+				end, 150),
 			})
 		end,
 	},

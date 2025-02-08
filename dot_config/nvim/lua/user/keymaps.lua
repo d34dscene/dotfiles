@@ -13,8 +13,8 @@ local opts = { noremap = true, silent = true }
 map("", "<Space>", "<Nop>")
 
 -- Standard Operations
-map("n", "ss", ":FormatSave<cr>", { desc = "Save" })
 map("i", "qq", "<esc>", { desc = "Escape" })
+map("n", "ss", ":FormatSave<cr>", { desc = "Save" })
 
 -- Search and replace
 map("n", "rt", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
