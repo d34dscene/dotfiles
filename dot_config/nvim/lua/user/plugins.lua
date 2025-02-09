@@ -37,7 +37,6 @@ return {
 			"windwp/nvim-autopairs", -- Autoclose brackets
 		},
 	},
-	{ "sustech-data/wildfire.nvim", event = "VeryLazy", config = true }, -- Incremental bracket selection
 	{ "Wansmer/treesj", event = "BufReadPost", opts = { use_default_keymaps = false } }, -- Node splits/joins
 
 	-- LSP

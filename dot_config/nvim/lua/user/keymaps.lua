@@ -14,6 +14,7 @@ map("", "<Space>", "<Nop>")
 
 -- Standard Operations
 map("i", "qq", "<esc>", { desc = "Escape" })
+map("t", "qq", "<C-\\><C-n>", { desc = "Escape" })
 map("n", "ss", ":FormatSave<cr>", { desc = "Save" })
 
 -- Search and replace
@@ -222,11 +223,17 @@ map("n", "<leader>ft", ":TodoTelescope<cr>", { desc = "Search Todos" })
 map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Snacks
-map({ "n", "t" }, "\\", function()
-	local curwin = vim.api.nvim_get_current_win()
-	Snacks.terminal.toggle(nil, { win = { id = curwin, style = "terminal" } })
+map({ "n", "t", "i" }, "\\", function()
+	local ft = vim.bo.filetype
+	local count = vim.v.count
+	if ft == "snacks_terminal" and count == 0 then
+		vim.cmd "close"
+	else
+		Snacks.terminal.toggle(nil, { count = count })
+	end
+	-- Reset count
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
 end, { desc = "Toggle terminal" })
-
 map("n", "<leader>gb", function()
 	Snacks.gitbrowse.open()
 end, { desc = "Git browse" })
