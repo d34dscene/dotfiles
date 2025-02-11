@@ -14,6 +14,8 @@ conform.setup {
 		json = { "prettier", "fixjson" },
 		javascript = { "prettier" },
 		typescript = { "prettier" },
+		html = { "prettier" },
+		css = { "prettier" },
 		yaml = { "yamlfmt" },
 		sh = { "shfmt", "shellcheck" },
 		zsh = { "shfmt", "shellcheck" },
