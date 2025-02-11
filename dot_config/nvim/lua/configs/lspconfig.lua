@@ -28,7 +28,7 @@ mason_lspconfig.setup {
 		"jsonls",
 		"lua_ls",
 		"marksman",
-		"pyright",
+		"ruff",
 		"solc",
 		"sqlls",
 		"svelte",
