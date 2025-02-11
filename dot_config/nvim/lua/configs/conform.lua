@@ -16,6 +16,7 @@ conform.setup {
 		typescript = { "prettier" },
 		html = { "prettier" },
 		css = { "prettier" },
+		scss = { "prettier" },
 		yaml = { "yamlfmt" },
 		sh = { "shfmt", "shellcheck" },
 		zsh = { "shfmt", "shellcheck" },
