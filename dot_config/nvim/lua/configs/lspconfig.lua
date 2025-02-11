@@ -201,27 +201,6 @@ local servers = {
 				didChangeWatchedFiles = vim.fn.has "nvim-0.10" == 0 and { dynamicRegistration = true },
 			},
 		},
-		on_attach = function(client, bufnr)
-			on_attach(client, bufnr)
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.code_action {
-						context = {
-							only = { "source.organizeImports" },
-							diagnostics = {},
-						},
-						apply = true,
-					}
-					-- Ensure buffer is written after actions are applied
-					vim.defer_fn(function()
-						if vim.bo[bufnr].modified then
-							vim.cmd "silent! noautocmd w"
-						end
-					end, 150)
-				end,
-			})
-		end,
 	},
 	vtsls = {
 		settings = {
@@ -236,8 +215,11 @@ local servers = {
 					},
 				},
 			},
+			javascript = {
+				updateImportsOnFileMove = "always",
+			},
 			typescript = {
-				updateImportsOnFileMove = { enabled = "always" },
+				updateImportsOnFileMove = "always",
 				suggest = {
 					completeFunctionCalls = true,
 				},
@@ -272,18 +254,12 @@ local servers = {
 					}
 					vim.lsp.buf.code_action {
 						context = {
-							only = { "source.fixAll.ts" },
+							only = { "source.fixAll" },
 							diagnostics = {},
 						},
 						apply = true,
 					}
 				end,
-				-- Ensure buffer is written after actions are applied
-				vim.defer_fn(function()
-					if vim.bo[bufnr].modified then
-						vim.cmd "silent! noautocmd w"
-					end
-				end, 150),
 			})
 		end,
 	},
