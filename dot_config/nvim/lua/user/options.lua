@@ -49,14 +49,8 @@ o.incsearch = true -- Incremental search highlighting
 o.wrap = false -- Do not wrap long lines
 
 -- Global
-g.diagnostics_mode = 3
-g.url_effect_enabled = true
 g.transparent_enabled = true
-g.codelens_enabled = true
-g.codeactions_enabled = true
-g.better_escape_interval = 500
-g.semantic_tokens_enabled = true
-g.codeium_disable_bindings = 1
+g.codeium_disable_bindings = true
 
 -- Disable some default providers
 g.loaded_node_provider = 0
