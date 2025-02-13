@@ -12,7 +12,7 @@ catpuccin.setup {
 		gitsigns = true,
 		treesitter = true,
 		notify = true,
-		telescope = true,
+		snacks = true,
 		indent_blankline = {
 			enabled = true,
 			colored_indent_levels = true,

@@ -16,7 +16,6 @@ require "configs.lspconfig"
 require "configs.lualine"
 require "configs.neotree"
 require "configs.snacks"
-require "configs.telescope"
 require "configs.treesitter"
 require "configs.which-key"
 

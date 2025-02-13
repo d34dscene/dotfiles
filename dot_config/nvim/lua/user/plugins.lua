@@ -3,7 +3,6 @@ return {
 	-- ------------------------------------------------------------------------
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- Lua functions
 	{ "ray-x/guihua.lua", lazy = true }, -- GUI & Util Library
-	"nvim-telescope/telescope.nvim", -- File search
 	{ "MunifTanjim/nui.nvim", lazy = true }, -- UI Library
 	{ "stevearc/dressing.nvim", event = "VeryLazy" }, -- UI hooks
 	{ "akinsho/bufferline.nvim", event = "VimEnter" }, -- Bufferline
@@ -19,7 +18,17 @@ return {
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost", config = true }, -- Highlight colors
 	{ "folke/todo-comments.nvim", event = "BufReadPost", config = true }, -- Highlight todo comments
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPost", config = true }, -- Git signs
-	{ "xiyaowong/nvim-transparent", event = "VimEnter", config = true }, -- Add transparency
+	{
+		"xiyaowong/nvim-transparent", -- Transparency
+		event = "VimEnter",
+		opts = {
+			extra_groups = {
+				"NormalFloat",
+				"NeoTreeNormal",
+				"NeoTreeNormalNC",
+			},
+		},
+	},
 	{
 		"rachartier/tiny-glimmer.nvim",
 		event = "VeryLazy",

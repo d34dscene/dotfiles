@@ -9,9 +9,8 @@ end
 
 local lspconfig = safe_require "lspconfig"
 local mason_lspconfig = safe_require "mason-lspconfig"
-local tsbuiltin = safe_require "telescope.builtin"
 local conform = safe_require "conform"
-if not (lspconfig and mason_lspconfig and tsbuiltin and conform) then
+if not (lspconfig and mason_lspconfig and conform) then
 	return
 end
 
@@ -82,10 +81,22 @@ local on_attach = function(_, bufnr)
 		style = "minimal",
 	})
 
-	-- Mappings.
-	map("n", "gt", tsbuiltin.lsp_definitions, { desc = "Goto Definition" })
-	map("n", "gi", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
-	map("n", "gr", tsbuiltin.lsp_references, { desc = "Goto References" })
+	-- Mappings
+	map("n", "gd", function()
+		Snacks.picker.lsp_definitions()
+	end, { desc = "Goto Definition" })
+	map("n", "gD", function()
+		Snacks.picker.lsp_declarations()
+	end, { desc = "Goto Declaration" })
+	map("n", "gr", function()
+		Snacks.picker.lsp_references()
+	end, { nowait = true, desc = "Goto References" })
+	map("n", "gi", function()
+		Snacks.picker.lsp_implementations()
+	end, { nowait = true, desc = "Goto Implementation" })
+	map("n", "gy", function()
+		Snacks.picker.lsp_type_definitions()
+	end, { desc = "Goto Type Definition" })
 	map("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
 	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
 	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
@@ -108,11 +119,6 @@ local on_attach = function(_, bufnr)
 	map("n", "<leader>f", function()
 		vim.lsp.buf.format { async = true }
 	end, { desc = "Format buffer" })
-
-	-- Lesser used LSP functionality
-	map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-	map("n", "gd", vim.lsp.buf.definition, { desc = "Type Definition" })
-	map("n", "gy", vim.lsp.buf.type_definition, { desc = "Type Definition" })
 end
 
 local servers = {
