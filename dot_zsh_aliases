@@ -37,31 +37,31 @@ alias meta="identify -verbose"
 # GNU replacements
 type z &>/dev/null && alias cd="z"
 if type lsd &>/dev/null; then
-  alias ls="lsd --icon=never"
-  alias la="ls -la --permission=octal"
-  alias ll="ls -lh --permission=octal"
+    alias ls="lsd --icon=never"
+    alias la="ls -la --permission=octal"
+    alias ll="ls -lh --permission=octal"
 else
-  alias ls="ls --color=auto"
-  alias la="ls -la --color=auto"
-  alias ll="ls -lh --color=auto"
+    alias ls="ls --color=auto"
+    alias la="ls -la --color=auto"
+    alias ll="ls -lh --color=auto"
 fi
 if type procs &>/dev/null; then
-  alias ps="procs --sortd cpu"
-  alias pst="procs --tree"
+    alias ps="procs --sortd cpu"
+    alias pst="procs --tree"
 fi
 if type bat &>/dev/null; then
-  alias cat="bat --style=plain --paging=never --theme=base16"
-  alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=bat
+    alias cat="bat --style=plain --paging=never --theme=base16"
+    alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=bat
 else
-  alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=cat
+    alias -s {js,json,env,envrc,md,toml,yml,yaml,txt,conf,ini}=cat
 fi
 if type xh &>/dev/null; then
-  alias xg="xh get --verify no"
-  alias xgs="xhs get --verify no"
-  alias xp="xh post --verify no"
-  alias xps="xhs post --verify no"
-  alias xd="xh delete --verify no"
-  alias xdl="xh -d"
+    alias xg="xh get --verify no"
+    alias xgs="xhs get --verify no"
+    alias xp="xh post --verify no"
+    alias xps="xhs post --verify no"
+    alias xd="xh delete --verify no"
+    alias xdl="xh -d"
 fi
 alias dog="doggo --time"
 alias duf="duf --sort=size -only=local"
