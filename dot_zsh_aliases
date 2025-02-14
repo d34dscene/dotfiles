@@ -104,8 +104,6 @@ alias s="kitten ssh"
 alias kls="ls --hyperlink=auto"
 alias kcat="kitten icat"
 alias knv="kitten edit-in-kitty"
-alias kdl="kitten transfer -p some-cool-pass"
-alias kup="kitten transfer --direction=upload -p some-cool-pass"
 alias kdiff="kitten diff"
 
 # Youtube
