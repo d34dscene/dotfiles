@@ -4,6 +4,7 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+skip_global_compinit=1  # Prevents double compinit
 
 # go
 export GOBIN=$HOME/.local/go/bin
@@ -45,6 +46,8 @@ export HISTDUP=erase
 export HISTIGNORE="*sudo -S*"
 
 # Zsh options
+setopt auto_cd              # if command is directory, cd into it
+setopt auto_pushd           # push dirs into directory stack
 setopt appendhistory        # append to HISTFILE
 setopt sharehistory         # share command history
 setopt extendedhistory      # save timestamps in history
@@ -58,7 +61,11 @@ setopt incappendhistory     # incrementally add items to HISTFILE
 setopt extendedglob         # use extended globbing (#, ~, ^)
 setopt listpacked           # variable col widths
 setopt histexpiredupsfirst  # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt sharehistory         # share command history
+setopt histignorespace      # ignore spaces in history
+setopt pushd_ignore_dups    # no duplicates in dir stack
+setopt auto_param_slash     # Adds slash at end of tabbed dirs
+setopt chase_links          # Resolve symlinks
+setopt magic_equal_subst    # Enable filename expansion for arguments of the form 'anything=expression'
 unsetopt beep               # don't beep 
 
 # Install antidote if it doesn't exist
@@ -92,10 +99,9 @@ prompt powerlevel10k
 type zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Additional completions
-type kubectl >/dev/null && source <(kubectl completion zsh)
-type docker >/dev/null && source <(docker completion zsh)
-type helm >/dev/null && source <(helm completion zsh)
-type flux >/dev/null && source <(flux completion zsh)
+for cmd in kubectl docker helm flux ko; do
+    type $cmd >/dev/null && source <($cmd completion zsh)
+done
 type terraform >/dev/null && complete -o nospace -C /usr/bin/terraform terraform
 
 # Custom Bindings
@@ -106,9 +112,13 @@ bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 bindkey "^I"   complete-word       
 bindkey "^[f" autosuggest-accept
+bindkey '^[[H' beginning-of-line    # Home key
+bindkey '^[[F' end-of-line          # End key
+bindkey '^[[3~' delete-char         # Delete key
 
 # Various plugin settings
 export YSU_MESSAGE_FORMAT="Existing %alias_type for %command => %alias"
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1 
 unset ZSH_AUTOSUGGEST_USE_ASYNC # fix prompt error
 
 # Load aliases & functions

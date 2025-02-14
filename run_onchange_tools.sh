@@ -90,4 +90,5 @@ if check "go"; then
     check "doggo" || go install github.com/mr-karan/doggo/cmd/doggo@latest
     check "k9s" || go install github.com/derailed/k9s@latest
     check "duf" || go install github.com/muesli/duf@latest
+    check "ko" || go install github.com/google/ko@latest
 fi

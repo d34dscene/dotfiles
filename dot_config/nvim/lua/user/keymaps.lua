@@ -182,7 +182,7 @@ map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" 
 
 -- Snacks
 ---- Terminal
-map({ "n", "t", "i" }, "\\", function()
+map({ "n", "t" }, "\\", function()
 	local ft = vim.bo.filetype
 	local count = vim.v.count
 	if ft == "snacks_terminal" and count == 0 then
