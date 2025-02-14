@@ -80,19 +80,6 @@ cmd({ "User" }, {
 	end,
 })
 
--- cmd({ "ColorScheme" }, {
--- 	desc = "Make all backgrounds transparent",
--- 	group = augroup("transparent_background", { clear = true }),
--- 	pattern = "*",
--- 	callback = function()
--- 		vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
--- 		vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE", ctermbg = "NONE" })
--- 		vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE", ctermbg = "NONE" })
--- 		vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE", ctermbg = "NONE" })
--- 		vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", ctermbg = "NONE" })
--- 	end,
--- })
-
 local large_file_size = 1000000 -- 1MB
 cmd("BufReadPre", {
 	desc = "Disable certain features for large files",

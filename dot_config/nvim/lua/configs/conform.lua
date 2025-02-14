@@ -29,7 +29,7 @@ conform.setup {
 		proto = { "buf" },
 		rust = { "rustfmt" },
 		sql = { "sql_formatter" },
-		["*"] = { "codespell" },
+		-- ["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
 	},
 }

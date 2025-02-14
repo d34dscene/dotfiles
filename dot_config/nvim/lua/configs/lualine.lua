@@ -3,28 +3,84 @@ if not status_ok then
 	return
 end
 
-local function getLSP()
-	local icon = "󰅴 "
-	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-	local clients = vim.lsp.get_active_clients()
-	if next(clients) == nil then
-		return icon
+-- CodeCompanion status integration
+local codecompanion = {}
+codecompanion.processing = false
+codecompanion.spinner_index = 1
+
+local spinner_symbols = { ".  ", ".. ", "...", " ..", "  ." }
+local spinner_symbols_len = #spinner_symbols
+
+-- Create autocmds to update processing state based on CodeCompanion events
+local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
+vim.api.nvim_create_autocmd("User", {
+	pattern = "CodeCompanionRequest*",
+	group = group,
+	callback = function(request)
+		if request.match == "CodeCompanionRequestStarted" then
+			codecompanion.processing = true
+		elseif request.match == "CodeCompanionRequestFinished" then
+			codecompanion.processing = false
+		end
+	end,
+})
+
+-- Function to return the spinner symbol when processing
+local function codecompanion_status()
+	if codecompanion.processing then
+		codecompanion.spinner_index = (codecompanion.spinner_index % spinner_symbols_len) + 1
+		return spinner_symbols[codecompanion.spinner_index]
+	else
+		return ""
 	end
-	for _, client in ipairs(clients) do
+end
+
+-- LSP name abbreviations map
+local lsp_shortnames = {
+	["golangci_lint_ls"] = "gc-lint",
+	["tailwindcss"] = "tailwind",
+}
+
+local function getLSP()
+	local buf_ft = vim.bo.filetype
+	local active_clients = {}
+
+	for _, client in ipairs(vim.lsp.get_clients()) do
 		local filetypes = client.config.filetypes
 		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-			return icon .. client.name
+			local short_name = lsp_shortnames[client.name] or client.name:sub(1, 6)
+			table.insert(active_clients, short_name)
 		end
 	end
-	return icon
+
+	return table.concat(active_clients, "|")
 end
 
 local function getLineCount()
-	local starts = vim.fn.line "v"
-	local ends = vim.fn.line "."
-	local count = starts <= ends and ends - starts + 1 or starts - ends + 1
-	local wc = vim.fn.wordcount()
-	return count .. ":" .. wc["visual_words"]
+	local mode = vim.fn.mode()
+	if mode == "v" or mode == "V" or mode == "" then
+		local starts = vim.fn.line "v"
+		local ends = vim.fn.line "."
+		local count = starts <= ends and ends - starts + 1 or starts - ends + 1
+		local wc = vim.fn.wordcount()
+		return string.format("󰦨 %d lines (%d words)", count, wc["visual_words"])
+	end
+	return ""
+end
+
+local function getFileSize()
+	local file = vim.fn.expand "%:p"
+	if file == nil or file == "" then
+		return ""
+	end
+	local size = vim.fn.getfsize(file)
+	if size < 1024 then
+		return string.format("%dB", size)
+	elseif size < 1024 * 1024 then
+		return string.format("%.1fKB", size / 1024)
+	else
+		return string.format("%.1fMB", size / (1024 * 1024))
+	end
 end
 
 lualine.setup {
@@ -43,11 +99,27 @@ lualine.setup {
 		lualine_a = {
 			{ "mode", separator = { left = "" } },
 		},
-		lualine_b = { "filename", { "branch", icon = "" }, "diagnostics" },
+		lualine_b = {
+			"filename",
+			{ "branch", icon = "" },
+			"diagnostics",
+		},
 		lualine_c = { "fileformat", "diff" },
 		lualine_x = {},
-		lualine_y = { "filetype", "encoding", "filesize", getLineCount }, --, { codeium, icon = "󱙺" } },
-		lualine_z = { { getLSP, separator = { right = "", left_padding = 2 } } },
+		lualine_y = {
+			"filetype",
+			"encoding",
+			getLineCount,
+			{ getFileSize, icon = "󰋊" },
+			{ codecompanion_status, icon = "󰚩 " },
+		},
+		lualine_z = {
+			{
+				getLSP,
+				icon = "󰅬",
+				separator = { right = "", left_padding = 2 },
+			},
+		},
 	},
 	inactive_sections = {
 		lualine_a = { "filename" },
@@ -58,5 +130,5 @@ lualine.setup {
 		lualine_z = { "location" },
 	},
 	tabline = {},
-	extensions = { "neo-tree", "toggleterm" },
+	extensions = { "lazy", "mason", "neo-tree" },
 }

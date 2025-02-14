@@ -18,6 +18,7 @@ mason_lspconfig.setup {
 	ensure_installed = {
 		"ansiblels",
 		"buf_ls",
+		"bashls",
 		"clangd",
 		"dockerls",
 		"eslint",
