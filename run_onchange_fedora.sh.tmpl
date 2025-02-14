@@ -17,7 +17,7 @@ EOF
 
 # Better docker config
 if command -v nvidia-smi >/dev/null && command -v nvidia-container-runtime >/dev/null; then
-  sudo tee /etc/docker/daemon.json <<-EOF
+    sudo tee /etc/docker/daemon.json <<-EOF
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -34,7 +34,7 @@ if command -v nvidia-smi >/dev/null && command -v nvidia-container-runtime >/dev
 }
 EOF
 else
-  sudo tee /etc/docker/daemon.json <<-EOF
+    sudo tee /etc/docker/daemon.json <<-EOF
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -53,27 +53,27 @@ sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
 
 # Install development tools
 sudo dnf install -y @development-tools @virtualization \
-  golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
-  flatpak lsd fd-find ripgrep fzf tldr ncdu wl-clipboard lm_sensors \
-  gnome-tweaks lutris gamescope duf steam-devices yt-dlp jq upx fastfetch \
-  ulauncher dconf-editor papirus-icon-theme wireguard-tools clang \
-  clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
-  python3-pip python3-virtualenv age neovim python3-neovim shellcheck \
-  codespell ansible ansible-lint
+    golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
+    flatpak lsd fd-find ripgrep fzf tldr ncdu wl-clipboard lm_sensors \
+    gnome-tweaks lutris gamescope duf steam-devices yt-dlp jq upx fastfetch \
+    ulauncher dconf-editor papirus-icon-theme wireguard-tools clang xz-devel \
+    clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
+    python3-pip python3-virtualenv age neovim python3-neovim shellcheck \
+    codespell ansible ansible-lint
 
 # Add flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal \
-  tv.plex.PlexDesktop io.beekeeperstudio.Studio com.bitwarden.desktop \
-  com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
-  com.mattjakeman.ExtensionManager org.signal.Signal it.mijorus.gearlever
+    tv.plex.PlexDesktop io.beekeeperstudio.Studio com.bitwarden.desktop \
+    com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
+    com.mattjakeman.ExtensionManager org.signal.Signal it.mijorus.gearlever
 {{ end -}}
 
 {{ if eq .chezmoi.osRelease.variantID "server" -}}
 sudo dnf install -y dnf-automatic dnf-plugins-core htop zsh unar git git-lfs \
-  openssl curl lsd fd-find ripgrep fzf tldr ncdu zoxide jq lm_sensors age \
-  duf neovim python3-neovim anacron rsnapshot tuned udisks2-btrfs nfs-utils \
-  fastfetch
+    openssl curl lsd fd-find ripgrep fzf tldr ncdu zoxide jq lm_sensors age \
+    duf neovim python3-neovim anacron rsnapshot tuned udisks2-btrfs nfs-utils \
+    fastfetch
 
 # Add docker
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
