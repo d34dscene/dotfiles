@@ -266,7 +266,6 @@ map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 
 -- Extras
 map("i", "<A-BS>", "<C-w>", opts) -- delete word
-map("i", "<C-x>", "<Esc>ddi", opts) -- delete line
 map("i", "<C-c>", "<Esc>yyi", opts) -- copy line
 map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line

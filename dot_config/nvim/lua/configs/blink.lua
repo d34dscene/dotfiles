@@ -25,6 +25,11 @@ blink.setup {
 		documentation = {
 			auto_show = true,
 		},
+		menu = {
+			draw = {
+				treesitter = { "lsp" },
+			},
+		},
 	},
 	signature = {
 		enabled = true,
@@ -36,9 +41,9 @@ blink.setup {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
 			emoji = { name = "emoji", module = "blink.compat.source" },
 			codecompanion = {
+				enabled = true,
 				name = "CodeCompanion",
 				module = "codecompanion.providers.completion.blink",
-				enabled = true,
 			},
 		},
 	},
