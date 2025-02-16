@@ -74,7 +74,7 @@
       // Normal & Visual mode
 
       // Git
-      "space g h d": "editor::ToggleHunkDiff",
+      "space g h d": "editor::ToggleSelectedDiffHunks",
       "space g h r": "editor::RevertSelectedHunks",
 
       // Toggle comment
@@ -101,9 +101,9 @@
   {
     "context": "Editor",
     "bindings": {
-      "alt-f": "editor::AcceptInlineCompletion",
-      "alt-]": "editor::NextInlineCompletion",
-      "alt-[": "editor::PreviousInlineCompletion",
+      "alt-f": "editor::AcceptEditPrediction",
+      "alt-]": "editor::NextEditPrediction",
+      "alt-[": "editor::PreviousEditPrediction",
       "alt-c": "editor::ToggleCodeActions",
       "super-u": "editor::RevertFile",
       "super-t": "editor::ToggleInlayHints",
@@ -115,7 +115,7 @@
     "bindings": {
       "alt-/": "assistant::ToggleFocus", // AI Chat
       "alt-z": "workspace::ToggleCenteredLayout", // Zen Mode
-      "alt-b": "branches::OpenRecent", // Switch branch
+      "alt-b": "git::Branch", // Switch branch
       "\\ \\": "terminal_panel::ToggleFocus",
 
       // Pane management
@@ -146,7 +146,7 @@
       "x": "project_panel::Cut",
       "c": "project_panel::Copy",
       "p": "project_panel::Paste",
-      "tab": ["workspace::ActivatePaneInDirection", "Right"] // Jump to editor
+      "tab": "workspace::ActivatePaneRight" // Jump to editor
     }
   }
 ]

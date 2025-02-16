@@ -51,7 +51,7 @@
     "copy_on_select": true
   },
   "features": {
-    "inline_completion_provider": "supermaven"
+    "edit_prediction_provider": "zed"
   },
   "languages": {
     "Python": {
