@@ -259,13 +259,6 @@ local servers = {
 						},
 						apply = true,
 					}
-					vim.lsp.buf.code_action {
-						context = {
-							only = { "source.fixAll" },
-							diagnostics = {},
-						},
-						apply = true,
-					}
 				end,
 			})
 		end,
