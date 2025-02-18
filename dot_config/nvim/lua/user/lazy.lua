@@ -26,7 +26,10 @@ require("lazy").setup("user.plugins", {
 	rocks = { enabled = vim.fn.executable "luarocks" == 1 },
 	change_detection = { enabled = true, notify = false },
 	performance = {
+		cache = { enabled = true },
+		reset_packpath = true,
 		rtp = {
+			reset = true,
 			disabled_plugins = {
 				"gzip",
 				"matchit",

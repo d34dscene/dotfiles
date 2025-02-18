@@ -8,9 +8,16 @@ o.writebackup = false -- Do not create a backup before overwriting a file
 o.undofile = true -- Enable persistent undo between sessions
 o.termguicolors = true -- Enable 24-bit RGB color in the TUI
 o.mouse = "a" -- Enable mouse support for all modes
+o.linebreak = true -- Wrap long lines at characters in 'breakat'
+
+-- Performance
 o.updatetime = 200 -- Faster CursorHold events
 o.timeoutlen = 300 -- Faster key sequence completion
-o.linebreak = true
+o.ttyfast = true -- Fast terminal connection
+o.history = 100 -- Keep 100 lines of command line history
+o.lazyredraw = true -- Do not redraw while executing macros
+o.synmaxcol = 200 -- Do not syntax highlight long lines
+o.redrawtime = 1500 -- Allow more time for loading syntax on large files
 
 -- Indentation and whitespace
 o.expandtab = true -- Convert tabs to spaces
