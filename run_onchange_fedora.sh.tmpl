@@ -46,10 +46,11 @@ EOF
 fi
 
 {{ if eq .chezmoi.osRelease.variantID "workstation" -}}
-# Install RPM Fusion
+# Install RPM Fusion & Terra
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm -y
 sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
+sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
 
 # Install development tools
 sudo dnf install -y @development-tools @virtualization \
