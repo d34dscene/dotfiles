@@ -1,6 +1,6 @@
 #!/bin/bash
 
-{{ if eq .chezmoi.osRelease.id "fedora" and eq .chezmoi.osRelease.variantID "server" -}}
+{{ if eq .chezmoi.osRelease.id "fedora" .chezmoi.osRelease.variantID "server" -}}
 sudo tee -a /etc/security/limits.d/base.conf <<-EOF
 * soft nofile 65535
 * hard nofile 65535
