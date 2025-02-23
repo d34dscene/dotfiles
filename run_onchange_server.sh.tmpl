@@ -59,9 +59,13 @@ vm.swappiness=10
 # Enable ASLR (Address Space Layout Randomization)
 kernel.randomize_va_space=2
 
-# Disable IP forwarding (unless needed)
-net.ipv4.ip_forward=0
-net.ipv6.conf.all.forwarding=0
+# Enable IP forwarding for Docker networking
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1
+
+# Docker bridge networking
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
 
 # Disable ICMP redirects (prevents MITM attacks)
 net.ipv4.conf.all.accept_redirects=0
