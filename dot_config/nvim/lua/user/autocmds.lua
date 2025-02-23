@@ -61,6 +61,15 @@ cmd("CursorHold", {
 	end,
 })
 
+cmd({ "BufRead", "BufNewFile" }, {
+	desc = "Detect .zshrc and similar files as zsh filetype",
+	group = augroup("zsh_filetype", { clear = true }),
+	pattern = { ".zsh*" },
+	callback = function()
+		vim.bo.filetype = "zsh"
+	end,
+})
+
 cmd("User", {
 	desc = "Show git conflict markers",
 	group = augroup("show_git_conflict_markers", { clear = true }),
@@ -70,7 +79,7 @@ cmd("User", {
 	end,
 })
 
-cmd({ "User" }, {
+cmd("User", {
 	pattern = "CodeCompanionChatCreated",
 	group = augroup("code_companion_add_rag", { clear = true }),
 	callback = function()
