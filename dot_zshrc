@@ -4,7 +4,6 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-skip_global_compinit=1  # Prevents double compinit
 
 # go
 export GOBIN=$HOME/.local/go/bin
@@ -44,6 +43,7 @@ export SAVEHIST=$HISTSIZE
 export HISTFILE=$HOME/.zsh_history
 export HISTDUP=erase
 export HISTIGNORE="*sudo -S*"
+export HISTCONTROL=ignorespace:ignoredups
 
 # Zsh options
 setopt auto_cd              # if command is directory, cd into it
@@ -68,8 +68,10 @@ setopt chase_links          # Resolve symlinks
 setopt magic_equal_subst    # Enable filename expansion for arguments of the form 'anything=expression'
 unsetopt beep               # don't beep 
 
-# Install antidote if it doesn't exist
+# Install Antidote if not installed
 [[ -d "$ZDOTDIR"/.config/antidote ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR"/.config/antidote
+
+# Load Antidote
 source "$ZDOTDIR"/.config/antidote/antidote.zsh
 
 # Load plugins & add custom styles
@@ -83,12 +85,17 @@ zstyle ':fzf-tab:complete:ls:*' fzf-preview 'ls -1  $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.' # switch group using `,` and `.`
 type antidote >/dev/null && antidote load
 
-# Load completions paths
-autoload -Uz compinit; compinit
-autoload -Uz promptinit; promptinit
-autoload -Uz bashcompinit; bashcompinit
-autoload -Uz bracketed-paste-magic
-autoload -Uz url-quote-magic
+# Load completions from cache if available
+autoload -Uz compinit bashcompinit promptinit
+if [[ -f ~/.zcompdump.zwc ]]; then
+    compinit -C
+else
+    compinit
+fi
+bashcompinit
+promptinit
+
+autoload -Uz bracketed-paste-magic url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic
 zle -N self-insert url-quote-magic
 
