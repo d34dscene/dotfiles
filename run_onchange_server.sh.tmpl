@@ -93,6 +93,11 @@ sudo dnf install -y @development-tools @virtualization
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+# Make zsh default shell
+if type zsh >/dev/null; then
+    sudo chsh -s $(which zsh) $USER
+fi
+
 # Check if NVIDIA GPU is available
 if lspci | grep -i nvidia > /dev/null; then
     echo "NVIDIA GPU detected. Adding CUDA repository..."
