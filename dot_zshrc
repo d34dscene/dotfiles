@@ -5,25 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# go
-export GOBIN=$HOME/.local/go/bin
-export PATH=$GOBIN:$PATH
-
-# rust
-export CARGO_HOME=$HOME/.local/cargo
-export PATH=$CARGO_HOME/bin:$PATH
-
-# poetry
-export POETRY_HOME=$HOME/.local/poetry
-export PATH=$POETRY_HOME/bin:$PATH
-
-# pnpm
-export PNPM_HOME=$HOME/.local/share/pnpm
-export PATH="$PNPM_HOME:$PATH"
+# Paths
+export PATH="$HOME/.local/go/bin:$PATH"
+export PATH="$HOME/.local/cargo/bin:$PATH"
+export PATH="$HOME/.local/share/pnpm:$PATH"
+export PATH="/usr/local/cuda/lib:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
-export PATH=$HOME/.local/bin:$PATH
 export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
 
 # Editor
