@@ -22,6 +22,7 @@ alias signalwork="flatpak run org.signal.Signal --user-data-dir=$HOME/.var/app/o
 # System aliases
 alias flush="resolvectl flush-caches"
 alias bios="systemctl reboot --firmware-setup"
+alias mkgrub="sudo grub2-mkconfig -o /boot/grub2/grub.cfg"
 alias vblk="lsblk -o PATH,SIZE,RO,TYPE,FSTYPE,MOUNTPOINT,UUID,MODEL"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
 alias sec="fwupdmgr security"
