@@ -90,7 +90,7 @@ sudo dnf install -y @development-tools @virtualization \
     udisks2-btrfs nfs-utils fastfetch xz-devel kernel-devel kernel-headers
 
 # Add docker
-sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf config-manager addrepo https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Make zsh default shell
@@ -108,11 +108,18 @@ if lspci | grep -i nvidia > /dev/null; then
     DISTRO_VERSION="fedora$VERSION"
 
     # Add the appropriate CUDA repo based on the distribution
-    sudo dnf config-manager --add-repo "https://developer.download.nvidia.com/compute/cuda/repos/$DISTRO_VERSION/x86_64/cuda-$DISTRO_VERSION.repo"
+    sudo dnf config-manager addrepo "https://developer.download.nvidia.com/compute/cuda/repos/$DISTRO_VERSION/x86_64/cuda-$DISTRO_VERSION.repo"
     sudo dnf install cuda-toolkit -y
 fi
 
-# Extra tweaks
+# NFS 
+mkdir -p /share
+sudo tee -a /etc/exports <<-EOF
+/share 192.168.1.0/24(rw,sync,all_squash,no_subtree_check,crossmnt,anonuid=1000,anongid=1000)
+/share 10.0.10.0/24(rw,sync,all_squash,no_subtree_check,crossmnt,anonuid=1000,anongid=1000)
+EOF
+
+# Firewall
 sudo firewall-cmd --permanent --add-service=ssh
 sudo firewall-cmd --permanent --add-service=nfs
 sudo firewall-cmd --reload
