@@ -6,11 +6,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Paths
+export GOPATH="$HOME/.go:$PATH" # go
 export PATH="$HOME/.local/go/bin:$PATH"
-export PATH="$HOME/.local/cargo/bin:$PATH"
-export PATH="$HOME/.local/share/pnpm:$PATH"
-export PATH="/usr/local/cuda/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/cargo/bin:$PATH" # rust
+export PATH="$HOME/.local/share/pnpm:$PATH" # pnpm
+export PATH="/usr/local/cuda/bin:$PATH" # cuda
+export PATH="$HOME/.local/bin:$PATH" # general bin
 
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
