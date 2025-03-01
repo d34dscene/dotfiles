@@ -1,17 +1,17 @@
 #!/bin/bash
 
 {{ if (and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variantID "server")) -}}
-sudo tee -a /etc/security/limits.d/99-base.conf <<-EOF
+sudo tee /etc/security/limits.d/99-base.conf <<-EOF
 * soft nofile 65535
 * hard nofile 65535
 EOF
 
-sudo tee -a /etc/modprobe.d/sunrpc.conf <<-EOF
+sudo tee /etc/modprobe.d/sunrpc.conf <<-EOF
 options sunrpc tcp_slot_table_entries=128
 options sunrpc tcp_max_slot_table_entries=128
 EOF
 
-sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
+sudo tee /etc/sysctl.d/99-sysctl.conf <<-EOF
 # Increase TCP buffer sizes for high-speed transfers
 net.core.rmem_max=67108864
 net.core.wmem_max=67108864
@@ -113,7 +113,7 @@ fi
 
 # NFS 
 mkdir -p /share
-sudo tee -a /etc/exports <<-EOF
+sudo tee /etc/exports <<-EOF
 /share 192.168.1.0/24(rw,sync,all_squash,no_subtree_check,crossmnt,anonuid=1000,anongid=1000)
 /share 10.0.10.0/24(rw,sync,all_squash,no_subtree_check,crossmnt,anonuid=1000,anongid=1000)
 EOF
