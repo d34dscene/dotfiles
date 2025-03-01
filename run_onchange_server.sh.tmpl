@@ -83,13 +83,33 @@ EOF
 sudo sysctl -p
 
 # General packages
-sudo dnf install -y dnf-automatic dnf-plugins-core htop zsh unar git git-lfs \
-    openssl curl lsd fd-find ripgrep fzf tldr ncdu zoxide jq lm_sensors age \
-    duf neovim python3-neovim anacron tuned udisks2-btrfs nfs-utils \
-    fastfetch xz-devel kernel-devel kernel-headers
+sudo dnf install -y @development-tools @virtualization 
+    dnf-automatic dnf-plugins-core golang rust cargo htop zsh unar git git-lfs \
+    openssl curl htop zsh unar git git-lfs lsd fd-find ripgrep fzf tldr ncdu \
+    zoxide jq lm_sensors age duf neovim python3-neovim anacron tuned \
+    udisks2-btrfs nfs-utils fastfetch xz-devel kernel-devel kernel-headers
 
 # Add docker
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Check if NVIDIA GPU is available
+if lspci | grep -i nvidia > /dev/null; then
+    echo "NVIDIA GPU detected. Adding CUDA repository..."
+
+    # Determine the distribution version in the format 'fedoraXX'
+    DISTRO=$(cat /etc/os-release | grep -oP '(?<=^ID=).+' | tr -d '"')
+    VERSION=$(cat /etc/os-release | grep -oP '(?<=^VERSION_ID=).+' | tr -d '"')
+    DISTRO_VERSION="fedora$VERSION"
+
+    # Add the appropriate CUDA repo based on the distribution
+    sudo dnf config-manager --add-repo "https://developer.download.nvidia.com/compute/cuda/repos/$DISTRO_VERSION/x86_64/cuda-$DISTRO_VERSION.repo"
+    sudo dnf install cuda-toolkit -y
+fi
+
+# Extra tweaks
+sudo firewall-cmd --permanent --add-service=ssh
+sudo firewall-cmd --permanent --add-service=nfs
+sudo firewall-cmd --reload
 
 {{ end -}}
