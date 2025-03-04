@@ -71,6 +71,9 @@ alias duf="duf --sort=size -only=local"
 alias rs="rsync -avzh --info=progress2 --no-i-r"  # Overwrite
 alias rsu="rsync -auzh --info=progress2 --no-i-r" # Update only if newer
 
+# Immich
+alias imup="immich-go upload from-folder --server=$IMMICH_URL --api-key=$IMMICH_API_KEY"
+
 # Systemd
 alias sd="sudo systemctl"
 alias sdu="systemctl --user"
