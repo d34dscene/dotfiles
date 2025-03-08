@@ -57,7 +57,7 @@ sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
 
 # Install development tools
-sudo dnf install -y @development-tools @virtualization \
+sudo dnf install -y @development-tools @virtualization @multimedia \
     golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
     flatpak lsd fd-find ripgrep fzf tldr ncdu wl-clipboard lm_sensors \
     gnome-tweaks lutris gamescope duf steam-devices yt-dlp jq upx fastfetch \
