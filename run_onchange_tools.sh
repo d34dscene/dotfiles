@@ -86,7 +86,6 @@ if check "go"; then
     check "gomodifytags" || go install github.com/fatih/gomodifytags@latest
     check "payload-dumper-go" || go install github.com/ssut/payload-dumper-go@latest
     check "wormhole-william" || go install github.com/psanford/wormhole-william@latest
-    check "flarectl" || go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
     check "doggo" || go install github.com/mr-karan/doggo/cmd/doggo@latest
     check "k9s" || go install github.com/derailed/k9s@latest
     check "duf" || go install github.com/muesli/duf@latest
