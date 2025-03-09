@@ -50,6 +50,7 @@ rust_tools=(
     cargo-cache
     topgrade
     rustscan
+    bandwhich
     stylua
     procs
     bat
@@ -58,36 +59,55 @@ rust_tools=(
 )
 
 if check "pip"; then
-    for tool in ${py_tools[@]}; do
-        pip install "$tool"
+    for tool in "${py_tools[@]}"; do
+        pip install --upgrade "$tool"
     done
 fi
 
 if check "npm"; then
-    for tool in ${node_tools[@]}; do
-        sudo npm install -g "$tool"
+    for tool in "${node_tools[@]}"; do
+        if npm list -g "$tool" >/dev/null 2>&1; then
+            sudo npm update -g "$tool"
+        else
+            sudo npm install -g "$tool"
+        fi
     done
     corepack enable
     corepack prepare pnpm@latest --activate
 fi
 
 if check "cargo"; then
-    for tool in ${rust_tools[@]}; do
-        cargo install "$tool"
+    # Ensure cargo-update is installed first
+    if ! check "cargo-install-update"; then
+        cargo install cargo-update
+    fi
+
+    for tool in "${rust_tools[@]}"; do
+        if cargo install --list | grep -q "^$tool "; then
+            cargo install-update -a
+        else
+            cargo install "$tool"
+        fi
     done
 fi
 
 if check "go"; then
-    check "go-global-update" || go install github.com/Gelio/go-global-update@latest
-    check "staticcheck" || go install honnef.co/go/tools/cmd/staticcheck@latest
-    check "yamlfmt" || go install github.com/google/yamlfmt/cmd/yamlfmt@latest
-    check "shfmt" || go install mvdan.cc/sh/v3/cmd/shfmt@latest
-    check "goimports" || go install golang.org/x/tools/cmd/goimports@latest
-    check "gomodifytags" || go install github.com/fatih/gomodifytags@latest
-    check "payload-dumper-go" || go install github.com/ssut/payload-dumper-go@latest
-    check "wormhole-william" || go install github.com/psanford/wormhole-william@latest
-    check "doggo" || go install github.com/mr-karan/doggo/cmd/doggo@latest
-    check "k9s" || go install github.com/derailed/k9s@latest
-    check "duf" || go install github.com/muesli/duf@latest
-    check "ko" || go install github.com/google/ko@latest
+    go_tools=(
+        github.com/Gelio/go-global-update
+        honnef.co/go/tools/cmd/staticcheck
+        github.com/google/yamlfmt/cmd/yamlfmt
+        mvdan.cc/sh/v3/cmd/shfmt
+        golang.org/x/tools/cmd/goimports
+        github.com/fatih/gomodifytags
+        github.com/ssut/payload-dumper-go
+        github.com/mr-karan/doggo/cmd/doggo
+        github.com/derailed/k9s
+        github.com/muesli/duf
+        github.com/google/ko
+    )
+
+    for tool in "${go_tools[@]}"; do
+        binary_name=$(basename "$tool")
+        check "$binary_name" || go install "$tool@latest"
+    done
 fi
