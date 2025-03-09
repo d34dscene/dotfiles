@@ -48,12 +48,7 @@ node_tools=(
 rust_tools=(
     cargo-update
     cargo-cache
-    topgrade
-    rustscan
-    bandwhich
     stylua
-    procs
-    bat
     oha
     xh
 )

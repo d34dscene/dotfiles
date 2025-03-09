@@ -66,6 +66,9 @@ sudo dnf install -y @development-tools @virtualization @multimedia \
     python3-pip python3-virtualenv age neovim python3-neovim shellcheck \
     codespell ansible ansible-lint opentofu
 
+# Some rust tools
+sudo dnf install topgrade bandwhich rustscan procs bat
+
 # Make zsh default shell
 if type zsh >/dev/null; then
     sudo chsh -s $(which zsh) $USER
