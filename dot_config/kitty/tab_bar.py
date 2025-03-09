@@ -69,7 +69,7 @@ def _get_active_process_name() -> dict:
 
 def _get_datetime() -> dict:
     """Get the current date and time."""
-    now = datetime.now().strftime("%d.%m.%Y %H:%M")
+    now = datetime.now().strftime("%d.%m.%Y")
     return {"icon": CALENDAR_ICON, "icon_bg_color": COLORS["datetime"], "text": now}
 
 
@@ -129,10 +129,10 @@ def _draw_right_status(screen: Screen, is_last: bool, draw_data: DrawData) -> in
     cells = _create_cells()
     right_status_length = 0
     for c in cells:
-        right_status_length += 3 + len(c["icon"]) + len(c["text"])
+        rendered_str = f"{RIGHT_HALF_TRIANGLE} {c['icon']} 󰇙 {c['text']} "
+        cell_length = len(rendered_str)
+        right_status_length += cell_length
 
-    # Add extra padding to prevent rightmost text from being cut off
-    right_status_length += 9
     screen.cursor.x = screen.columns - right_status_length
 
     default_bg = as_rgb(int(draw_data.default_bg))
