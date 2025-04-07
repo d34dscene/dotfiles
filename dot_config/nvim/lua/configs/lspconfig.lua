@@ -22,7 +22,6 @@ mason_lspconfig.setup {
 		"clangd",
 		"dockerls",
 		"eslint",
-		"golangci_lint_ls",
 		"gopls",
 		"helm_ls",
 		"jsonls",
