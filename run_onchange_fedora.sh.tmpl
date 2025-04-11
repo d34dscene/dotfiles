@@ -56,6 +56,10 @@ sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-
 sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
 
+# Media codecs
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+
 # Install development tools
 sudo dnf install -y @development-tools @virtualization @multimedia \
     golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
