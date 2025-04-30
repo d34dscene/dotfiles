@@ -63,6 +63,7 @@ return {
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "smjonas/inc-rename.nvim", event = "BufReadPost", config = true }, -- Highlight refactors
+	{ "pmizio/typescript-tools.nvim", opts = {} }, -- TS tools
 	"b0o/schemastore.nvim", -- Schema store
 	"mfussenegger/nvim-ansible", -- Ansible support
 
@@ -88,6 +89,7 @@ return {
 	{ "akinsho/git-conflict.nvim", event = "BufReadPost", config = true }, -- Solve git conflicts
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{ "numToStr/Comment.nvim", event = "VeryLazy", opts = { mappings = false } }, -- Smart commenting
+	{ "MagicDuck/grug-far.nvim", config = true },
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",

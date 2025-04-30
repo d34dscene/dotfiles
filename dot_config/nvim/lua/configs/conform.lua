@@ -47,7 +47,7 @@ command("Format", function(args)
 end, { range = true })
 
 command("FormatSave", function()
-	conform.format { lsp_fallback = true }
+	conform.format { lsp_fallback = true, timeout_ms = 2500 }
 	vim.cmd "w"
 end, { desc = "Format and save" })
 
@@ -88,4 +88,9 @@ conform.formatters.yamlfmt = vim.tbl_deep_extend("force", yamlfmt, {
 		yamlfmt.args,
 		{ "-formatter", "indent=2,retain_line_breaks=true,scan_folded_as_literal=true" }
 	),
+})
+
+local prettier = require "conform.formatters.prettier"
+conform.formatters.prettier = vim.tbl_deep_extend("force", prettier, {
+	args = util.extend_args(prettier.args, { "--prose-wrap", "always" }),
 })

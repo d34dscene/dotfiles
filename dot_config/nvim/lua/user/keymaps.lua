@@ -180,6 +180,14 @@ map("n", "<leader>gc", ":GitConflictListQf<cr>", { desc = "Git conflict" })
 -- Markdown Preview
 map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
+-- Grug (Search and Replace)
+map("n", "<leader>sw", function()
+	require("grug-far").open { transient = true, prefills = { search = vim.fn.expand "<cword>" } }
+end, { desc = "Replace current word" })
+map("v", "<leader>sv", function()
+	require("grug-far").with_visual_selection { transient = true, prefills = { search = vim.fn.expand "%" } }
+end, { desc = "Replace visual selection" })
+
 -- Snacks
 ---- Terminal
 map({ "n", "t" }, "\\", function()
@@ -284,7 +292,7 @@ map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
 -- Paste from clipboard
-map("n", "<leader>pp", "V\"+p", { desc = "Overwrite line" })
+-- map("n", "<leader>pp", "V\"+p", { desc = "Overwrite line" })
 
 -- Sort lines
 map("v", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })

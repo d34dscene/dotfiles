@@ -32,7 +32,6 @@ mason_lspconfig.setup {
 		"sqlls",
 		"svelte",
 		"tailwindcss",
-		"vtsls",
 		"yamlls",
 	},
 }
@@ -74,13 +73,6 @@ local on_attach = function(_, bufnr)
 		vim.keymap.set(mode, l, r, opts)
 	end
 
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		style = "minimal",
-	})
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		style = "minimal",
-	})
-
 	-- Mappings
 	map("n", "gd", function()
 		Snacks.picker.lsp_definitions()
@@ -97,8 +89,6 @@ local on_attach = function(_, bufnr)
 	map("n", "gy", function()
 		Snacks.picker.lsp_type_definitions()
 	end, { desc = "Goto Type Definition" })
-	map("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
-	map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
 	map("n", "M", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 	map("n", "<leader>cx", vim.lsp.buf.code_action, { desc = "Code Action (Cursor)" })
@@ -208,60 +198,60 @@ local servers = {
 			},
 		},
 	},
-	vtsls = {
-		settings = {
-			complete_function_calls = true,
-			vtsls = {
-				enableMoveToFileCodeAction = true,
-				autoUseWorkspaceTsdk = true,
-				experimental = {
-					maxInlayHintLength = 30,
-					completion = {
-						enableServerSideFuzzyMatch = true,
-					},
-				},
-			},
-			javascript = {
-				updateImportsOnFileMove = "always",
-			},
-			typescript = {
-				updateImportsOnFileMove = "always",
-				suggest = {
-					completeFunctionCalls = true,
-				},
-				inlayHints = {
-					enumMemberValues = { enabled = true },
-					functionLikeReturnTypes = { enabled = true },
-					parameterNames = { enabled = "literals" },
-					parameterTypes = { enabled = true },
-					propertyDeclarationTypes = { enabled = true },
-					variableTypes = { enabled = false },
-				},
-			},
-		},
-		on_attach = function(client, bufnr)
-			on_attach(client, bufnr)
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.code_action {
-						context = {
-							only = { "source.addMissingImports.ts" },
-							diagnostics = {},
-						},
-						apply = true,
-					}
-					vim.lsp.buf.code_action {
-						context = {
-							only = { "source.removeUnused.ts" },
-							diagnostics = {},
-						},
-						apply = true,
-					}
-				end,
-			})
-		end,
-	},
+	-- vtsls = {
+	-- 	settings = {
+	-- 		complete_function_calls = true,
+	-- 		vtsls = {
+	-- 			enableMoveToFileCodeAction = true,
+	-- 			autoUseWorkspaceTsdk = true,
+	-- 			experimental = {
+	-- 				maxInlayHintLength = 30,
+	-- 				completion = {
+	-- 					enableServerSideFuzzyMatch = true,
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		javascript = {
+	-- 			updateImportsOnFileMove = "always",
+	-- 		},
+	-- 		typescript = {
+	-- 			updateImportsOnFileMove = "always",
+	-- 			suggest = {
+	-- 				completeFunctionCalls = true,
+	-- 			},
+	-- 			inlayHints = {
+	-- 				enumMemberValues = { enabled = true },
+	-- 				functionLikeReturnTypes = { enabled = true },
+	-- 				parameterNames = { enabled = "literals" },
+	-- 				parameterTypes = { enabled = true },
+	-- 				propertyDeclarationTypes = { enabled = true },
+	-- 				variableTypes = { enabled = false },
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	on_attach = function(client, bufnr)
+	-- 		on_attach(client, bufnr)
+	-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 			buffer = bufnr,
+	-- 			callback = function()
+	-- 				vim.lsp.buf.code_action {
+	-- 					context = {
+	-- 						only = { "source.addMissingImports.ts" },
+	-- 						diagnostics = {},
+	-- 					},
+	-- 					apply = true,
+	-- 				}
+	-- 				vim.lsp.buf.code_action {
+	-- 					context = {
+	-- 						only = { "source.removeUnused.ts" },
+	-- 						diagnostics = {},
+	-- 					},
+	-- 					apply = true,
+	-- 				}
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- },
 }
 
 mason_lspconfig.setup_handlers {

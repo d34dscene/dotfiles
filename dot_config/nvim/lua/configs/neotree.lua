@@ -11,6 +11,7 @@ neotree.setup {
 	hide_root_node = true,
 	source_selector = {
 		winbar = true,
+		truncation_character = "",
 	},
 	default_component_configs = {
 		container = {
@@ -34,6 +35,7 @@ neotree.setup {
 			folder_closed = "",
 			folder_open = "",
 			folder_empty = "󰜌",
+			folder_empty_open = "󰜌",
 			default = "*",
 			highlight = "NeoTreeFileIcon",
 		},
