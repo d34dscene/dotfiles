@@ -39,11 +39,16 @@ return {
 	-- ------------------------------------------------------------------------
 	{
 		"nvim-treesitter/nvim-treesitter",
+		version = false,
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
+		init = function(plugin)
+			require("lazy.core.loader").add_to_rtp(plugin)
+			require "nvim-treesitter.query_predicates"
+		end,
 		dependencies = {
-			"windwp/nvim-ts-autotag", -- Autoclose tags
-			"windwp/nvim-autopairs", -- Autoclose brackets
+			"windwp/nvim-ts-autotag",
+			"windwp/nvim-autopairs",
 		},
 	},
 	{
@@ -63,7 +68,6 @@ return {
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "smjonas/inc-rename.nvim", event = "BufReadPost", config = true }, -- Highlight refactors
-	{ "pmizio/typescript-tools.nvim", opts = {} }, -- TS tools
 	"b0o/schemastore.nvim", -- Schema store
 	"mfussenegger/nvim-ansible", -- Ansible support
 
@@ -72,13 +76,22 @@ return {
 	{
 		"saghen/blink.cmp",
 		version = "*",
-		dependencies = {
-			{ "L3MON4D3/LuaSnip", version = "v2.*" },
-			"hrsh7th/cmp-emoji",
-			"chrisgrieser/cmp-nerdfont",
-		},
+		dependencies = { "hrsh7th/cmp-emoji", "chrisgrieser/cmp-nerdfont" },
 	},
 	{ "saghen/blink.compat", lazy = true },
+	{
+		"L3MON4D3/LuaSnip",
+		build = vim.fn.has "win32" ~= 0 and "make install_jsregexp" or nil,
+		dependencies = { "rafamadriz/friendly-snippets" },
+		config = function(_, opts)
+			if opts then
+				require("luasnip").config.setup(opts)
+			end
+			vim.tbl_map(function(type)
+				require("luasnip.loaders.from_" .. type).lazy_load()
+			end, { "vscode", "snipmate", "lua" })
+		end,
+	},
 
 	-- Extras
 	-- ------------------------------------------------------------------------

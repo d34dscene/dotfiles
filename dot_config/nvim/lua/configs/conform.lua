@@ -32,6 +32,9 @@ conform.setup {
 		-- ["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
 	},
+	formatters = {
+		injected = { options = { ignore_errors = true } },
+	},
 }
 
 -- Custom commands
@@ -47,13 +50,13 @@ command("Format", function(args)
 end, { range = true })
 
 command("FormatSave", function()
-	conform.format { lsp_fallback = true, timeout_ms = 2500 }
+	conform.format { lsp_fallback = true, timeout_ms = 3000 }
 	vim.cmd "w"
 end, { desc = "Format and save" })
 
+-- FormatDisable! will disable formatting just for this buffer
 command("FormatDisable", function(args)
 	if args.bang then
-		-- FormatDisable! will disable formatting just for this buffer
 		vim.b.disable_autoformat = true
 	else
 		vim.g.disable_autoformat = true

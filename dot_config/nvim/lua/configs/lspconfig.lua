@@ -17,8 +17,8 @@ end
 mason_lspconfig.setup {
 	ensure_installed = {
 		"ansiblels",
-		"buf_ls",
 		"bashls",
+		"buf_ls",
 		"clangd",
 		"dockerls",
 		"eslint",
@@ -32,6 +32,7 @@ mason_lspconfig.setup {
 		"sqlls",
 		"svelte",
 		"tailwindcss",
+		"vtsls",
 		"yamlls",
 	},
 }
@@ -94,10 +95,7 @@ local on_attach = function(_, bufnr)
 	map("n", "<leader>cx", vim.lsp.buf.code_action, { desc = "Code Action (Cursor)" })
 	map("n", "<leader>ca", function()
 		vim.lsp.buf.code_action {
-			context = {
-				only = { "source" },
-				diagnostics = vim.diagnostic.get(0),
-			},
+			context = { only = { "source" }, diagnostics = vim.diagnostic.get(0) },
 		}
 	end, { desc = "Code Action (Buffer)" })
 
@@ -120,6 +118,9 @@ local servers = {
 				command = "EslintFixAll",
 			})
 		end,
+		settings = {
+			workingDirectories = { mode = "auto" },
+		},
 	},
 	lua_ls = {
 		settings = {
@@ -198,60 +199,118 @@ local servers = {
 			},
 		},
 	},
-	-- vtsls = {
-	-- 	settings = {
-	-- 		complete_function_calls = true,
-	-- 		vtsls = {
-	-- 			enableMoveToFileCodeAction = true,
-	-- 			autoUseWorkspaceTsdk = true,
-	-- 			experimental = {
-	-- 				maxInlayHintLength = 30,
-	-- 				completion = {
-	-- 					enableServerSideFuzzyMatch = true,
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 		javascript = {
-	-- 			updateImportsOnFileMove = "always",
-	-- 		},
-	-- 		typescript = {
-	-- 			updateImportsOnFileMove = "always",
-	-- 			suggest = {
-	-- 				completeFunctionCalls = true,
-	-- 			},
-	-- 			inlayHints = {
-	-- 				enumMemberValues = { enabled = true },
-	-- 				functionLikeReturnTypes = { enabled = true },
-	-- 				parameterNames = { enabled = "literals" },
-	-- 				parameterTypes = { enabled = true },
-	-- 				propertyDeclarationTypes = { enabled = true },
-	-- 				variableTypes = { enabled = false },
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	on_attach = function(client, bufnr)
-	-- 		on_attach(client, bufnr)
-	-- 		vim.api.nvim_create_autocmd("BufWritePre", {
-	-- 			buffer = bufnr,
-	-- 			callback = function()
-	-- 				vim.lsp.buf.code_action {
-	-- 					context = {
-	-- 						only = { "source.addMissingImports.ts" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 					apply = true,
-	-- 				}
-	-- 				vim.lsp.buf.code_action {
-	-- 					context = {
-	-- 						only = { "source.removeUnused.ts" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 					apply = true,
-	-- 				}
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- },
+	vtsls = {
+		settings = {
+			complete_function_calls = true,
+			vtsls = {
+				enableMoveToFileCodeAction = true,
+				autoUseWorkspaceTsdk = true,
+				experimental = {
+					maxInlayHintLength = 30,
+					completion = {
+						enableServerSideFuzzyMatch = true,
+					},
+				},
+			},
+			typescript = {
+				updateImportsOnFileMove = { enabled = "always" },
+				suggest = {
+					completeFunctionCalls = true,
+				},
+				inlayHints = {
+					enumMemberValues = { enabled = true },
+					functionLikeReturnTypes = { enabled = true },
+					parameterNames = { enabled = "literals" },
+					parameterTypes = { enabled = true },
+					propertyDeclarationTypes = { enabled = true },
+					variableTypes = { enabled = false },
+				},
+			},
+		},
+		keys = {
+			{
+				"<leader>co",
+				function()
+					vim.lsp.buf.code_action {
+						apply = true,
+						context = {
+							only = { "source.organizeImports" },
+							diagnostics = {},
+						},
+					}
+				end,
+				desc = "Organize Imports",
+			},
+			{
+				"<leader>cM",
+				function()
+					vim.lsp.buf.code_action {
+						apply = true,
+						context = {
+							only = { "source.addMissingImports.ts" },
+							diagnostics = {},
+						},
+					}
+				end,
+				desc = "Add missing imports",
+			},
+			{
+				"<leader>cu",
+				function()
+					vim.lsp.buf.code_action {
+						apply = true,
+						context = {
+							only = { "source.removeUnused.ts" },
+							diagnostics = {},
+						},
+					}
+				end,
+				desc = "Remove unused imports",
+			},
+			{
+				"<leader>cD",
+				function()
+					vim.lsp.buf.code_action {
+						apply = true,
+						context = {
+							only = { "source.fixAll.ts" },
+							diagnostics = {},
+						},
+					}
+				end,
+				desc = "Fix all diagnostics",
+			},
+		},
+		-- on_attach = function(client, bufnr)
+		-- 	on_attach(client, bufnr)
+		-- 	vim.api.nvim_create_autocmd("BufWritePre", {
+		-- 		buffer = bufnr,
+		-- 		callback = function()
+		-- 			vim.lsp.buf.code_action {
+		-- 				apply = true,
+		-- 				context = {
+		-- 					only = { "source.organizeImports" },
+		-- 					diagnostics = {},
+		-- 				},
+		-- 			}
+		-- 			vim.lsp.buf.code_action {
+		-- 				apply = true,
+		-- 				context = {
+		-- 					only = { "source.addMissingImports.ts" },
+		-- 					diagnostics = {},
+		-- 				},
+		-- 			}
+		-- 			vim.lsp.buf.code_action {
+		-- 				apply = true,
+		-- 				context = {
+		-- 					only = { "source.removeUnused.ts" },
+		-- 					diagnostics = {},
+		-- 				},
+		-- 			}
+		-- 		end,
+		-- 	})
+		-- end,
+	},
 }
 
 mason_lspconfig.setup_handlers {
