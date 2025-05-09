@@ -312,19 +312,3 @@ local servers = {
 		-- end,
 	},
 }
-
-mason_lspconfig.setup_handlers {
-	function(server_name)
-		local opts = {
-			on_attach = on_attach,
-			capabilities = require("blink.cmp").get_lsp_capabilities(),
-		}
-
-		-- Merge server-specific settings
-		if servers[server_name] then
-			opts = vim.tbl_deep_extend("force", opts, servers[server_name])
-		end
-
-		lspconfig[server_name].setup(opts)
-	end,
-}
