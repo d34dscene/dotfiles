@@ -57,8 +57,8 @@ sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
 
 # Media codecs
-sudo dnf swap ffmpeg-free ffmpeg --allowerasing
-sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing -y
+sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
 # Install development tools
 sudo dnf install -y @development-tools @virtualization @multimedia \
@@ -71,7 +71,7 @@ sudo dnf install -y @development-tools @virtualization @multimedia \
     codespell ansible ansible-lint opentofu
 
 # Some rust tools
-sudo dnf install topgrade bandwhich rustscan procs bat
+sudo dnf install -y topgrade bandwhich rustscan procs bat
 
 # Make zsh default shell
 if type zsh >/dev/null; then
