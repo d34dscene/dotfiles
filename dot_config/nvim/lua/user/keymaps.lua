@@ -181,6 +181,9 @@ map("n", "<leader>gc", ":GitConflictListQf<cr>", { desc = "Git conflict" })
 map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
 
 -- Grug (Search and Replace)
+map("n", "<leader>sr", function()
+	require("grug-far").open { transient = true }
+end, { desc = "Replace window" })
 map("n", "<leader>sw", function()
 	require("grug-far").open { transient = true, prefills = { search = vim.fn.expand "<cword>" } }
 end, { desc = "Replace current word" })

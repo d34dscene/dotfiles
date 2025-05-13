@@ -17,6 +17,7 @@ which_key.add {
 	{ "<leader>g", group = "Git/Go", nowait = false, remap = false },
 	{ "<leader>l", group = "LSP", nowait = false, remap = false },
 	{ "<leader>s", group = "Sort", mode = "v", nowait = false, remap = false },
+	{ "<leader>s", group = "Search", mode = "n", nowait = false, remap = false },
 	{ "<leader>p", group = "Paste", nowait = false, remap = false },
 	{ "<leader>w", group = "Workspace", nowait = false, remap = false },
 	{ "<leader>y", group = "Clipboard", nowait = false, remap = false },

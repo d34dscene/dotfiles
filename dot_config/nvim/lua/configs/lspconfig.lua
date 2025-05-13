@@ -48,22 +48,22 @@ for _, sign in ipairs(diagnostic_signs) do
 	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
 end
 
--- Enhanced diagnostics config
-vim.diagnostic.config {
-	virtual_text = {
-		spacing = 4,
-		prefix = "",
-		severity_sort = true,
-		source = "if_many",
-		format = function(diagnostic)
-			return string.format("%s [%s]", diagnostic.message, diagnostic.source)
-		end,
-	},
-	signs = true,
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
-}
+-- Enhanced diagnostics settings
+-- vim.diagnostic.settings {
+-- 	virtual_text = {
+-- 		spacing = 4,
+-- 		prefix = "",
+-- 		severity_sort = true,
+-- 		source = "if_many",
+-- 		format = function(diagnostic)
+-- 			return string.format("%s [%s]", diagnostic.message, diagnostic.source)
+-- 		end,
+-- 	},
+-- 	signs = true,
+-- 	underline = true,
+-- 	update_in_insert = false,
+-- 	severity_sort = true,
+-- }
 
 local on_attach = function(_, bufnr)
 	local function map(mode, l, r, opts)
@@ -281,34 +281,42 @@ local servers = {
 				desc = "Fix all diagnostics",
 			},
 		},
-		-- on_attach = function(client, bufnr)
-		-- 	on_attach(client, bufnr)
-		-- 	vim.api.nvim_create_autocmd("BufWritePre", {
-		-- 		buffer = bufnr,
-		-- 		callback = function()
-		-- 			vim.lsp.buf.code_action {
-		-- 				apply = true,
-		-- 				context = {
-		-- 					only = { "source.organizeImports" },
-		-- 					diagnostics = {},
-		-- 				},
-		-- 			}
-		-- 			vim.lsp.buf.code_action {
-		-- 				apply = true,
-		-- 				context = {
-		-- 					only = { "source.addMissingImports.ts" },
-		-- 					diagnostics = {},
-		-- 				},
-		-- 			}
-		-- 			vim.lsp.buf.code_action {
-		-- 				apply = true,
-		-- 				context = {
-		-- 					only = { "source.removeUnused.ts" },
-		-- 					diagnostics = {},
-		-- 				},
-		-- 			}
-		-- 		end,
-		-- 	})
-		-- end,
+		on_attach = function(client, bufnr)
+			on_attach(client, bufnr)
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.code_action {
+						apply = true,
+						context = {
+							only = { "source.organizeImports" },
+							diagnostics = {},
+						},
+					}
+					vim.lsp.buf.code_action {
+						apply = true,
+						context = {
+							only = { "source.addMissingImports.ts" },
+							diagnostics = {},
+						},
+					}
+					vim.lsp.buf.code_action {
+						apply = true,
+						context = {
+							only = { "source.removeUnused.ts" },
+							diagnostics = {},
+						},
+					}
+				end,
+			})
+		end,
 	},
 }
+
+for server, opts in pairs(servers) do
+	vim.lsp.config(server, {
+		on_attach = opts.on_attach,
+		flags = { debounce_text_changes = 150 },
+		settings = opts.settings,
+	})
+end
