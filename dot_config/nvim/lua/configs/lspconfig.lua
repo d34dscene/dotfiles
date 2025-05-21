@@ -282,13 +282,6 @@ local servers = {
 					vim.lsp.buf.code_action {
 						apply = true,
 						context = {
-							only = { "source.organizeImports" },
-							diagnostics = {},
-						},
-					}
-					vim.lsp.buf.code_action {
-						apply = true,
-						context = {
 							only = { "source.addMissingImports.ts" },
 							diagnostics = {},
 						},

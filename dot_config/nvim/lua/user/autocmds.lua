@@ -57,7 +57,7 @@ cmd("CursorHold", {
 	group = augroup("show_line_diagnostics", { clear = true }),
 	pattern = "*",
 	callback = function()
-		vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+		vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
 	end,
 })
 
