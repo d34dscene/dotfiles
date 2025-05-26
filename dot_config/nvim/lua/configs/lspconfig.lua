@@ -1,16 +1,7 @@
-local function safe_require(module)
-	local status_ok, result = pcall(require, module)
-	if not status_ok then
-		vim.notify("Failed to load " .. module, vim.log.levels.ERROR)
-		return nil
-	end
-	return result
-end
-
+local safe_require = require("utils").safe_require
 local lspconfig = safe_require "lspconfig"
 local mason_lspconfig = safe_require "mason-lspconfig"
-local conform = safe_require "conform"
-if not (lspconfig and mason_lspconfig and conform) then
+if not (lspconfig and mason_lspconfig) then
 	return
 end
 
@@ -37,33 +28,76 @@ mason_lspconfig.setup {
 	},
 }
 
-local diagnostic_signs = {
-	{ name = "DiagnosticSignError", text = "" },
-	{ name = "DiagnosticSignWarn", text = "" },
-	{ name = "DiagnosticSignHint", text = "󰌵" },
-	{ name = "DiagnosticSignInfo", text = "" },
+-- Enhanced diagnostics settings
+vim.diagnostic.config {
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "󰌵",
+		},
+	},
+	virtual_text = true,
+	virtual_lines = { current_line = true },
+	update_in_insert = false,
+	underline = true,
+	severity_sort = true,
 }
 
-for _, sign in ipairs(diagnostic_signs) do
-	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-end
+local function copy_diagnostics()
+	local buf = vim.api.nvim_get_current_buf()
+	local lnum = vim.api.nvim_win_get_cursor(0)[1]
+	local diagnostics = vim.diagnostic.get(buf, {
+		lnum = lnum - 1, -- need 0-based index
+		-- this will select only `ERROR` or `WARN`,
+		severity = { min = vim.diagnostic.severity.WARN },
+	})
 
--- Enhanced diagnostics settings
--- vim.diagnostic.settings {
--- 	virtual_text = {
--- 		spacing = 4,
--- 		prefix = "",
--- 		severity_sort = true,
--- 		source = "if_many",
--- 		format = function(diagnostic)
--- 			return string.format("%s [%s]", diagnostic.message, diagnostic.source)
--- 		end,
--- 	},
--- 	signs = true,
--- 	underline = true,
--- 	update_in_insert = false,
--- 	severity_sort = true,
--- }
+	if vim.tbl_isempty(diagnostics) then
+		vim.notify(string.format("Line %d has no diagnostics.", lnum))
+		return
+	end
+
+	table.sort(diagnostics, function(a, b)
+		return a.severity < b.severity
+	end)
+
+	-- Extract unique severities
+	local severities = {}
+	for _, d in ipairs(diagnostics) do
+		severities[d.severity] = true
+	end
+
+	local result = nil
+
+	if #diagnostics == 1 or vim.tbl_count(severities) == 1 then
+		-- Yank directly if only one diagnostic or one type of severity
+		result = vim.trim(diagnostics[1].message)
+	else
+		-- Let user select if multiple severities present
+		vim.ui.select(diagnostics, {
+			prompt = "Select diagnostic:",
+			format_item = function(diag)
+				local severity = diag.severity == vim.diagnostic.severity.ERROR and "ERROR" or "WARNING"
+				return string.format("%s: [%s] %s (%s)", severity, diag.code, vim.trim(diag.message), diag.source)
+			end,
+		}, function(choice)
+			if choice then
+				result = vim.trim(choice.message)
+			end
+		end)
+	end
+
+	-- Use a loop to wait for async select to complete if necessary
+	vim.defer_fn(function()
+		if result then
+			vim.fn.setreg(vim.v.register, result)
+			vim.fn.setreg("+", result)
+			vim.notify(string.format("Yanked diagnostic to register `%s`: %s", vim.v.register, result))
+		end
+	end, 10)
+end
 
 local on_attach = function(_, bufnr)
 	local function map(mode, l, r, opts)
@@ -99,6 +133,7 @@ local on_attach = function(_, bufnr)
 		}
 	end, { desc = "Code Action (Buffer)" })
 
+	map("n", "<leader>yd", copy_diagnostics, { desc = "Yank Diagnostic" })
 	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
 	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
 	map("n", "<leader>wl", function()
@@ -165,25 +200,16 @@ local servers = {
 			},
 		},
 	},
-	yaml = {
+	yamlls = {
 		completion = true,
-		schemaStore = {
-			enable = false,
-			url = "",
-		},
+		schemaStore = { enable = false, url = "" },
 		schemas = require("schemastore").yaml.schemas(),
 	},
 	clangd = {
 		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	},
-	bufls = {
+	buf_ls = {
 		filetypes = { "proto" },
-	},
-	typescript = {
-		updateImportsOnFileMove = "always",
-	},
-	javascript = {
-		updateImportsOnFileMove = "always",
 	},
 	svelte = {
 		capabilities = {
@@ -288,6 +314,7 @@ local servers = {
 					}
 					vim.lsp.buf.code_action {
 						apply = true,
+
 						context = {
 							only = { "source.removeUnused.ts" },
 							diagnostics = {},
@@ -299,10 +326,26 @@ local servers = {
 	},
 }
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+-- Merges general on_attach with a server-specific one
+local function merge_on_attach(server_on_attach)
+	return function(client, bufnr)
+		on_attach(client, bufnr)
+		if server_on_attach then
+			server_on_attach(client, bufnr)
+		end
+	end
+end
+
 for server, opts in pairs(servers) do
 	vim.lsp.config(server, {
-		on_attach = opts.on_attach,
+		-- local server_opts = {
+		on_attach = merge_on_attach(opts.on_attach),
 		flags = { debounce_text_changes = 150 },
 		settings = opts.settings,
+		filetypes = opts.filetypes,
+		capabilities = capabilities,
 	})
+	-- lspconfig[server].setup(server_opts)
 end

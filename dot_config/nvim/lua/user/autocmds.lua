@@ -52,14 +52,14 @@ cmd("FileType", {
 	end,
 })
 
-cmd("CursorHold", {
-	desc = "Show line diagnostics in hover window",
-	group = augroup("show_line_diagnostics", { clear = true }),
-	pattern = "*",
-	callback = function()
-		vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
-	end,
-})
+-- cmd("CursorHold", {
+-- 	desc = "Show line diagnostics in hover window",
+-- 	group = augroup("show_line_diagnostics", { clear = true }),
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
+-- 	end,
+-- })
 
 cmd({ "BufRead", "BufNewFile" }, {
 	desc = "Detect .zshrc and similar files as zsh filetype",
