@@ -12,7 +12,7 @@ which_key.setup {
 }
 
 which_key.add {
-	{ "<leader>c", group = "Code Actions", nowait = false, remap = false },
+	{ "<leader>c", group = "Code Actions", mode = { "n", "v" }, nowait = false, remap = false },
 	{ "<leader>f", group = "File", nowait = false, remap = false },
 	{ "<leader>g", group = "Git/Go", nowait = false, remap = false },
 	{ "<leader>l", group = "LSP", nowait = false, remap = false },

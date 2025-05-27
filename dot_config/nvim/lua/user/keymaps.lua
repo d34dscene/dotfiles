@@ -149,12 +149,11 @@ end, { desc = "Code companion chat toggle" })
 map({ "n", "v" }, "<A-->", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
 map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionActions<cr>", { desc = "Code companion actions" })
 map("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add visually selected chat" })
-map("n", "<leader>cd", function()
-	require("codecompanion").prompt "debug_buffer"
-end, { desc = "Debug buffer" })
-map("n", "<leader>cs", function()
-	require("codecompanion").prompt "document_buffer"
-end, { desc = "Document buffer" })
+map("n", "<leader>cd", "<cmd>CodeCompanion /document_buffer<cr>", { desc = "Document buffer" })
+map("n", "<leader>cr", "<cmd>CodeCompanion /refactor_buffer<cr>", { desc = "Refactor buffer" })
+map("v", "<leader>cd", "<cmd>CodeCompanion /document_selection<cr>", { desc = "Document selection" })
+map("v", "<leader>cr", "<cmd>CodeCompanion /refactor_selection<cr>", { desc = "Refactor selection" })
+map({ "n", "v" }, "<leader>ci", "<cmd>CodeCompanion<cr>", { desc = "Inline Prompt" })
 
 -- Comment
 map("n", "x", function()
