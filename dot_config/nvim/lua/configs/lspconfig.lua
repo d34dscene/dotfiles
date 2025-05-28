@@ -340,12 +340,11 @@ end
 
 for server, opts in pairs(servers) do
 	vim.lsp.config(server, {
-		-- local server_opts = {
 		on_attach = merge_on_attach(opts.on_attach),
 		flags = { debounce_text_changes = 150 },
 		settings = opts.settings,
 		filetypes = opts.filetypes,
 		capabilities = capabilities,
 	})
-	-- lspconfig[server].setup(server_opts)
+	vim.lsp.enable(server)
 end
