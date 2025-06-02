@@ -57,9 +57,9 @@ o.wrap = false -- Do not wrap long lines
 
 -- Auto-sync with clipboard, but handle SSH gracefully
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
-	vim.opt.clipboard = "osc52"
+	g.clipboard = "osc52"
 else
-	vim.opt.clipboard = "unnamedplus"
+	g.clipboard = "unnamedplus"
 end
 
 -- Global
