@@ -57,19 +57,7 @@ o.wrap = false -- Do not wrap long lines
 
 -- Auto-sync with clipboard, but handle SSH gracefully
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
-	-- SSH: Use OSC 52 for clipboard sync
-	vim.g.clipboard = {
-		name = "OSC 52",
-		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy "+",
-			["*"] = require("vim.ui.clipboard.osc52").copy "*",
-		},
-		paste = {
-			["+"] = require("vim.ui.clipboard.osc52").paste "+",
-			["*"] = require("vim.ui.clipboard.osc52").paste "*",
-		},
-	}
-	vim.opt.clipboard = "unnamedplus"
+	vim.opt.clipboard = "osc52"
 else
 	vim.opt.clipboard = "unnamedplus"
 end
