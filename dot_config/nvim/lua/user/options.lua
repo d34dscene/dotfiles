@@ -2,6 +2,7 @@ local o = vim.opt
 local g = vim.g
 
 -- General options
+o.clipboard = "unnamedplus" -- Use the system clipboard
 o.backup = false -- Disable backup files
 o.swapfile = false -- Disable swap files
 o.writebackup = false -- Do not create a backup before overwriting a file
@@ -55,16 +56,10 @@ o.hlsearch = false -- Highlight all search matches
 o.incsearch = true -- Incremental search highlighting
 o.wrap = false -- Do not wrap long lines
 
--- Auto-sync with clipboard, but handle SSH gracefully
--- if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
-g.clipboard = "osc52"
--- else
-o.clipboard = "unnamedplus"
--- end
-
 -- Global
 g.transparent_enabled = true
 g.codeium_disable_bindings = true
+g.clipboard = "osc52"
 
 -- Disable some default providers
 g.loaded_node_provider = 0
