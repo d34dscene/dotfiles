@@ -55,6 +55,13 @@ o.hlsearch = false -- Highlight all search matches
 o.incsearch = true -- Incremental search highlighting
 o.wrap = false -- Do not wrap long lines
 
+-- Auto-sync with clipboard, but handle SSH gracefully
+if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+	vim.g.clipboard_ssh = true
+else
+	vim.opt.clipboard = "unnamedplus"
+end
+
 -- Global
 g.transparent_enabled = true
 g.codeium_disable_bindings = true

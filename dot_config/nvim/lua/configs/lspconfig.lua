@@ -20,7 +20,7 @@ mason_lspconfig.setup {
 		"marksman",
 		"ruff",
 		"solc",
-		"sqlls",
+		"sqls",
 		"svelte",
 		"tailwindcss",
 		"vtsls",

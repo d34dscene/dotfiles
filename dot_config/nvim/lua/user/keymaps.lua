@@ -285,12 +285,6 @@ map("n", "]]", ":%&<cr>", opts) -- repeat substitution
 map("n", "<C-a>", "gg<S-v>G", opts) -- select all
 map("n", "<C-x>", "^y$jA<Space><Esc>pkdd", opts) -- paste at end of line
 
--- Copy to clipboard
-map({ "n", "v" }, "<leader>y", "\"+y", { desc = "Yank to clipboard" })
-map("n", "<leader>Y", "\"+yg_", { desc = "Yank line to clipboard" })
-map({ "n", "v" }, "<leader>p", "\"+p", { desc = "Paste from clipboard" })
-map({ "n", "v" }, "<leader>P", "\"+P", { desc = "Paste before from clipboard" })
-
 -- Stay in indent mode when indenting
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
