@@ -120,16 +120,16 @@ end, { desc = "Previous todo comment" })
 
 -- Codium
 map("i", "<A-f>", function()
-	return vim.fn["codeium#Accept"]()
+	require("neocodeium").accept()
 end, { expr = true })
 map("i", "<PageUp>", function()
-	return vim.fn["codeium#CycleCompletions"](5)
+	require("neocodeium").cycle(1)
 end, { expr = true })
 map("i", "<PageDown>", function()
-	return vim.fn["codeium#CycleCompletions"](3)
+	require("neocodeium").cycle(-1)
 end, { expr = true })
 map("i", "<A-[>", function()
-	return vim.fn["codeium#Clear"]()
+	require("neocodeium").clear()
 end, { expr = true })
 
 -- CodeCompanion

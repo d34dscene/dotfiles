@@ -113,7 +113,7 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
-	{ "Exafunction/windsurf.vim", event = "InsertEnter" }, -- AI completions
+	{ "monkoose/neocodeium", event = "VeryLazy", config = true },
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI chat
 	{ "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", event = "BufReadPost", config = true }, -- Solve git conflicts

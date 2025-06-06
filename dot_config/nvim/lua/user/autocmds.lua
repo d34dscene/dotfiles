@@ -52,15 +52,6 @@ cmd("FileType", {
 	end,
 })
 
--- cmd("CursorHold", {
--- 	desc = "Show line diagnostics in hover window",
--- 	group = augroup("show_line_diagnostics", { clear = true }),
--- 	pattern = "*",
--- 	callback = function()
--- 		vim.diagnostic.open_float(nil, { focusable = true, source = "if_many" })
--- 	end,
--- })
-
 cmd({ "BufRead", "BufNewFile" }, {
 	desc = "Detect .zshrc and similar files as zsh filetype",
 	group = augroup("zsh_filetype", { clear = true }),
@@ -76,16 +67,6 @@ cmd("User", {
 	pattern = "GitConflictDetected",
 	callback = function()
 		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
-	end,
-})
-
-cmd("User", {
-	pattern = "CodeCompanionChatCreated",
-	group = augroup("code_companion_add_rag", { clear = true }),
-	callback = function()
-		vim.defer_fn(function()
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("@rag<cr>", true, false, true), "n", false)
-		end, 100)
 	end,
 })
 
