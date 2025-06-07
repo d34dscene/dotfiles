@@ -9,7 +9,6 @@ alias se="sudo -E"
 alias ff="fastfetch"
 alias path='echo -e "${PATH//:/\\n}"'
 alias up="topgrade -y -c --skip-notify"
-alias nv="nvim"
 alias lt="tree -L 3"
 alias gi="git-ignore"
 alias ws="wormhole-william send"
@@ -107,7 +106,6 @@ alias czp="chezmoi update; chezmoi apply"
 alias s="kitten ssh"
 alias kls="ls --hyperlink=auto"
 alias kcat="kitten icat"
-alias knv="kitten edit-in-kitty"
 alias kdiff="kitten diff"
 
 # Youtube
