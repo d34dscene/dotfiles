@@ -1,5 +1,6 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-if not status_ok then
+local safe_require = require("utils").safe_require
+local bufferline = safe_require "bufferline"
+if not bufferline then
 	return
 end
 

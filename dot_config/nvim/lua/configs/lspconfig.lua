@@ -180,16 +180,9 @@ local servers = {
 			},
 		},
 	},
-	pyright = {
+	ruff = {
 		settings = {
-			python = {
-				analysis = {
-					typeCheckingMode = "basic",
-					autoSearchPaths = true,
-					useLibraryCodeForTypes = true,
-					diagnosticMode = "workspace",
-				},
-			},
+			logLevel = "info",
 		},
 	},
 	jsonls = {

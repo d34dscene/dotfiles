@@ -1,5 +1,6 @@
-local status_ok, neotree = pcall(require, "neo-tree")
-if not status_ok then
+local safe_require = require("utils").safe_require
+local neotree = safe_require "neo-tree"
+if not neotree then
 	return
 end
 

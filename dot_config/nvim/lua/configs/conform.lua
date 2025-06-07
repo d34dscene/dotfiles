@@ -1,5 +1,6 @@
-local status_ok, conform = pcall(require, "conform")
-if not status_ok then
+local safe_require = require("utils").safe_require
+local conform = safe_require "conform"
+if not conform then
 	return
 end
 

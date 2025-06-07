@@ -1,5 +1,6 @@
-local status_ok, catpuccin = pcall(require, "catpuccin")
-if not status_ok then
+local safe_require = require("utils").safe_require
+local catpuccin = safe_require "catppuccin"
+if not catpuccin then
 	return
 end
 

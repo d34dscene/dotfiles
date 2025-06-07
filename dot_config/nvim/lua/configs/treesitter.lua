@@ -1,9 +1,10 @@
-local status_ok, ts = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
+local safe_require = require("utils").safe_require
+local treesitter = safe_require "nvim-treesitter"
+if not treesitter then
 	return
 end
 
-ts.setup {
+treesitter.setup {
 	ensure_installed = {
 		"bash",
 		"c",
@@ -34,14 +35,10 @@ ts.setup {
 	auto_install = true,
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = function(_, buf) -- Disable on large files
+		disable = function(_, buf)
 			local max_filesize = 1000 * 1024 -- 1 MB
 			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 			if ok and stats and stats.size > max_filesize then
-				return true
-			end
-			-- Ignore chezmoi templates
-			if string.find(vim.bo.filetype, "chezmoitmpl") then
 				return true
 			end
 		end,

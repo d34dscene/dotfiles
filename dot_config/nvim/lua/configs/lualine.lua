@@ -1,5 +1,6 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
+local safe_require = require("utils").safe_require
+local lualine = safe_require "lualine"
+if not lualine then
 	return
 end
 

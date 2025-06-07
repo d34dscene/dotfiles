@@ -1,5 +1,6 @@
-local status_ok, blink = pcall(require, "blink.cmp")
-if not status_ok then
+local safe_require = require("utils").safe_require
+local blink = safe_require "blink.cmp"
+if not blink then
 	return
 end
 
