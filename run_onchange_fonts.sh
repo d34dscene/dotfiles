@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# List of fonts you want to install
+FONTS=("JetBrainsMono" "FiraCode" "VictorMono")
+
+# Target install directory
+FONT_DIR="${HOME}/.local/share/fonts"
+
+# Create font directory if it doesn't exist
+mkdir -p "$FONT_DIR"
+
+for FONT in "${FONTS[@]}"; do
+    echo "Installing ${FONT} Nerd Font..."
+
+    # Define the download URL
+    URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT}.tar.xz"
+
+    # Temp directory for extraction
+    TMP_DIR=$(mktemp -d)
+    FONT_SUBDIR="${FONT_DIR}/${FONT}"
+
+    # Clean old font dir if exists
+    rm -rf "$FONT_SUBDIR"
+    mkdir -p "$FONT_SUBDIR"
+
+    # Download and extract
+    curl -sSL "$URL" -o "${TMP_DIR}/${FONT}.tar.xz"
+    tar -xf "${TMP_DIR}/${FONT}.tar.xz" -C "$TMP_DIR"
+
+    # Move only font files
+    find "$TMP_DIR" -iname "*.ttf" -exec mv {} "$FONT_SUBDIR" \;
+
+    rm -rf "$TMP_DIR"
+    echo "${FONT} installed to ${FONT_SUBDIR}"
+done
+
+# Refresh font cache
+if command -v fc-cache >/dev/null 2>&1; then
+    echo "Updating font cache..."
+    fc-cache -f "$FONT_DIR"
+fi
+
+echo "All fonts installed."
