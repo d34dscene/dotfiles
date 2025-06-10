@@ -51,7 +51,7 @@ snacks.setup {
 				padding = 1,
 				key = "b",
 				action = function()
-					Snacks.gitbrowse()
+					snacks.gitbrowse()
 				end,
 			},
 			{ pane = 2, icon = "󱋡 ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
@@ -62,7 +62,7 @@ snacks.setup {
 				title = "Git Status",
 				section = "terminal",
 				enabled = function()
-					return Snacks.git.get_root() ~= nil
+					return snacks.git.get_root() ~= nil
 				end,
 				cmd = "git status --short --branch --renames",
 				height = 5,

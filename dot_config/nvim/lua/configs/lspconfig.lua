@@ -109,21 +109,25 @@ local on_attach = function(_, bufnr)
 	end
 
 	-- Mappings
-	map("n", "gd", function()
-		Snacks.picker.lsp_definitions()
-	end, { desc = "Goto Definition" })
-	map("n", "gD", function()
-		Snacks.picker.lsp_declarations()
-	end, { desc = "Goto Declaration" })
-	map("n", "gr", function()
-		Snacks.picker.lsp_references()
-	end, { nowait = true, desc = "Goto References" })
-	map("n", "gi", function()
-		Snacks.picker.lsp_implementations()
-	end, { nowait = true, desc = "Goto Implementation" })
-	map("n", "gy", function()
-		Snacks.picker.lsp_type_definitions()
-	end, { desc = "Goto Type Definition" })
+	local picker = safe_require "snacks.picker"
+	if picker then
+		map("n", "gd", function()
+			picker.lsp_definitions()
+		end, { desc = "Goto Definition" })
+		map("n", "gD", function()
+			picker.lsp_declarations()
+		end, { desc = "Goto Declaration" })
+		map("n", "gr", function()
+			picker.lsp_references()
+		end, { nowait = true, desc = "Goto References" })
+		map("n", "gi", function()
+			picker.lsp_implementations()
+		end, { nowait = true, desc = "Goto Implementation" })
+		map("n", "gy", function()
+			picker.lsp_type_definitions()
+		end, { desc = "Goto Type Definition" })
+	end
+
 	map("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 	map("n", "gh", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 	map("n", "<leader>cx", vim.lsp.buf.code_action, { desc = "Code Action (Cursor)" })
@@ -159,7 +163,7 @@ local servers = {
 					disable = { "different-requires" },
 				},
 				workspace = {
-					library = vim.api.nvim_get_runtime_file("", true),
+					library = { vim.env.VIMRUNTIME, "${3rd}/luv/library" },
 					checkThirdParty = false,
 				},
 				telemetry = { enable = false },
