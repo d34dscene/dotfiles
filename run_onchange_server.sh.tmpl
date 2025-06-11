@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 log() { echo -e "\033[1;32m[+]\033[0m $1"; }
 
 {{ if (and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variantID "server")) -}}
