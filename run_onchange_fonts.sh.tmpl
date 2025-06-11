@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+log() { echo -e "\033[1;32m[+]\033[0m $1"; }
+
 {{ if (and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variantID "workstation")) -}}
 
 # List of fonts you want to install
@@ -14,7 +16,7 @@ FONT_DIR="${HOME}/.local/share/fonts"
 mkdir -p "$FONT_DIR"
 
 for FONT in "${FONTS[@]}"; do
-    echo "Installing ${FONT} Nerd Font..."
+    log "Installing ${FONT} Nerd Font..."
 
     # Define the download URL
     URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT}.tar.xz"
@@ -35,15 +37,15 @@ for FONT in "${FONTS[@]}"; do
     find "$TMP_DIR" -iname "*.ttf" -exec mv {} "$FONT_SUBDIR" \;
 
     rm -rf "$TMP_DIR"
-    echo "${FONT} installed to ${FONT_SUBDIR}"
+    log "${FONT} installed to ${FONT_SUBDIR}"
 done
 
 # Refresh font cache
 if command -v fc-cache >/dev/null 2>&1; then
-    echo "Updating font cache..."
+    log "Updating font cache..."
     fc-cache -f "$FONT_DIR"
 fi
 
-echo "All fonts installed."
+log "All fonts installed."
 
 {{ end -}}
