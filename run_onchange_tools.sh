@@ -1,35 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 # Helper for checking if binary is available
 check() {
     command -v "$1" >/dev/null 2>&1
-}
-
-# Custom download function to get latest release
-# ARGS: repository, match release name, output name
-fetch() {
-    URL="https://api.github.com/repos/${1}/releases/latest"
-    MATCH="[.assets[] | select(.name | contains(\"${2}\")).browser_download_url][0]"
-    LATEST=$(wget -qO- "${URL}" | jq -r "${MATCH}")
-    EXTENSION="${LATEST##*.}"
-
-    DLPATH="${HOME}/.local/bin"
-    if [[ "${EXTENSION}" == "gz" ]]; then
-        wget -O "${DLPATH}"/dl.tar.gz "${LATEST}"
-        tar -xzf "${DLPATH}"/dl.tar.gz -C "${DLPATH}"
-        rm "${DLPATH}"/dl.tar.gz
-    elif [[ "${EXTENSION}" == "zip" ]]; then
-        wget -O "${DLPATH}"/dl.zip "${LATEST}"
-        unzip "${DLPATH}"/dl.zip -d "${DLPATH}"
-        rm "${DLPATH}"/dl.zip
-    else
-        wget -O "${DLPATH}"/"${3}" "${LATEST}"
-    fi
-
-    # Cleanup
-    chmod +x "${DLPATH}"/"${3}"
-    rm -R -- */
-    rm "${DLPATH}"/*.md "${DLPATH}"/LICENSE
 }
 
 py_tools=(

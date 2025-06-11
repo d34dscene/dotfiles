@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 {{ if (and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variantID "server")) -}}
 sudo tee /etc/security/limits.d/99-base.conf <<-EOF

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
+
+{{ if (and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variantID "workstation")) -}}
 
 # List of fonts you want to install
 FONTS=("JetBrainsMono" "FiraCode" "VictorMono")
@@ -42,3 +45,5 @@ if command -v fc-cache >/dev/null 2>&1; then
 fi
 
 echo "All fonts installed."
+
+{{ end -}}

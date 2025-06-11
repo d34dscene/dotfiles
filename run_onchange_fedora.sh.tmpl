@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 {{ if eq .chezmoi.osRelease.id "fedora" -}}
 
@@ -48,6 +50,12 @@ EOF
 EOF
     fi
 fi
+
+# Cleanup
+sudo dnf autoremove -y
+sudo dnf install clean-rpm-gpg-pubkey remove-retired-packages symlinks -y
+sudo clean-rpm-gpg-pubkey
+sudo symlinks -r -d /usr
 
 {{ if eq .chezmoi.osRelease.variantID "workstation" -}}
 # Install RPM Fusion & Terra
