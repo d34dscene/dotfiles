@@ -111,9 +111,12 @@ fi
 if lspci | grep -i nvidia > /dev/null; then
     log "NVIDIA GPU detected. Adding CUDA repository..."
 
+    sudo dnf install -y \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
     # Add the appropriate CUDA repo based on the distribution
-    sudo dnf config-manager addrepo --from-repofile="https://developer.download.nvidia.com/compute/cuda/repos/fedora$(rpm -E %fedora)/x86_64/cuda-fedora$(rpm -E %fedora).repo"
-    sudo dnf install cuda-toolkit -y
+    sudo dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda cuda-toolkit -y
 fi
 
 # NFS 
