@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+log() { echo -e "\033[1;32m[+]\033[0m $1"; }
 
 {{ if eq .chezmoi.osRelease.id "fedora" -}}
 
-# Better dnf config
-sudo tee /etc/dnf/dnf.conf <<-EOF
+configure_dnf() {
+    log "Configuring DNF..."
+    sudo tee /etc/dnf/dnf.conf >/dev/null <<-EOF
 [main]
 gpgcheck=1
 installonly_limit=3
@@ -18,11 +19,14 @@ max_parallel_downloads=10
 defaultyes=True
 metadata_expire=48h
 EOF
+}
 
-# Better docker config
-if command -v docker >/dev/null; then
-    if command -v nvidia-smi >/dev/null && command -v nvidia-container-runtime >/dev/null; then
-        sudo tee /etc/docker/daemon.json <<-EOF
+configure_docker() {
+    if ! command -v docker &>/dev/null; then return; fi
+
+    log "Configuring Docker..."
+    if command -v nvidia-smi &>/dev/null && command -v nvidia-container-runtime &>/dev/null; then
+        sudo tee /etc/docker/daemon.json >/dev/null <<-EOF
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -39,7 +43,7 @@ if command -v docker >/dev/null; then
 }
 EOF
     else
-        sudo tee /etc/docker/daemon.json <<-EOF
+        sudo tee /etc/docker/daemon.json >/dev/null <<-EOF
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -49,46 +53,72 @@ EOF
 }
 EOF
     fi
-fi
+}
 
-# Cleanup
-sudo dnf autoremove -y
-sudo dnf install clean-rpm-gpg-pubkey remove-retired-packages symlinks -y
-sudo clean-rpm-gpg-pubkey
-sudo symlinks -r -d /usr
+clean_system() {
+    log "Cleaning system..."
+    sudo dnf autoremove -y
+    sudo clean-rpm-gpg-pubkey || true
+    sudo symlinks -r -d /usr || true
+}
 
-{{ if eq .chezmoi.osRelease.variantID "workstation" -}}
-# Install RPM Fusion & Terra
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm -y
-sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
-sudo dnf install rpmfusion-free-release-tainted dnf-plugins-core -y
-sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
+setup_workstation() {
+    log "Setting up Fedora Workstation..."
 
-# Media codecs
-sudo dnf swap ffmpeg-free ffmpeg --allowerasing -y
-sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+    log "Adding RPM Fusion and Terra..."
+    sudo dnf install -y \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-# Install development tools
-sudo dnf install -y @development-tools @virtualization @multimedia \
-    golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
-    flatpak lsd fd-find ripgrep fzf tldr ncdu wl-clipboard lm_sensors \
-    gnome-tweaks lutris gamescope duf steam-devices yt-dlp jq upx fastfetch \
-    ulauncher dconf-editor papirus-icon-theme wireguard-tools clang xz-devel \
-    clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
-    python3-pip python3-virtualenv age neovim python3-neovim shellcheck \
-    codespell ansible ansible-lint opentofu topgrade bandwhich rustscan \
-    procs bat
+    sudo dnf install -y rpmfusion-free-release-tainted dnf-plugins-core
+    sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
-# Make zsh default shell
-if type zsh >/dev/null; then
-    sudo chsh -s $(which zsh) $USER
-fi
+    log "Installing media codecs..."
+    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+    sudo dnf update -y @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
-# Add flathub
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install --noninteractive flathub com.github.tchx84.Flatseal \
-    tv.plex.PlexDesktop io.beekeeperstudio.Studio io.github.nozwock.Packet \
-    com.valvesoftware.Steam org.qbittorrent.qBittorrent org.gimp.GIMP \
-    com.mattjakeman.ExtensionManager org.signal.Signal it.mijorus.gearlever
-{{ end -}}
+    log "Installing workstation packages..."
+    sudo dnf install -y \
+        @development-tools @virtualization @multimedia \
+        golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
+        flatpak lsd fd-find ripgrep fzf tldr ncdu wl-clipboard lm_sensors \
+        gnome-tweaks lutris gamescope duf steam-devices yt-dlp jq upx fastfetch \
+        ulauncher dconf-editor papirus-icon-theme wireguard-tools clang xz-devel \
+        clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
+        python3-pip python3-virtualenv age neovim python3-neovim shellcheck \
+        codespell ansible ansible-lint opentofu topgrade bandwhich rustscan \
+        procs bat clean-rpm-gpg-pubkey remove-retired-packages symlinks
+
+    log "Setting zsh as default shell..."
+    if command -v zsh &>/dev/null; then
+        sudo chsh -s "$(command -v zsh)" "$USER"
+    fi
+
+    log "Enabling Flathub..."
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    log "Installing useful Flatpaks..."
+    flatpak install -y --noninteractive flathub \
+        com.github.tchx84.Flatseal \
+        com.valvesoftware.Steam \
+        org.qbittorrent.qBittorrent \
+        com.mattjakeman.ExtensionManager \
+        io.beekeeperstudio.Studio \
+        io.github.nozwock.Packet \
+        tv.plex.PlexDesktop \
+        org.gimp.GIMP \
+        org.signal.Signal \
+        it.mijorus.gearlever
+}
+
+main() {
+    configure_dnf
+    configure_docker
+    clean_system
+    {{ if eq .chezmoi.osRelease.variantID "workstation" -}} setup_workstation {{ end -}}
+    log "Done ✅"
+}
+
+main
+
 {{ end -}}
