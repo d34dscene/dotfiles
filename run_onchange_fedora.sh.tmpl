@@ -76,10 +76,8 @@ sudo dnf install -y @development-tools @virtualization @multimedia \
     ulauncher dconf-editor papirus-icon-theme wireguard-tools clang xz-devel \
     clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
     python3-pip python3-virtualenv age neovim python3-neovim shellcheck \
-    codespell ansible ansible-lint opentofu
-
-# Some rust tools
-sudo dnf install -y topgrade bandwhich rustscan procs bat
+    codespell ansible ansible-lint opentofu topgrade bandwhich rustscan \
+    procs bat
 
 # Make zsh default shell
 if type zsh >/dev/null; then
