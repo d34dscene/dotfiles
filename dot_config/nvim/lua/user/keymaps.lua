@@ -190,7 +190,7 @@ map("v", "<leader>sv", function()
 	require("grug-far").with_visual_selection { transient = true, prefills = { search = vim.fn.expand "%" } }
 end, { desc = "Replace visual selection" })
 
--- Snacks
+-- require("snacks")
 ---- Terminal
 map({ "n", "t" }, "\\", function()
 	local ft = vim.bo.filetype
@@ -198,7 +198,7 @@ map({ "n", "t" }, "\\", function()
 	if ft == "snacks_terminal" and count == 0 then
 		vim.cmd "close"
 	else
-		Snacks.terminal.toggle(nil, { count = count })
+		require("snacks").terminal.toggle(nil, { count = count })
 	end
 	-- Reset count
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
@@ -206,51 +206,54 @@ end, { desc = "Toggle terminal" })
 
 ---- Git
 map("n", "<leader>gb", function()
-	Snacks.gitbrowse.open()
+	require("snacks").gitbrowse.open()
 end, { desc = "Git browse" })
 
 ---- Picker
 map("n", "<leader>ff", function()
-	Snacks.picker.smart()
+	require("snacks").picker.smart()
 end, { desc = "Find Files" })
 map("n", "<leader>fu", function()
-	Snacks.picker.buffers()
+	require("snacks").picker.buffers()
 end, { desc = "Buffers" })
 map("n", "<leader>fw", function()
-	Snacks.picker.grep()
+	require("snacks").picker.grep()
 end, { desc = "Grep" })
 map("n", "<leader>fb", function()
-	Snacks.picker.buffers()
+	require("snacks").picker.buffers()
 end, { desc = "Buffers" })
 map("n", "<leader>fs", function()
-	Snacks.picker.git_status()
+	require("snacks").picker.git_status()
 end, { desc = "Git Status" })
 map("n", "<leader>fg", function()
-	Snacks.picker.git_files()
+	require("snacks").picker.git_files()
 end, { desc = "Git Files" })
 map("n", "<leader>fb", function()
-	Snacks.picker.git_branches()
+	require("snacks").picker.git_branches()
 end, { desc = "Git Branches" })
 map("n", "<leader>fi", function()
-	Snacks.picker.git_diff()
+	require("snacks").picker.git_diff()
 end, { desc = "Git Diff" })
 map("n", "<leader>fo", function()
-	Snacks.picker.grep_buffers()
+	require("snacks").picker.grep_buffers()
 end, { desc = "Grep Open Buffers" })
 map("n", "<leader>fd", function()
-	Snacks.picker.diagnostics()
+	require("snacks").picker.diagnostics()
 end, { desc = "Diagnostics" })
 map("n", "<leader>fh", function()
-	Snacks.picker.help()
+	require("snacks").picker.help()
 end, { desc = "Help Pages" })
 map("n", "<leader>ft", function()
-	Snacks.picker.todo_comments()
+	require("snacks").picker.todo_comments()
+end, { desc = "Todo Comments" })
+map("n", "<leader>fn", function()
+	require("snacks").picker.notifications()
 end, { desc = "Todo Comments" })
 
 ---- Buffer
 map("n", "qe", function()
 	vim.cmd "wa"
-	Snacks.bufdelete.other()
+	require("snacks").bufdelete.other()
 end, { desc = "Close other buffers" })
 
 -- Flash

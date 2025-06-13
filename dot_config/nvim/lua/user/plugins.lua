@@ -22,17 +22,8 @@ return {
 		"xiyaowong/nvim-transparent", -- Transparency
 		event = "VimEnter",
 		opts = {
-			extra_groups = {
-				"NormalFloat",
-				"NeoTreeNormal",
-				"NeoTreeNormalNC",
-			},
+			extra_groups = { "NormalFloat", "NeoTreeNormal", "NeoTreeNormalNC" },
 		},
-	},
-	{
-		"rachartier/tiny-glimmer.nvim",
-		event = "VeryLazy",
-		opts = { transparency_color = "#1e1e2e" },
 	},
 
 	-- Treesitter
@@ -113,8 +104,9 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
-	{ "monkoose/neocodeium", event = "VeryLazy", config = true },
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI chat
+	-- { "monkoose/neocodeium", event = "VeryLazy", config = true }, AI completion
+	{ "milanglacier/minuet-ai.nvim", event = "VeryLazy" }, -- AI completion
 	{ "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", event = "BufReadPost", config = true }, -- Solve git conflicts
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
