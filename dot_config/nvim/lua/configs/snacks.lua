@@ -148,3 +148,74 @@ snacks.setup {
 	terminal = { enabled = true },
 	words = { enabled = true },
 }
+
+-- Keymaps
+local map = vim.keymap.set
+
+-- # Terminal
+map({ "n", "t" }, "\\", function()
+	local ft = vim.bo.filetype
+	local count = vim.v.count
+	if ft == "snacks_terminal" and count == 0 then
+		vim.cmd "close"
+	else
+		require("snacks").terminal.toggle(nil, { count = count })
+	end
+	-- Reset count
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
+end, { desc = "Toggle terminal" })
+
+-- # Git
+map("n", "<leader>go", function()
+	require("snacks").gitbrowse.open()
+end, { desc = "Open in repository" })
+map("n", "<leader>gb", function()
+	require("snacks").git.blame_line()
+end, { desc = "Blame line" })
+
+-- # Buffer
+map("n", "qe", function()
+	vim.cmd "wa"
+	require("snacks").bufdelete.other()
+end, { desc = "Close other buffers" })
+
+-- # Picker
+map("n", "<leader>ff", function()
+	require("snacks").picker.smart()
+end, { desc = "Find Files" })
+map("n", "<leader>fu", function()
+	require("snacks").picker.buffers()
+end, { desc = "Buffers" })
+map("n", "<leader>fw", function()
+	require("snacks").picker.grep()
+end, { desc = "Grep" })
+map("n", "<leader>fb", function()
+	require("snacks").picker.buffers()
+end, { desc = "Buffers" })
+map("n", "<leader>fs", function()
+	require("snacks").picker.git_status()
+end, { desc = "Git Status" })
+map("n", "<leader>fg", function()
+	require("snacks").picker.git_files()
+end, { desc = "Git Files" })
+map("n", "<leader>fb", function()
+	require("snacks").picker.git_branches()
+end, { desc = "Git Branches" })
+map("n", "<leader>fi", function()
+	require("snacks").picker.git_diff()
+end, { desc = "Git Diff" })
+map("n", "<leader>fo", function()
+	require("snacks").picker.grep_buffers()
+end, { desc = "Grep Open Buffers" })
+map("n", "<leader>fd", function()
+	require("snacks").picker.diagnostics()
+end, { desc = "Diagnostics" })
+map("n", "<leader>fh", function()
+	require("snacks").picker.help()
+end, { desc = "Help Pages" })
+map("n", "<leader>ft", function()
+	require("snacks").picker.todo_comments()
+end, { desc = "Todo Comments" })
+map("n", "<leader>fn", function()
+	require("snacks").picker.notifications()
+end, { desc = "Todo Comments" })

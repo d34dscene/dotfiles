@@ -118,20 +118,6 @@ map("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
--- Codium
-map("i", "<A-f>", function()
-	require("neocodeium").accept()
-end, { expr = true })
-map("i", "<PageUp>", function()
-	require("neocodeium").cycle(1)
-end, { expr = true })
-map("i", "<PageDown>", function()
-	require("neocodeium").cycle(-1)
-end, { expr = true })
-map("i", "<A-[>", function()
-	require("neocodeium").clear()
-end, { expr = true })
-
 -- CodeCompanion
 map({ "n", "v", "i" }, "<A-\\>", function()
 	local win = vim.api.nvim_get_current_win()
@@ -189,72 +175,6 @@ end, { desc = "Replace current word" })
 map("v", "<leader>sv", function()
 	require("grug-far").with_visual_selection { transient = true, prefills = { search = vim.fn.expand "%" } }
 end, { desc = "Replace visual selection" })
-
--- require("snacks")
----- Terminal
-map({ "n", "t" }, "\\", function()
-	local ft = vim.bo.filetype
-	local count = vim.v.count
-	if ft == "snacks_terminal" and count == 0 then
-		vim.cmd "close"
-	else
-		require("snacks").terminal.toggle(nil, { count = count })
-	end
-	-- Reset count
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
-end, { desc = "Toggle terminal" })
-
----- Git
-map("n", "<leader>gb", function()
-	require("snacks").gitbrowse.open()
-end, { desc = "Git browse" })
-
----- Picker
-map("n", "<leader>ff", function()
-	require("snacks").picker.smart()
-end, { desc = "Find Files" })
-map("n", "<leader>fu", function()
-	require("snacks").picker.buffers()
-end, { desc = "Buffers" })
-map("n", "<leader>fw", function()
-	require("snacks").picker.grep()
-end, { desc = "Grep" })
-map("n", "<leader>fb", function()
-	require("snacks").picker.buffers()
-end, { desc = "Buffers" })
-map("n", "<leader>fs", function()
-	require("snacks").picker.git_status()
-end, { desc = "Git Status" })
-map("n", "<leader>fg", function()
-	require("snacks").picker.git_files()
-end, { desc = "Git Files" })
-map("n", "<leader>fb", function()
-	require("snacks").picker.git_branches()
-end, { desc = "Git Branches" })
-map("n", "<leader>fi", function()
-	require("snacks").picker.git_diff()
-end, { desc = "Git Diff" })
-map("n", "<leader>fo", function()
-	require("snacks").picker.grep_buffers()
-end, { desc = "Grep Open Buffers" })
-map("n", "<leader>fd", function()
-	require("snacks").picker.diagnostics()
-end, { desc = "Diagnostics" })
-map("n", "<leader>fh", function()
-	require("snacks").picker.help()
-end, { desc = "Help Pages" })
-map("n", "<leader>ft", function()
-	require("snacks").picker.todo_comments()
-end, { desc = "Todo Comments" })
-map("n", "<leader>fn", function()
-	require("snacks").picker.notifications()
-end, { desc = "Todo Comments" })
-
----- Buffer
-map("n", "qe", function()
-	vim.cmd "wa"
-	require("snacks").bufdelete.other()
-end, { desc = "Close other buffers" })
 
 -- Flash
 map({ "n", "x", "o" }, "f", function()

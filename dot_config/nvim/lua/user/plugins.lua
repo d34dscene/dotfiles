@@ -18,13 +18,6 @@ return {
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost", config = true }, -- Highlight colors
 	{ "folke/todo-comments.nvim", event = "BufReadPost", config = true }, -- Highlight todo comments
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPost", config = true }, -- Git signs
-	{
-		"xiyaowong/nvim-transparent", -- Transparency
-		event = "VimEnter",
-		opts = {
-			extra_groups = { "NormalFloat", "NeoTreeNormal", "NeoTreeNormalNC" },
-		},
-	},
 
 	-- Treesitter
 	-- ------------------------------------------------------------------------
@@ -106,12 +99,20 @@ return {
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI chat
 	-- { "monkoose/neocodeium", event = "VeryLazy", config = true }, AI completion
-	{ "milanglacier/minuet-ai.nvim", event = "VeryLazy" }, -- AI completion
+	-- { "milanglacier/minuet-ai.nvim", event = "VeryLazy" }, -- AI completion
 	{ "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
 	{ "akinsho/git-conflict.nvim", event = "BufReadPost", config = true }, -- Solve git conflicts
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{ "numToStr/Comment.nvim", event = "VeryLazy", opts = { mappings = false } }, -- Smart commenting
 	{ "MagicDuck/grug-far.nvim", config = true },
+	{
+		"supermaven-inc/supermaven-nvim", -- AI completion
+		event = "VeryLazy",
+		opts = {
+			keymaps = { accept_suggestion = "<A-f>" },
+		},
+		dependencies = { "huijiro/blink-cmp-supermaven" },
+	},
 	{
 		"folke/flash.nvim", -- Jump around
 		event = "VeryLazy",

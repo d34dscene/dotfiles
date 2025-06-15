@@ -15,9 +15,7 @@ blink.setup {
 	},
 	completion = {
 		accept = {
-			auto_brackets = {
-				enabled = true,
-			},
+			auto_brackets = { enabled = true },
 		},
 		list = {
 			selection = {
@@ -25,16 +23,20 @@ blink.setup {
 				auto_insert = true,
 			},
 		},
-		ghost_text = {
-			enabled = true,
-		},
+		ghost_text = { enabled = true },
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
 		},
 		menu = {
+			auto_show = true,
 			draw = {
 				treesitter = { "lsp" },
+				columns = {
+					{ "kind_icon" },
+					{ "label", "label_description", gap = 1 },
+					{ "kind" },
+				},
 			},
 		},
 	},
@@ -43,14 +45,19 @@ blink.setup {
 	},
 	snippets = { preset = "luasnip" },
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "nerdfont", "emoji" },
+		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "supermaven", "nerdfont", "emoji" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
 			emoji = { name = "emoji", module = "blink.compat.source" },
 			codecompanion = {
-				enabled = true,
 				name = "CodeCompanion",
 				module = "codecompanion.providers.completion.blink",
+				async = true,
+			},
+			supermaven = {
+				name = "supermaven",
+				module = "blink-cmp-supermaven",
+				async = true,
 			},
 		},
 	},

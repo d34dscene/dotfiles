@@ -5,7 +5,9 @@ if not bufferline then
 end
 
 bufferline.setup {
-	highlights = require("catppuccin.groups.integrations.bufferline").get(),
+	highlights = require("catppuccin.groups.integrations.bufferline").get {
+		styles = { "italic", "bold" },
+	},
 	options = {
 		offsets = {
 			{ filetype = "NvimTree", text = "File Explorer", padding = 1 },
@@ -19,11 +21,11 @@ bufferline.setup {
 			return " " .. icon .. count
 		end,
 		icon = "▎",
-		buffer_close_icon = "󰛉",
+		buffer_close_icon = "",
 		modified_icon = "",
-		close_icon = "󰛉",
-		left_trunc_marker = "",
-		right_trunc_marker = "",
+		close_icon = "",
+		left_trunc_marker = "",
+		right_trunc_marker = "",
 		max_name_length = 18,
 		max_prefix_length = 13,
 		tab_size = 18,
