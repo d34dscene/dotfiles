@@ -8,9 +8,8 @@ catpuccin.setup {
 	flavour = "mocha",
 	transsparent_background = false,
 	integrations = {
-		-- blink_cmp = true,
-		blink_cmp = { style = "bordered" },
 		cmp = true,
+		blink_cmp = true,
 		gitsigns = true,
 		grug_far = true,
 		indent_blankline = { enabled = true, colored_indent_levels = true },
