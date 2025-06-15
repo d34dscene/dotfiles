@@ -2,12 +2,12 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Modes
---   normal_"n",
---   insert_"i",
---   visual_"v",
---   visual_block_"x",
---   term_"t",
---   command_"c",
+--   normal "n",
+--   insert "i",
+--   visual "v",
+--   visual_block "x",
+--   command "c",
+--   term "t",
 
 -- Remap space as leader key
 map("", "<Space>", "<Nop>")
@@ -15,20 +15,11 @@ map("", "<Space>", "<Nop>")
 -- Standard Operations
 map("i", "qq", "<esc>", { desc = "Escape" })
 map("t", "qq", "<C-\\><C-n>", { desc = "Escape" })
-map("n", "ss", "<cmd>FormatSave<cr>", { desc = "Save" })
 map("n", "qw", "<cmd>wa | qa<cr>", { desc = "Save and quit" })
 
 -- Search and replace
 map("n", "rt", ":%s///g<Left><Left>", { desc = "Replace all in current buffer" })
 map("n", "rw", ":%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>", { desc = "Replace current word" })
-
--- Refactor
-map("n", "rr", function()
-	return ":IncRename "
-end, { expr = true, desc = "Refactor new name" })
-map("n", "re", function()
-	return ":IncRename " .. vim.fn.expand "<cword>"
-end, { expr = true, desc = "Refactor expand" })
 
 -- Splits
 map("n", "vv", "<C-w>v", { desc = "Vertical split" })
@@ -41,17 +32,11 @@ map("n", "<C-j>", ":resize +6<cr>", { desc = "Resize split down" })
 map("n", "<C-h>", ":vertical resize 2<cr>", { desc = "Resize split left" })
 map("n", "<C-l>", ":vertical resize +6<cr>", { desc = "Resize split right" })
 
--- Navigate buffers
-map("n", "<A-k>", ":BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
-map("n", "<A-j>", ":BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
-map("n", "<A-K>", ":BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
-map("n", "<A-J>", ":BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
-map("n", "mp", ":BufferLinePick<cr>", { desc = "Pick buffer tab" })
-
 -- Smart buffer close/quit
 map("n", "qq", function()
 	local buftype = vim.bo.buftype
 	local modified = vim.bo.modified
+	local buf_count = #vim.fn.getbufinfo { buflisted = 1 }
 
 	-- For special buffers (like CodeCompanion, help, etc)
 	if buftype ~= "" then
@@ -59,133 +44,38 @@ map("n", "qq", function()
 		return
 	end
 
-	-- For normal buffers: save if modified
-	if modified and buftype == "" then
+	-- Save if modified
+	if modified then
 		vim.cmd "w"
 	end
 
+	-- Get all normal windows showing listed buffers
+	local real_windows = {}
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		local bt = vim.api.nvim_get_option_value("buftype", { buf = buf })
+		local listed = vim.api.nvim_get_option_value("buflisted", { buf = buf })
+		if bt == "" and listed then
+			table.insert(real_windows, win)
+		end
+	end
+
+	-- If we're in a real split (more than one real window), close this one
+	if #real_windows > 1 then
+		vim.cmd "close"
+		return
+	end
+
 	-- If it's the last buffer, quit
-	if #vim.fn.getbufinfo { buflisted = 1 } <= 1 then
+	if buf_count <= 1 then
 		vim.cmd "q"
 	else
 		vim.cmd "bp|bd #"
 	end
 end, { desc = "Smart quit: save & close buffer or quit" })
 
--- Spider
-map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
-map({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
-map({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
-
--- Neotree
-map("n", "<leader>e", function()
-	require("neo-tree.command").execute {
-		toggle = true,
-		source = "filesystem",
-		position = "left",
-	}
-end, { desc = "Open Neotree" })
-
 -- Lazy
 map("n", "<leader>ll", ":Lazy sync<cr>", { desc = "Update plugins" })
-
--- LSP
-map("n", "<leader>lm", ":Mason<cr>", { desc = "Mason UI" })
-map("n", "<leader>lr", ":LspRestart<cr>", { desc = "Restart LSP" })
-
--- Formatter
-map("n", "<leader>lf", ":ConformInfo<cr>", { desc = "Conform Info" })
-map("n", "<leader>li", ":LspInfo<cr>", { desc = "LSP Info" })
-
--- Code actions preview
-map({ "v", "n" }, "cc", function()
-	require("actions-preview").code_actions { context = { only = { "source" } } }
-end, { desc = "Code actions Buffer" })
-map({ "v", "n" }, "ca", function()
-	require("actions-preview").code_actions()
-end, { desc = "Code actions preview" })
-
--- Treesj
-map("n", "tt", function()
-	require("treesj").toggle()
-end, { desc = "Toggle node under cursor" })
-
--- Todo
-map("n", "]t", function()
-	require("todo-comments").jump_next()
-end, { desc = "Next todo comment" })
-map("n", "[t", function()
-	require("todo-comments").jump_prev()
-end, { desc = "Previous todo comment" })
-
--- CodeCompanion
-map({ "n", "v", "i" }, "<A-\\>", function()
-	local win = vim.api.nvim_get_current_win()
-	local buf = vim.api.nvim_win_get_buf(win)
-	local is_codecompanion = vim.bo[buf].filetype == "codecompanion"
-
-	if is_codecompanion then
-		vim.cmd "CodeCompanionChat Toggle"
-		vim.cmd "stopinsert"
-	else
-		vim.cmd "CodeCompanionChat Toggle"
-		vim.cmd "startinsert"
-	end
-end, { desc = "Code companion chat toggle" })
-map({ "n", "v" }, "<A-->", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code companion chat toggle" })
-map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionActions<cr>", { desc = "Code companion actions" })
-map("v", "<leader>ca", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add visually selected chat" })
-map("n", "<leader>cd", "<cmd>CodeCompanion /document_buffer<cr>", { desc = "Document buffer" })
-map("n", "<leader>cr", "<cmd>CodeCompanion /refactor_buffer<cr>", { desc = "Refactor buffer" })
-map("v", "<leader>cd", "<cmd>CodeCompanion /document_selection<cr>", { desc = "Document selection" })
-map("v", "<leader>cr", "<cmd>CodeCompanion /refactor_selection<cr>", { desc = "Refactor selection" })
-map({ "n", "v" }, "<leader>ci", "<cmd>CodeCompanion<cr>", { desc = "Inline Prompt" })
-
--- Comment
-map("n", "x", function()
-	require("Comment.api").toggle.linewise.current()
-end, { desc = "Comment line" })
-map("v", "x", function()
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
-	require("Comment.api").toggle.linewise(vim.fn.visualmode())
-end, { desc = "Comment block" })
-
--- Go
-map("n", "<leader>gf", ":GoFillStruct<cr>", { desc = "Go fill struct" })
-map("n", "<leader>ga", ":GoAddTag<cr>", { desc = "Go add tags" })
-map("n", "<leader>gr", ":GoRmTag<cr>", { desc = "Go remove tags" })
-map("n", "<leader>gm", ":GoModTidy<cr>", { desc = "Go mod tidy" })
-map("n", "<leader>gl", ":GoLint<cr>", { desc = "Go lint" })
-map("n", "<leader>gt", ":GoAddAllTest -bench<cr>", { desc = "Go add tests" })
-map("n", "<leader>gv", ":GoCoverage<cr>", { desc = "Go coverage" })
-
--- Git Conflict
-map("n", "<leader>gc", ":GitConflictListQf<cr>", { desc = "Git conflict" })
-
--- Markdown Preview
-map("n", "<leader>m", ":MarkdownPreviewToggle<cr>", { desc = "Markdown Preview" })
-
--- Grug (Search and Replace)
-map("n", "<leader>sr", function()
-	require("grug-far").open { transient = true }
-end, { desc = "Replace window" })
-map("n", "<leader>sw", function()
-	require("grug-far").open { transient = true, prefills = { search = vim.fn.expand "<cword>" } }
-end, { desc = "Replace current word" })
-map("v", "<leader>sv", function()
-	require("grug-far").with_visual_selection { transient = true, prefills = { search = vim.fn.expand "%" } }
-end, { desc = "Replace visual selection" })
-
--- Flash
-map({ "n", "x", "o" }, "f", function()
-	require("flash").jump {
-		search = {
-			mode = function(str)
-				return "\\<" .. str
-			end,
-		},
-	}
-end, { desc = "Flash" })
 
 -- Move text up and down
 map("n", "<A-Up>", ":move .-2<CR>==", { desc = "Move line up" })

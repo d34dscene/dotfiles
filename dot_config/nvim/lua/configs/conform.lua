@@ -98,3 +98,6 @@ local prettier = require "conform.formatters.prettier"
 conform.formatters.prettier = vim.tbl_deep_extend("force", prettier, {
 	args = util.extend_args(prettier.args, { "--prose-wrap", "always" }),
 })
+
+-- Keymaps
+vim.keymap.set("n", "ss", "<cmd>FormatSave<cr>", { desc = "Save" })

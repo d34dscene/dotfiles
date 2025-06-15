@@ -8,7 +8,6 @@ return {
 	{ "akinsho/bufferline.nvim", event = "VimEnter" }, -- Bufferline
 	{ "nvim-lualine/lualine.nvim", event = "VimEnter" }, -- Statusline
 	{ "nvim-tree/nvim-web-devicons", event = "VimEnter" }, -- Icon support
-	{ "chrisgrieser/nvim-spider", lazy = true }, -- Easy motion
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
 	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple qol plugins
 
@@ -16,8 +15,28 @@ return {
 	-- ------------------------------------------------------------------------
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost", config = true }, -- Highlight colors
-	{ "folke/todo-comments.nvim", event = "BufReadPost", config = true }, -- Highlight todo comments
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPost", config = true }, -- Git signs
+	{
+		"folke/todo-comments.nvim", -- Highlight todo comments
+		event = "BufReadPost",
+		config = true,
+		keys = {
+			{
+				"]t",
+				function()
+					require("todo-comments").jump_next()
+				end,
+				desc = "Next Todo",
+			},
+			{
+				"[t",
+				function()
+					require("todo-comments").jump_prev()
+				end,
+				desc = "Previous Todo",
+			},
+		},
+	},
 
 	-- Treesitter
 	-- ------------------------------------------------------------------------
@@ -39,6 +58,15 @@ return {
 		"Wansmer/treesj", -- Node splits/joins
 		event = "BufReadPost",
 		opts = { use_default_keymaps = false },
+		keys = {
+			{
+				"tt",
+				function()
+					require("treesj").toggle()
+				end,
+				desc = "Toggle node under cursor",
+			},
+		},
 	},
 
 	-- LSP
@@ -47,13 +75,39 @@ return {
 		"williamboman/mason.nvim", -- LSP installer
 		build = ":MasonUpdate",
 		config = true,
+		keys = {
+			{ "<leader>lm", "<cmd>Mason<cr>", desc = "Mason" },
+			{ "<leader>lr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
+			{ "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP info" },
+		},
 	},
+	"b0o/schemastore.nvim", -- Schema store
 	{ "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
-	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
-	{ "smjonas/inc-rename.nvim", event = "BufReadPost", config = true }, -- Highlight refactors
-	"b0o/schemastore.nvim", -- Schema store
+	{
+		"smjonas/inc-rename.nvim", -- Highlight refactors
+		event = "BufReadPost",
+		config = true,
+		keys = {
+			{ "rr", ":IncRename ", desc = "Refactor" },
+			{
+				"re",
+				function()
+					return ":IncRename " .. vim.fn.expand "<cword>"
+				end,
+				expr = true,
+				desc = "Refactor expand",
+			},
+		},
+	},
 	"mfussenegger/nvim-ansible", -- Ansible support
+	{
+		"stevearc/conform.nvim", -- Formatter
+		event = "BufReadPost",
+		keys = {
+			{ "<leader>lf", "<cmd>ConformInfo<cr>", desc = "Conform info" },
+		},
+	},
 
 	-- Completion
 	-- ------------------------------------------------------------------------
@@ -77,7 +131,6 @@ return {
 			vim.tbl_map(function(type)
 				require("luasnip.loaders.from_" .. type).lazy_load()
 			end, { "vscode", "snipmate", "lua" })
-			-- friendly-snippets - enable standardized comments snippets
 			require("luasnip").filetype_extend("typescript", { "tsdoc" })
 			require("luasnip").filetype_extend("javascript", { "jsdoc" })
 			require("luasnip").filetype_extend("lua", { "luadoc" })
@@ -98,13 +151,102 @@ return {
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI chat
-	-- { "monkoose/neocodeium", event = "VeryLazy", config = true }, AI completion
-	-- { "milanglacier/minuet-ai.nvim", event = "VeryLazy" }, -- AI completion
 	{ "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
-	{ "akinsho/git-conflict.nvim", event = "BufReadPost", config = true }, -- Solve git conflicts
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
-	{ "numToStr/Comment.nvim", event = "VeryLazy", opts = { mappings = false } }, -- Smart commenting
-	{ "MagicDuck/grug-far.nvim", config = true },
+	{
+		"MagicDuck/grug-far.nvim", -- Search and Replace
+		config = true,
+		keys = {
+			{
+				"<leader>sr",
+				function()
+					require("grug-far").open { transient = true }
+				end,
+				desc = "Grug window",
+			},
+			{
+				"<leader>sw",
+				function()
+					require("grug-far").open {
+						transient = true,
+						prefills = { search = vim.fn.expand "<cword>" },
+					}
+				end,
+				desc = "Grug replace word",
+			},
+			{
+				"<leader>sv",
+				function()
+					require("grug-far").with_visual_selection {
+						transient = true,
+						prefills = { search = vim.fn.expand "%" },
+					}
+				end,
+				desc = "Grug replace selection",
+			},
+		},
+	},
+	{
+		"numToStr/Comment.nvim", -- Smart commenting
+		event = "VeryLazy",
+		opts = { mappings = false },
+		keys = {
+			{
+				"x",
+				function()
+					require("Comment.api").toggle.linewise.current()
+				end,
+				desc = "Comment line",
+			},
+			{
+				"x",
+				mode = { "v" },
+				function()
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
+					require("Comment.api").toggle.linewise(vim.fn.visualmode())
+				end,
+				desc = "Comment block",
+			},
+		},
+	},
+	{
+		"chrisgrieser/nvim-spider", -- Easy motion
+		lazy = true,
+		keys = {
+			{
+				"w",
+				mode = { "n", "x", "o" },
+				function()
+					require("spider").motion "w"
+				end,
+				desc = "Spider W",
+			},
+			{
+				"e",
+				mode = { "n", "x", "o" },
+				function()
+					require("spider").motion "e"
+				end,
+				desc = "Spider E",
+			},
+			{
+				"b",
+				mode = { "n", "x", "o" },
+				function()
+					require("spider").motion "b"
+				end,
+				desc = "Spider B",
+			},
+		},
+	},
+	{
+		"akinsho/git-conflict.nvim", -- Solve git conflicts
+		event = "BufReadPost",
+		config = true,
+		keys = {
+			{ "<leader>gc", "<cmd>GitConflictListQf<cr>", desc = "Git conflict" },
+		},
+	},
 	{
 		"supermaven-inc/supermaven-nvim", -- AI completion
 		event = "VeryLazy",
@@ -119,7 +261,17 @@ return {
 		opts = {
 			modes = {
 				search = { enabled = false },
-				char = { keys = { ["f"] = "F", ["t"] = "T" } },
+				char = { keys = { ["f"] = "F" } },
+			},
+		},
+		keys = {
+			{
+				"f",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
 			},
 		},
 	},
@@ -130,6 +282,15 @@ return {
 		build = ":lua require(\"go.install\").update_all_sync()",
 		opts = {
 			lsp_inlay_hints = { style = "eol" },
+		},
+		keys = {
+			{ "<leader>gf", "<cmd>GoFillStruct<cr>", desc = "Go fill struct" },
+			{ "<leader>ga", "<cmd>GoAddTag<cr>", desc = "Go add tags" },
+			{ "<leader>gr", "<cmd>GoRmTag<cr>", desc = "Go remove tags" },
+			{ "<leader>gm", "<cmd>GoModTidy<cr>", desc = "Go mod tidy" },
+			{ "<leader>gl", "<cmd>GoLint<cr>", desc = "Go lint" },
+			{ "<leader>gt", "<cmd>GoAddAllTest -bench<cr>", desc = "Go add tests" },
+			{ "<leader>gv", "<cmd>GoCoverage<cr>", desc = "Go coverage" },
 		},
 	},
 	{
@@ -144,5 +305,8 @@ return {
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
+		keys = {
+			{ "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
+		},
 	},
 }

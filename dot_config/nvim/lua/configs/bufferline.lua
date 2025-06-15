@@ -37,3 +37,10 @@ bufferline.setup {
 		},
 	},
 }
+
+-- Keymaps
+vim.keymap.set("n", "<A-k>", ":BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
+vim.keymap.set("n", "<A-j>", ":BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
+vim.keymap.set("n", "<A-K>", ":BufferLineMoveNext<cr>", { desc = "Move buffer tab right" })
+vim.keymap.set("n", "<A-J>", ":BufferLineMovePrev<cr>", { desc = "Move buffer tab left" })
+vim.keymap.set("n", "mp", ":BufferLinePick<cr>", { desc = "Pick buffer tab" })

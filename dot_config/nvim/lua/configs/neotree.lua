@@ -155,3 +155,12 @@ neotree.setup {
 }
 
 vim.g.neo_tree_remove_legacy_commands = 1
+
+-- Keymaps
+vim.keymap.set("n", "<leader>e", function()
+	require("neo-tree.command").execute {
+		toggle = true,
+		source = "filesystem",
+		position = "left",
+	}
+end, { desc = "Open Neotree" })
