@@ -74,6 +74,10 @@ if check "go"; then
         github.com/derailed/k9s
         github.com/muesli/duf
         github.com/google/ko
+        github.com/bufbuild/buf/cmd/buf
+        github.com/fullstorydev/grpcurl/cmd/grpcurl
+        google.golang.org/protobuf/cmd/protoc-gen-go
+        connectrpc.com/connect/cmd/protoc-gen-connect-go
     )
 
     for tool in "${go_tools[@]}"; do
