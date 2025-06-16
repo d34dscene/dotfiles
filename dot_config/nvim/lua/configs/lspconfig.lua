@@ -9,7 +9,6 @@ mason_lspconfig.setup {
 	ensure_installed = {
 		"ansiblels",
 		"bashls",
-		"buf_ls",
 		"clangd",
 		"dockerls",
 		"eslint",
@@ -18,6 +17,7 @@ mason_lspconfig.setup {
 		"jsonls",
 		"lua_ls",
 		"marksman",
+		"protols",
 		"ruff",
 		"solc",
 		"sqls",
@@ -149,6 +149,9 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
+	clangd = {
+		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+	},
 	eslint = {
 		settings = {
 			workingDirectories = { mode = "auto" },
@@ -201,12 +204,6 @@ local servers = {
 		completion = true,
 		schemaStore = { enable = false, url = "" },
 		schemas = require("schemastore").yaml.schemas(),
-	},
-	clangd = {
-		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-	},
-	buf_ls = {
-		filetypes = { "proto" },
 	},
 	svelte = {
 		capabilities = {
