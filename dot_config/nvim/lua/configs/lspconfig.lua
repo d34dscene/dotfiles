@@ -9,6 +9,7 @@ mason_lspconfig.setup {
 	ensure_installed = {
 		"ansiblels",
 		"bashls",
+		"buf_ls",
 		"clangd",
 		"dockerls",
 		"eslint",
@@ -17,7 +18,6 @@ mason_lspconfig.setup {
 		"jsonls",
 		"lua_ls",
 		"marksman",
-		"protols",
 		"ruff",
 		"solc",
 		"sqls",
