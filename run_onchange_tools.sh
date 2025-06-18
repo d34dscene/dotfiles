@@ -18,6 +18,7 @@ node_tools=(
     corepack
     fixjson
     @fsouza/prettierd
+    @bufbuild/protoc-gen-es
 )
 
 rust_tools=(
