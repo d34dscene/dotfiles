@@ -37,9 +37,10 @@ alias meta="identify -verbose"
 # GNU replacements
 type z &>/dev/null && alias cd="z"
 if type lsd &>/dev/null; then
-    alias ls="lsd --icon=never"
+    alias ls="lsd -F"
     alias la="ls -la --permission=octal"
     alias ll="ls -lh --permission=octal"
+    alias lss="ls -lh --permission=octal --sort=size"
 else
     alias ls="ls --color=auto"
     alias la="ls -la --color=auto"
