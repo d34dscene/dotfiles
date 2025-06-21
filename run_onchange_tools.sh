@@ -79,6 +79,7 @@ if check "go"; then
         github.com/fullstorydev/grpcurl/cmd/grpcurl
         google.golang.org/protobuf/cmd/protoc-gen-go
         connectrpc.com/connect/cmd/protoc-gen-connect-go
+        github.com/sudorandom/protoc-gen-connect-openapi
     )
 
     for tool in "${go_tools[@]}"; do
