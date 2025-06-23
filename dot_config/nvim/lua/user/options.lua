@@ -35,7 +35,7 @@ o.number = true -- Show line numbers
 o.numberwidth = 2 -- Minimum width for line numbers
 o.relativenumber = false -- Do not show relative line numbers
 o.signcolumn = "yes" -- Always show the sign column
-o.statuscolumn = "%=%{&nu?(&rnu && v:relnum?v:relnum:v:lnum):''} %s%*" -- Custom statusline
+o.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]] -- Custom statusline from snacks
 o.showmode = false -- Do not show the current mode in the command line
 o.showtabline = 2 -- Always display the tab line
 o.laststatus = 3 -- Global statusline always on

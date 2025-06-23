@@ -81,10 +81,16 @@ return {
 			{ "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP info" },
 		},
 	},
-	"b0o/schemastore.nvim", -- Schema store
 	{ "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
+	"b0o/schemastore.nvim", -- Schema store
+	"mfussenegger/nvim-ansible", -- Ansible support
+	{
+		"pmizio/typescript-tools.nvim", -- Typescript tools
+		config = true,
+		filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "svelte" },
+	},
 	{
 		"smjonas/inc-rename.nvim", -- Highlight refactors
 		event = "BufReadPost",
@@ -101,7 +107,6 @@ return {
 			},
 		},
 	},
-	"mfussenegger/nvim-ansible", -- Ansible support
 
 	-- Completion
 	-- ------------------------------------------------------------------------

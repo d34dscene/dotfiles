@@ -144,7 +144,6 @@ snacks.setup {
 	quickfile = { enabled = true },
 	scroll = { enabled = true },
 	scope = { enabled = true },
-	statuscolumn = { enabled = true },
 	terminal = { enabled = true },
 	words = { enabled = true },
 }
