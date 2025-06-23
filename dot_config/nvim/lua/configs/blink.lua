@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local blink = safe_require "blink.cmp"
-if not blink then
-	return
+local ok, blink = pcall(require, "blink.cmp")
+if not ok then
+	vim.notify("Failed to load blink", vim.log.levels.ERROR)
+	return nil
 end
 
 blink.setup {

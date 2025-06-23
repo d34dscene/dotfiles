@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local snacks = safe_require "snacks"
-if not snacks then
-	return
+local ok, snacks = pcall(require, "snacks")
+if not ok then
+	vim.notify("Failed to load snacks", vim.log.levels.ERROR)
+	return nil
 end
 
 local hydra = [[

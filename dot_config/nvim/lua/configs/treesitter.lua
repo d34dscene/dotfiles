@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local treesitter = safe_require "nvim-treesitter.configs"
-if not treesitter then
-	return
+local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+if not ok then
+	vim.notify("Failed to load treesitter", vim.log.levels.ERROR)
+	return nil
 end
 
 treesitter.setup {

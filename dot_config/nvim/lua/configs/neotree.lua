@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local neotree = safe_require "neo-tree"
-if not neotree then
-	return
+local ok, neotree = pcall(require, "neo-tree")
+if not ok then
+	vim.notify("Failed to load neo-tree", vim.log.levels.ERROR)
+	return nil
 end
 
 neotree.setup {
@@ -163,4 +163,4 @@ vim.keymap.set("n", "<leader>e", function()
 		source = "filesystem",
 		position = "left",
 	}
-end, { desc = "Open Neotree" })
+end, { desc = "Neotree" })

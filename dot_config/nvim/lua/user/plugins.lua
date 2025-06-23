@@ -84,6 +84,7 @@ return {
 	"b0o/schemastore.nvim", -- Schema store
 	{ "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
+	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{
 		"smjonas/inc-rename.nvim", -- Highlight refactors
 		event = "BufReadPost",
@@ -101,13 +102,6 @@ return {
 		},
 	},
 	"mfussenegger/nvim-ansible", -- Ansible support
-	{
-		"stevearc/conform.nvim", -- Formatter
-		event = "BufReadPost",
-		keys = {
-			{ "<leader>lf", "<cmd>ConformInfo<cr>", desc = "Conform info" },
-		},
-	},
 
 	-- Completion
 	-- ------------------------------------------------------------------------

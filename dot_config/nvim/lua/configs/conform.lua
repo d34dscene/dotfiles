@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local conform = safe_require "conform"
-if not conform then
-	return
+local ok, conform = pcall(require, "conform")
+if not ok then
+	vim.notify("Failed to load conform", vim.log.levels.ERROR)
+	return nil
 end
 
 conform.setup {
@@ -101,3 +101,4 @@ conform.formatters.prettier = vim.tbl_deep_extend("force", prettier, {
 
 -- Keymaps
 vim.keymap.set("n", "ss", "<cmd>FormatSave<cr>", { desc = "Save" })
+vim.keymap.set("n", "<leader>lc", "<cmd>ConformInfo<cr>", { desc = "Conform Info" })

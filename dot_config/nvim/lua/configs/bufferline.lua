@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local bufferline = safe_require "bufferline"
-if not bufferline then
-	return
+local ok, bufferline = pcall(require, "bufferline")
+if not ok then
+	vim.notify("Failed to load bufferline", vim.log.levels.ERROR)
+	return nil
 end
 
 bufferline.setup {

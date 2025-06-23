@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local which_key = safe_require "which-key"
-if not which_key then
-	return
+local ok, which_key = pcall(require, "which-key")
+if not ok then
+	vim.notify("Failed to load which-key", vim.log.levels.ERROR)
+	return nil
 end
 
 which_key.setup {

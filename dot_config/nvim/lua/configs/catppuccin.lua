@@ -1,7 +1,7 @@
-local safe_require = require("utils").safe_require
-local catpuccin = safe_require "catppuccin"
-if not catpuccin then
-	return
+local ok, catpuccin = pcall(require, "catppuccin")
+if not ok then
+	vim.notify("Failed to load catppuccin", vim.log.levels.ERROR)
+	return nil
 end
 
 catpuccin.setup {

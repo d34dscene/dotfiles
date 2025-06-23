@@ -1,8 +1,7 @@
-local safe_require = require("utils").safe_require
-local lspconfig = safe_require "lspconfig"
-local mason_lspconfig = safe_require "mason-lspconfig"
-if not (lspconfig and mason_lspconfig) then
-	return
+local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not ok then
+	vim.notify("Failed to load lspconfig", vim.log.levels.ERROR)
+	return nil
 end
 
 mason_lspconfig.setup {
