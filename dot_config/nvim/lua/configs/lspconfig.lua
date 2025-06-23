@@ -191,6 +191,14 @@ local servers = {
 			logLevel = "info",
 		},
 	},
+	pyright = {
+		disableOrganizeImports = true,
+	},
+	python = {
+		analysis = {
+			ignore = { "*" },
+		},
+	},
 	jsonls = {
 		settings = {
 			json = {
