@@ -87,3 +87,6 @@ if check "go"; then
         check "$binary_name" || go install "$tool@latest"
     done
 fi
+
+# Some install scripts
+curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sudo sh -s -- -b /usr/local/bin
