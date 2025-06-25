@@ -14,6 +14,7 @@ mason_lspconfig.setup {
 		"dockerls",
 		"eslint",
 		"gopls",
+		"golangci_lint_ls",
 		"helm_ls",
 		"jsonls",
 		"lua_ls",
