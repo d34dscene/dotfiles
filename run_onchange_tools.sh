@@ -66,6 +66,7 @@ if check "go"; then
     go_tools=(
         github.com/Gelio/go-global-update
         honnef.co/go/tools/cmd/staticcheck
+        github.com/golangci/golangci-lint/v2/cmd/golangci-lint
         github.com/google/yamlfmt/cmd/yamlfmt
         mvdan.cc/sh/v3/cmd/shfmt
         golang.org/x/tools/cmd/goimports
