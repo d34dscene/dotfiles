@@ -25,6 +25,7 @@ conform.setup {
 		vue = { "prettier" },
 		astro = { "prettier" },
 		markdown = { "injected" },
+		kotlin = { "ktlint", "ktfmt" },
 		yaml = { "prettier" },
 		sh = { "shfmt", "shellcheck" },
 		zsh = { "shfmt", "shellcheck" },
