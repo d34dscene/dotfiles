@@ -112,7 +112,7 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
-	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI chat
+	{ "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
 	-- { "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{

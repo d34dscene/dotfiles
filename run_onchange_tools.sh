@@ -70,6 +70,7 @@ if check "go"; then
         mvdan.cc/sh/v3/cmd/shfmt
         golang.org/x/tools/cmd/goimports
         github.com/fatih/gomodifytags
+        github.com/jondot/goweight
         github.com/ssut/payload-dumper-go
         github.com/mr-karan/doggo/cmd/doggo
         github.com/derailed/k9s
