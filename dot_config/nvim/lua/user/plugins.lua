@@ -2,41 +2,18 @@ return {
 	-- Important plugins
 	-- ------------------------------------------------------------------------
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- Lua functions
-	{ "ray-x/guihua.lua", lazy = true }, -- GUI & Util Library
 	{ "MunifTanjim/nui.nvim", lazy = true }, -- UI Library
 	{ "stevearc/dressing.nvim", event = "VeryLazy" }, -- UI hooks
 	{ "akinsho/bufferline.nvim", event = "VimEnter" }, -- Bufferline
 	{ "nvim-lualine/lualine.nvim", event = "VimEnter" }, -- Statusline
-	{ "nvim-tree/nvim-web-devicons", event = "VimEnter" }, -- Icon support
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
-	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple qol plugins
+	{ "echasnovski/mini.nvim", version = false }, -- Multiple plugins
+	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple plugins
 
 	-- Design
 	-- ------------------------------------------------------------------------
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost", config = true }, -- Highlight colors
-	{ "lewis6991/gitsigns.nvim", event = "BufReadPost", config = true }, -- Git signs
-	{
-		"folke/todo-comments.nvim", -- Highlight todo comments
-		event = "BufReadPost",
-		config = true,
-		keys = {
-			{
-				"]t",
-				function()
-					require("todo-comments").jump_next()
-				end,
-				desc = "Next Todo",
-			},
-			{
-				"[t",
-				function()
-					require("todo-comments").jump_prev()
-				end,
-				desc = "Previous Todo",
-			},
-		},
-	},
 
 	-- Treesitter
 	-- ------------------------------------------------------------------------
@@ -49,24 +26,7 @@ return {
 			require("lazy.core.loader").add_to_rtp(plugin)
 			require "nvim-treesitter.query_predicates"
 		end,
-		dependencies = {
-			"windwp/nvim-ts-autotag",
-			"windwp/nvim-autopairs",
-		},
-	},
-	{
-		"Wansmer/treesj", -- Node splits/joins
-		event = "BufReadPost",
-		opts = { use_default_keymaps = false },
-		keys = {
-			{
-				"tt",
-				function()
-					require("treesj").toggle()
-				end,
-				desc = "Toggle node under cursor",
-			},
-		},
+		dependencies = { "windwp/nvim-ts-autotag" },
 	},
 
 	-- LSP
@@ -113,9 +73,12 @@ return {
 	{
 		"saghen/blink.cmp",
 		version = "*",
-		dependencies = { "hrsh7th/cmp-emoji", "chrisgrieser/cmp-nerdfont" },
+		dependencies = {
+			"saghen/blink.compat",
+			"hrsh7th/cmp-emoji",
+			"chrisgrieser/cmp-nerdfont",
+		},
 	},
-	{ "saghen/blink.compat", lazy = true },
 	{
 		"L3MON4D3/LuaSnip",
 		build = vim.fn.has "win32" ~= 0 and "make install_jsregexp" or nil,
@@ -150,7 +113,7 @@ return {
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy", config = true }, -- AI chat
-	{ "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
+	-- { "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{
 		"MagicDuck/grug-far.nvim", -- Search and Replace
@@ -182,29 +145,6 @@ return {
 					}
 				end,
 				desc = "Grug replace selection",
-			},
-		},
-	},
-	{
-		"numToStr/Comment.nvim", -- Smart commenting
-		event = "VeryLazy",
-		opts = { mappings = false },
-		keys = {
-			{
-				"x",
-				function()
-					require("Comment.api").toggle.linewise.current()
-				end,
-				desc = "Comment line",
-			},
-			{
-				"x",
-				mode = { "v" },
-				function()
-					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "nx", false)
-					require("Comment.api").toggle.linewise(vim.fn.visualmode())
-				end,
-				desc = "Comment block",
 			},
 		},
 	},
@@ -253,26 +193,6 @@ return {
 			keymaps = { accept_suggestion = "<A-f>" },
 		},
 		dependencies = { "huijiro/blink-cmp-supermaven" },
-	},
-	{
-		"folke/flash.nvim", -- Jump around
-		event = "VeryLazy",
-		opts = {
-			modes = {
-				search = { enabled = false },
-				char = { keys = { ["f"] = "F" } },
-			},
-		},
-		keys = {
-			{
-				"f",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump()
-				end,
-				desc = "Flash",
-			},
-		},
 	},
 	{
 		"ray-x/go.nvim", -- Lots of go tools
