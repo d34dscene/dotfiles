@@ -4,15 +4,15 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- Lua functions
 	{ "MunifTanjim/nui.nvim", lazy = true }, -- UI Library
 	{ "stevearc/dressing.nvim", event = "VeryLazy" }, -- UI hooks
-	{ "akinsho/bufferline.nvim", event = "VimEnter" }, -- Bufferline
-	{ "nvim-lualine/lualine.nvim", event = "VimEnter" }, -- Statusline
 	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
-	{ "echasnovski/mini.nvim", version = false }, -- Multiple plugins
 	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple plugins
+	{ "echasnovski/mini.nvim", version = false }, -- Multiple plugins
 
 	-- Design
 	-- ------------------------------------------------------------------------
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
+	{ "akinsho/bufferline.nvim", event = "VimEnter" }, -- Bufferline
+	{ "nvim-lualine/lualine.nvim", event = "VimEnter" }, -- Statusline
 	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost", config = true }, -- Highlight colors
 
 	-- Treesitter
@@ -44,8 +44,7 @@ return {
 	{ "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
-	"b0o/schemastore.nvim", -- Schema store
-	"mfussenegger/nvim-ansible", -- Ansible support
+	{ "b0o/schemastore.nvim" }, -- Schema store
 	{
 		"pmizio/typescript-tools.nvim", -- Typescript tools
 		config = true,
@@ -82,10 +81,7 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		build = vim.fn.has "win32" ~= 0 and "make install_jsregexp" or nil,
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-			"benfowler/telescope-luasnip.nvim",
-		},
+		dependencies = { "rafamadriz/friendly-snippets" },
 		config = function(_, opts)
 			if opts then
 				require("luasnip").config.setup(opts)

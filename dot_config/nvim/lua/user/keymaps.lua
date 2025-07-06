@@ -23,14 +23,6 @@ map("n", "rw", ":%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>", { desc = "Replace c
 
 -- Splits
 map("n", "vv", "<C-w>v", { desc = "Vertical split" })
-map("n", "<A-h>", "<C-w>h", { desc = "Move to left split" })
-map("n", "<A-j>", "<C-w>j", { desc = "Move to below split" })
-map("n", "<A-k>", "<C-w>k", { desc = "Move to above split" })
-map("n", "<A-l>", "<C-w>l", { desc = "Move to right split" })
-map("n", "<C-k>", ":resize 2<cr>", { desc = "Resize split up" })
-map("n", "<C-j>", ":resize +6<cr>", { desc = "Resize split down" })
-map("n", "<C-h>", ":vertical resize 2<cr>", { desc = "Resize split left" })
-map("n", "<C-l>", ":vertical resize +6<cr>", { desc = "Resize split right" })
 
 -- Smart buffer close/quit
 map("n", "qq", function()
@@ -77,14 +69,11 @@ end, { desc = "Smart quit: save & close buffer or quit" })
 -- Lazy
 map("n", "<leader>ll", ":Lazy sync<cr>", { desc = "Update plugins" })
 
--- Jump between windows + close terminal
+-- Jump between windows
 map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
 map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 
 -- Extras
-map("i", "<A-BS>", "<C-w>", opts) -- delete word
-map("i", "<C-c>", "<Esc>yyi", opts) -- copy line
-map("i", "<C-.>", "<Esc>pi", opts) -- paste line
 map("n", "<C-d>", "yyp", opts) -- duplicate line
 map("n", "--", "O<Esc>j", opts) -- newline below
 map("n", "==", "o<Esc>k", opts) -- newline above
