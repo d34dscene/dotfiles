@@ -74,6 +74,7 @@ map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
 map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 
 -- Extras
+map("i", "<A-BS>", "<C-w>", opts) -- delete word
 map("n", "<C-d>", "yyp", opts) -- duplicate line
 map("n", "--", "O<Esc>j", opts) -- newline below
 map("n", "==", "o<Esc>k", opts) -- newline above

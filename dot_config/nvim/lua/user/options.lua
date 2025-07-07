@@ -9,7 +9,9 @@ o.writebackup = false -- Do not create a backup before overwriting a file
 o.undofile = true -- Enable persistent undo between sessions
 o.termguicolors = true -- Enable 24-bit RGB color in the TUI
 o.mouse = "a" -- Enable mouse support for all modes
+o.wrap = true -- Wrap lines at the end of the screen
 o.linebreak = true -- Wrap long lines at characters in 'breakat'
+o.breakindent = true -- Indent wrapped lines
 
 -- Performance
 o.updatetime = 200 -- Faster CursorHold events
@@ -57,7 +59,6 @@ o.ignorecase = true -- Ignore case when searching
 o.smartcase = true -- Case sensitive if uppercase letters are used
 o.hlsearch = false -- Highlight all search matches
 o.incsearch = true -- Incremental search highlighting
-o.wrap = false -- Do not wrap long lines
 
 -- Global
 g.transparent_enabled = true
