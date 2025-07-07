@@ -12,6 +12,7 @@ o.mouse = "a" -- Enable mouse support for all modes
 o.wrap = true -- Wrap lines at the end of the screen
 o.linebreak = true -- Wrap long lines at characters in 'breakat'
 o.breakindent = true -- Indent wrapped lines
+o.showbreak = "↳ " -- Character shown at the end of wrapped lines
 
 -- Performance
 o.updatetime = 200 -- Faster CursorHold events
