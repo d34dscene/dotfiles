@@ -151,6 +151,11 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
+	buf_ls = {
+		on_attach = function(client, _)
+			client.server_capabilities.semanticTokensProvider = nil
+		end,
+	},
 	clangd = {
 		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	},
@@ -222,112 +227,6 @@ local servers = {
 			},
 		},
 	},
-	-- vtsls = {
-	-- 	settings = {
-	-- 		complete_function_calls = true,
-	-- 		vtsls = {
-	-- 			enableMoveToFileCodeAction = true,
-	-- 			autoUseWorkspaceTsdk = true,
-	-- 			experimental = {
-	-- 				maxInlayHintLength = 30,
-	-- 				completion = {
-	-- 					enableServerSideFuzzyMatch = true,
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 		typescript = {
-	-- 			updateImportsOnFileMove = { enabled = "always" },
-	-- 			suggest = {
-	-- 				completeFunctionCalls = true,
-	-- 			},
-	-- 			inlayHints = {
-	-- 				enumMemberValues = { enabled = true },
-	-- 				functionLikeReturnTypes = { enabled = true },
-	-- 				parameterNames = { enabled = "literals" },
-	-- 				parameterTypes = { enabled = true },
-	-- 				propertyDeclarationTypes = { enabled = true },
-	-- 				variableTypes = { enabled = false },
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>co",
-	-- 			function()
-	-- 				vim.lsp.buf.code_action {
-	-- 					apply = true,
-	-- 					context = {
-	-- 						only = { "source.organizeImports" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 				}
-	-- 			end,
-	-- 			desc = "Organize Imports",
-	-- 		},
-	-- 		{
-	-- 			"<leader>cM",
-	-- 			function()
-	-- 				vim.lsp.buf.code_action {
-	-- 					apply = true,
-	-- 					context = {
-	-- 						only = { "source.addMissingImports.ts" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 				}
-	-- 			end,
-	-- 			desc = "Add missing imports",
-	-- 		},
-	-- 		{
-	-- 			"<leader>cu",
-	-- 			function()
-	-- 				vim.lsp.buf.code_action {
-	-- 					apply = true,
-	-- 					context = {
-	-- 						only = { "source.removeUnused.ts" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 				}
-	-- 			end,
-	-- 			desc = "Remove unused imports",
-	-- 		},
-	-- 		{
-	-- 			"<leader>cD",
-	-- 			function()
-	-- 				vim.lsp.buf.code_action {
-	-- 					apply = true,
-	-- 					context = {
-	-- 						only = { "source.fixAll.ts" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 				}
-	-- 			end,
-	-- 			desc = "Fix all diagnostics",
-	-- 		},
-	-- 	},
-	-- 	on_attach = function(client, bufnr)
-	-- 		on_attach(client, bufnr)
-	-- 		vim.api.nvim_create_autocmd("BufWritePre", {
-	-- 			buffer = bufnr,
-	-- 			callback = function()
-	-- 				vim.lsp.buf.code_action {
-	-- 					apply = true,
-	-- 					context = {
-	-- 						only = { "source.addMissingImports.ts" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 				}
-	-- 				vim.lsp.buf.code_action {
-	-- 					apply = true,
-	--
-	-- 					context = {
-	-- 						only = { "source.removeUnused.ts" },
-	-- 						diagnostics = {},
-	-- 					},
-	-- 				}
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
