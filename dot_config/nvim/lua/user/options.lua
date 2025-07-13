@@ -15,12 +15,12 @@ o.breakindent = true -- Indent wrapped lines
 o.showbreak = "↳ " -- Character shown at the end of wrapped lines
 
 -- Performance
-o.updatetime = 200 -- Faster CursorHold events
+o.updatetime = 300 -- Faster CursorHold events
 o.timeoutlen = 300 -- Faster key sequence completion
 o.ttyfast = true -- Fast terminal connection
 o.history = 100 -- Keep 100 lines of command line history
 o.lazyredraw = true -- Do not redraw while executing macros
-o.synmaxcol = 200 -- Do not syntax highlight long lines
+o.synmaxcol = 240 -- Do not syntax highlight long lines
 o.redrawtime = 1500 -- Allow more time for loading syntax on large files
 
 -- Indentation and whitespace
