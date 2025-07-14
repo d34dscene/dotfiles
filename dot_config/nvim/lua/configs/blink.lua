@@ -45,10 +45,9 @@ blink.setup {
 	},
 	snippets = { preset = "luasnip" },
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "supermaven", "nerdfont", "emoji" },
+		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "supermaven", "nerdfont" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
-			emoji = { name = "emoji", module = "blink.compat.source" },
 			codecompanion = {
 				name = "CodeCompanion",
 				module = "codecompanion.providers.completion.blink",

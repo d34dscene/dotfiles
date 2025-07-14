@@ -26,7 +26,13 @@ return {
 			require("lazy.core.loader").add_to_rtp(plugin)
 			require "nvim-treesitter.query_predicates"
 		end,
-		dependencies = { "windwp/nvim-ts-autotag" },
+	},
+	{
+		"Wansmer/treesj", -- Splits and joins blocks of code
+		opts = { use_default_keymaps = false },
+		keys = {
+			{ "tt", "<cmd>lua require('treesj').toggle()<cr>", desc = "Treesj" },
+		},
 	},
 
 	-- LSP
@@ -70,16 +76,12 @@ return {
 	-- Completion
 	-- ------------------------------------------------------------------------
 	{
-		"saghen/blink.cmp",
+		"saghen/blink.cmp", -- Completion engine
 		version = "*",
-		dependencies = {
-			"saghen/blink.compat",
-			"hrsh7th/cmp-emoji",
-			"chrisgrieser/cmp-nerdfont",
-		},
+		dependencies = { "saghen/blink.compat", "chrisgrieser/cmp-nerdfont" },
 	},
 	{
-		"L3MON4D3/LuaSnip",
+		"L3MON4D3/LuaSnip", -- Snippets
 		build = vim.fn.has "win32" ~= 0 and "make install_jsregexp" or nil,
 		dependencies = { "rafamadriz/friendly-snippets" },
 		config = function(_, opts)
@@ -109,7 +111,6 @@ return {
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
-	-- { "kylechui/nvim-surround", event = "VeryLazy", config = true }, -- Surrounding
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{
 		"MagicDuck/grug-far.nvim", -- Search and Replace
@@ -148,30 +149,9 @@ return {
 		"chrisgrieser/nvim-spider", -- Easy motion
 		lazy = true,
 		keys = {
-			{
-				"w",
-				mode = { "n", "x", "o" },
-				function()
-					require("spider").motion "w"
-				end,
-				desc = "Spider W",
-			},
-			{
-				"e",
-				mode = { "n", "x", "o" },
-				function()
-					require("spider").motion "e"
-				end,
-				desc = "Spider E",
-			},
-			{
-				"b",
-				mode = { "n", "x", "o" },
-				function()
-					require("spider").motion "b"
-				end,
-				desc = "Spider B",
-			},
+			{ "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+			{ "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
+			{ "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
 		},
 	},
 	{

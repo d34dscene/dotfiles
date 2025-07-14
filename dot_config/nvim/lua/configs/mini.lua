@@ -17,10 +17,9 @@ local comment = safe_require "mini.comment"
 local diff = safe_require "mini.diff"
 local hipatterns = safe_require "mini.hipatterns"
 local icons = safe_require "mini.icons"
-local jump = safe_require "mini.jump"
+local jump2d = safe_require "mini.jump2d"
 local move = safe_require "mini.move"
 local pairs = safe_require "mini.pairs"
-local splitjoin = safe_require "mini.splitjoin"
 local surround = safe_require "mini.surround"
 
 align.setup {}
@@ -47,7 +46,7 @@ hipatterns.setup {
 	},
 }
 icons.setup {}
-jump.setup {}
+jump2d.setup { mappings = { start_jumping = "f" } }
 move.setup {
 	mappings = {
 		left = "<M-left>",
@@ -62,7 +61,6 @@ move.setup {
 	},
 }
 pairs.setup {}
-splitjoin.setup { mappings = { toggle = "tt" } }
 surround.setup {}
 
 -- Icons

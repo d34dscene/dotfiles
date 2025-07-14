@@ -29,8 +29,8 @@ treesitter.setup {
 		enable = true,
 		disable = function(_, buf)
 			local max_filesize = 1000 * 1024 -- 1 MB
-			local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-			if ok and stats and stats.size > max_filesize then
+			local okb, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if okb and stats and stats.size > max_filesize then
 				return true
 			end
 		end,
@@ -46,5 +46,4 @@ treesitter.setup {
 		},
 	},
 	indent = { enable = true },
-	autotag = { enable = true },
 }
