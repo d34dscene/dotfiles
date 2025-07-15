@@ -156,6 +156,17 @@ local servers = {
 			client.server_capabilities.semanticTokensProvider = nil
 		end,
 	},
+	basedpyright = {
+		settings = {
+			basedpyright = {
+				analysis = {
+					autoSearchPaths = true,
+					diagnosticMode = "workspace",
+					typeCheckingMode = "basic",
+				},
+			},
+		},
+	},
 	clangd = {
 		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	},
