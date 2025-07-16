@@ -15,6 +15,3 @@ ptavares/zsh-direnv kind:defer
 laggardkernel/git-ignore kind:defer
 sunlei/zsh-ssh kind:defer
 bonnefoa/kubectl-fzf kind:defer
-
-# Theme
-romkatv/powerlevel10k kind:fpath

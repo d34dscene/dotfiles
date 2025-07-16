@@ -6,19 +6,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Paths
-export GOPATH="$HOME/.local/go" # go
+export GOPATH="$HOME/.local/go"
 export GOBIN="$GOPATH/bin"
 export CARGO_HOME="$HOME/.local/cargo"
 
-export PATH="$GOBIN:$PATH"
-export PATH="$CARGO_HOME/bin:$PATH"
+export PATH="$GOBIN:$PATH" # go
+export PATH="$CARGO_HOME/bin:$PATH" # cargo
 export PATH="$HOME/.local/share/pnpm:$PATH" # pnpm
 export PATH="/usr/local/cuda/bin:$PATH" # cuda
 export PATH="$HOME/.local/bin:$PATH" # general bin
 
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
-export PROMPT_EOL_MARK=""   # don't add newline at the end of prompt
+export PROMPT_EOL_MARK="" # don't add newline at the end of prompt
 
 # Editor
 if command -v nvim &> /dev/null; then
@@ -94,7 +94,7 @@ zle -N bracketed-paste bracketed-paste-magic
 zle -N self-insert url-quote-magic
 
 # Prompt theme
-prompt powerlevel10k
+type oh-my-posh >/dev/null && eval "$(oh-my-posh init zsh --config catppuccin_mocha)"
 
 # Load zoxide
 type zoxide >/dev/null && eval "$(zoxide init zsh)"
