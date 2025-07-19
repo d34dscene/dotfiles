@@ -11,6 +11,10 @@ upgrade:
   interval: 168h
   auto: true
   notice: false
+transient_prompt:
+  background: transparent
+  foreground: p:blue
+  template: " "
 blocks:
   - type: prompt
     alignment: left
@@ -24,7 +28,7 @@ blocks:
         type: session
         style: plain
       - properties:
-          folder_icon: ....
+          folder_icon: ..
           home_icon: "~"
           style: agnoster_short
         template: "{{ .Path }} "
