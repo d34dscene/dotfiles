@@ -4,6 +4,8 @@ if not ok then
 	return nil
 end
 
+local proto = require "util.proto"
+
 conform.setup {
 	formatters_by_ft = {
 		lua = { "stylua" },
@@ -54,6 +56,9 @@ command("Format", function(args)
 end, { range = true })
 
 command("FormatSave", function()
+	if vim.bo.filetype == "proto" then
+		proto.proto_renumber()
+	end
 	conform.format { lsp_fallback = true, timeout_ms = 3000 }
 	vim.cmd "w"
 end, { desc = "Format and save" })

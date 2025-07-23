@@ -1,4 +1,5 @@
 local cmd = vim.api.nvim_create_autocmd
+local command = vim.api.nvim_create_user_command
 local augroup = vim.api.nvim_create_augroup
 
 cmd({ "FocusGained", "TermClose", "TermLeave" }, {
@@ -69,6 +70,10 @@ cmd("User", {
 		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
 	end,
 })
+
+command("ProtoRenumber", function()
+	require("util.proto").proto_renumber()
+end, {})
 
 local large_file_size = 1000000 -- 1MB
 cmd("BufReadPre", {
