@@ -120,6 +120,12 @@ if lspci | grep -i nvidia > /dev/null; then
     sudo dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda cuda-toolkit -y
 fi
 
+# Poweroff on buton press
+sudo tee /etc/systemd/logind.conf <<-EOF
+[Login]
+HandlePowerKey=poweroff
+EOF
+
 # NFS 
 log "Setting up NFS..."
 mkdir -p /share
