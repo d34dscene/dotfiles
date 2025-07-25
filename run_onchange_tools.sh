@@ -93,5 +93,5 @@ if check "go"; then
 fi
 
 # Random install scripts
-curl -s https://ohmyposh.dev/install.sh | bash -s
+curl -s https://ohmyposh.dev/install.sh | bash -s -- -d "$HOME/.local/bin"
 curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sudo sh -s -- -b /usr/local/bin
