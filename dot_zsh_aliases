@@ -146,7 +146,6 @@ alias grap="git remote set-url --add --push origin"
 
 # Go
 alias goi="go install"
-alias gom="go mod"
 alias gomu="go mod tidy; go mod vendor"
 alias gomt="go mod tidy"
 alias gomv="go mod vendor"
