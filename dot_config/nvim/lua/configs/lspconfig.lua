@@ -192,13 +192,14 @@ local servers = {
 	gopls = {
 		settings = {
 			gopls = {
+				buildFlags = { "-tags=dev" },
 				experimentalPostfixCompletions = true,
 				analyses = {
 					unusedparams = true,
 					shadow = true,
 				},
 				staticcheck = true,
-				gofumpt = true, -- Stricter formatting
+				gofumpt = true,
 				usePlaceholders = true,
 			},
 		},
