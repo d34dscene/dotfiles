@@ -31,9 +31,9 @@ rust_tools=(
     xh
 )
 
-if check "pip"; then
+if check "pipx"; then
     for tool in "${py_tools[@]}"; do
-        pip install --upgrade "$tool"
+        pipx install --upgrade "$tool"
     done
 fi
 
