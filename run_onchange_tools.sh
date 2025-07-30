@@ -10,6 +10,7 @@ check() {
 py_tools=(
     mdformat
     codespell
+    rsyncy
 )
 
 node_tools=(

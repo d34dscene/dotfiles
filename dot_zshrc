@@ -60,6 +60,7 @@ autoload -Uz compinit bashcompinit promptinit; compinit -C; bashcompinit -C; pro
 autoload -Uz bracketed-paste-magic url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic
 zle -N self-insert url-quote-magic
+compdef rs=rsync
 
 # Install Antidote if not installed
 [[ -d "$ZDOTDIR"/.config/antidote ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR"/.config/antidote

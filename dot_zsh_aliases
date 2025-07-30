@@ -67,8 +67,8 @@ alias dog="doggo --time"
 alias duf="duf --sort=size -only=local"
 
 # Rsync
-alias rs="rsync -avzh --info=progress2 --no-i-r"  # Overwrite
-alias rsu="rsync -auzh --info=progress2 --no-i-r" # Update only if newer
+alias rs="rsyncy -avzh"  # Overwrite
+alias rsu="rsyncy -auzh" # Update only if newer
 
 # Immich
 alias imup="immich-go upload from-folder --server=$IMMICH_URL --api-key=$IMMICH_API_KEY"
