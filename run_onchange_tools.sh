@@ -33,7 +33,7 @@ rust_tools=(
 
 if check "pipx"; then
     for tool in "${py_tools[@]}"; do
-        pipx install --upgrade "$tool"
+        pipx install "$tool"
     done
 fi
 
