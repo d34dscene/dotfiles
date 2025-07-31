@@ -53,7 +53,6 @@ o.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 o.splitbelow = true -- Open horizontal splits below
 o.splitright = true -- Open vertical splits right
 o.splitkeep = "screen" -- Reduce scroll during window split
-o.conceallevel = 2 -- Hide markup in markdown files
 
 -- Search options
 o.ignorecase = true -- Ignore case when searching
