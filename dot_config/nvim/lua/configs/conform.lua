@@ -16,9 +16,9 @@ conform.setup {
 		terraform = { "terraform_fmt" },
 		json = { "biome" },
 		jsonc = { "biome" },
-		javascript = { "biome" },
+		javascript = { "prettier" },
 		javascriptreact = { "biome" },
-		typescript = { "biome" },
+		typescript = { "prettier" },
 		typescriptreact = { "biome" },
 		html = { "prettier" },
 		css = { "biome" },
@@ -57,10 +57,25 @@ command("Format", function(args)
 end, { range = true })
 
 command("FormatSave", function()
-	if vim.bo.filetype == "proto" then
+	local ft = vim.bo.filetype
+
+	if ft == "proto" then
 		proto.proto_renumber()
 	end
-	conform.format { lsp_fallback = true, timeout_ms = 3000 }
+	if ft == "typescript" or ft == "javascript" then
+		vim.cmd "TSToolsOrganizeImports"
+		vim.cmd "TSToolsAddMissingImports"
+	end
+	if ft == "svelte" then
+		vim.lsp.buf.code_action {
+			context = {
+				only = { "source.organizeImports" },
+				diagnostics = vim.diagnostic.get(0),
+			},
+			apply = true,
+		}
+	end
+	conform.format { lsp_fallback = true, timeout_ms = 3000, async = false }
 	vim.cmd "w"
 end, { desc = "Format and save" })
 
