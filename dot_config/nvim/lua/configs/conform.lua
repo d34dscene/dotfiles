@@ -15,6 +15,7 @@ conform.setup {
 		c = { "clang_format" },
 		terraform = { "terraform_fmt" },
 		json = { "biome" },
+		jsonc = { "biome" },
 		javascript = { "biome" },
 		javascriptreact = { "biome" },
 		typescript = { "biome" },
@@ -100,11 +101,6 @@ conform.formatters.yamlfmt = vim.tbl_deep_extend("force", yamlfmt, {
 		yamlfmt.args,
 		{ "-formatter", "indent=2,retain_line_breaks=true,scan_folded_as_literal=true" }
 	),
-})
-
-local prettier = require "conform.formatters.prettier"
-conform.formatters.prettier = vim.tbl_deep_extend("force", prettier, {
-	args = util.extend_args(prettier.args, { "--prose-wrap", "always" }),
 })
 
 -- Keymaps
