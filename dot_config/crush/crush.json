@@ -1,0 +1,31 @@
+{
+	"$schema": "https://charm.land/crush.json",
+	"providers": {
+		"openrouter": {
+			"type": "openai",
+			"base_url": "https://openrouter.ai/api/v1",
+			"api_key": "$OPENROUTER_API"
+		}
+	},
+	"lsp": {
+		"go": {
+			"command": "gopls"
+		},
+		"typescript": {
+			"command": "typescript-language-server",
+			"args": ["--stdio"]
+		}
+	},
+	"permissions": {
+		"allowed_tools": [
+			"view",
+			"edit",
+			"multiedit",
+			"write",
+			"ls",
+			"grep",
+			"git",
+			"pnpm"
+		]
+	}
+}
