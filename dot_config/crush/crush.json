@@ -24,6 +24,7 @@
 			"write",
 			"ls",
 			"grep",
+			"mkdir",
 			"git",
 			"pnpm"
 		]
