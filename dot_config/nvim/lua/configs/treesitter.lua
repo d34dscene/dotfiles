@@ -9,6 +9,7 @@ treesitter.setup {
 		"bash",
 		"c",
 		"go",
+		"gotmpl",
 		"html",
 		"javascript",
 		"json",

@@ -62,6 +62,17 @@ cmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+cmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*.gohtml,*.gotmpl,*.html",
+	callback = function()
+		if vim.fn.search("{{.\\+}}", "nw") ~= 0 then
+			local buf = vim.api.nvim_get_current_buf()
+			vim.api.nvim_set_option_value("filetype", "gotmpl", { buf = buf })
+			vim.api.nvim_set_option_value("filetype", "html", { buf = buf })
+		end
+	end,
+})
+
 cmd("User", {
 	desc = "Show git conflict markers",
 	group = augroup("show_git_conflict_markers", { clear = true }),

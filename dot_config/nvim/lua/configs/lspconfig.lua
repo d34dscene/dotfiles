@@ -190,6 +190,7 @@ local servers = {
 		},
 	},
 	gopls = {
+		filetypes = { "go", "gomod", "gowork" },
 		settings = {
 			gopls = {
 				buildFlags = { "-tags=dev" },

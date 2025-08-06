@@ -2,19 +2,19 @@
 	"$schema": "https://charm.land/crush.json",
 	"providers": {
 		"openrouter": {
-			"type": "openai",
+			"name": "OpenRouter",
 			"base_url": "https://openrouter.ai/api/v1",
+			"type": "openai",
 			"api_key": "$OPENROUTER_API"
+		},
+		"ollama": {
+			"name": "Ollama",
+			"base_url": "https://ollama.mizuchi.dev/v1/",
+			"type": "openai"
 		}
 	},
 	"lsp": {
-		"go": {
-			"command": "gopls"
-		},
-		"typescript": {
-			"command": "typescript-language-server",
-			"args": ["--stdio"]
-		}
+		"go": { "command": "gopls" }
 	},
 	"permissions": {
 		"allowed_tools": [
