@@ -58,22 +58,12 @@ end, { range = true })
 
 command("FormatSave", function()
 	local ft = vim.bo.filetype
-
 	if ft == "proto" then
 		proto.proto_renumber()
 	end
 	if ft == "typescript" or ft == "javascript" then
 		vim.cmd "TSToolsOrganizeImports"
 		vim.cmd "TSToolsAddMissingImports"
-	end
-	if ft == "svelte" then
-		vim.lsp.buf.code_action {
-			context = {
-				only = { "source.organizeImports" },
-				diagnostics = vim.diagnostic.get(0),
-			},
-			apply = true,
-		}
 	end
 	conform.format { lsp_fallback = true, timeout_ms = 3000, async = false }
 	vim.cmd "w"
