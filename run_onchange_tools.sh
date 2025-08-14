@@ -85,6 +85,7 @@ if check "go"; then
         google.golang.org/protobuf/cmd/protoc-gen-go
         connectrpc.com/connect/cmd/protoc-gen-connect-go
         github.com/sudorandom/protoc-gen-connect-openapi
+        github.com/charmbracelet/crush
     )
 
     for tool in "${go_tools[@]}"; do
