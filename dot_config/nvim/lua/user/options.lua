@@ -25,9 +25,9 @@ o.redrawtime = 1500 -- Allow more time for loading syntax on large files
 
 -- Indentation and whitespace
 o.expandtab = true -- Convert tabs to spaces
-o.shiftwidth = 4 -- Number of spaces inserted for indentation
-o.tabstop = 4 -- Number of spaces a tab counts for
-o.softtabstop = 4 -- Number of spaces in a tab when editing
+o.shiftwidth = 3 -- Number of spaces inserted for indentation
+o.tabstop = 3 -- Number of spaces a tab counts for
+o.softtabstop = 3 -- Number of spaces in a tab when editing
 o.autoindent = true -- Enable auto-indentation
 o.smartindent = true -- Smart indentation (works with some filetypes)
 o.fileformats = { "unix", "dos", "mac" } -- Set supported file formats
