@@ -10,7 +10,13 @@
 		"ollama": {
 			"name": "Ollama",
 			"base_url": "https://ollama.mizuchi.dev/v1/",
-			"type": "openai"
+			"type": "openai",
+			"models": [
+				{
+					"name": "Qwen3-Coder-30B-A3B-Instruct",
+					"id": "hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M"
+				}
+			]
 		}
 	},
 	"lsp": {
@@ -26,6 +32,7 @@
 			"grep",
 			"mkdir",
 			"git",
+			"go",
 			"pnpm"
 		]
 	}
