@@ -11,9 +11,12 @@ return {
 	-- Design
 	-- ------------------------------------------------------------------------
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
-	{ "akinsho/bufferline.nvim", event = "VimEnter" }, -- Bufferline
 	{ "nvim-lualine/lualine.nvim", event = "VimEnter" }, -- Statusline
-	{ "brenoprata10/nvim-highlight-colors", event = "BufReadPost", config = true }, -- Highlight colors
+	{
+		"brenoprata10/nvim-highlight-colors", -- Highlight colors
+		event = "BufReadPost",
+		opts = { enable_tailwind = true },
+	},
 
 	-- Treesitter
 	-- ------------------------------------------------------------------------

@@ -8,7 +8,7 @@ require "user.autocmds"
 
 -- Plugin Configs
 require "configs.blink"
-require "configs.bufferline"
+-- require "configs.bufferline"
 require "configs.catppuccin"
 require "configs.codecompanion"
 require "configs.conform"

@@ -21,6 +21,7 @@ local jump2d = safe_require "mini.jump2d"
 local move = safe_require "mini.move"
 local pairs = safe_require "mini.pairs"
 local surround = safe_require "mini.surround"
+local tabline = safe_require "mini.tabline"
 
 align.setup {}
 bracketed.setup {}
@@ -62,6 +63,7 @@ move.setup {
 }
 pairs.setup {}
 surround.setup {}
+tabline.setup {}
 
 -- Icons
 icons.mock_nvim_web_devicons()
