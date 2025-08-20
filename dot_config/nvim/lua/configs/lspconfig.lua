@@ -39,9 +39,9 @@ vim.diagnostic.config {
 			[vim.diagnostic.severity.HINT] = "󰌵",
 		},
 	},
-	virtual_text = true,
+	virtual_text = false,
 	virtual_lines = { current_line = true },
-	update_in_insert = false,
+	update_in_insert = true,
 	underline = true,
 	severity_sort = true,
 }
