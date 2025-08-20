@@ -40,7 +40,7 @@ vim.diagnostic.config {
 		},
 	},
 	virtual_text = false,
-	virtual_lines = { current_line = true },
+	-- virtual_lines = { current_line = true },
 	update_in_insert = true,
 	underline = true,
 	severity_sort = true,

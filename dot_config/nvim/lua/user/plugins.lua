@@ -56,6 +56,25 @@ return {
 		filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "svelte" },
 	},
 	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy",
+		priority = 1000,
+		opts = {
+			preset = "modern",
+			options = {
+				throttle = 0,
+				multilines = {
+					enabled = true,
+					always_show = true,
+				},
+				use_icons_from_diagnostic = true,
+				show_all_diags_on_cursorline = true,
+				enable_on_insert = true,
+				enable_on_select = true,
+			},
+		},
+	},
+	{
 		"smjonas/inc-rename.nvim", -- Highlight refactors
 		event = "BufReadPost",
 		config = true,
@@ -173,9 +192,7 @@ return {
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ":lua require(\"go.install\").update_all_sync()",
-		opts = {
-			lsp_inlay_hints = { style = "eol" },
-		},
+		opts = { diagnostic = false },
 		keys = {
 			{ "<leader>gf", "<cmd>GoFillStruct<cr>", desc = "Go fill struct" },
 			{ "<leader>ga", "<cmd>GoAddTag<cr>", desc = "Go add tags" },
