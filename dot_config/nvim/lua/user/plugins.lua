@@ -167,7 +167,6 @@ return {
 		opts = {
 			keymaps = { accept_suggestion = "<A-f>" },
 		},
-		dependencies = { "huijiro/blink-cmp-supermaven" },
 	},
 	{
 		"ray-x/go.nvim", -- Lots of go tools

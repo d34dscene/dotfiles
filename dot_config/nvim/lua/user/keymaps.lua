@@ -73,8 +73,8 @@ map("n", "<leader>ll", ":Lazy sync<cr>", { desc = "Update plugins" })
 map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
 map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 -- Jump between buffers
-map("n", "<A-j>", ":bnext<cr>", { desc = "Jump to next buffer" })
-map("n", "<A-k>", ":bprevious<cr>", { desc = "Jump to previous buffer" })
+map("n", "<A-k>", ":bnext<cr>", { desc = "Jump to next buffer" })
+map("n", "<A-j>", ":bprevious<cr>", { desc = "Jump to previous buffer" })
 
 -- Extras
 map("i", "<A-BS>", "<C-w>", opts) -- delete word

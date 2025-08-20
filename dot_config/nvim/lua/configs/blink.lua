@@ -45,17 +45,12 @@ blink.setup {
 	},
 	snippets = { preset = "luasnip" },
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "supermaven", "nerdfont" },
+		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "nerdfont" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
 			codecompanion = {
 				name = "CodeCompanion",
 				module = "codecompanion.providers.completion.blink",
-				async = true,
-			},
-			supermaven = {
-				name = "supermaven",
-				module = "blink-cmp-supermaven",
 				async = true,
 			},
 		},
