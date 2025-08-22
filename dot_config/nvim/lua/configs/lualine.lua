@@ -96,6 +96,7 @@ lualine.setup {
 			winbar = 300,
 		},
 	},
+
 	sections = {
 		lualine_a = {
 			{ "mode", separator = { left = "" } },
@@ -122,6 +123,26 @@ lualine.setup {
 			},
 		},
 	},
+	tabline = {
+		lualine_a = {
+			{
+				"buffers",
+				use_mode_colors = true,
+				hide_filename_extension = true,
+				mode = 0,
+				symbols = {
+					modified = " ●",
+					alternate_file = "",
+					directory = "",
+				},
+			},
+		},
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = {},
+		lualine_z = { "tabs" },
+	},
 	inactive_sections = {
 		lualine_a = { "filename" },
 		lualine_b = {},
@@ -130,6 +151,5 @@ lualine.setup {
 		lualine_y = {},
 		lualine_z = { "location" },
 	},
-	tabline = {},
 	extensions = { "lazy", "mason", "neo-tree" },
 }
