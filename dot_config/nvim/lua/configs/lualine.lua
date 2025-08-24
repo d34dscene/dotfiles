@@ -9,7 +9,7 @@ local codecompanion = {}
 codecompanion.processing = false
 codecompanion.spinner_index = 1
 
-local spinner_symbols = { ".  ", ".. ", "...", " ..", "  ." }
+local spinner_symbols = { "", "", "", "", "", "" }
 local spinner_symbols_len = #spinner_symbols
 
 -- Create autocmds to update processing state based on CodeCompanion events
@@ -54,7 +54,7 @@ local function getLSP()
 		end
 	end
 
-	return table.concat(active_clients, "|")
+	return table.concat(active_clients, "")
 end
 
 local function getLineCount()
@@ -87,7 +87,7 @@ end
 lualine.setup {
 	options = {
 		theme = "catppuccin",
-		component_separators = "|",
+		component_separators = "",
 		section_separators = { left = "", right = "" },
 		globalstatus = true,
 		refresh = {

@@ -13,6 +13,7 @@ end
 
 local align = safe_require "mini.align"
 local bracketed = safe_require "mini.bracketed"
+local bufremove = safe_require "mini.bufremove"
 local comment = safe_require "mini.comment"
 local diff = safe_require "mini.diff"
 local hipatterns = safe_require "mini.hipatterns"
@@ -24,6 +25,7 @@ local surround = safe_require "mini.surround"
 
 align.setup {}
 bracketed.setup {}
+bufremove.setup {}
 comment.setup {
 	options = {
 		ignore_blank_line = true,

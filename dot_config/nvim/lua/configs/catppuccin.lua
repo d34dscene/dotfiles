@@ -14,6 +14,7 @@ catpuccin.setup {
 		grug_far = true,
 		indent_blankline = { enabled = true, colored_indent_levels = true },
 		mason = true,
+		mini = { enabled = true, indentscope_color = "" },
 		neotree = true,
 		notify = true,
 		snacks = { enabled = true },
