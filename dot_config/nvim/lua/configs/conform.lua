@@ -16,6 +16,7 @@ conform.setup {
 		terraform = { "terraform_fmt" },
 		json = { "biome" },
 		jsonc = { "biome" },
+		jsonnet = { "jsonnetfmt" },
 		javascript = { "prettier" },
 		javascriptreact = { "biome" },
 		typescript = { "prettier" },
@@ -61,10 +62,7 @@ command("FormatSave", function()
 	if ft == "proto" then
 		proto.proto_renumber()
 	end
-	if ft == "typescript" or ft == "javascript" then
-		vim.cmd "TSToolsOrganizeImports"
-		vim.cmd "TSToolsAddMissingImports"
-	end
+
 	conform.format { lsp_fallback = true, timeout_ms = 3000, async = false }
 	vim.cmd "w"
 end, { desc = "Format and save" })
