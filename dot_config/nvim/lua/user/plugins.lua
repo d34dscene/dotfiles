@@ -180,12 +180,21 @@ return {
 			{ "<leader>gc", "<cmd>GitConflictListQf<cr>", desc = "Git conflict" },
 		},
 	},
+	-- {
+	-- 	"supermaven-inc/supermaven-nvim", -- AI completion
+	-- 	event = "VeryLazy",
+	-- 	opts = {
+	-- 		keymaps = { accept_suggestion = "<A-f>" },
+	-- 	},
+	-- },
 	{
-		"supermaven-inc/supermaven-nvim", -- AI completion
+		"monkoose/neocodeium",
 		event = "VeryLazy",
-		opts = {
-			keymaps = { accept_suggestion = "<A-f>" },
-		},
+		config = function()
+			local neocodeium = require "neocodeium"
+			neocodeium.setup()
+			vim.keymap.set("i", "<A-f>", neocodeium.accept)
+		end,
 	},
 	{
 		"ray-x/go.nvim", -- Lots of go tools
