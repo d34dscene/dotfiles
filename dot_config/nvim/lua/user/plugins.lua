@@ -219,13 +219,10 @@ return {
 		end,
 	},
 	{
-		"iamcco/markdown-preview.nvim", -- Live Markdown preview
-		ft = "markdown", -- Load only for markdown files
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
+		"brianhuster/live-preview.nvim", -- Live Markdown preview
 		keys = {
-			{ "<leader>m", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
+			{ "<leader>ms", "<cmd>LivePreview start<cr>", desc = "Markdown Preview Start" },
+			{ "<leader>mc", "<cmd>LivePreview close<cr>", desc = "Markdown Preview Close" },
 		},
 	},
 }
