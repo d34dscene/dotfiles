@@ -6,9 +6,7 @@ end
 
 mason_lspconfig.setup {
 	ensure_installed = {
-		"ansiblels",
 		"bashls",
-		"biome",
 		"buf_ls",
 		"clangd",
 		"dockerls",
@@ -16,16 +14,14 @@ mason_lspconfig.setup {
 		"gopls",
 		"golangci_lint_ls",
 		"helm_ls",
-		"jdtls",
 		"jsonls",
-		"kotlin_lsp",
 		"lua_ls",
 		"marksman",
 		"ruff",
-		"solc",
 		"svelte",
 		"tailwindcss",
 		"yamlls",
+		"vtsls",
 	},
 }
 
@@ -40,7 +36,6 @@ vim.diagnostic.config {
 		},
 	},
 	virtual_text = false,
-	-- virtual_lines = { current_line = true },
 	update_in_insert = true,
 	underline = true,
 	severity_sort = true,
@@ -238,6 +233,7 @@ local servers = {
 			},
 		},
 	},
+	vtsls = require("vtsls").lspconfig,
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -51,9 +51,11 @@ return {
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
 	{
-		"pmizio/typescript-tools.nvim", -- Typescript tools
-		config = true,
-		filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "svelte" },
+		"yioneko/nvim-vtsls", -- LSP for Typescript
+		keys = {
+			{ "<leader>to", "<cmd>VtsExec organize_imports<cr>", desc = "Organize Imports" },
+			{ "<leader>ta", "<cmd>VtsExec add_missing_imports<cr>", desc = "Add Missing Imports" },
+		},
 	},
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
