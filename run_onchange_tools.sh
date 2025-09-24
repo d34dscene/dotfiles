@@ -25,7 +25,6 @@ node_tools=(
 rust_tools=(
    cargo-update
    cargo-cache
-   topgrade
    stylua
    oha
    xh
