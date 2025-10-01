@@ -14,10 +14,8 @@ py_tools=(
 )
 
 node_tools=(
-   prettier
    eslint_d
    corepack
-   fixjson
    @fsouza/prettierd
    @bufbuild/protoc-gen-es
 )
