@@ -15,13 +15,13 @@ export PROMPT_EOL_MARK="" # don't add newline at the end of prompt
 
 # Editor
 if command -v nvim &>/dev/null; then
-    export EDITOR="nvim"
-    export VISUAL="nvim"
+   export EDITOR="nvim"
+   export VISUAL="nvim"
 elif command -v vim &>/dev/null; then
-    export EDITOR="vim"
-    export VISUAL="vim"
+   export EDITOR="vim"
+   export VISUAL="vim"
 else
-    export EDITOR="vi"
+   export EDITOR="vi"
 fi
 
 # History
@@ -56,7 +56,10 @@ setopt magic_equal_subst   # Enable filename expansion for arguments of the form
 unsetopt beep              # don't beep
 
 # Load completions from cache if available
-autoload -Uz compinit bashcompinit promptinit; compinit -C; bashcompinit -C; promptinit -C
+autoload -Uz compinit bashcompinit promptinit
+compinit -C
+bashcompinit -C
+promptinit -C
 autoload -Uz bracketed-paste-magic url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic
 zle -N self-insert url-quote-magic
@@ -67,9 +70,9 @@ mkdir -p "$ZDOTDIR/.local/bin"
 type oh-my-posh >/dev/null || sh -c "$(curl -s https://ohmyposh.dev/install.sh | bash -s -- -d "$ZDOTDIR/.local/bin")"
 
 # Load plugins & add custom styles
-zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false  # disable sort when completing `git checkout`
 zstyle ':completion:*:descriptions' format '[%d]' # set descriptions format to enable group support
-zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`.
+zstyle ':completion:*' use-cache true             # Cache completion to `${ZDOTDIR}/.zcompcache`.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # set list-colors to enable filename colorizing
 zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 $realpath'
@@ -84,11 +87,11 @@ type zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Additional completions
 for cmd in kubectl docker helm flux ko; do
-    type $cmd >/dev/null && source <($cmd completion zsh)
+   type $cmd >/dev/null && source <($cmd completion zsh)
 done
 type task >/dev/null && source <(task --completion zsh)
 if [ -f justfile ]; then
-    type just >/dev/null && complete -W "$(just --summary)" just
+   type just >/dev/null && complete -W "$(just --summary)" just
 fi
 
 # Custom Bindings
@@ -111,4 +114,3 @@ unset ZSH_AUTOSUGGEST_USE_ASYNC # fix prompt error
 [[ -f "$ZDOTDIR"/.zsh_aliases ]] && source "$ZDOTDIR"/.zsh_aliases
 [[ -f "$ZDOTDIR"/.zsh_functions ]] && source "$ZDOTDIR"/.zsh_functions
 [[ -f "$ZDOTDIR"/.zsh_plugins ]] && source "$ZDOTDIR"/.zsh_plugins
-

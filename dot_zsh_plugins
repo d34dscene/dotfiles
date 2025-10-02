@@ -13,8 +13,6 @@ plugins=(
    ptavares/zsh-direnv
    sunlei/zsh-ssh
    Aloxaf/fzf-tab
-   # ahmetb/kubectx
-   # bonnefoa/kubectl-fzf
    omz/fancy-ctrl-z
    omz/sudo
    omz/copypath
