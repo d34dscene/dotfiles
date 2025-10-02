@@ -1,6 +1,7 @@
 export ZPLUGINDIR=$ZDOTDIR/.config/zsh/plugins
 
 plugins=(
+   romkatv/zsh-defer
    zsh-users/zsh-completions
    zsh-users/zsh-autosuggestions
    zsh-users/zsh-syntax-highlighting
@@ -12,8 +13,8 @@ plugins=(
    ptavares/zsh-direnv
    sunlei/zsh-ssh
    Aloxaf/fzf-tab
-   ahmetb/kubectx
-   bonnefoa/kubectl-fzf
+   # ahmetb/kubectx
+   # bonnefoa/kubectl-fzf
    omz/fancy-ctrl-z
    omz/sudo
    omz/copypath
@@ -34,9 +35,21 @@ function plugin-load {
             git clone https://github.com/"${plugin}" "$ZPLUGINDIR"/"${plugin:t}"
          fi
       fi
-      if [[ -f $ZPLUGINDIR/${plugin:t}/${plugin:t}.plugin.zsh ]]; then
-         source "$ZPLUGINDIR"/"${plugin:t}"/"${plugin:t}".plugin.zsh
+
+      # Find first matching init file
+      local plugin_dir="$ZPLUGINDIR/${plugin:t}"
+      local initfile="$plugin_dir/${plugin:t}.plugin.zsh"
+
+      if [[ ! -e $initfile ]]; then
+         local initfiles=($plugin_dir/*.{plugin.zsh,zsh-theme,zsh,sh}(N))
+         if (($#initfiles == 0)); then
+            echo >&2 "No init file found for '$plugin'."
+            continue
+         fi
+         ln -sf "${initfiles[1]}" "$initfile"
       fi
+      fpath+=$plugin_dir
+      (( $+functions[zsh-defer] )) && zsh-defer . "$initfile" || . "$initfile"
    done
 }
 
