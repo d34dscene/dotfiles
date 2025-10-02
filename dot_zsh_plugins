@@ -1,17 +1,66 @@
-# Plugins
-zsh-users/zsh-completions kind:fpath
-zsh-users/zsh-autosuggestions kind:zsh
-zsh-users/zsh-syntax-highlighting kind:defer
-zsh-users/zsh-history-substring-search kind:defer
-hlissner/zsh-autopair kind:defer
-ohmyzsh/ohmyzsh path:plugins/sudo kind:defer
-ohmyzsh/ohmyzsh path:plugins/copypath kind:defer
-ohmyzsh/ohmyzsh path:plugins/git-auto-fetch kind:defer
-ahmetb/kubectx path:completion kind:fpath
-MichaelAquilina/zsh-autoswitch-virtualenv kind:defer
-MichaelAquilina/zsh-you-should-use kind:defer
-ptavares/zsh-direnv kind:defer
-laggardkernel/git-ignore kind:defer
-sunlei/zsh-ssh kind:defer
-bonnefoa/kubectl-fzf kind:defer
-Aloxaf/fzf-tab kind:defer
+export ZPLUGINDIR=$ZDOTDIR/.config/zsh/plugins
+
+plugins=(
+   zsh-users/zsh-completions
+   zsh-users/zsh-autosuggestions
+   zsh-users/zsh-syntax-highlighting
+   zsh-users/zsh-history-substring-search
+   MichaelAquilina/zsh-autoswitch-virtualenv
+   MichaelAquilina/zsh-you-should-use
+   hlissner/zsh-autopair
+   laggardkernel/git-ignore
+   ptavares/zsh-direnv
+   sunlei/zsh-ssh
+   Aloxaf/fzf-tab
+   ahmetb/kubectx
+   bonnefoa/kubectl-fzf
+   omz/fancy-ctrl-z
+   omz/sudo
+   omz/copypath
+   omz/git-auto-fetch
+)
+
+function plugin-load {
+   # Create plugin directory if it doesn't exist
+   [[ -d $ZPLUGINDIR ]] || mkdir -p "$ZPLUGINDIR"
+
+   for plugin in $plugins; do
+      if [[ ! -d $ZPLUGINDIR/${plugin:t} ]]; then
+         if [[ ${plugin:h} == 'omz' ]]; then
+            curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/"${plugin:t}"/"${plugin:t}".plugin.zsh \
+               --create-dirs --silent --show-error \
+               --output "$ZPLUGINDIR"/"${plugin:t}"/"${plugin:t}".plugin.zsh
+         else
+            git clone https://github.com/"${plugin}" "$ZPLUGINDIR"/"${plugin:t}"
+         fi
+      fi
+      if [[ -f $ZPLUGINDIR/${plugin:t}/${plugin:t}.plugin.zsh ]]; then
+         source "$ZPLUGINDIR"/"${plugin:t}"/"${plugin:t}".plugin.zsh
+      fi
+   done
+}
+
+function plugin-list {
+   for d in $ZPLUGINDIR/*/.git; do
+      git -C "${d:h}" remote get-url origin
+   done
+}
+
+function plugin-compile {
+   local f
+   autoload -Uz zrecompile
+   for f in $ZPLUGINDIR/**/*.zsh; do
+      [[ $f != */test-data/* ]] || continue # fix for zsh-syntax-highlighting
+      zrecompile -pq "$f"
+   done
+}
+
+function plugin-update {
+   for d in $ZPLUGINDIR/*/.git(/); do
+     echo "Updating ${d:h:t}..."
+     command git -C "${d:h}" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+   done
+}
+
+plugin-load
+plugin-compile

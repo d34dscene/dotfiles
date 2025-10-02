@@ -62,16 +62,11 @@ zle -N bracketed-paste bracketed-paste-magic
 zle -N self-insert url-quote-magic
 compdef rsyncy=rsync
 
-# Install Antidote if not installed
-[[ -d "$ZDOTDIR"/.config/antidote ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR"/.config/antidote
-source "$ZDOTDIR"/.config/antidote/antidote.zsh
-
 # Install Oh My Posh if not installed
 mkdir -p "$ZDOTDIR/.local/bin"
 type oh-my-posh >/dev/null || sh -c "$(curl -s https://ohmyposh.dev/install.sh | bash -s -- -d "$ZDOTDIR/.local/bin")"
 
 # Load plugins & add custom styles
-zstyle ':antidote:bundle' file "$ZDOTDIR"/.zsh_plugins
 zstyle ':completion:*:git-checkout:*' sort false # disable sort when completing `git checkout`
 zstyle ':completion:*:descriptions' format '[%d]' # set descriptions format to enable group support
 zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`.
@@ -80,7 +75,6 @@ zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 $realpath'
 zstyle ':fzf-tab:complete:ls:*' fzf-preview 'ls -1 $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.' # switch group using `,` and `.`
-type antidote >/dev/null && antidote load
 
 # Prompt theme
 type oh-my-posh >/dev/null && eval "$(oh-my-posh init zsh --config "$ZDOTDIR"/.omp.yml)"
@@ -113,6 +107,8 @@ bindkey '^[[3~' delete-char      # Delete key
 export YSU_MESSAGE_FORMAT="Existing %alias_type for %command => %alias"
 unset ZSH_AUTOSUGGEST_USE_ASYNC # fix prompt error
 
-# Load aliases & functions
+# Load aliases, functions & plugins
 [[ -f "$ZDOTDIR"/.zsh_aliases ]] && source "$ZDOTDIR"/.zsh_aliases
 [[ -f "$ZDOTDIR"/.zsh_functions ]] && source "$ZDOTDIR"/.zsh_functions
+[[ -f "$ZDOTDIR"/.zsh_plugins ]] && source "$ZDOTDIR"/.zsh_plugins
+

@@ -16,6 +16,7 @@ alias wr="wormhole-william receive"
 alias dac="direnv allow ."
 alias restore="sudo restorecon -rv"
 alias reload="source ~/.zshrc"
+alias fd="fd -H"
 alias signalwork="flatpak run org.signal.Signal --user-data-dir=$HOME/.var/app/org.signal.Signal/work"
 
 # System aliases
