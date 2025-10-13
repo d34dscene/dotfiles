@@ -16,7 +16,6 @@ local bracketed = safe_require "mini.bracketed"
 local bufremove = safe_require "mini.bufremove"
 local comment = safe_require "mini.comment"
 local diff = safe_require "mini.diff"
-local hipatterns = safe_require "mini.hipatterns"
 local icons = safe_require "mini.icons"
 local jump2d = safe_require "mini.jump2d"
 local move = safe_require "mini.move"
@@ -37,16 +36,6 @@ comment.setup {
 	},
 }
 diff.setup {}
-hipatterns.setup {
-	highlighters = {
-		bug = { pattern = "%f[%w]()BUG()%f[%W]", group = "DiagnosticError" },
-		fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "DiagnosticError" },
-		hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "DiagnosticWarn" },
-		wip = { pattern = "%f[%w]()WIP()%f[%W]", group = "DiagnosticHint" },
-		todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "DiagnosticInfo" },
-		note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "DiagnosticInfo" },
-	},
-}
 icons.setup {}
 jump2d.setup { mappings = { start_jumping = "f" } }
 move.setup {

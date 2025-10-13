@@ -133,6 +133,7 @@ return {
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
+	{ "folke/todo-comments.nvim", config = true },
 	{
 		"MagicDuck/grug-far.nvim", -- Search and Replace
 		config = true,
