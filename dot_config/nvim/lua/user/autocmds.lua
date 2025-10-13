@@ -62,6 +62,16 @@ cmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+cmd("User", {
+	desc = "Show git conflict markers",
+	group = augroup("show_git_conflict_markers", { clear = true }),
+	pattern = "GitConflictDetected",
+	callback = function()
+		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
+	end,
+})
+
+-- Extra filetypes
 cmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.gohtml,*.gotmpl,*.html",
 	callback = function()
@@ -77,15 +87,6 @@ cmd({ "BufNewFile", "BufRead" }, {
 	pattern = ".envrc,.envrc.enc,.envrc.dec",
 	callback = function()
 		vim.bo.filetype = "sh"
-	end,
-})
-
-cmd("User", {
-	desc = "Show git conflict markers",
-	group = augroup("show_git_conflict_markers", { clear = true }),
-	pattern = "GitConflictDetected",
-	callback = function()
-		vim.notify("Conflict detected in " .. vim.fn.expand "<afile>")
 	end,
 })
 

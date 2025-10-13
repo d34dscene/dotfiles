@@ -50,7 +50,7 @@ return {
 	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
-	{ "davidmh/mdx.nvim", config = true }, -- MDX support
+	{ "davidmh/mdx.nvim", event = "BufEnter *.mdx", config = true }, -- MDX support
 	{
 		"yioneko/nvim-vtsls", -- LSP for Typescript
 		keys = {
