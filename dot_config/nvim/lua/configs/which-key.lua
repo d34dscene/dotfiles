@@ -20,7 +20,7 @@ which_key.add {
 	{ "<leader>s", group = "Sort", mode = "v", nowait = false, remap = false },
 	{ "<leader>s", group = "Search", mode = "n", nowait = false, remap = false },
 	{ "<leader>p", group = "Paste", nowait = false, remap = false },
-	{ "<leader>g", group = "Typescript", nowait = false, remap = false },
+	{ "<leader>t", group = "Typescript", nowait = false, remap = false },
 	{ "<leader>m", group = "Markdown", nowait = false, remap = false },
 	{ "<leader>w", group = "Workspace", nowait = false, remap = false },
 	{ "<leader>y", group = "Clipboard", nowait = false, remap = false },
