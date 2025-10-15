@@ -19,7 +19,6 @@ local diff = safe_require "mini.diff"
 local icons = safe_require "mini.icons"
 local jump2d = safe_require "mini.jump2d"
 local move = safe_require "mini.move"
-local pairs = safe_require "mini.pairs"
 local surround = safe_require "mini.surround"
 
 align.setup {}
@@ -51,7 +50,6 @@ move.setup {
 		line_up = "<M-up>",
 	},
 }
-pairs.setup {}
 surround.setup {}
 
 -- Icons

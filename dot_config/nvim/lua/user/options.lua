@@ -48,7 +48,6 @@ o.whichwrap:append "<>[]hl" -- Move to the next line when the cursor reaches the
 o.pumblend = 10 -- Make builtin completion menus slightly transparent
 o.pumheight = 10 -- Make popup menu smaller
 o.winblend = 10 -- Make floating windows slightly transparent
-o.scrolloff = 8 -- Keep 8 lines above/below cursor
 o.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 o.splitbelow = true -- Open horizontal splits below
 o.splitright = true -- Open vertical splits right
