@@ -94,6 +94,9 @@ map("v", "<leader>sl", ":sort<CR>", { desc = "Sort lines" })
 map("v", "<leader>sr", ":sort!<cr>", { desc = "Sort lines reverse" })
 map("v", "<leader>su", ":sort u<cr>", { desc = "Sort unique lines" })
 
+-- Join lines
+map("x", "<leader>j", ":s/\\n/,/", { desc = "Join lines", silent = false })
+
 -- Autocomplete when searching
 --map("c", "<tab>", "<C-r><C-w>")
 
