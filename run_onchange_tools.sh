@@ -64,10 +64,8 @@ fi
 if check "go"; then
    go_tools=(
       github.com/Gelio/go-global-update
-      github.com/golangci/golangci-lint/v2/cmd/golangci-lint
       github.com/google/yamlfmt/cmd/yamlfmt
       mvdan.cc/sh/v3/cmd/shfmt
-      golang.org/x/tools/cmd/goimports
       github.com/fatih/gomodifytags
       github.com/jondot/goweight
       github.com/ssut/payload-dumper-go
@@ -78,7 +76,6 @@ if check "go"; then
       github.com/go-task/task/v3/cmd/task
       github.com/sqlc-dev/sqlc/cmd/sqlc
       github.com/bufbuild/buf/cmd/buf
-      github.com/fullstorydev/grpcurl/cmd/grpcurl
       google.golang.org/protobuf/cmd/protoc-gen-go
       connectrpc.com/connect/cmd/protoc-gen-connect-go
       github.com/sudorandom/protoc-gen-connect-openapi
