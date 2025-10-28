@@ -62,6 +62,15 @@ cmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+cmd("BufWritePre", {
+	desc = "Format Go code",
+	group = augroup("go_format", { clear = true }),
+	pattern = "*.go",
+	callback = function()
+		require("go.format").goimports()
+	end,
+})
+
 cmd("User", {
 	desc = "Show git conflict markers",
 	group = augroup("show_git_conflict_markers", { clear = true }),

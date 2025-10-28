@@ -197,7 +197,7 @@ return {
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ":lua require(\"go.install\").update_all_sync()",
-		opts = { diagnostic = false },
+		opts = {},
 		keys = {
 			{ "<leader>gf", "<cmd>GoFillStruct<cr>", desc = "Go fill struct" },
 			{ "<leader>ga", "<cmd>GoAddTag<cr>", desc = "Go add tags" },
