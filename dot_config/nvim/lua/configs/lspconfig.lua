@@ -197,6 +197,7 @@ local servers = {
 				staticcheck = true,
 				gofumpt = true,
 				usePlaceholders = true,
+				completeUnimported = true,
 			},
 		},
 	},
