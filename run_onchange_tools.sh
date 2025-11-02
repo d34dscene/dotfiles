@@ -73,6 +73,7 @@ if check "go"; then
       github.com/derailed/k9s
       github.com/muesli/duf
       github.com/google/ko
+      github.com/sigstore/cosign/v3/cmd/cosign
       github.com/go-task/task/v3/cmd/task
       github.com/sqlc-dev/sqlc/cmd/sqlc
       github.com/bufbuild/buf/cmd/buf
