@@ -10,7 +10,6 @@ alias ff="fastfetch"
 alias path='echo -e "${PATH//:/\\n}"'
 alias up="topgrade -y -c --skip-notify"
 alias lt="tree -L 3"
-alias gi="git-ignore"
 alias ws="wormhole-william send"
 alias wr="wormhole-william receive"
 alias dac="direnv allow ."

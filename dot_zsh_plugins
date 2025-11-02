@@ -9,7 +9,6 @@ plugins=(
    MichaelAquilina/zsh-autoswitch-virtualenv
    MichaelAquilina/zsh-you-should-use
    hlissner/zsh-autopair
-   laggardkernel/git-ignore
    ptavares/zsh-direnv
    sunlei/zsh-ssh
    Aloxaf/fzf-tab
