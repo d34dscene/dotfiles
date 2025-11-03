@@ -114,3 +114,7 @@ unset ZSH_AUTOSUGGEST_USE_ASYNC # fix prompt error
 [[ -f "$ZDOTDIR"/.zsh_aliases ]] && source "$ZDOTDIR"/.zsh_aliases
 [[ -f "$ZDOTDIR"/.zsh_functions ]] && source "$ZDOTDIR"/.zsh_functions
 [[ -f "$ZDOTDIR"/.zsh_plugins ]] && source "$ZDOTDIR"/.zsh_plugins
+
+
+# opencode
+export PATH=/home/roxas/.opencode/bin:$PATH
