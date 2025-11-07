@@ -37,27 +37,25 @@ return {
 	-- LSP
 	-- ------------------------------------------------------------------------
 	{
-		"williamboman/mason.nvim", -- LSP installer
+		"mason-org/mason.nvim", -- LSP installer
 		build = ":MasonUpdate",
 		config = true,
 		keys = {
 			{ "<leader>lm", "<cmd>Mason<cr>", desc = "Mason" },
 			{ "<leader>lr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
-			{ "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP info" },
+			{ "<leader>ls", "<cmd>LspStatus<cr>", desc = "LSP status" },
+			{ "<leader>ld", "<cmd>LspDiagnostics<cr>", desc = "LSP diagnostics" },
+			{ "<leader>la", "<cmd>LspCapabilities<cr>", desc = "LSP capabilities" },
 		},
 	},
-	{ "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
-	{ "neovim/nvim-lspconfig", event = "BufReadPost" }, -- LSP config
+	{
+		"mason-org/mason-lspconfig.nvim", -- LSP config
+		event = "BufReadPost",
+		dependencies = { "neovim/nvim-lspconfig" },
+	},
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
 	{ "davidmh/mdx.nvim", event = "BufEnter *.mdx", config = true }, -- MDX support
-	{
-		"yioneko/nvim-vtsls", -- LSP for Typescript
-		keys = {
-			{ "<leader>to", "<cmd>VtsExec organize_imports<cr>", desc = "Organize Imports" },
-			{ "<leader>ta", "<cmd>VtsExec add_missing_imports<cr>", desc = "Add Missing Imports" },
-		},
-	},
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "VeryLazy",
