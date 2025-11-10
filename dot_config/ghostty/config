@@ -1,0 +1,36 @@
+# This is the configuration file for Ghostty.
+#
+
+# Theme
+theme = Catppuccin Mocha
+
+# Font
+font-family = VictorMono Nerd Font
+font-style-bold = Bold
+font-style-italic = Italic
+font-style-bold-italic = Bold Italic
+font-size = 13
+
+# Terminal options
+confirm-close-surface = false
+shell-integration = zsh
+
+# Window decoration
+window-decoration = none
+window-padding-x = 4
+window-padding-y = 4
+background-blur = true
+background-opacity = 0.9
+
+# Window/split management
+keybind = alt+e=new_split:right
+keybind = alt+w=new_split:down
+keybind = alt+enter=toggle_fullscreen
+keybind = alt+q=close_surface
+keybind = alt+d=goto_split:next
+keybind = alt+a=goto_split:previous
+
+# Tab management
+keybind = alt+t=new_tab
+keybind = alt+.=next_tab
+keybind = alt+,=previous_tab
