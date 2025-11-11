@@ -15,7 +15,6 @@ py_tools=(
 
 node_tools=(
    corepack
-   @fsouza/prettierd
    @bufbuild/protoc-gen-es
 )
 
