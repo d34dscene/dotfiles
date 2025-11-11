@@ -14,11 +14,10 @@ mason_lspconfig.setup {
 		"buf_ls",
 		"clangd",
 		"dockerls",
-		"eslint",
 		"gopls",
 		"golangci_lint_ls",
 		"helm_ls",
-		"jsonls",
+		"oxlint",
 		"lua_ls",
 		"marksman",
 		"ruff",
@@ -214,6 +213,19 @@ local overrides = {
 			},
 		},
 	},
+	oxlint = {
+		filetypes = {
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+			"svelte",
+			"vue",
+			"astro",
+		},
+	},
 	ruff = {
 		settings = {
 			logLevel = "info",
@@ -255,10 +267,12 @@ vim.lsp.config("*", {
 })
 
 for server, opts in pairs(overrides) do
-	vim.lsp.config(server, {
-		settings = opts.settings,
-		capabilities = vim.tbl_deep_extend("force", get_capabilities(), opts.capabilities or {}),
-	})
+	vim.lsp.config(
+		server,
+		vim.tbl_deep_extend("force", {
+			capabilities = get_capabilities(),
+		}, opts)
+	)
 end
 
 -- ============================================================================

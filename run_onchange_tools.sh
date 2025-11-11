@@ -14,7 +14,6 @@ py_tools=(
 )
 
 node_tools=(
-   eslint_d
    corepack
    @fsouza/prettierd
    @bufbuild/protoc-gen-es
