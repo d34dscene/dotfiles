@@ -40,7 +40,7 @@ if check "npm"; then
          sudo npm install -g "$tool"
       fi
    done
-   corepack enable
+   corepack enable --install-directory "$HOME/.local/bin"
    corepack prepare pnpm@latest --activate
 fi
 
