@@ -10,7 +10,7 @@ local function ollama()
 		name = "ollama",
 		env = { url = "https://ollama.mizuchi.dev" },
 		schema = {
-			model = { default = "qwen3:30b" },
+			model = { default = "qwen3-coder:latest" },
 			num_ctx = { default = 16384 },
 			num_predict = { default = -1 },
 		},
