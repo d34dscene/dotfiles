@@ -79,7 +79,7 @@ neotree.setup {
 	},
 	filesystem = {
 		filtered_items = { visible = true },
-		follow_current_file = { enabled = true },
+		follow_current_file = { enabled = false },
 		hijack_netrw_behavior = "open_default",
 		use_libuv_file_watcher = true,
 		window = {
