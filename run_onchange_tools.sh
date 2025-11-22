@@ -28,7 +28,9 @@ rust_tools=(
 
 if check "pipx"; then
    for tool in "${py_tools[@]}"; do
-      pipx install "$tool"
+      if ! check "$tool"; then
+         pipx install "$tool"
+      fi
    done
 fi
 
@@ -54,7 +56,9 @@ if check "cargo"; then
       if cargo install --list | grep -q "^$tool "; then
          cargo install-update -a
       else
-         cargo install "$tool"
+         if ! check "$tool"; then
+            cargo install "$tool"
+         fi
       fi
    done
 fi
@@ -83,14 +87,14 @@ if check "go"; then
 
    for tool in "${go_tools[@]}"; do
       binary_name=$(basename "$tool")
-      check "$binary_name" || go install "$tool@latest"
+      ! check "$binary_name" || go install "$tool@latest"
    done
 fi
 
 # Random install scripts
-if check "oh-my-posh"; then
+if ! check "oh-my-posh"; then
    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d "$HOME/.local/bin"
 fi
-if check "grype"; then
+if ! check "grype"; then
    curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sudo sh -s -- -b /usr/local/bin
 fi
