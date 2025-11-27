@@ -4,7 +4,7 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- Lua functions
 	{ "MunifTanjim/nui.nvim", lazy = true }, -- UI Library
 	{ "stevearc/dressing.nvim", event = "VeryLazy" }, -- UI hooks
-	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
+	{ "nvim-neo-tree/neo-tree.nvim" }, -- File explorer
 	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple plugins
 	{ "echasnovski/mini.nvim", version = false }, -- Multiple plugins
 
@@ -56,25 +56,6 @@ return {
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
 	{ "davidmh/mdx.nvim", event = "BufEnter *.mdx", config = true }, -- MDX support
-	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "VeryLazy",
-		priority = 1000,
-		opts = {
-			preset = "modern",
-			options = {
-				throttle = 0,
-				multilines = {
-					enabled = true,
-					always_show = true,
-				},
-				use_icons_from_diagnostic = true,
-				show_all_diags_on_cursorline = true,
-				enable_on_insert = true,
-				enable_on_select = true,
-			},
-		},
-	},
 	{
 		"smjonas/inc-rename.nvim", -- Highlight refactors
 		event = "BufReadPost",
@@ -129,7 +110,7 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
-	{ "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
+	-- { "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{ "folke/todo-comments.nvim", config = true },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true }, -- Autopairs
@@ -184,13 +165,6 @@ return {
 		},
 	},
 	{
-		"supermaven-inc/supermaven-nvim", -- AI completion
-		event = "VeryLazy",
-		opts = {
-			keymaps = { accept_suggestion = "<A-f>" },
-		},
-	},
-	{
 		"ray-x/go.nvim", -- Lots of go tools
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
@@ -206,6 +180,98 @@ return {
 			{ "<leader>gl", "<cmd>GoLint<cr>", desc = "Go lint" },
 			{ "<leader>gt", "<cmd>GoAddAllTest -bench<cr>", desc = "Go add tests" },
 			{ "<leader>gv", "<cmd>GoCoverage<cr>", desc = "Go coverage" },
+		},
+	},
+	{
+		"zbirenbaum/copilot.lua", -- Copilot
+		event = "InsertEnter",
+		opts = {
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				debounce = 75,
+				trigger_on_accept = true,
+				keymap = {
+					accept = "<A-f>",
+					accept_word = false,
+					accept_line = false,
+					next = "<PageUp>",
+					prev = "<PageDown>",
+					dismiss = "<C-e>",
+				},
+			},
+		},
+		requires = { "copilotlsp-nvim/copilot-lsp" },
+	},
+	{
+		"folke/sidekick.nvim",
+		opts = { nes = { enabled = false } },
+		keys = {
+			{
+				"<A-f>",
+				function()
+					-- if there is a next edit, jump to it, otherwise apply it if any
+					if not require("sidekick").nes_jump_or_apply() then
+						return "<A-f>" -- fall back to copilot accept
+					end
+				end,
+				expr = true,
+				desc = "Goto/Apply Next Edit Suggestion",
+			},
+			{
+				"<A-\\>",
+				function()
+					require("sidekick.cli").toggle { name = "opencode", focus = true }
+				end,
+				desc = "Sidekick Toggle",
+				mode = { "n", "t", "i", "x" },
+			},
+			{
+				"<leader>as",
+				function()
+					require("sidekick.cli").select { filter = { installed = true } }
+				end,
+				desc = "Select CLI",
+			},
+			{
+				"<leader>ad",
+				function()
+					require("sidekick.cli").close()
+				end,
+				desc = "Detach a CLI Session",
+			},
+			{
+				"<leader>at",
+				function()
+					require("sidekick.cli").send { msg = "{this}" }
+				end,
+				mode = { "x", "n" },
+				desc = "Send This",
+			},
+			{
+				"<leader>af",
+				function()
+					require("sidekick.cli").send { msg = "{file}" }
+				end,
+				desc = "Send File",
+			},
+			{
+				"<leader>av",
+				function()
+					require("sidekick.cli").send { msg = "{selection}" }
+					require("sidekick.cli").send { msg = "{selection}" }
+				end,
+				mode = { "x" },
+				desc = "Send Visual Selection",
+			},
+			{
+				"<leader>ap",
+				function()
+					require("sidekick.cli").prompt()
+				end,
+				mode = { "n", "x" },
+				desc = "Sidekick Select Prompt",
+			},
 		},
 	},
 	{

@@ -7,7 +7,11 @@ end
 blink.setup {
 	keymap = {
 		preset = "enter",
-		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+		["<Tab>"] = {
+			"select_next",
+			"snippet_forward",
+			"fallback",
+		},
 		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 	},
 	appearance = {
@@ -45,14 +49,9 @@ blink.setup {
 	},
 	snippets = { preset = "luasnip" },
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "codecompanion", "nerdfont" },
+		default = { "lsp", "path", "snippets", "buffer", "nerdfont" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
-			codecompanion = {
-				name = "CodeCompanion",
-				module = "codecompanion.providers.completion.blink",
-				async = true,
-			},
 		},
 	},
 }

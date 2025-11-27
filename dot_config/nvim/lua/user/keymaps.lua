@@ -30,7 +30,7 @@ map("n", "qq", function()
 	local modified = vim.bo.modified
 	local buf_count = #vim.fn.getbufinfo { buflisted = 1 }
 
-	-- For special buffers (like CodeCompanion, help, etc)
+	-- For special buffers
 	if buftype ~= "" then
 		vim.cmd "q"
 		return

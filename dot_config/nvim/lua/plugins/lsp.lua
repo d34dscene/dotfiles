@@ -141,9 +141,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Enable completion triggered by <c-x><c-o>
 		vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-		-- Enable inlay hints if supported (Neovim 0.10+)
+		-- Disable inlay hints
 		if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+			vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
 		end
 
 		-- Document highlight on cursor hold

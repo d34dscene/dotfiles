@@ -107,13 +107,31 @@ lualine.setup {
 			"diagnostics",
 		},
 		lualine_c = { "fileformat", "diff" },
+
 		lualine_x = {},
 		lualine_y = {
 			"filetype",
 			"encoding",
 			getLineCount,
 			{ getFileSize, icon = "󰋊" },
-			{ codecompanion_status, icon = "󰚩 " },
+			{
+				function()
+					return " "
+				end,
+				cond = function()
+					local status = require "sidekick.status"
+					return status.get() ~= nil
+				end,
+			},
+			{
+				function()
+					local status = require("sidekick.status").cli()
+					return "󰚩 " .. (#status > 1 and #status or "")
+				end,
+				cond = function()
+					return #require("sidekick.status").cli() > 0
+				end,
+			},
 		},
 		lualine_z = {
 			{

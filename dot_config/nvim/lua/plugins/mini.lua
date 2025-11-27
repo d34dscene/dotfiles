@@ -17,7 +17,6 @@ local bufremove = safe_require "mini.bufremove"
 local comment = safe_require "mini.comment"
 local diff = safe_require "mini.diff"
 local icons = safe_require "mini.icons"
-local jump2d = safe_require "mini.jump2d"
 local move = safe_require "mini.move"
 local surround = safe_require "mini.surround"
 
@@ -36,7 +35,6 @@ comment.setup {
 }
 diff.setup {}
 icons.setup {}
-jump2d.setup { mappings = { start_jumping = "f" } }
 move.setup {
 	mappings = {
 		left = "<M-left>",

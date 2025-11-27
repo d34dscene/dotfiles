@@ -21,11 +21,97 @@ local function openrouter()
 	return require("codecompanion.adapters").extend("openai_compatible", {
 		name = "openrouter",
 		env = {
-			url = "https://openrouter.ai/api",
+			url = "https://openrouter.ai",
 			api_key = os.getenv "OPENROUTER_API",
-			chat_url = "/v1/chat/completions",
+			chat_url = "/api/v1/chat/completions",
+			models_endpoint = "/api/v1/models",
 		},
 		schema = { model = { default = "anthropic/claude-sonnet-4.5" } },
+		handlers = {
+			parse_message_meta = function(_, data)
+				local extra = data.extra
+				if extra and extra.reasoning then
+					data.output.reasoning = { content = extra.reasoning }
+					if data.output.content == "" then
+						data.output.content = nil
+					end
+				end
+				return data
+			end,
+		},
+		provider = {
+			order = 11,
+			mapping = "parameters",
+			type = "map",
+			optional = true,
+			desc = "OpenRouter provider configuration with Cerebras/Groq priority",
+			default = {
+				order = { "cerebras", "groq", "deepinfra" },
+				allow_fallbacks = true,
+				data_collection = "deny", -- Block providers that store data for training
+				ignore = {
+					-- Providers that may train on prompts
+					"chutes",
+					"deepseek",
+					"nineteen",
+					"openinference",
+					"stealth",
+					"targon",
+					-- Providers with unknown data retention periods (poor transparency)
+					"ai21",
+					"aionlabs",
+					"alibaba",
+					"avian",
+					"cloudflare",
+					"crofai",
+					"crusoe",
+					"enfer",
+					"friendli",
+					"gmicloud",
+					"hyperbolic",
+					"lambda",
+					"liquid",
+					"minimax",
+					"ncompass",
+					"novitaai",
+					"ubicloud",
+					"wandb",
+				},
+			},
+			subtype = {
+				order = {
+					type = "list",
+					subtype = { type = "string" },
+					desc = "Preferred provider order (Cerebras, then Groq)",
+					optional = true,
+				},
+				allow_fallbacks = {
+					type = "boolean",
+					desc = "Allow fallback providers when primary is unavailable",
+					default = true,
+					optional = true,
+				},
+				data_collection = {
+					type = "enum",
+					desc = "Data collection policy - deny blocks training providers",
+					choices = { "allow", "deny" },
+					default = "deny",
+					optional = true,
+				},
+				ignore = {
+					type = "list",
+					subtype = { type = "string" },
+					desc = "Providers to block (AI21, AionLabs)",
+					optional = true,
+				},
+				require_parameters = {
+					type = "boolean",
+					desc = "Only use providers supporting all parameters",
+					default = false,
+					optional = true,
+				},
+			},
+		},
 	})
 end
 
