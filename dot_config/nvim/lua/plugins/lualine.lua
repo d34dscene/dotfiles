@@ -114,24 +114,7 @@ lualine.setup {
 			"encoding",
 			getLineCount,
 			{ getFileSize, icon = "󰋊" },
-			{
-				function()
-					return " "
-				end,
-				cond = function()
-					local status = require "sidekick.status"
-					return status.get() ~= nil
-				end,
-			},
-			{
-				function()
-					local status = require("sidekick.status").cli()
-					return "󰚩 " .. (#status > 1 and #status or "")
-				end,
-				cond = function()
-					return #require("sidekick.status").cli() > 0
-				end,
-			},
+			{ codecompanion_status, icon = "󰚩 " },
 		},
 		lualine_z = {
 			{
