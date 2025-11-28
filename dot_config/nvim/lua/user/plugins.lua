@@ -204,17 +204,7 @@ return {
 					dismiss = "<Esc>",
 				},
 			},
-			nes = {
-				enabled = true,
-				auto_trigger = true,
-				keymap = {
-					accept_and_goto = false,
-					accept = "<A-f>",
-					dismiss = "<Esc>",
-				},
-			},
 		},
-		requires = { "copilotlsp-nvim/copilot-lsp" },
 	},
 	{
 		"alker0/chezmoi.vim", -- Chezmoi syntax highlighting
