@@ -16,6 +16,7 @@ plugins=(
    omz/sudo
    omz/copypath
    omz/git-auto-fetch
+   omz/gitignore
 )
 
 function plugin-load {

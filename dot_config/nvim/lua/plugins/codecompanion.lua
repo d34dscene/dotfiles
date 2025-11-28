@@ -24,7 +24,6 @@ local function openrouter()
 			url = "https://openrouter.ai/api",
 			api_key = os.getenv "OPENROUTER_API",
 			chat_url = "/v1/chat/completions",
-			models_endpoint = "/v1/models",
 		},
 		schema = { model = { default = "anthropic/claude-sonnet-4.5" } },
 		handlers = {

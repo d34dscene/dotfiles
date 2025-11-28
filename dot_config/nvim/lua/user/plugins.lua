@@ -72,6 +72,12 @@ return {
 			},
 		},
 	},
+	-- {
+	-- 	dir = "~/Projects/neta",
+	-- 	config = function()
+	-- 		require("neta").setup()
+	-- 	end,
+	-- },
 
 	-- Completion
 	-- ------------------------------------------------------------------------
@@ -110,7 +116,7 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
-	{ "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
+	{ "olimorris/codecompanion.nvim", event = "VeryLazy", version = "v17.33.0" }, -- AI chat
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{ "folke/todo-comments.nvim", config = true },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true }, -- Autopairs
