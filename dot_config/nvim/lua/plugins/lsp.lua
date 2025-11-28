@@ -101,7 +101,7 @@ local function setup_keymaps(bufnr)
 			context = { only = { "source" }, diagnostics = vim.diagnostic.get(0) },
 		}
 	end, "Code action (buffer)")
-	map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+	-- map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
 	map("n", "<leader>cf", function()
 		vim.lsp.buf.format { async = true }
 	end, "Format buffer")
@@ -278,6 +278,14 @@ end
 -- ============================================================================
 -- Utility Commands
 -- ============================================================================
+
+-- LspRestartAll: Restart all LSP clients
+vim.api.nvim_create_user_command("LspRestartAll", function()
+	local clients = vim.lsp.get_clients { bufnr = 0 }
+	vim.lsp.stop_client(clients)
+	vim.cmd.update()
+	vim.defer_fn(vim.cmd.edit, 1000)
+end, { desc = "Restart all LSP clients" })
 
 -- LspStatus: Show brief LSP status
 vim.api.nvim_create_user_command("LspStatus", function()

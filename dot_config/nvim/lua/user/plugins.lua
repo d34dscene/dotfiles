@@ -42,7 +42,7 @@ return {
 		config = true,
 		keys = {
 			{ "<leader>lm", "<cmd>Mason<cr>", desc = "Mason" },
-			{ "<leader>lr", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
+			{ "<leader>lr", "<cmd>LspRestartAll<cr>", desc = "Restart LSP" },
 			{ "<leader>ls", "<cmd>LspStatus<cr>", desc = "LSP status" },
 			{ "<leader>ld", "<cmd>LspDiagnostics<cr>", desc = "LSP diagnostics" },
 			{ "<leader>la", "<cmd>LspCapabilities<cr>", desc = "LSP capabilities" },
@@ -195,15 +195,22 @@ return {
 			suggestion = {
 				enabled = true,
 				auto_trigger = true,
-				debounce = 75,
-				trigger_on_accept = true,
 				keymap = {
 					accept = "<A-f>",
 					accept_word = false,
 					accept_line = false,
 					next = "<PageUp>",
 					prev = "<PageDown>",
-					dismiss = "<C-e>",
+					dismiss = "<Esc>",
+				},
+			},
+			nes = {
+				enabled = true,
+				auto_trigger = true,
+				keymap = {
+					accept_and_goto = false,
+					accept = "<A-f>",
+					dismiss = "<Esc>",
 				},
 			},
 		},

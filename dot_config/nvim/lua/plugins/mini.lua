@@ -29,8 +29,10 @@ comment.setup {
 		pad_comment_parts = true,
 	},
 	mappings = {
+		comment = "x",
 		comment_line = "x",
 		comment_visual = "x",
+		textobject = "x",
 	},
 }
 diff.setup {}

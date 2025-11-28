@@ -83,7 +83,7 @@ codecompanion.setup {
 			},
 		},
 		inline = {
-			adapter = "openrouter",
+			adapter = "copilot",
 			keymaps = {
 				accept_change = {
 					modes = { n = "gda" },
@@ -96,8 +96,6 @@ codecompanion.setup {
 				},
 			},
 		},
-		cmd = { adapter = "ollama" },
-		workflow = { adapter = "ollama" },
 	},
 	prompt_library = {
 		["Refactor Buffer"] = {
