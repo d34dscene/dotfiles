@@ -13,6 +13,21 @@ return {
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Main Theme
 	{ "nvim-lualine/lualine.nvim", event = "VimEnter" }, -- Statusline
 	{ "eero-lehtinen/oklch-color-picker.nvim", event = "VeryLazy", config = true }, -- Highlight colors
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy",
+		priority = 1000,
+		opts = {
+			preset = "minimal",
+			options = {
+				multilines = {
+					enabled = true,
+					always_show = true,
+				},
+				show_all_diags_on_cursorline = true,
+			},
+		},
+	},
 
 	-- Treesitter
 	-- ------------------------------------------------------------------------
@@ -37,9 +52,12 @@ return {
 	-- LSP
 	-- ------------------------------------------------------------------------
 	{
-		"mason-org/mason.nvim", -- LSP installer
-		build = ":MasonUpdate",
-		config = true,
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
 		keys = {
 			{ "<leader>lm", "<cmd>Mason<cr>", desc = "Mason" },
 			{ "<leader>lr", "<cmd>LspRestartAll<cr>", desc = "Restart LSP" },
@@ -47,11 +65,6 @@ return {
 			{ "<leader>ld", "<cmd>LspDiagnostics<cr>", desc = "LSP diagnostics" },
 			{ "<leader>la", "<cmd>LspCapabilities<cr>", desc = "LSP capabilities" },
 		},
-	},
-	{
-		"mason-org/mason-lspconfig.nvim", -- LSP config
-		event = "BufReadPost",
-		dependencies = { "neovim/nvim-lspconfig" },
 	},
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
@@ -177,6 +190,8 @@ return {
 		build = ":lua require(\"go.install\").update_all_sync()",
 		opts = {
 			golangci_lint = { default = "fast" },
+			lsp_inlay_hints = { enable = true },
+			diagnostic = false,
 		},
 		keys = {
 			{ "<leader>gf", "<cmd>GoFillStruct<cr>", desc = "Go fill struct" },
@@ -201,7 +216,7 @@ return {
 					accept_line = false,
 					next = "<PageUp>",
 					prev = "<PageDown>",
-					dismiss = "<Esc>",
+					dismiss = "<C-e>",
 				},
 			},
 		},

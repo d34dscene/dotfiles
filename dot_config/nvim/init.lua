@@ -9,7 +9,6 @@ require "user.autocmds"
 -- Plugin Configs
 require "plugins.lsp"
 require "plugins.blink"
-require "plugins.diagnostic"
 require "plugins.catppuccin"
 require "plugins.codecompanion"
 require "plugins.conform"

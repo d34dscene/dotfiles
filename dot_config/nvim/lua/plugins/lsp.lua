@@ -101,10 +101,6 @@ local function setup_keymaps(bufnr)
 			context = { only = { "source" }, diagnostics = vim.diagnostic.get(0) },
 		}
 	end, "Code action (buffer)")
-	-- map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-	map("n", "<leader>cf", function()
-		vim.lsp.buf.format { async = true }
-	end, "Format buffer")
 
 	-- Diagnostics
 	map("n", "<leader>yd", "<cmd>CopyDiagnostics<cr>", "Copy diagnostic")
@@ -141,11 +137,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Enable completion triggered by <c-x><c-o>
 		vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-		-- Disable inlay hints
-		if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-			vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-		end
-
 		-- Document highlight on cursor hold
 		if client.server_capabilities.documentHighlightProvider then
 			local highlight_group = vim.api.nvim_create_augroup("LspDocumentHighlight_" .. bufnr, { clear = true })
@@ -167,41 +158,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Diagnostic Configuration
 -- ============================================================================
 
--- vim.diagnostic.config {
--- 	virtual_text = true,
--- 	underline = true,
--- 	update_in_insert = false,
--- 	severity_sort = true,
--- 	float = {
--- 		border = "rounded",
--- 		source = true,
--- 		header = "",
--- 		prefix = "",
--- 	},
--- 	signs = {
--- 		text = {
--- 			[vim.diagnostic.severity.ERROR] = "",
--- 			[vim.diagnostic.severity.WARN] = "",
--- 			[vim.diagnostic.severity.INFO] = "",
--- 			[vim.diagnostic.severity.HINT] = "󰌵",
--- 		},
--- 		numhl = {
--- 			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
--- 			[vim.diagnostic.severity.WARN] = "WarningMsg",
--- 		},
--- 	},
--- }
+vim.diagnostic.config {
+	virtual_text = false,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = {
+		border = "rounded",
+		source = true,
+		header = "",
+		prefix = "",
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "󰌵",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+			[vim.diagnostic.severity.WARN] = "WarningMsg",
+		},
+	},
+}
 
 -- ============================================================================
 -- LSP Server Setup
 -- ============================================================================
 
 local overrides = {
-	eslint = {
-		settings = {
-			workingDirectories = { mode = "auto" },
-		},
-	},
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -210,6 +196,7 @@ local overrides = {
 					globals = { "vim", "require" },
 					disable = { "different-requires", "missing-fields" },
 				},
+				hint = { enable = false, semicolon = "Disable" },
 			},
 		},
 	},
@@ -226,19 +213,6 @@ local overrides = {
 			"astro",
 		},
 	},
-	ruff = {
-		settings = {
-			logLevel = "info",
-		},
-	},
-	pyright = {
-		disableOrganizeImports = true,
-	},
-	python = {
-		analysis = {
-			ignore = { "*" },
-		},
-	},
 	jsonls = {
 		settings = {
 			json = {
@@ -251,13 +225,6 @@ local overrides = {
 		completion = true,
 		schemaStore = { enable = false, url = "" },
 		schemas = require("schemastore").yaml.schemas(),
-	},
-	svelte = {
-		capabilities = {
-			workspace = {
-				didChangeWatchedFiles = vim.fn.has "nvim-0.10" == 0 and { dynamicRegistration = true },
-			},
-		},
 	},
 }
 
