@@ -48,18 +48,9 @@ blink.setup {
 	},
 	snippets = { preset = "luasnip" },
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "nerdfont", "minuet" },
+		default = { "lsp", "path", "snippets", "buffer", "nerdfont" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
-			minuet = {
-				name = "minuet",
-				module = "minuet.blink",
-				async = true,
-				-- Should match minuet.config.request_timeout * 1000,
-				-- since minuet.config.request_timeout is in seconds
-				timeout_ms = 3000,
-				score_offset = 50, -- Gives minuet higher priority among suggestions
-			},
 		},
 	},
 }
