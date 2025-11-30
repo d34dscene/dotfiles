@@ -108,6 +108,7 @@ snacks.setup {
 	},
 	picker = {
 		enabled = true,
+		ui_select = true,
 		layout = {
 			reverse = true,
 			layout = {
@@ -175,10 +176,10 @@ end, { desc = "Close other buffers" })
 
 -- # Picker
 map("n", "<leader>ff", function()
-	require("snacks").picker.smart()
+	require("snacks").picker.grep()
 end, { desc = "Find Files" })
 map("n", "<leader>fw", function()
-	require("snacks").picker.grep()
+	require("snacks").picker.grep_word()
 end, { desc = "Grep" })
 map("n", "<leader>fu", function()
 	require("snacks").picker.buffers()
