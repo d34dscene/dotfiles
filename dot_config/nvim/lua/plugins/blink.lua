@@ -18,9 +18,8 @@ blink.setup {
 		nerd_font_variant = "mono",
 	},
 	completion = {
-		accept = {
-			auto_brackets = { enabled = true },
-		},
+		trigger = { prefetch_on_insert = false },
+		accept = { auto_brackets = { enabled = true } },
 		list = {
 			selection = {
 				preselect = false,
@@ -49,9 +48,18 @@ blink.setup {
 	},
 	snippets = { preset = "luasnip" },
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "nerdfont" },
+		default = { "lsp", "path", "snippets", "buffer", "nerdfont", "minuet" },
 		providers = {
 			nerdfont = { name = "nerdfont", module = "blink.compat.source" },
+			minuet = {
+				name = "minuet",
+				module = "minuet.blink",
+				async = true,
+				-- Should match minuet.config.request_timeout * 1000,
+				-- since minuet.config.request_timeout is in seconds
+				timeout_ms = 3000,
+				score_offset = 50, -- Gives minuet higher priority among suggestions
+			},
 		},
 	},
 }

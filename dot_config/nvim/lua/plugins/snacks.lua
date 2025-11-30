@@ -176,7 +176,7 @@ end, { desc = "Close other buffers" })
 
 -- # Picker
 map("n", "<leader>ff", function()
-	require("snacks").picker.grep()
+	require("snacks").picker.smart()
 end, { desc = "Find Files" })
 map("n", "<leader>fw", function()
 	require("snacks").picker.grep_word()

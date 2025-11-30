@@ -167,6 +167,41 @@ return {
 		},
 	},
 	{
+		"milanglacier/minuet-ai.nvim",
+		opts = {
+			virtualtext = {
+				auto_trigger_ft = { "*" },
+				keymap = {
+					accept = "<A-f>",
+					prev = "<PageDown>",
+					next = "<PageUp>",
+					dismiss = "<A-e>",
+				},
+			},
+			n_completions = 1,
+			provider = "openai_fim_compatible",
+			request_timeout = 2.5,
+			throttle = 1000, -- Increase to reduce costs and avoid rate limits
+			debounce = 300, -- Increase to reduce costs and avoid rate limits
+			context_window = 2048,
+			provider_options = {
+				openai_fim_compatible = {
+					api_key = "TERM",
+					end_point = "https://ollama.mizuchi.dev/v1/completions",
+					model = "qwen2.5-coder:latest",
+					name = "Ollama",
+					optional = {
+						max_tokens = 56,
+						top_p = 0.9,
+						provider = {
+							sort = "throughput", -- Prioritize throughput for faster completion
+						},
+					},
+				},
+			},
+		},
+	},
+	{
 		"chrisgrieser/nvim-spider", -- Easy motion
 		lazy = true,
 		keys = {
@@ -201,24 +236,6 @@ return {
 			{ "<leader>gl", "<cmd>GoLint<cr>", desc = "Go lint" },
 			{ "<leader>gt", "<cmd>GoAddAllTest -bench<cr>", desc = "Go add tests" },
 			{ "<leader>gv", "<cmd>GoCoverage<cr>", desc = "Go coverage" },
-		},
-	},
-	{
-		"zbirenbaum/copilot.lua", -- Copilot
-		event = "InsertEnter",
-		opts = {
-			suggestion = {
-				enabled = true,
-				auto_trigger = true,
-				keymap = {
-					accept = "<A-f>",
-					accept_word = false,
-					accept_line = false,
-					next = "<PageUp>",
-					prev = "<PageDown>",
-					dismiss = "<C-e>",
-				},
-			},
 		},
 	},
 	{
