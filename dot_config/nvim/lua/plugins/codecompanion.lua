@@ -22,7 +22,7 @@ local function openrouter()
 		name = "openrouter",
 		env = {
 			url = "https://openrouter.ai/api",
-			api_key = os.getenv "OPENROUTER_API",
+			api_key = "OPENROUTER_API",
 			chat_url = "/v1/chat/completions",
 		},
 		schema = { model = { default = "anthropic/claude-sonnet-4.5" } },

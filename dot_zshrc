@@ -3,12 +3,14 @@ export GOPATH="$HOME/.local/go"
 export GOBIN="$GOPATH/bin"
 export CARGO_HOME="$HOME/.local/cargo"
 
-export PATH="$GOBIN:$PATH"                  # go
-export PATH="$CARGO_HOME/bin:$PATH"         # cargo
-export PATH="$HOME/.local/share/pnpm:$PATH" # pnpm
-export PATH="/usr/local/cuda/bin:$PATH"     # cuda
-export PATH="$HOME/.local/llama:$PATH"      # llama
-export PATH="$HOME/.local/bin:$PATH"        # general bin
+export PATH="$GOBIN:$PATH"                      # go
+export PATH="$CARGO_HOME/bin:$PATH"             # cargo
+export PATH="$HOME/.local/share/pnpm:$PATH"     # pnpm
+export PATH="/usr/local/cuda/bin:$PATH"         # cuda
+export PATH="$HOME/.local/llama:$PATH"          # llama
+export PATH="$HOME/.opencode/bin:$PATH"         # opencode
+export PATH="$HOME/.opengrep/cli/latest:$PATH"  # opencode
+export PATH="$HOME/.local/bin:$PATH"            # general bin
 
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
@@ -117,5 +119,4 @@ unset ZSH_AUTOSUGGEST_USE_ASYNC # fix prompt error
 [[ -f "$ZDOTDIR"/.zsh_plugins ]] && source "$ZDOTDIR"/.zsh_plugins
 
 
-# opencode
-export PATH=/home/roxas/.opencode/bin:$PATH
+
