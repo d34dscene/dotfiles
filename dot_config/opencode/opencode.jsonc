@@ -14,4 +14,14 @@
     "todowrite": false,
     "todoread": false,
   },
+  "provider": {
+    "openrouter": {
+      "models": {
+        "openai/gpt-5.1-codex-max": {},
+      },
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+      },
+    },
+  },
 }
