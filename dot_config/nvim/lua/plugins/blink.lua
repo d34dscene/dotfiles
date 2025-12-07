@@ -43,9 +43,13 @@ blink.setup {
 			},
 		},
 	},
-	signature = {
-		enabled = true,
+	cmdline = {
+		keymap = { preset = "inherit" },
+		completion = {
+			menu = { auto_show = true },
+		},
 	},
+	signature = { enabled = true },
 	snippets = { preset = "luasnip" },
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer", "nerdfont" },

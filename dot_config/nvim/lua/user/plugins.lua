@@ -85,12 +85,6 @@ return {
 			},
 		},
 	},
-	-- {
-	-- 	dir = "~/Projects/neta",
-	-- 	config = function()
-	-- 		require("neta").setup()
-	-- 	end,
-	-- },
 
 	-- Completion
 	-- ------------------------------------------------------------------------
