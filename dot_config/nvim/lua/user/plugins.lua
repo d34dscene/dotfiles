@@ -4,7 +4,7 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- Lua functions
 	{ "MunifTanjim/nui.nvim", lazy = true }, -- UI Library
 	{ "stevearc/dressing.nvim", event = "VeryLazy" }, -- UI hooks
-	{ "nvim-neo-tree/neo-tree.nvim" }, -- File explorer
+	{ "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" }, -- File explorer
 	{ "folke/snacks.nvim", priority = 1000, lazy = false }, -- Multiple plugins
 	{ "echasnovski/mini.nvim", version = false }, -- Multiple plugins
 
