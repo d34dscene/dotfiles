@@ -25,7 +25,17 @@ local function openrouter()
 			api_key = "OPENROUTER_API",
 			chat_url = "/v1/chat/completions",
 		},
-		schema = { model = { default = "anthropic/claude-sonnet-4.5" } },
+		schema = {
+			model = {
+				default = "anthropic/claude-sonnet-4.5",
+				choices = {
+					["anthropic/claude-haiku-4.5"] = {},
+					["anthropic/claude-opus-4.5"] = {},
+					["openai/gpt-5.2"] = {},
+					["openai/gpt-5.1-codex-max"] = {},
+				},
+			},
+		},
 		handlers = {
 			parse_message_meta = function(_, data)
 				local extra = data.extra
