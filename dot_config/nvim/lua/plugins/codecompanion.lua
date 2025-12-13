@@ -30,6 +30,7 @@ local function openrouter()
 				default = "anthropic/claude-sonnet-4.5",
 				choices = {
 					["anthropic/claude-haiku-4.5"] = {},
+					["anthropic/claude-sonnet-4.5"] = {},
 					["anthropic/claude-opus-4.5"] = {},
 					["openai/gpt-5.2"] = {},
 					["openai/gpt-5.1-codex-max"] = {},
