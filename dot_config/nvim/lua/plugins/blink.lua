@@ -43,12 +43,6 @@ blink.setup {
 			},
 		},
 	},
-	cmdline = {
-		keymap = { preset = "inherit" },
-		completion = {
-			menu = { auto_show = true },
-		},
-	},
 	signature = { enabled = true },
 	snippets = { preset = "luasnip" },
 	sources = {

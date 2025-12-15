@@ -126,7 +126,8 @@ return {
 	{ "olimorris/codecompanion.nvim", event = "VeryLazy", version = "v17.33.0" }, -- AI chat
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{ "folke/todo-comments.nvim", config = true },
-	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true }, -- Autopairs
+	{ "windwp/nvim-autopairs", config = true }, -- Autopairs
+	{ "windwp/nvim-ts-autotag", config = true }, -- Autotags
 	{
 		"MagicDuck/grug-far.nvim", -- Search and Replace
 		config = true,
