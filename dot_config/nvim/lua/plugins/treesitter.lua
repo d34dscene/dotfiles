@@ -1,4 +1,4 @@
-local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+local ok, treesitter = pcall(require, "nvim-treesitter")
 if not ok then
 	vim.notify("Failed to load treesitter", vim.log.levels.ERROR)
 	return nil
@@ -36,15 +36,6 @@ treesitter.setup {
 			end
 		end,
 		additional_vim_regex_highlighting = false,
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "<CR>",
-			node_incremental = "<CR>",
-			scope_incremental = "<S-CR>",
-			node_decremental = "<BS>",
-		},
 	},
 	indent = { enable = true },
 }
