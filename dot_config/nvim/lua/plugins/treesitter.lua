@@ -33,6 +33,7 @@ treesitter.install {
 	"regex",
 	"scss",
 	"svelte",
+	"sql",
 	"toml",
 	"toml",
 	"tsx",
