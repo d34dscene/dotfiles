@@ -4,38 +4,77 @@ if not ok then
 	return nil
 end
 
-treesitter.setup {
-	ensure_installed = {
-		"bash",
-		"c",
-		"go",
-		"gotmpl",
-		"html",
-		"javascript",
-		"json",
-		"lua",
-		"markdown",
-		"markdown_inline",
-		"python",
-		"toml",
-		"typescript",
-		"vim",
-		"vimdoc",
-		"xml",
-		"yaml",
-	},
-	sync_install = false,
-	auto_install = true,
-	highlight = {
-		enable = true,
-		disable = function(_, buf)
-			local max_filesize = 1000 * 1024 -- 1 MB
-			local okb, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-			if okb and stats and stats.size > max_filesize then
-				return true
-			end
-		end,
-		additional_vim_regex_highlighting = false,
-	},
-	indent = { enable = true },
+-- Install core parsers at startup
+treesitter.install {
+	"bash",
+	"c",
+	"comment",
+	"css",
+	"diff",
+	"git_config",
+	"git_rebase",
+	"gitcommit",
+	"gitignore",
+	"go",
+	"gomod",
+	"gosum",
+	"gotmpl",
+	"html",
+	"javascript",
+	"json",
+	"latex",
+	"lua",
+	"luadoc",
+	"make",
+	"markdown",
+	"markdown_inline",
+	"python",
+	"query",
+	"regex",
+	"scss",
+	"svelte",
+	"toml",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
+	"vimdoc",
+	"vue",
+	"xml",
+	"yaml",
+	"zsh",
 }
+
+local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
+
+local ignore_filetypes = {
+	"checkhealth",
+	"lazy",
+	"mason",
+	"snacks_dashboard",
+	"snacks_notif",
+	"snacks_win",
+}
+
+-- Auto-install parsers and enable highlighting on FileType
+vim.api.nvim_create_autocmd("FileType", {
+	group = group,
+	desc = "Enable treesitter highlighting and indentation",
+	callback = function(event)
+		if vim.tbl_contains(ignore_filetypes, event.match) then
+			return
+		end
+
+		local lang = vim.treesitter.language.get_lang(event.match) or event.match
+		local buf = event.buf
+
+		-- Start highlighting immediately (works if parser exists)
+		pcall(vim.treesitter.start, buf, lang)
+
+		-- Enable treesitter indentation
+		vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+		-- Install missing parsers (async, no-op if already installed)
+		treesitter.install { lang }
+	end,
+})
