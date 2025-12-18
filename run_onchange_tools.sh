@@ -21,8 +21,6 @@ node_tools=(
 rust_tools=(
    cargo-update
    cargo-cache
-   stylua
-   oha
    xh
 )
 
