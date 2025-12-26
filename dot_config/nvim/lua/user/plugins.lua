@@ -35,7 +35,6 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
 		build = ":TSUpdate",
-		-- event = { "BufReadPost", "BufNewFile" },
 		init = function(plugin)
 			require("lazy.core.loader").add_to_rtp(plugin)
 		end,
@@ -65,6 +64,7 @@ return {
 			{ "<leader>la", "<cmd>LspCapabilities<cr>", desc = "LSP capabilities" },
 		},
 	},
+	{ "mfussenegger/nvim-lint" }, -- Linter
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
 	{ "davidmh/mdx.nvim", event = "BufEnter *.mdx", config = true }, -- MDX support

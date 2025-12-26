@@ -1,5 +1,6 @@
 local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not ok then
+local ok2, nvim_lint = pcall(require, "lint")
+if not ok or not ok2 then
 	vim.notify("Failed to load lspconfig", vim.log.levels.ERROR)
 	return nil
 end
@@ -161,15 +162,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.diagnostic.config {
 	virtual_text = false,
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
-	float = {
-		border = "rounded",
-		source = true,
-		header = "",
-		prefix = "",
-	},
+	-- underline = true,
+	-- update_in_insert = false,
+	-- severity_sort = true,
+	-- float = {
+	-- 	border = "rounded",
+	-- 	source = true,
+	-- 	header = "",
+	-- 	prefix = "",
+	-- },
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "",
@@ -269,6 +270,16 @@ for server, opts in pairs(overrides) do
 		}, opts)
 	)
 end
+
+-- ============================================================================
+-- Linter
+-- ============================================================================
+nvim_lint.linters_by_ft = {
+	lua = { "luacheck" },
+	proto = { "buf_lint" },
+	yaml = { "yamllint" },
+	[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
+}
 
 -- ============================================================================
 -- Utility Commands

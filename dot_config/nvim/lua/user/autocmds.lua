@@ -80,6 +80,14 @@ cmd("User", {
 	end,
 })
 
+cmd({ "BufWinEnter", "TextChanged", "TextChangedI" }, {
+	desc = "Start linting",
+	group = vim.api.nvim_create_augroup("nvim_lint", { clear = true }),
+	callback = function()
+		require("lint").try_lint()
+	end,
+})
+
 -- Extra filetypes
 cmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.gohtml,*.gotmpl,*.html",
