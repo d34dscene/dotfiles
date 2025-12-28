@@ -5,8 +5,8 @@ log() { echo -e "\033[1;32m[+]\033[0m $1"; }
 {{ if (and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variantID "server")) -}}
 log "Configuring kernel..."
 sudo tee /etc/security/limits.d/99-base.conf <<-EOF
-* soft nofile 65535
-* hard nofile 65535
+* soft nofile 1048576
+* hard nofile 1048576
 EOF
 
 sudo tee /etc/modprobe.d/sunrpc.conf <<-EOF
@@ -120,7 +120,7 @@ if lspci | grep -i nvidia > /dev/null; then
     sudo dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda cuda-toolkit -y
 fi
 
-# Poweroff on buton press
+# Poweroff on button press
 sudo tee /etc/systemd/logind.conf <<-EOF
 [Login]
 HandlePowerKey=poweroff
