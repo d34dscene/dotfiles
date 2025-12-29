@@ -162,15 +162,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.diagnostic.config {
 	virtual_text = false,
-	-- underline = true,
-	-- update_in_insert = false,
-	-- severity_sort = true,
-	-- float = {
-	-- 	border = "rounded",
-	-- 	source = true,
-	-- 	header = "",
-	-- 	prefix = "",
-	-- },
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = {
+		border = "rounded",
+		source = true,
+		header = "",
+		prefix = "",
+	},
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "",
@@ -275,9 +275,6 @@ end
 -- Linter
 -- ============================================================================
 nvim_lint.linters_by_ft = {
-	lua = { "luacheck" },
-	proto = { "buf_lint" },
-	yaml = { "yamllint" },
 	[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
 }
 
