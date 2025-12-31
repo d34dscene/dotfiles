@@ -122,7 +122,7 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
-	{ "olimorris/codecompanion.nvim", event = "VeryLazy", version = "v17.33.0" }, -- AI chat
+	{ "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{ "folke/todo-comments.nvim", config = true },
 	{ "windwp/nvim-autopairs", config = true }, -- Autopairs

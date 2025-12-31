@@ -24,6 +24,7 @@ local function openrouter()
 			url = "https://openrouter.ai/api",
 			api_key = "OPENROUTER_API",
 			chat_url = "/v1/chat/completions",
+			models_endpoint = "/v1/models",
 		},
 		schema = {
 			model = {
@@ -34,6 +35,9 @@ local function openrouter()
 					["anthropic/claude-opus-4.5"] = {},
 					["openai/gpt-5.2"] = {},
 					["openai/gpt-5.1-codex-max"] = {},
+					["google/gemini-3-pro-preview"] = {},
+					["z-ai/glm-4.7"] = {},
+					["minimax/minimax-m2.1"] = {},
 				},
 			},
 		},
@@ -64,7 +68,7 @@ codecompanion.setup {
 			openrouter = openrouter(),
 		},
 	},
-	strategies = {
+	interactions = {
 		chat = {
 			adapter = "openrouter",
 			slash_commands = {
