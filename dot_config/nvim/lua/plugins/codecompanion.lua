@@ -72,18 +72,9 @@ codecompanion.setup {
 		chat = {
 			adapter = "openrouter",
 			slash_commands = {
-				["file"] = {
-					callback = "strategies.chat.slash_commands.catalog.file",
-					opts = { provider = "snacks" },
-				},
-				["buffer"] = {
-					callback = "strategies.chat.slash_commands.catalog.buffer",
-					opts = { provider = "snacks" },
-				},
-				["image"] = {
-					callback = "strategies.chat.slash_commands.catalog.image",
-					opts = { provider = "snacks" },
-				},
+				["file"] = { opts = { provider = "snacks" } },
+				["buffer"] = { opts = { provider = "snacks" } },
+				["image"] = { opts = { provider = "snacks" } },
 			},
 			keymaps = {
 				send = {
