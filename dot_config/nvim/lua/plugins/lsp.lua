@@ -276,6 +276,13 @@ end
 -- ============================================================================
 nvim_lint.linters_by_ft = {
 	[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
+	javascript = { "oxlint" },
+	javascriptreact = { "oxlint" },
+	typescript = { "oxlint" },
+	typescriptreact = { "oxlint" },
+	svelte = { "oxlint" },
+	vue = { "oxlint" },
+	astro = { "oxlint" },
 }
 
 -- ============================================================================

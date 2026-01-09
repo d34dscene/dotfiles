@@ -80,7 +80,7 @@ cmd("User", {
 	end,
 })
 
-cmd({ "BufWinEnter", "TextChanged", "TextChangedI" }, {
+cmd({ "BufWinEnter", "TextChanged" }, {
 	desc = "Start linting",
 	group = vim.api.nvim_create_augroup("nvim_lint", { clear = true }),
 	callback = function()
