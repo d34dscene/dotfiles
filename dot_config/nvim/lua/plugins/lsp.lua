@@ -18,7 +18,6 @@ mason_lspconfig.setup {
 		"gopls",
 		"golangci_lint_ls",
 		"helm_ls",
-		"oxlint",
 		"lua_ls",
 		"marksman",
 		"ruff",
