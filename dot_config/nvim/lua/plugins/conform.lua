@@ -28,7 +28,7 @@ conform.setup {
 		svelte = { "prettierd" },
 		vue = { "prettierd" },
 		astro = { "prettierd" },
-		markdown = { "injected", "oxfmt" },
+		markdown = { "oxfmt" },
 		mdx = { "oxfmt" },
 		kotlin = { "ktlint", "ktfmt" },
 		yaml = { "oxfmt" },
