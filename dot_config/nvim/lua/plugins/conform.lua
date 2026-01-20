@@ -90,24 +90,29 @@ end, {
 })
 
 -- Add custom args to formatter
-local util = require "conform.util"
-local stylua = require "conform.formatters.stylua"
-conform.formatters.stylua = vim.tbl_deep_extend("force", stylua, {
-	args = util.extend_args(stylua.args, { "--quote-style", "ForceDouble", "--call-parentheses", "None" }),
-})
+conform.formatters.stylua = {
+	append_args = function(_, _)
+		return { "--quote-style", "ForceDouble", "--call-parentheses", "None" }
+	end,
+}
 
-local black = require "conform.formatters.black"
-conform.formatters.black = vim.tbl_deep_extend("force", black, {
-	args = util.extend_args(black.args, { "--line-length", "79" }),
-})
+conform.formatters.black = {
+	append_args = function(_, _)
+		return { "--line-length=79" }
+	end,
+}
 
-local yamlfmt = require "conform.formatters.yamlfmt"
-conform.formatters.yamlfmt = vim.tbl_deep_extend("force", yamlfmt, {
-	args = util.extend_args(
-		yamlfmt.args,
-		{ "-formatter", "indent=2,retain_line_breaks=true,scan_folded_as_literal=true" }
-	),
-})
+conform.formatters.yamlfmt = {
+	append_args = function(_, _)
+		return { "-formatter", "indent=2,retain_line_breaks=true,scan_folded_as_literal=true" }
+	end,
+}
+
+conform.formatters.sleek = {
+	append_args = function(_, _)
+		return { "--trailing-newline", "false" }
+	end,
+}
 
 -- Keymaps
 vim.keymap.set("n", "ss", "<cmd>FormatSave<cr>", { desc = "Save" })

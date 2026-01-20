@@ -28,7 +28,7 @@ local function openrouter()
 		},
 		schema = {
 			model = {
-				default = "anthropic/claude-sonnet-4.5",
+				default = "anthropic/claude-opus-4.5",
 				choices = {
 					["anthropic/claude-haiku-4.5"] = {},
 					["anthropic/claude-sonnet-4.5"] = {},
@@ -103,6 +103,9 @@ codecompanion.setup {
 				},
 			},
 		},
+	},
+	extensions = {
+		history = { enabled = true },
 	},
 	prompt_library = {
 		["Refactor Buffer"] = {

@@ -122,11 +122,15 @@ return {
 	-- Extras
 	-- ------------------------------------------------------------------------
 	{ "folke/which-key.nvim", event = "VeryLazy" }, -- Keybindings helper
-	{ "olimorris/codecompanion.nvim", event = "VeryLazy" }, -- AI chat
 	{ "johmsalas/text-case.nvim", event = "VeryLazy", opts = { prefix = "tr" } }, -- Change text casing
 	{ "folke/todo-comments.nvim", config = true },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true }, -- Autopairs
 	{ "windwp/nvim-ts-autotag", config = true }, -- Autotags
+	{
+		"olimorris/codecompanion.nvim", -- AI chat
+		event = "VeryLazy",
+		dependencies = { "ravitemer/codecompanion-history.nvim" },
+	},
 	{
 		"MagicDuck/grug-far.nvim", -- Search and Replace
 		config = true,
