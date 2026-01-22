@@ -105,7 +105,12 @@ codecompanion.setup {
 		},
 	},
 	extensions = {
-		history = { enabled = true },
+		history = {
+			enabled = true,
+			opts = {
+				expiration_days = 30,
+			},
+		},
 	},
 	prompt_library = {
 		["Refactor Buffer"] = {
