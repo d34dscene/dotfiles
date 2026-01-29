@@ -152,7 +152,7 @@ alias gomv="go mod vendor"
 alias goc="go clean -i; go clean -i -cache; go clean -i -testcache"
 alias gou="go get -u ./...; go mod tidy"
 alias gob="go clean; go build"
-alias gor="go run main.go"
+alias gor="go run ."
 
 # Python
 alias py="python3"
