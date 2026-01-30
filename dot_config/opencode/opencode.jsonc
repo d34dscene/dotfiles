@@ -4,15 +4,29 @@
   "share": "disabled",
   "autoupdate": true,
   "permission": {
+    "read": "allow",
     "edit": "allow",
     "bash": "ask",
+    "grep": "allow",
+    "glob": "allow",
+    "list": "allow",
+    "lsp": "allow",
     "webfetch": "allow",
-    "doom_loop": "deny",
-    "external_directory": "deny",
+    "question": "allow",
   },
   "tools": {
     "todowrite": false,
     "todoread": false,
+  },
+  "mcp": {
+    "context7": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}",
+      },
+    },
   },
   "provider": {
     "openrouter": {
