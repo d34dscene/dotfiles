@@ -174,6 +174,20 @@ return {
 			vim.keymap.set("i", "<PageUp>", neocodeium.cycle)
 		end,
 	},
+	-- {
+	-- 	"BlinkResearchLabs/blink-edit.nvim",
+	-- 	config = function()
+	-- 		require("blink-edit").setup {
+	-- 			llm = {
+	-- 				provider = "sweep",
+	-- 				backend = "ollama",
+	-- 				url = "https://ollama.mizuchi.dev",
+	-- 				model = "hf.co/sweepai/sweep-next-edit-1.5B:latest",
+	-- 			},
+	-- 			accept_key = "<A-f>",
+	-- 		}
+	-- 	end,
+	-- },
 	{
 		"chrisgrieser/nvim-spider", -- Easy motion
 		lazy = true,

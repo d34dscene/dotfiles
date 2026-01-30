@@ -70,8 +70,8 @@ end, { desc = "Smart quit: save & close buffer or quit" })
 map("n", "<leader>ll", ":Lazy sync<cr>", { desc = "Update plugins" })
 
 -- Jump between windows
-map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
-map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
+-- map("n", "<Tab>", "<C-w>w", { desc = "Jump to next window" })
+-- map("n", "<S-Tab>", "<C-w>W", { desc = "Jump to previous window" })
 -- Jump between buffers
 map("n", "<A-k>", ":bnext<cr>", { desc = "Jump to next buffer" })
 map("n", "<A-j>", ":bprevious<cr>", { desc = "Jump to previous buffer" })
