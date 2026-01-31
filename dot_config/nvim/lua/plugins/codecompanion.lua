@@ -35,8 +35,6 @@ local function openrouter()
 					["anthropic/claude-opus-4.5"] = {},
 					["openai/gpt-5.2"] = {},
 					["openai/gpt-5.1-codex-max"] = {},
-					["google/gemini-3-flash-preview"] = {},
-					["google/gemini-3-pro-preview"] = {},
 					["moonshotai/kimi-k2.5"] = {},
 					["z-ai/glm-4.7"] = {},
 				},
