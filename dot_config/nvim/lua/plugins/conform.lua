@@ -25,7 +25,7 @@ conform.setup {
 		css = { "oxfmt" },
 		scss = { "oxfmt" },
 		less = { "oxfmt" },
-		svelte = { "prettierd" },
+		svelte = { "prettierd", "prettier", stop_after_first = true },
 		vue = { "oxfmt" },
 		astro = { "prettierd" },
 		markdown = { "oxfmt" },
