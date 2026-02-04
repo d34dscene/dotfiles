@@ -93,9 +93,6 @@ for cmd in kubectl docker helm flux ko; do
    type $cmd >/dev/null && source <($cmd completion zsh)
 done
 type task >/dev/null && source <(task --completion zsh)
-if [ -f justfile ]; then
-   type just >/dev/null && complete -W "$(just --summary)" just
-fi
 
 # Custom Bindings
 bindkey -e
