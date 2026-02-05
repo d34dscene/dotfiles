@@ -11,6 +11,7 @@ export PATH="$HOME/.local/llama:$PATH"          # llama
 export PATH="$HOME/.opencode/bin:$PATH"         # opencode
 export PATH="$HOME/.opengrep/cli/latest:$PATH"  # opencode
 export PATH="$HOME/.local/bin:$PATH"            # general bin
+typeset -U PATH path                            # removes duplicates from PATH
 
 # General
 export ZDOTDIR=${ZDOTDIR:-$HOME}
@@ -47,11 +48,9 @@ setopt histfindnodups      # backwards search produces diff result each time
 setopt histreduceblanks    # compact consecutive white space chars
 setopt histsavenodups      # don't save dups in history
 setopt histnostore         # don't store history related functions
-setopt incappendhistory    # incrementally add items to HISTFILE
 setopt extendedglob        # use extended globbing (#, ~, ^)
 setopt listpacked          # variable col widths
 setopt histexpiredupsfirst # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt histignorespace     # ignore spaces in history
 setopt pushd_ignore_dups   # no duplicates in dir stack
 setopt auto_param_slash    # Adds slash at end of tabbed dirs
 setopt chase_links         # Resolve symlinks
@@ -88,11 +87,23 @@ type oh-my-posh >/dev/null && eval "$(oh-my-posh init zsh --config "$ZDOTDIR"/.o
 # Load zoxide
 type zoxide >/dev/null && eval "$(zoxide init zsh)"
 
-# Additional completions
-for cmd in kubectl docker helm flux ko; do
-   type $cmd >/dev/null && source <($cmd completion zsh)
+# History search (Ctrl+r, Ctrl+t)
+type fzf >/dev/null && eval "$(fzf --zsh)"
+
+# Additional completions with caching
+_cached_completion() {
+  local cache="$HOME/.zsh_comp_cache/$1"
+  if [[ ! -f "$cache" || ! -s "$cache" ]]; then
+    mkdir -p "$HOME/.zsh_comp_cache"
+    "$@" > "$cache" 2>/dev/null
+  fi
+  source "$cache"
+}
+
+for cmd in kubectl docker helm flux ko opencode; do
+  type $cmd >/dev/null && _cached_completion $cmd completion zsh
 done
-type task >/dev/null && source <(task --completion zsh)
+type task >/dev/null && _cached_completion task --completion zsh
 
 # Custom Bindings
 bindkey -e
