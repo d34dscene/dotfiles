@@ -32,9 +32,8 @@ local function openrouter()
 				choices = {
 					["anthropic/claude-haiku-4.5"] = {},
 					["anthropic/claude-sonnet-4.5"] = {},
-					["anthropic/claude-opus-4.5"] = {},
+					["anthropic/claude-opus-4.6"] = {},
 					["openai/gpt-5.2"] = {},
-					["openai/gpt-5.1-codex-max"] = {},
 					["moonshotai/kimi-k2.5"] = {},
 					["z-ai/glm-4.7"] = {},
 				},
