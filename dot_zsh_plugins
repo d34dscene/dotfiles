@@ -19,35 +19,44 @@ plugins=(
    omz/gitignore
 )
 
+# Plugins that should NOT be deferred (order-sensitive or fpath-only)
+nodefer=(zsh-defer zsh-completions fzf-tab)
+
 function plugin-load {
-   # Create plugin directory if it doesn't exist
    [[ -d $ZPLUGINDIR ]] || mkdir -p "$ZPLUGINDIR"
 
    for plugin in $plugins; do
-      if [[ ! -d $ZPLUGINDIR/${plugin:t} ]]; then
+      local plugin_name="${plugin:t}"
+      local plugin_dir="$ZPLUGINDIR/$plugin_name"
+
+      if [[ ! -d $plugin_dir ]]; then
          if [[ ${plugin:h} == 'omz' ]]; then
-            curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/"${plugin:t}"/"${plugin:t}".plugin.zsh \
+            curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/"$plugin_name"/"$plugin_name".plugin.zsh \
                --create-dirs --silent --show-error \
-               --output "$ZPLUGINDIR"/"${plugin:t}"/"${plugin:t}".plugin.zsh
+               --output "$plugin_dir/$plugin_name.plugin.zsh"
          else
-            git clone https://github.com/"${plugin}" "$ZPLUGINDIR"/"${plugin:t}"
+            git clone --depth 1 https://github.com/"$plugin" "$plugin_dir"
          fi
       fi
 
-      # Find first matching init file
-      local plugin_dir="$ZPLUGINDIR/${plugin:t}"
-      local initfile="$plugin_dir/${plugin:t}.plugin.zsh"
+      local initfile="$plugin_dir/$plugin_name.plugin.zsh"
 
       if [[ ! -e $initfile ]]; then
          local initfiles=($plugin_dir/*.{plugin.zsh,zsh-theme,zsh,sh}(N))
-         if (($#initfiles == 0)); then
+         if (( $#initfiles == 0 )); then
             echo >&2 "No init file found for '$plugin'."
             continue
          fi
          ln -sf "${initfiles[1]}" "$initfile"
       fi
+
       fpath+=$plugin_dir
-      (( $+functions[zsh-defer] )) && zsh-defer . "$initfile" || . "$initfile"
+
+      if (( $+functions[zsh-defer] )) && [[ ! ${nodefer[(r)$plugin_name]} ]]; then
+         zsh-defer . "$initfile"
+      else
+         . "$initfile"
+      fi
    done
 }
 
@@ -55,23 +64,48 @@ function plugin-list {
    for d in $ZPLUGINDIR/*/.git; do
       git -C "${d:h}" remote get-url origin
    done
+   # Also list OMZ plugins (no .git)
+   for d in $ZPLUGINDIR/*(N/); do
+      [[ -d "$d/.git" ]] || echo "omz: ${d:t}"
+   done
 }
 
 function plugin-compile {
-   local f
    autoload -Uz zrecompile
+   local f
    for f in $ZPLUGINDIR/**/*.zsh; do
-      [[ $f != */test-data/* ]] || continue # fix for zsh-syntax-highlighting
+      [[ $f != */test-data/* ]] || continue
       zrecompile -pq "$f"
    done
 }
 
 function plugin-update {
    for d in $ZPLUGINDIR/*/.git(/); do
-     echo "Updating ${d:h:t}..."
-     command git -C "${d:h}" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+      echo "Updating ${d:h:t}..."
+      command git -C "${d:h}" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+   done
+   # Re-download OMZ plugins
+   for plugin in $plugins; do
+      if [[ ${plugin:h} == 'omz' ]]; then
+         local plugin_name="${plugin:t}"
+         echo "Updating $plugin_name (omz)..."
+         curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/"$plugin_name"/"$plugin_name".plugin.zsh \
+            --silent --show-error \
+            --output "$ZPLUGINDIR/$plugin_name/$plugin_name.plugin.zsh"
+      fi
+   done
+   plugin-compile
+}
+
+function plugin-clean {
+   local installed=($ZPLUGINDIR/*(N/:t))
+   local expected=(${plugins[@]:t})
+   for dir in $installed; do
+      if [[ ! ${expected[(r)$dir]} ]]; then
+         echo "Removing $dir..."
+         rm -rf "$ZPLUGINDIR/$dir"
+      fi
    done
 }
 
 plugin-load
-plugin-compile

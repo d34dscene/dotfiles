@@ -18,6 +18,18 @@ alias reload="source ~/.zshrc"
 alias fd="fd -H"
 alias signalwork="flatpak run org.signal.Signal --user-data-dir=$HOME/.var/app/org.signal.Signal/work"
 
+# Directory ops
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias mkd="mkdir -pv"
+type z &>/dev/null && alias cd="z"
+
+# Copy/move with progress
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -Iv"
+
 # System aliases
 alias flush="resolvectl flush-caches"
 alias bios="systemctl reboot --firmware-setup"
@@ -32,9 +44,18 @@ alias sshr="ssh-keygen -R"
 alias myip="curl ifconfig.me"
 alias cssl="openssl x509 -text -noout -in"
 alias meta="identify -verbose"
+alias dus="du -sh * | sort -rh | head -20"
 
-# GNU replacements
-type z &>/dev/null && alias cd="z"
+# Quick timestamp
+alias ts="date '+%Y-%m-%d %H:%M:%S'"
+alias iso="date --iso-8601=seconds"
+
+# Systemd journal
+alias jf="journalctl -fu"       # follow unit logs
+alias je="journalctl -eu"       # errors for unit
+alias jb="journalctl -b -p err" # errors since boot
+
+# Modern CLI replacements
 if type lsd &>/dev/null; then
    alias ls="lsd -F"
    alias la="ls -la --permission=octal"
@@ -64,14 +85,11 @@ if type xh &>/dev/null; then
    alias xdl="xh -d"
 fi
 alias dog="doggo --time"
-alias duf="duf --sort=size -only=local"
+alias duf="duf --sort=size --only=local"
 
 # Rsync
 alias rs="rsyncy -avzh"  # Overwrite
 alias rsu="rsyncy -auzh" # Update only if newer
-
-# Immich
-alias imup="immich-go upload from-folder --server=$IMMICH_URL --api-key=$IMMICH_API_KEY"
 
 # Systemd
 alias sd="sudo systemctl"
@@ -155,11 +173,6 @@ alias gor="go run ."
 
 # Python
 alias py="python3"
-alias pip="pip3"
-alias pipu="pip3 install --upgrade"
-alias pipi="pip3 install"
-
-# Python Virtualenv
 alias pvv="python3 -m venv .venv"
 alias svv="source .venv/bin/activate"
 
@@ -172,13 +185,6 @@ alias ni="pnpm install"
 alias nu="pnpm update"
 alias nd="pnpm remove"
 alias ncu="npx npm-check-updates -u"
-
-# Micromamba
-alias mamba="micromamba"
-alias mambac="micromamba create -c conda-forge -n"
-alias mambaa="micromamba activate"
-alias mambad="micromamba deactivate"
-alias mambar="micromamba run -n"
 
 # Docker
 alias d="docker"
@@ -199,6 +205,8 @@ alias dps="docker ps -a"
 alias dsa="docker stats -a"
 alias ddf="docker system df"
 alias dsp="docker system prune -af --volumes"
+alias dvol="docker volume ls"
+alias dip="docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
 
 # Docker Compose
 alias dc="docker compose"
@@ -206,20 +214,6 @@ alias dcu="docker compose up -d"
 alias dcd="docker compose down"
 alias dcp="docker compose pull"
 alias dcr="docker compose restart"
-
-# Podman
-alias pd="podman"
-alias pbl="podman build"
-alias psp="podman system prune -af --volumes"
-alias pds="podman ps -a"
-alias pk="podman kill"
-alias pr="podman run -it"
-alias px="podman exec -it"
-alias prc="podman restart"
-alias pipu="podman push"
-alias pdl="podman diff"
-alias pl="podman logs"
-alias plf="podman logs -f"
 
 # Distrobox
 alias bx="distrobox"
@@ -245,19 +239,6 @@ alias flw="flux get kustomizations --watch"
 alias fls="flux suspend"
 alias flr="flux resume"
 alias flre="flux reconcile"
-
-# Cloudflare
-alias cf="flarectl --json"
-alias cfz="flarectl zone dns --zone"
-
-# Vault
-alias v="vault"
-alias vm="vault operator members"
-alias vs="vault secrets list"
-alias vt="vault list /auth/token/accessors"
-alias vr="vault token revoke -accessor"
-alias vg="vault kv get"
-alias vout="vault token revoke -self"
 
 # Kubernetes
 alias k="kubectl"
