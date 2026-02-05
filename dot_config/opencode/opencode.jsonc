@@ -17,7 +17,11 @@
       "url": "https://mcp.grep.app",
     },
   },
-  "plugin": ["opencode-anthropic-auth@latest", "opencode-antigravity-auth@latest"],
+  "plugin": [
+    "opencode-anthropic-auth@latest",
+    "opencode-antigravity-auth@latest",
+    "@tarquinen/opencode-dcp@latest",
+  ],
   "provider": {
     "openrouter": {
       "options": {
