@@ -28,7 +28,7 @@ local function openrouter()
 		},
 		schema = {
 			model = {
-				default = "anthropic/claude-opus-4.5",
+				default = "anthropic/claude-opus-4.6",
 				choices = {
 					["anthropic/claude-haiku-4.5"] = {},
 					["anthropic/claude-sonnet-4.5"] = {},
