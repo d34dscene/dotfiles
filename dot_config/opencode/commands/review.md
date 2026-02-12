@@ -3,7 +3,7 @@ name: review
 description: Review code for simplification and optimization
 ---
 
-Review the code at the provided path: $ARGUMENTS
+Review the project here ($PWD) for simplification and optimization
 
 Tasks:
 
