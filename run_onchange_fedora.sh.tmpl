@@ -86,7 +86,7 @@ setup_workstation() {
       golang rust cargo htop zsh unar git git-lfs openssl curl dnf-automatic \
       flatpak lsd fd-find ripgrep fzf tldr ncdu wl-clipboard lm_sensors \
       gnome-tweaks lutris gamescope duf steam-devices yt-dlp jq upx fastfetch \
-      ulauncher dconf-editor papirus-icon-theme wireguard-tools clang xz-devel \
+      dconf-editor papirus-icon-theme wireguard-tools clang xz-devel \
       clang-tools-extra python3-devel kernel-devel kernel-headers zoxide \
       python3-pip python3-virtualenv age neovim python3-neovim shellcheck \
       codespell ansible ansible-lint topgrade bandwhich procs bat \
@@ -111,6 +111,11 @@ setup_workstation() {
       org.gimp.GIMP \
       org.signal.Signal \
       it.mijorus.gearlever
+
+   log "Adding launcher..."
+   sudo dnf copr enable quadratech188/vicinae -y
+   sudo dnf install vicinae -y
+   systemctl --user enable vicinae --now
 }
 
 main() {
