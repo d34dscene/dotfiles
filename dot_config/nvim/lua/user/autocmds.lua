@@ -107,6 +107,13 @@ cmd({ "BufNewFile", "BufRead" }, {
 	end,
 })
 
+cmd({ "BufNewFile", "BufRead" }, {
+	pattern = ".plist",
+	callback = function()
+		vim.bo.filetype = "xml"
+	end,
+})
+
 command("ProtoRenumber", function()
 	require("util.proto").proto_renumber()
 end, {})

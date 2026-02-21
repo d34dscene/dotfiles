@@ -17,6 +17,7 @@ alias restore="sudo restorecon -rv"
 alias reload="source ~/.zshrc"
 alias fd="fd -H"
 alias signalwork="flatpak run org.signal.Signal --user-data-dir=$HOME/.var/app/org.signal.Signal/work"
+alias gpgls="gpg --list-secret-keys --keyid-format=long"
 
 # Directory ops
 alias ..="cd .."
