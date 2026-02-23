@@ -174,20 +174,6 @@ return {
 			vim.keymap.set("i", "<PageUp>", neocodeium.cycle)
 		end,
 	},
-	-- {
-	-- 	"BlinkResearchLabs/blink-edit.nvim",
-	-- 	config = function()
-	-- 		require("blink-edit").setup {
-	-- 			llm = {
-	-- 				provider = "sweep",
-	-- 				backend = "ollama",
-	-- 				url = "https://ollama.mizuchi.dev",
-	-- 				model = "hf.co/sweepai/sweep-next-edit-1.5B:latest",
-	-- 			},
-	-- 			accept_key = "<A-f>",
-	-- 		}
-	-- 	end,
-	-- },
 	{
 		"chrisgrieser/nvim-spider", -- Easy motion
 		lazy = true,
@@ -215,6 +201,7 @@ return {
 			lsp_inlay_hints = { enable = true },
 			diagnostic = false,
 		},
+		dependencies = { "ray-x/guihua.lua" },
 		keys = {
 			{ "<leader>gf", "<cmd>GoFillStruct<cr>", desc = "Go fill struct" },
 			{ "<leader>ga", "<cmd>GoAddTag<cr>", desc = "Go add tags" },
