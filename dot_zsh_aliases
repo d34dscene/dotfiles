@@ -35,10 +35,12 @@ alias gk='gpg --list-keys --keyid-format LONG'
 alias gktrust='gpg --list-keys --with-colons | grep "^pub"'
 alias gexp='gpg --armor --export'
 alias gexpsec='gpg --armor --export-secret-keys'
+alias gexpsub='gpg --armor --export-secret-subkeys'
 alias gimp='gpg --import'
 alias gsign='gpg --clearsign'
 alias genc='gpg --encrypt --armor'
 alias gdec='gpg --decrypt'
+alias gedit='gpg --edit-key'
 
 # System aliases
 alias flush="resolvectl flush-caches"

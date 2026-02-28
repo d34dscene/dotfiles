@@ -27,6 +27,27 @@
         "baseURL": "https://openrouter.ai/api/v1",
       },
     },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "https://ollama.mizuchi.dev/v1",
+      },
+      "models": {
+        "ministral-3:8b": {
+          "name": "Ministral 3 (8b)",
+        },
+        "gpt-oss:latest": {
+          "name": "gpt oss (20b)",
+        },
+        "qwen3-coder:30b": {
+          "name": "Qwen 3 Coder (30b)",
+        },
+        "devstral-small-2:24b": {
+          "name": "Devstral small (24b)",
+        },
+      },
+    },
     "google": {
       "models": {
         "antigravity-gemini-3-pro": {
