@@ -17,7 +17,6 @@ alias restore="sudo restorecon -rv"
 alias reload="source ~/.zshrc"
 alias fd="fd -H"
 alias signalwork="flatpak run org.signal.Signal --user-data-dir=$HOME/.var/app/org.signal.Signal/work"
-alias gpgls="gpg --list-secret-keys --keyid-format=long"
 
 # Directory ops
 alias ..="cd .."
@@ -30,6 +29,16 @@ type z &>/dev/null && alias cd="z"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -Iv"
+
+# GPG
+alias gk='gpg --list-keys --keyid-format LONG'
+alias gktrust='gpg --list-keys --with-colons | grep "^pub"'
+alias gexp='gpg --armor --export'
+alias gexpsec='gpg --armor --export-secret-keys'
+alias gimp='gpg --import'
+alias gsign='gpg --clearsign'
+alias genc='gpg --encrypt --armor'
+alias gdec='gpg --decrypt'
 
 # System aliases
 alias flush="resolvectl flush-caches"
