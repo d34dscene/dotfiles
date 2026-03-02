@@ -27,7 +27,7 @@ conform.setup {
 		less = { "oxfmt" },
 		svelte = { "prettierd", "prettier", stop_after_first = true },
 		vue = { "oxfmt" },
-		astro = { "prettierd" },
+		astro = { "prettierd", "prettier", stop_after_first = true },
 		markdown = { "oxfmt" },
 		mdx = { "oxfmt" },
 		yaml = { "oxfmt" },
@@ -39,7 +39,7 @@ conform.setup {
 		proto = { "buf" },
 		sql = { "sql_formatter" },
 		xml = { "xmlformat" },
-		["*"] = { "codespell" },
+		-- ["*"] = { "codespell" },
 		["_"] = { "trim_whitespace", "trim_newlines" },
 	},
 	formatters = {
