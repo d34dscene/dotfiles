@@ -77,7 +77,7 @@ return {
 	{ "mfussenegger/nvim-lint" }, -- Linter
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
-	{ "davidmh/mdx.nvim", event = "BufEnter *.mdx", config = true }, -- MDX support
+	{ "davidmh/mdx.nvim" }, -- MDX support
 	{
 		"smjonas/inc-rename.nvim", -- Highlight refactors
 		event = "BufReadPost",

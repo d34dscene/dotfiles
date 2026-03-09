@@ -22,6 +22,10 @@
       "type": "remote",
       "url": "https://mcp.docs.astro.build/mcp",
     },
+    "polar": {
+      "type": "local",
+      "command": ["npx", "mcp-remote", "https://mcp.polar.sh/mcp/polar-sandbox"],
+    },
   },
   "plugin": ["@sveltejs/opencode", "opencode-antigravity-auth@latest"],
   "provider": {
