@@ -33,10 +33,20 @@ return {
 	-- ------------------------------------------------------------------------
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = false,
+		branch = "main",
 		build = ":TSUpdate",
-		init = function(plugin)
-			require("lazy.core.loader").add_to_rtp(plugin)
+		config = function()
+			require("nvim-treesitter").setup {}
+		end,
+	},
+	{
+		"mks-h/treesitter-autoinstall.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("treesitter-autoinstall").setup {
+				highlight = true,
+				ignore = {},
+			}
 		end,
 	},
 	{

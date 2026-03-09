@@ -16,7 +16,6 @@ require "plugins.lualine"
 require "plugins.mini"
 require "plugins.neotree"
 require "plugins.snacks"
-require "plugins.treesitter"
 require "plugins.which-key"
 
 -- Load theme

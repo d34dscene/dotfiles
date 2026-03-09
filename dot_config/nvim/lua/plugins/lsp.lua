@@ -144,12 +144,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = bufnr,
 				group = highlight_group,
-				callback = vim.lsp.buf.document_highlight,
+				callback = function()
+					-- pcall catches the error if the server has crashed, preventing the annoying popup
+					pcall(vim.lsp.buf.document_highlight)
+				end,
 			})
 			vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 				buffer = bufnr,
 				group = highlight_group,
-				callback = vim.lsp.buf.clear_references,
+				callback = function()
+					pcall(vim.lsp.buf.clear_references)
+				end,
 			})
 		end
 	end,
@@ -253,6 +258,20 @@ local overrides = {
 		completion = true,
 		schemaStore = { enable = false, url = "" },
 		schemas = require("schemastore").yaml.schemas(),
+	},
+	vtsls = {
+		flags = {
+			-- It prevents the server from getting out of sync with your buffer.
+			allow_incremental_sync = false,
+		},
+		settings = {
+			typescript = {
+				tsserver = { maxTsServerMemory = 8192 },
+			},
+			vtsls = {
+				autoUseWorkspaceTsdk = true, -- Use project's TS version if available
+			},
+		},
 	},
 }
 
