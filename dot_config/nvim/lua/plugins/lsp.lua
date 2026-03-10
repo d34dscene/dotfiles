@@ -146,7 +146,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				buffer = bufnr,
 				group = highlight_group,
 				callback = function()
-					-- pcall catches the error if the server has crashed, preventing the annoying popup
+					local supports_highlight = vim.lsp.get_clients {
+						bufnr = bufnr,
+						method = "textDocument/documentHighlight",
+					}
+
+					if #supports_highlight == 0 then
+						return
+					end
+
 					pcall(vim.lsp.buf.document_highlight)
 				end,
 			})
