@@ -22,6 +22,7 @@ mason_lspconfig.setup {
 		"marksman",
 		"ruff",
 		"svelte",
+		"astro",
 		"tailwindcss",
 		"yamlls",
 		"vtsls",
@@ -260,16 +261,39 @@ local overrides = {
 		schemas = require("schemastore").yaml.schemas(),
 	},
 	vtsls = {
-		flags = {
-			-- It prevents the server from getting out of sync with your buffer.
-			allow_incremental_sync = false,
+		filetypes = {
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
 		},
 		settings = {
-			typescript = {
-				tsserver = { maxTsServerMemory = 8192 },
-			},
+			complete_function_calls = true,
 			vtsls = {
-				autoUseWorkspaceTsdk = true, -- Use project's TS version if available
+				enableMoveToFileCodeAction = true,
+				autoUseWorkspaceTsdk = true,
+				experimental = {
+					maxInlayHintLength = 30,
+					completion = {
+						enableServerSideFuzzyMatch = true,
+					},
+				},
+			},
+			typescript = {
+				updateImportsOnFileMove = { enabled = "always" },
+				suggest = {
+					completeFunctionCalls = true,
+				},
+				inlayHints = {
+					enumMemberValues = { enabled = true },
+					functionLikeReturnTypes = { enabled = true },
+					parameterNames = { enabled = "literals" },
+					parameterTypes = { enabled = true },
+					propertyDeclarationTypes = { enabled = true },
+					variableTypes = { enabled = false },
+				},
 			},
 		},
 	},
