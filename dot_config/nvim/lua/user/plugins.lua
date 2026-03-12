@@ -78,6 +78,7 @@ return {
 	{ "stevearc/conform.nvim", event = "BufReadPost" }, -- Formatter
 	{ "b0o/schemastore.nvim" }, -- Schema store
 	{ "davidmh/mdx.nvim" }, -- MDX support
+	{ "qvalentin/helm-ls.nvim", ft = "helm" }, -- Helm support
 	{
 		"smjonas/inc-rename.nvim", -- Highlight refactors
 		event = "BufReadPost",

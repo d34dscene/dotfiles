@@ -15,7 +15,7 @@ o.breakindent = true -- Indent wrapped lines
 o.showbreak = "↳ " -- Character shown at the end of wrapped lines
 
 -- Performance
-o.updatetime = 300 -- Faster CursorHold events
+o.updatetime = 200 -- Faster CursorHold events
 o.timeoutlen = 300 -- Faster key sequence completion
 o.ttyfast = true -- Fast terminal connection
 o.history = 100 -- Keep 100 lines of command line history
